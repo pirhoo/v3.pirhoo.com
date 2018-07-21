@@ -22,34 +22,32 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './utils/_settings.scss';
+  @import '@/utils/_settings.scss';
   @import 'node_modules/bootstrap/scss/bootstrap';
 
   .section {
     display:block;
     margin:0;
-    background: center center;
-    background-size: cover;
     position: relative;
     clear:both;
     min-height: 90vh;
+
+    --section-primary: black;
+    --section-secondary:  black;
+    --section-text:  $body-color;
 
     .wrapper {
       padding-top:5vh;
       padding-bottom:1px;
     }
 
-    strong {
-      color:theme-color('dark');
-    }
-
     &__panel {
-      background:rgba(white, .15);
       position:relative;
       margin:40px auto;
       padding:30px;
       padding-top:60px;
       max-width: 800px;
+      color: var(--section-text);
 
       &:after {
         position: absolute;
@@ -62,16 +60,14 @@ export default {
         background:white;
       }
 
-      &:before {
-        position: absolute;
-        top:0;
-        bottom:0;
-        left:0;
-        right:0;
-        content:"";
-        z-index:-1;
-        background:theme-color('dark');
+      html body & strong {
+        color: var(--section-secondary);
       }
+
+      html body & a {
+        color: var(--section-primary);
+      }
+
 
       @include media-breakpoint-down('sm') {
         margin:20px;
@@ -107,6 +103,11 @@ export default {
           content:"";
         }
 
+        &:before, &:after {
+          color: var(--section-secondary);
+          border-color: var(--section-secondary);
+        }
+
         @include media-breakpoint-up('lg') {
           &:before, &:after {
             left:170px;
@@ -120,8 +121,8 @@ export default {
       min-height: 61px;
       margin:20px auto;
       max-width: 800px;
-      background: theme-color('dark');
       color: theme-color('light');
+      position: relative;
 
       strong {
         color: theme-color('light');

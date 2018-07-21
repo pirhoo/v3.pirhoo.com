@@ -2,6 +2,7 @@
   <section class="projects section">
     <div class="wrapper">
       <div class="section__panel">
+        <gradient-on-scroll></gradient-on-scroll>
         <h2 aria-section="Projects" class="section__panel__lead">
           Here’s what I’ve <strong>done</strong>
         </h2>
@@ -34,8 +35,15 @@
 </template>
 
 <script>
+import section from '@/mixins/section';
+import GradientOnScroll from './GradientOnScroll.vue';
+
 export default {
   name: 'Projects',
+  mixins: [section],
+  components: {
+    GradientOnScroll,
+  },
   data() {
     return {
       projects: [],
@@ -46,8 +54,4 @@ export default {
 
 <style lang="scss">
   @import '../utils/_settings';
-
-  .projects {
-    @include sectionize($projects-bg, $projects-color, $projects-emphasize);
-  }
 </style>

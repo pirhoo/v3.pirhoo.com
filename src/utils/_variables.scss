@@ -1,0 +1,35 @@
+$primary: #F8B700;
+$secondary: #505050;
+$success: #28a745;
+$info: #17a2b8;
+$warning: #F4EDEA;
+$danger: #dc3545;
+$light: #F0F0F0;
+
+$body-bg: #fff;
+$body-color: #312e31;
+
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial,sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+$font-family-serif: "Quando", "Merriweather", Georgia, "Times New Roman", Times, serif;
+
+$headings-font-family: $font-family-serif;
+$headings-font-weight: 500;
+$font-family-base: $font-family-sans-serif;
+$font-size-base: .9rem;
+
+$text-muted: #717171;
+
+$input-focus-border-color: $secondary;
+$link-hover-color: darken($warning, 10%);
+
+$introduction-primary: #291c29;
+$introduction-secondary: #C4657E;
+$introduction-text: lighten(mix($introduction-primary, $body-color, 20%), 15%);
+
+$activity-primary: #025066;
+$activity-secondary: #649e8a;
+$activity-text: lighten(mix($activity-primary, $body-color, 20%), 15%);
+
+$projects-primary: #DC6448;
+$projects-secondary: #EDD0A3;
+$projects-text: lighten(mix($projects-primary, $body-color, 20%), 15%);

@@ -2,6 +2,7 @@
   <section class="activity section">
     <div class="wrapper">
       <div class="activity__body section__panel">
+        <gradient-on-scroll></gradient-on-scroll>
         <h2 aria-section="Activity" class="section__panel__lead">
           I’ve been busy,<br>
           <strong>let the data talk</strong>
@@ -12,6 +13,7 @@
         </p>
       </div>
       <div class="activity__figures section__footer">
+        <gradient-on-scroll></gradient-on-scroll>
         <div class="container-fluid">
           <div class="row">
             <div class="activity__figures__item section__footer__item col">
@@ -20,7 +22,7 @@
               I authored
               <strong>
                 {{ commits.commitsCount }}
-              </strong>&nbsp;
+              </strong>
               <abbr title="A submission of my latest changes of a source code">
                 commits
               </abbr>
@@ -28,28 +30,31 @@
               over
               <strong>
                 {{ commits.repositoriesCount }}
-              </strong>&nbsp;projects
+              </strong>
+              projects
             </div>
             <div class="activity__figures__item section__footer__item col">
               <fa icon="graduation-cap"
                 class=" activity__figures__item__icon section__footer__item__icon" />
-              I gave ±
-              <strong>
-                {{ trainings.hoursCount }}
-              </strong>&nbsp;hours<br />of training in
+              I gave
+              ±<strong>{{ trainings.hoursCount }}</strong>
+              hours<br />of training in
               <strong>
                 {{ trainings.countriesCount }}
-              </strong>&nbsp;countries
+              </strong>
+              countries
             </div>
             <div class="activity__figures__item section__footer__item col">
               <fa icon="trophy"
                 class="activity__figures__item__icon section__footer__item__icon" />
               <strong>
                 {{ awards.awardsCount }}
-              </strong>&nbsp;prizes awarded<br />for
+              </strong>
+              prizes awarded<br />for
               <strong>
                 {{ awards.projectsCount }}
-              </strong>&nbsp;projects I worked on
+              </strong>
+              projects I worked on
             </div>
           </div>
         </div>
@@ -62,12 +67,19 @@
 </template>
 
 <script>
+import section from '@/mixins/section';
+import GradientOnScroll from './GradientOnScroll.vue';
 import { hoursCount, countriesCount, customersCount } from '../assets/json/trainings.json';
 import { awardsCount, projectsCount } from '../assets/json/awards.json';
 import { commitsCount, repositoriesCount } from '../assets/json/commits.json';
 
+
 export default {
   name: 'Activity',
+  mixins: [section],
+  components: {
+    GradientOnScroll,
+  },
   data() {
     return {
       commits: {
@@ -91,8 +103,4 @@ export default {
 
 <style lang="scss">
   @import '../utils/_settings';
-
-  .activity {
-    @include sectionize($activity-bg, $activity-color, $activity-emphasize);
-  }
 </style>

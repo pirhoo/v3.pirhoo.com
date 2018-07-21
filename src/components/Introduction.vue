@@ -2,6 +2,7 @@
   <section class="introduction section">
     <div class="wrapper">
       <div class="introduction__body section__panel">
+        <gradient-on-scroll></gradient-on-scroll>
         <h2 aria-section="Introduction" class="section__panel__lead">
           Hi, I’m <strong>Pierre Romera</strong><br />
           developer &amp; datajournalist
@@ -23,6 +24,7 @@
         </p>
       </div>
       <div class="introduction__social section__footer">
+        <gradient-on-scroll></gradient-on-scroll>
         <div class="container-fluid">
           <div class="row">
             <a class="introduction__social__item section__footer__item col"
@@ -67,15 +69,18 @@
 </template>
 
 <script>
+import section from '@/mixins/section';
+import GradientOnScroll from './GradientOnScroll.vue';
+
 export default {
   name: 'Introduction',
+  mixins: [section],
+  components: {
+    GradientOnScroll,
+  },
 };
 </script>
 
 <style lang="scss">
   @import '../utils/_settings';
-
-  .introduction {
-    @include sectionize($introduction-bg, $introduction-color, $introduction-emphasize);
-  }
 </style>
