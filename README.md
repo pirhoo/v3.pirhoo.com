@@ -10,6 +10,11 @@ yarn install
 yarn run serve
 ```
 
+### Compiles CSV
+```
+yarn run csv
+```
+
 ### Compiles and minifies for production
 ```
 yarn run build
