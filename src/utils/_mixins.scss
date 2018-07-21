@@ -1,0 +1,93 @@
+// Calculeate brightness of a given color.
+@function brightness($color) {
+  @return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
+}
+
+// Compares contrast of a given color to the light/dark arguments and returns whichever is most "contrasty"
+@function contrast($color, $dark: #000, $light: #fff) {
+  @if $color == null {
+    @return null;
+  }
+  @else {
+    $color-brightness: brightness($color);
+    $light-text-brightness: brightness($light);
+    $dark-text-brightness: brightness($dark);
+
+    @return if(abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness), $light, $dark);
+  }
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+@mixin animation($animation) {
+  -webkit-animation:$animation;
+  -moz-animation:$animation;
+  -o-animation:$animation;
+  animation:$animation;
+}
+
+@mixin animation-delay-loop($from:0, $to:10, $delay: 300ms) {
+  @for $i from $from through $to {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * $delay;
+      }
+  }
+}
+
+@mixin vendor-prefix($name, $argument) {
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+}
+
+@mixin sectionize($bg: #fff, $color: #333, $emphasize: #000) {
+
+  $panel-bg: mix( mix( contrast($color), $bg, 20%), $emphasize, 99%);
+
+  & .section__panel {
+    background: transparent;
+    color: $color;
+
+    &:before {
+       @include gradient-directional($emphasize, $bg, 360deg/-8);
+    }
+
+    h2:before, h2:after {
+      color:$emphasize;
+      border-color:$emphasize;
+    }
+  }
+
+  html body & strong {
+    color: $emphasize;
+  }
+
+  html body & a {
+    color: mix($emphasize, $color);
+  }
+
+  html & .section__footer {
+     @include gradient-directional($emphasize, $bg, 360deg/8);
+    color:white;
+
+    a, strong {
+      color:inherit;
+    }
+  }
+
+}
