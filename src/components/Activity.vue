@@ -19,7 +19,7 @@
                 class="activity__figures__item__icon section__footer__item__icon" />
               I authored
               <strong>
-                {{ commits }}
+                {{ commits.commitsCount }}
               </strong>&nbsp;
               <abbr title="A submission of my latest changes of a source code">
                 commits
@@ -27,7 +27,7 @@
               <br />
               over
               <strong>
-                {{ repositories }}
+                {{ commits.repositoriesCount }}
               </strong>&nbsp;projects
             </div>
             <div class="activity__figures__item section__footer__item col">
@@ -35,20 +35,20 @@
                 class=" activity__figures__item__icon section__footer__item__icon" />
               I gave ±
               <strong>
-                {{ hours }}
+                {{ trainings.hoursCount }}
               </strong>&nbsp;hours<br />of training in
               <strong>
-                {{ countries }}
+                {{ trainings.countriesCount }}
               </strong>&nbsp;countries
             </div>
             <div class="activity__figures__item section__footer__item col">
               <fa icon="trophy"
                 class="activity__figures__item__icon section__footer__item__icon" />
               <strong>
-                {{ awards }}
+                {{ awards.awardsCount }}
               </strong>&nbsp;prizes awarded<br />for
               <strong>
-                {{ projects }}
+                {{ awards.projectsCount }}
               </strong>&nbsp;projects I worked on
             </div>
           </div>
@@ -62,16 +62,28 @@
 </template>
 
 <script>
+import { hoursCount, countriesCount, customersCount } from '../assets/json/trainings.json';
+import { awardsCount, projectsCount } from '../assets/json/awards.json';
+import { commitsCount, repositoriesCount } from '../assets/json/commits.json';
+
 export default {
   name: 'Activity',
   data() {
     return {
-      commits: 0,
-      repositories: 0,
-      awards: 0,
-      projects: 0,
-      hours: 0,
-      countries: 0,
+      commits: {
+        commitsCount,
+        repositoriesCount,
+      },
+      awards: {
+        awardsCount,
+        countriesCount,
+        projectsCount,
+      },
+      trainings: {
+        hoursCount,
+        countriesCount,
+        customersCount,
+      },
     };
   },
 };
