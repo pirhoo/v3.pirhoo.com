@@ -34,7 +34,7 @@ gulp.task('resize', () => gulp.src(`${paths.src}/assets/images/thumbnails/*.{png
 gulp.task('csv:trainings', () => gulp.src(['src/assets/csv/trainings.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor(data => ({
-    hoursCount: _.reduce(data, (sum, training) => sum + (training.duration * 8, 0)),
+    hoursCount: _.reduce(data, (sum, training) => (training.duration * 8) + sum, 0),
     countriesCount: _.keys(_.countBy(data, 'country')).length,
     customersCount: _.keys(_.countBy(data, 'customer')).length,
     categoryCount: _.countBy(data, 'category'),
