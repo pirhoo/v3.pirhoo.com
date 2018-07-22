@@ -200,26 +200,26 @@ export default {
         }
 
         &:nth-child(odd) rect {
-          fill: var(--section-secondary);
+          fill: var(--section-text);
           transition: fill $color-transition-duration;
           opacity: .1;
         }
 
         &__label {
-          fill: var(--section-secondary);
+          fill: var(--section-primary);
           transition: fill $color-transition-duration;
         }
       }
 
       &__line {
-        stroke:var(--section-secondary);
+        stroke:var(--section-primary);
         stroke-width:3px;
         fill:transparent;
         transition: stroke $color-transition-duration;
       }
 
       &__dot {
-        fill:var(--section-secondary);
+        fill:var(--section-primary);
         transition: fill $color-transition-duration;
       }
     }

@@ -18,24 +18,32 @@
           </a>.</p>
         </div>
         <div class="projects__cascading">
-          <div class="projects__cascading__item" v-for="project in projects" :key="project.title">
-            <a class="projects__cascading__item__wrapper" :href="project.url">
-              <div class="projects__cascading__item__wrapper__ghost">
-                <div :style="{ 'padding-top': project.height / project.width * 100 + '%' }"></div>
-              </div>
-              <img class="projects__cascading__item__wrapper__thumbnail" :src="project.thumbnail" />
-              <div class="projects__cascading__item__wrapper__title">
-                {{ project.title }}
-              </div>
-            </a>
-          </div>
+          <masonry :gutter="25" :cols="3">
+            <div class="projects__cascading__item" v-for="(project, index) in projects"
+              :key="index"
+              :style="{ 'border-color': project.color }">
+              <a class="projects__cascading__item__wrapper" :href="project.url">
+                <div class="projects__cascading__item__wrapper__ghost">
+                  <div :style="{ 'padding-top': project.paddingTop }"></div>
+                </div>
+                <img class="projects__cascading__item__wrapper__thumbnail"
+                  :src="require(`@/${project.thumbnail}`)" />
+                <div class="projects__cascading__item__wrapper__title">
+                  {{ project.title }}
+                </div>
+              </a>
+            </div>
+          </masonry>
         </div>
     </div>
   </section>
 </template>
 
 <script>
+import { map, assign } from 'lodash';
+
 import section from '@/mixins/section';
+import projects from '@/assets/json/projects.json';
 import GradientOnScroll from './GradientOnScroll.vue';
 
 export default {
@@ -46,7 +54,9 @@ export default {
   },
   data() {
     return {
-      projects: [],
+      projects: map(projects, project => assign(project, {
+        paddingTop: `${(project.height / project.width) * 100}%`,
+      })),
     };
   },
 };
@@ -54,4 +64,61 @@ export default {
 
 <style lang="scss">
   @import '../utils/_settings';
+
+  .projects {
+    margin:0;
+    display: block;
+    overflow: visible;
+
+    &__cascading {
+      position: relative;
+      display: block;
+      margin:0 auto;
+      text-align: center;
+      max-width: 800px;
+      overflow: hidden;
+
+      &__item {
+        margin-bottom: 25px;
+        padding: 15px;
+        // opacity:0;
+        // transform: translate(0%, 20%) scale(.7);
+        transition: .4s;
+        border:5px solid black;
+
+        &--in-view {
+          opacity: 1;
+          transform: translate(0, 0) scale(1);
+        }
+
+        &__wrapper {
+          display: block;
+          position: relative;
+          overflow: hidden;
+          text-decoration: none;
+
+          img {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+          }
+
+          &__title {
+            padding:5px;
+            color:inherit;
+            font-size:10px;
+            font-weight: lighter;
+            display: block;
+            background: white;
+            text-align: center;
+            text-decoration: none;
+            color:$body-color;
+          }
+        }
+      }
+    }
+
+  }
 </style>
