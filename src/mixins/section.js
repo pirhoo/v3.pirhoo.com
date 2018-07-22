@@ -1,4 +1,4 @@
-import Scrolltrack from '@/utils/scrolltrack';
+import Mousetrack from '@/utils/mousetrack';
 import colors from './colors';
 
 export default {
@@ -9,14 +9,14 @@ export default {
     };
   },
   mounted() {
-    this.scrolltrack.on('scroll.ratio', ({ top }) => this.updateColors(top));
+    this.mousetrack.on('update.ratio', ({ top, left }) => this.updateColors(top * left));
     this.updateColors();
   },
   destroyed() {
-    this.scrolltrack.unbind();
+    this.mousetrack.unbind();
   },
   methods: {
-    updateColors(top = this.scrolltrack.containerScrollRatio.top) {
+    updateColors(top = 0) {
       this.scrollTopRatio = top;
       this.$el.style.setProperty('--section-text', this.textColor);
       this.$el.style.setProperty('--section-primary', this.primaryColor);
@@ -24,8 +24,8 @@ export default {
     },
   },
   computed: {
-    scrolltrack() {
-      return new Scrolltrack();
+    mousetrack() {
+      return new Mousetrack();
     },
     textColor() {
       return this.colorScaleText(this.scrollTopRatio);

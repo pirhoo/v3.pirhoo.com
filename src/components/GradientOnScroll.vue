@@ -8,7 +8,7 @@
 import Granim from 'granim';
 import { range, reduce, assign } from 'lodash';
 
-import Scrolltrack from '@/utils/scrolltrack';
+import Mousetrack from '@/utils/mousetrack';
 import colors from '@/mixins/colors';
 
 export default {
@@ -27,15 +27,15 @@ export default {
       opacity: [1, 1],
       stateTransitionSpeed: 300,
       states: this.granimStates,
-      isPausedWhenNotInView: true,
+      isPausedWhenNotInView: false,
     });
 
-    this.scrolltrack.on('scroll.ratio', ({ top }) => {
-      this.granim.changeState(this.ratioState(top));
+    this.mousetrack.on('update.ratio', ({ top, left }) => {
+      this.granim.changeState(this.ratioState(top * left));
     });
   },
   destroyed() {
-    this.scrolltrack.unbind();
+    this.mousetrack.unbind();
     this.granim.destroy();
   },
   methods: {
@@ -44,8 +44,8 @@ export default {
     },
   },
   computed: {
-    scrolltrack() {
-      return new Scrolltrack();
+    mousetrack() {
+      return new Mousetrack();
     },
     granimStates() {
       return reduce(range(0, 1.1, 0.1), (states, ratio) => assign(states, {
@@ -54,7 +54,7 @@ export default {
           transitionSpeed: 5000,
           gradients: [
             [this.colorScalePrimary(ratio), this.colorScaleSecondary(ratio)],
-            [this.colorScalePrimary(ratio), this.colorScaleSecondary(ratio)],
+            [this.colorScaleSecondary(ratio), this.colorScalePrimary(ratio)],
           ],
         },
       }), {});
