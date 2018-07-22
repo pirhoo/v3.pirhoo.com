@@ -91,8 +91,8 @@ export default {
         border:5px solid black;
 
         &--in-view {
-          opacity: 1;
-          transform: translate(0, 0) scale(1);
+          // opacity: 1;
+          // transform: translate(0, 0) scale(1);
         }
 
         &__wrapper {
@@ -107,6 +107,12 @@ export default {
             left: 0;
             top: 0;
             width: 100%;
+            opacity: 0;
+            transition: .4s;
+
+            &[lazy=loaded] {
+              opacity: 1;
+            }
           }
 
           &__title {
