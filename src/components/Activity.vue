@@ -41,7 +41,9 @@
           </div>
         </div>
       </div>
-      <activity-commits :in-viewport-once="true" :in-viewport-offset="-100"></activity-commits>
+      <lazy-component @show="activityInView = true">
+        <activity-commits v-if="activityInView"></activity-commits>
+      </lazy-component>
     </div>
   </section>
 </template>

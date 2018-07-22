@@ -27,7 +27,7 @@
                   <div :style="{ 'padding-top': project.paddingTop }"></div>
                 </div>
                 <img class="projects__cascading__item__wrapper__thumbnail"
-                  :src="require(`@/${project.thumbnail}`)" />
+                  v-lazy="require(`@/${project.thumbnail}`)" />
                 <div class="projects__cascading__item__wrapper__title">
                   {{ project.title }}
                 </div>

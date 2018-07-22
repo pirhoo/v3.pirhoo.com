@@ -16,12 +16,10 @@
 import { range, sortBy, reduce, keys, maxBy, minBy } from 'lodash';
 import * as d3 from 'd3';
 import tip from 'd3-tip';
-import inViewport from 'vue-in-viewport-mixin';
 import commits from '@/assets/json/commits.json';
 
 export default {
   name: 'ActivityCommits',
-  mixins: [inViewport],
   data() {
     return {
       padding: 20,
@@ -101,15 +99,11 @@ export default {
       });
     },
   },
-  watch: {
-    'inViewport.now': function (visible) {
-      if (visible) {
-        this.drawSvg();
-        this.drawYears();
-        this.drawCommitsLine();
-        this.drawCommitsDots();
-      }
-    },
+  mounted() {
+    this.drawSvg();
+    this.drawYears();
+    this.drawCommitsLine();
+    this.drawCommitsDots();
   },
   methods: {
     drawSvg() {
@@ -182,6 +176,7 @@ export default {
   .activity__commits {
     z-index: 0;
     position: relative;
+    @include animation(1s fadein);
 
     &__lead {
       font-size: .9rem;
@@ -202,8 +197,8 @@ export default {
       height: 250px;
       font-family: $font-family-base;
 
+
       &__year {
-        @include animation(1s fadein);
 
         rect {
           fill: white;
@@ -231,7 +226,6 @@ export default {
       &__dot {
         fill:var(--section-primary);
         transition: fill $color-transition-duration;
-        @include animation(1s fadein);
       }
     }
   }
