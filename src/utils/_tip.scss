@@ -1,0 +1,58 @@
+@import '../utils/_settings.scss';
+
+.d3-tip {
+  pointer-events: none;
+  font-size:1rem;
+  max-width: $tooltip-max-width;
+  padding: .3em .8em;
+  color: $tooltip-color;
+  text-align: center;
+  text-decoration: none;
+  background-color: $tooltip-bg;
+  white-space: auto;
+  z-index: $zindex-tooltip;
+  transform: translate(0, -10px);
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  pointer-events: none;
+  border:.5em solid transparent;
+  content: "";
+}
+
+/* Northward tooltips */
+.d3-tip.n:after {
+  border-top-color: $tooltip-bg;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Eastward tooltips */
+.d3-tip.e:after {
+  border-right-color: $tooltip-bg;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Southward tooltips */
+.d3-tip.s:after {
+  border-bottom-color: $tooltip-bg;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Westward tooltips */
+.d3-tip.w:after {
+  border-left-color: $tooltip-bg;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}

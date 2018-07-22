@@ -67,8 +67,8 @@ gulp.task('csv:commits', () => gulp.src(['src/assets/csv/commits.csv'])
       commitsCount: data.length,
       repositoriesCount: _.keys(_.countBy(data, 'repository')).length,
       monthsCount,
-      olderCommit: _.min(data, 'timestamp'),
-      newerCommit: _.max(data, 'timestamp'),
+      olderCommit: _.minBy(data, 'timestamp'),
+      newerCommit: _.maxBy(data, 'timestamp'),
     };
   }))
   .pipe(gulp.dest('src/assets/json/')));

@@ -41,16 +41,16 @@
           </div>
         </div>
       </div>
-      <div class="activity__chart-wrapper">
-        <!--activity commits="commits" ng-if="commits &amp;&amp; projectsInView"></activity-->
-      </div>
+      <activity-commits></activity-commits>
     </div>
   </section>
 </template>
 
 <script>
 import section from '@/mixins/section';
+import ActivityCommits from './ActivityCommits.vue';
 import GradientOnScroll from './GradientOnScroll.vue';
+
 import { hoursCount, countriesCount, customersCount } from '../assets/json/trainings.json';
 import { awardsCount, projectsCount } from '../assets/json/awards.json';
 import { commitsCount, repositoriesCount } from '../assets/json/commits.json';
@@ -60,6 +60,7 @@ export default {
   name: 'Activity',
   mixins: [section],
   components: {
+    ActivityCommits,
     GradientOnScroll,
   },
   data() {
@@ -85,4 +86,7 @@ export default {
 
 <style lang="scss">
   @import '../utils/_settings';
+
+  .activity {
+  }
 </style>
