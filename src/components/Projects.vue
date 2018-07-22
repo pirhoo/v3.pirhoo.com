@@ -11,14 +11,14 @@
           <a href="http://coderstats.net/github/pirhoo/" target="_blank">
             Github Stats
           </a>
-          I mostly code in Javascript and Python. Both are my favorite languages.
+          I mostly code in Javascript and Ruby. Both are my favorite languages.
           Almost all my projects are Open Source and available on
           <a href="https://github.com/pirhoo?tab=activity" target="_blank">
             Github
           </a>.</p>
         </div>
         <div class="projects__cascading">
-          <masonry :gutter="25" :cols="3">
+          <masonry :gutter="25" :cols="{default: 4, 600: 3, 500: 2, 400: 1}">
             <div class="projects__cascading__item" v-for="(project, index) in projects"
               :key="index"
               :style="{ 'border-color': project.color }">
@@ -77,6 +77,10 @@ export default {
       text-align: center;
       max-width: 800px;
       overflow: hidden;
+
+      @include media-breakpoint-down('sm') {
+        margin:20px;
+      }
 
       &__item {
         margin-bottom: 25px;

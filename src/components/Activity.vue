@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <activity-commits></activity-commits>
+      <activity-commits :in-viewport-once="true" :in-viewport-offset="-100"></activity-commits>
     </div>
   </section>
 </template>
@@ -65,6 +65,7 @@ export default {
   },
   data() {
     return {
+      activityInView: false,
       commits: {
         commitsCount,
         repositoriesCount,
@@ -83,10 +84,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-  @import '../utils/_settings';
-
-  .activity {
-  }
-</style>
