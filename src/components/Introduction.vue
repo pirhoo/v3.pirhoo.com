@@ -27,32 +27,32 @@
         <gradient-on-scroll></gradient-on-scroll>
         <div class="container-fluid">
           <div class="row">
-            <a class="introduction__social__item section__footer__item col"
+            <a class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://twitter.com/pirhoo" target="_blank">
               <fa :icon="['fab', 'twitter']"
                 class="introduction__social__item__icon section__footer__item__icon" />
-              Find me<br />
+              Find me<br class="d-none d-md-inline" />
               on Twitter
             </a>
-            <a class="introduction__social__item section__footer__item col"
+            <a class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://github.com/pirhoo" target="_blank">
               <fa :icon="['fab', 'github']"
                 class="introduction__social__item__icon section__footer__item__icon" />
-              Find me<br />
+              Find me<br class="d-none d-md-inline" />
               on Github
             </a>
-            <a class="introduction__social__item section__footer__item col"
+            <a class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://keybase.io/pirhoo" target="_blank">
               <fa icon="key"
                 class="introduction__social__item__icon section__footer__item__icon" />
-              Find me<br />
+              Find me<br class="d-none d-md-inline" />
               on Keybase
             </a>
-            <a class="introduction__social__item section__footer__item col"
+            <a class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="mailto:hello@pirhoo.com" target="_blank">
               <fa :icon="['far', 'envelope']"
                 class="introduction__social__item__icon section__footer__item__icon" />
-              Send me<br />
+              Send me<br class="d-none d-md-inline" />
               an email
             </a>
           </div>

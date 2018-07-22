@@ -16,45 +16,27 @@
         <gradient-on-scroll></gradient-on-scroll>
         <div class="container-fluid">
           <div class="row">
-            <div class="activity__figures__item section__footer__item col">
+            <div class="activity__figures__item section__footer__item col-md">
               <fa icon="code"
                 class="activity__figures__item__icon section__footer__item__icon" />
-              I authored
-              <strong>
-                {{ commits.commitsCount }}
-              </strong>
-              <abbr title="A submission of my latest changes of a source code">
-                commits
-              </abbr>
-              <br />
-              over
-              <strong>
-                {{ commits.repositoriesCount }}
-              </strong>
-              projects
+              I authored <strong>{{ commits.commitsCount }}</strong>&nbsp;
+              <abbr title="A submission of my latest changes of a source code">commits</abbr>
+              <br class="d-none d-md-inline" />
+              over<strong>{{ commits.repositoriesCount }}</strong>&nbsp;projects
             </div>
-            <div class="activity__figures__item section__footer__item col">
+            <div class="activity__figures__item section__footer__item col-md">
               <fa icon="graduation-cap"
                 class=" activity__figures__item__icon section__footer__item__icon" />
-              I gave
-              ±<strong>{{ trainings.hoursCount }}</strong>
-              hours<br />of training in
-              <strong>
-                {{ trainings.countriesCount }}
-              </strong>
-              countries
+              I gave ±<strong>{{ trainings.hoursCount }}</strong>&nbsp;hours
+              <br class="d-none d-md-inline" />of training in
+              <strong>{{ trainings.countriesCount }}</strong>&nbsp;countries
             </div>
-            <div class="activity__figures__item section__footer__item col">
+            <div class="activity__figures__item section__footer__item col-md">
               <fa icon="trophy"
                 class="activity__figures__item__icon section__footer__item__icon" />
-              <strong>
-                {{ awards.awardsCount }}
-              </strong>
-              prizes awarded<br />for
-              <strong>
-                {{ awards.projectsCount }}
-              </strong>
-              projects I worked on
+              <strong>{{ awards.awardsCount }}</strong>&nbsp;prizes awarded
+              <br class="d-none d-md-inline" />
+              for <strong>{{ awards.projectsCount }}</strong>&nbsp;projects I worked on
             </div>
           </div>
         </div>

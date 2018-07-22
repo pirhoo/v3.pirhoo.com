@@ -142,8 +142,8 @@ export default {
         display: inline-block;
         width:100%/4%;
         margin:0;
-        float:left;
-        padding:10px 0;
+        padding-top:10px;
+        padding-bottom:10px;
         text-decoration: none;
         color: inherit;
 
@@ -151,15 +151,17 @@ export default {
           color: inherit;
         }
 
-        @include media-breakpoint-down('sm') {
-          width:100%;
-        }
-
         &__icon {
           float:left;
-          margin:0 10px;
-          margin-top:0.5em;
-          font-size:1.5em;
+          margin-right: 0.5em;
+          margin-top: 0.5em;
+          font-size: 1.5em;
+
+          @include media-breakpoint-down('sm') {
+            margin-top: 0.25em;
+            font-size: 1em;
+          }
+
         }
       }
     }
