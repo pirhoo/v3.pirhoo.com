@@ -1,0 +1,760 @@
+[
+  {
+    "name": "Deep Space",
+    "colors": [
+      "#000000",
+      "#434343"
+    ]
+  },
+  {
+    "name": "Visions of Grandeur",
+    "colors": [
+      "#000046",
+      "#1CB5E0"
+    ]
+  },
+  {
+    "name": "Sunset",
+    "colors": [
+      "#0B486B",
+      "#F56217"
+    ]
+  },
+  {
+    "name": "Joomla",
+    "colors": [
+      "#1e3c72",
+      "#2a5298"
+    ]
+  },
+  {
+    "name": "Purple Love",
+    "colors": [
+      "#cc2b5e",
+      "#753a88"
+    ]
+  },
+  {
+    "name": "Aubergine",
+    "colors": [
+      "#AA076B",
+      "#61045F"
+    ]
+  },
+  {
+    "name": "Dark Ocean",
+    "colors": [
+      "#373B44",
+      "#4286f4"
+    ]
+  },
+  {
+    "name": "Red Sunset",
+    "colors": [
+      "#355C7D",
+      "#6C5B7B",
+      "#C06C84"
+    ]
+  },
+  {
+    "name": "Nimvelo",
+    "colors": [
+      "#314755",
+      "#26a0da"
+    ]
+  },
+  {
+    "name": "Alive",
+    "colors": [
+      "#CB356B",
+      "#BD3F32"
+    ]
+  },
+  {
+    "name": "Virgin America",
+    "colors": [
+      "#7b4397",
+      "#dc2430"
+    ]
+  },
+  {
+    "name": "Moss",
+    "colors": [
+      "#134E5E",
+      "#71B280"
+    ]
+  },
+  {
+    "name": "Royal Blue",
+    "colors": [
+      "#536976",
+      "#292E49"
+    ]
+  },
+  {
+    "name": "Mirage",
+    "colors": [
+      "#16222A",
+      "#3A6073"
+    ]
+  },
+  {
+    "name": "Sand to Blue",
+    "colors": [
+      "#3E5151",
+      "#DECBA4"
+    ]
+  },
+  {
+    "name": "Pizelex",
+    "colors": [
+      "#114357",
+      "#F29492"
+    ]
+  },
+  {
+    "name": "Firewatch",
+    "colors": [
+      "#cb2d3e",
+      "#ef473a"
+    ]
+  },
+  {
+    "name": "Kashmir",
+    "colors": [
+      "#614385",
+      "#516395"
+    ]
+  },
+  {
+    "name": "Wiretap",
+    "colors": [
+      "#8A2387",
+      "#E94057",
+      "#F27121"
+    ]
+  },
+  {
+    "name": "Can You Feel The Love Tonight",
+    "colors": [
+      "#4568DC",
+      "#B06AB3"
+    ]
+  },
+  {
+    "name": "Lizard",
+    "colors": [
+      "#304352",
+      "#d7d2cc"
+    ]
+  },
+  {
+    "name": "Army",
+    "colors": [
+      "#414d0b",
+      "#727a17"
+    ]
+  },
+  {
+    "name": "Meridian",
+    "colors": [
+      "#283c86",
+      "#45a247"
+    ]
+  },
+  {
+    "name": "Back to the Future",
+    "colors": [
+      "#C02425",
+      "#F0CB35"
+    ]
+  },
+  {
+    "name": "Bluelagoo",
+    "colors": [
+      "#0052D4",
+      "#4364F7",
+      "#6FB1FC"
+    ]
+  },
+  {
+    "name": "Selenium",
+    "colors": [
+      "#3C3B3F",
+      "#605C3C"
+    ]
+  },
+  {
+    "name": "Lawrencium",
+    "colors": [
+      "#0f0c29",
+      "#302b63",
+      "#24243e"
+    ]
+  },
+  {
+    "name": "Dark Skies",
+    "colors": [
+      "#4B79A1",
+      "#283E51"
+    ]
+  },
+  {
+    "name": "Between Night and Day",
+    "colors": [
+      "#2c3e50",
+      "#3498db"
+    ]
+  },
+  {
+    "name": "Namn",
+    "colors": [
+      "#a73737",
+      "#7a2828"
+    ]
+  },
+  {
+    "name": "Purplin",
+    "colors": [
+      "#6a3093",
+      "#a044ff"
+    ]
+  },
+  {
+    "name": "Relay",
+    "colors": [
+      "#3A1C71",
+      "#D76D77",
+      "#FFAF7B"
+    ]
+  },
+  {
+    "name": "Pink Flavour",
+    "colors": [
+      "#800080",
+      "#ffc0cb"
+    ]
+  },
+  {
+    "name": "Amin",
+    "colors": [
+      "#8E2DE2",
+      "#4A00E0"
+    ]
+  },
+  {
+    "name": "Christmas",
+    "colors": [
+      "#2F7336",
+      "#AA3A38"
+    ]
+  },
+  {
+    "name": "Moonlit Asteroid",
+    "colors": [
+      "#0F2027",
+      "#203A43",
+      "#2C5364"
+    ]
+  },
+  {
+    "name": "Ultra Voilet",
+    "colors": [
+      "#654ea3",
+      "#eaafc8"
+    ]
+  },
+  {
+    "name": "Forever Lost",
+    "colors": [
+      "#5D4157",
+      "#A8CABA"
+    ]
+  },
+  {
+    "name": "Twitch",
+    "colors": [
+      "#6441A5",
+      "#2a0845"
+    ]
+  },
+  {
+    "name": "Love and Liberty",
+    "colors": [
+      "#200122",
+      "#6f0000"
+    ]
+  },
+  {
+    "name": "Deep Purple",
+    "colors": [
+      "#673AB7",
+      "#512DA8"
+    ]
+  },
+  {
+    "name": "Purple Bliss",
+    "colors": [
+      "#360033",
+      "#0b8793"
+    ]
+  },
+  {
+    "name": "Influenza",
+    "colors": [
+      "#C04848",
+      "#480048"
+    ]
+  },
+  {
+    "name": "Blurry Beach",
+    "colors": [
+      "#d53369",
+      "#cbad6d"
+    ]
+  },
+  {
+    "name": "Crimson Tide",
+    "colors": [
+      "#642B73",
+      "#C6426E"
+    ]
+  },
+  {
+    "name": "Celestial",
+    "colors": [
+      "#C33764",
+      "#1D2671"
+    ]
+  },
+  {
+    "name": "Midnight City",
+    "colors": [
+      "#232526",
+      "#414345"
+    ]
+  },
+  {
+    "name": "Memariani",
+    "colors": [
+      "#aa4b6b",
+      "#6b6b83",
+      "#3b8d99"
+    ]
+  },
+  {
+    "name": "Deep Sea Space",
+    "colors": [
+      "#2C3E50",
+      "#4CA1AF"
+    ]
+  },
+  {
+    "name": "Taran Tado",
+    "colors": [
+      "#23074d",
+      "#cc5333"
+    ]
+  },
+  {
+    "name": "eXpresso",
+    "colors": [
+      "#ad5389",
+      "#3c1053"
+    ]
+  },
+  {
+    "name": "Mauve",
+    "colors": [
+      "#42275a",
+      "#734b6d"
+    ]
+  },
+  {
+    "name": "Frost",
+    "colors": [
+      "#000428",
+      "#004e92"
+    ]
+  },
+  {
+    "name": "The Strain",
+    "colors": [
+      "#870000",
+      "#190A05"
+    ]
+  },
+  {
+    "name": "Cool Brown",
+    "colors": [
+      "#603813",
+      "#b29f94"
+    ]
+  },
+  {
+    "name": "Playing with Reds",
+    "colors": [
+      "#D31027",
+      "#EA384D"
+    ]
+  },
+  {
+    "name": "Suzy",
+    "colors": [
+      "#834d9b",
+      "#d04ed6"
+    ]
+  },
+  {
+    "name": "Terminal",
+    "colors": [
+      "#000000",
+      "#0f9b0f"
+    ]
+  },
+  {
+    "name": "Shifty",
+    "colors": [
+      "#636363",
+      "#a2ab58"
+    ]
+  },
+  {
+    "name": "Blush",
+    "colors": [
+      "#B24592",
+      "#F15F79"
+    ]
+  },
+  {
+    "name": "Purplepine",
+    "colors": [
+      "#20002c",
+      "#cbb4d4"
+    ]
+  },
+  {
+    "name": "Venice Blue",
+    "colors": [
+      "#085078",
+      "#85D8CE"
+    ]
+  },
+  {
+    "name": "Dusk",
+    "colors": [
+      "#2C3E50",
+      "#FD746C"
+    ]
+  },
+  {
+    "name": "Witching Hour",
+    "colors": [
+      "#c31432",
+      "#240b36"
+    ]
+  },
+  {
+    "name": "Man of Steel",
+    "colors": [
+      "#780206",
+      "#061161"
+    ]
+  },
+  {
+    "name": "ServQuick",
+    "colors": [
+      "#485563",
+      "#29323c"
+    ]
+  },
+  {
+    "name": "Moor",
+    "colors": [
+      "#616161",
+      "#9bc5c3"
+    ]
+  },
+  {
+    "name": "Pinot Noir",
+    "colors": [
+      "#4b6cb7",
+      "#182848"
+    ]
+  },
+  {
+    "name": "Aqua Marine",
+    "colors": [
+      "#1A2980",
+      "#26D0CE"
+    ]
+  },
+  {
+    "name": "Evening Sunshine",
+    "colors": [
+      "#b92b27",
+      "#1565C0"
+    ]
+  },
+  {
+    "name": "Lithium",
+    "colors": [
+      "#6D6027",
+      "#D3CBB8"
+    ]
+  },
+  {
+    "name": "Love Couple",
+    "colors": [
+      "#3a6186",
+      "#89253e"
+    ]
+  },
+  {
+    "name": "Ash",
+    "colors": [
+      "#606c88",
+      "#3f4c6b"
+    ]
+  },
+  {
+    "name": "80's Purple",
+    "colors": [
+      "#41295a",
+      "#2F0743"
+    ]
+  },
+  {
+    "name": "Kimoby Is The New Blue",
+    "colors": [
+      "#396afc",
+      "#2948ff"
+    ]
+  },
+  {
+    "name": "Clear Sky",
+    "colors": [
+      "#005C97",
+      "#363795"
+    ]
+  },
+  {
+    "name": "Netflix",
+    "colors": [
+      "#8E0E00",
+      "#1F1C18"
+    ]
+  },
+  {
+    "name": "Shroom Haze",
+    "colors": [
+      "#5C258D",
+      "#4389A2"
+    ]
+  },
+  {
+    "name": "Under the Lake",
+    "colors": [
+      "#093028",
+      "#237A57"
+    ]
+  },
+  {
+    "name": "Petrichor",
+    "colors": [
+      "#666600",
+      "#999966"
+    ]
+  },
+  {
+    "name": "Curiosity blue",
+    "colors": [
+      "#525252",
+      "#3d72b4"
+    ]
+  },
+  {
+    "name": "Sel",
+    "colors": [
+      "#00467F",
+      "#A5CC82"
+    ]
+  },
+  {
+    "name": "Turquoise flow",
+    "colors": [
+      "#136a8a",
+      "#267871"
+    ]
+  },
+  {
+    "name": "Red Mist",
+    "colors": [
+      "#000000",
+      "#e74c3c"
+    ]
+  },
+  {
+    "name": "Hersheys",
+    "colors": [
+      "#1e130c",
+      "#9a8478"
+    ]
+  },
+  {
+    "name": "Minnesota Vikings",
+    "colors": [
+      "#5614B0",
+      "#DBD65C"
+    ]
+  },
+  {
+    "name": "Cheer Up Emo Kid",
+    "colors": [
+      "#556270",
+      "#FF6B6B"
+    ]
+  },
+  {
+    "name": "Moon Purple",
+    "colors": [
+      "#4e54c8",
+      "#8f94fb"
+    ]
+  },
+  {
+    "name": "Red Ocean",
+    "colors": [
+      "#1D4350",
+      "#A43931"
+    ]
+  },
+  {
+    "name": "Pure Lust",
+    "colors": [
+      "#333333",
+      "#dd1818"
+    ]
+  },
+  {
+    "name": "Dracula",
+    "colors": [
+      "#DC2424",
+      "#4A569D"
+    ]
+  },
+  {
+    "name": "Calm Darya",
+    "colors": [
+      "#5f2c82",
+      "#49a09d"
+    ]
+  },
+  {
+    "name": "Royal",
+    "colors": [
+      "#141E30",
+      "#243B55"
+    ]
+  },
+  {
+    "name": "Kyoto",
+    "colors": [
+      "#c21500",
+      "#ffc500"
+    ]
+  },
+  {
+    "name": "Forest",
+    "colors": [
+      "#5A3F37",
+      "#2C7744"
+    ]
+  },
+  {
+    "name": "Anwar",
+    "colors": [
+      "#334d50",
+      "#cbcaa5"
+    ]
+  },
+  {
+    "name": "Kye Meh",
+    "colors": [
+      "#8360c3",
+      "#2ebf91"
+    ]
+  },
+  {
+    "name": "King Yna",
+    "colors": [
+      "#1a2a6c",
+      "#b21f1f",
+      "#fdbb2d"
+    ]
+  },
+  {
+    "name": "Titanium",
+    "colors": [
+      "#283048",
+      "#859398"
+    ]
+  },
+  {
+    "name": "Bighead",
+    "colors": [
+      "#c94b4b",
+      "#4b134f"
+    ]
+  },
+  {
+    "name": "Purpink",
+    "colors": [
+      "#7F00FF",
+      "#E100FF"
+    ]
+  },
+  {
+    "name": "Amethyst",
+    "colors": [
+      "#9D50BB",
+      "#6E48AA"
+    ]
+  },
+  {
+    "name": "Mello",
+    "colors": [
+      "#c0392b",
+      "#8e44ad"
+    ]
+  },
+  {
+    "name": "Sea Blue",
+    "colors": [
+      "#2b5876",
+      "#4e4376"
+    ]
+  },
+  {
+    "name": "Poncho",
+    "colors": [
+      "#403A3E",
+      "#BE5869"
+    ]
+  },
+  {
+    "name": "Instagram",
+    "colors": [
+      "#833ab4",
+      "#fd1d1d",
+      "#fcb045"
+    ]
+  },
+  {
+    "name": "Steel Gray",
+    "colors": [
+      "#1F1C2C",
+      "#928DAB"
+    ]
+  }
+]

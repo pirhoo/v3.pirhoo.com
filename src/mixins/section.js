@@ -1,3 +1,4 @@
+import * as chroma from 'chroma-js';
 import Mousetrack from '@/utils/mousetrack';
 import colors from './colors';
 
@@ -5,7 +6,7 @@ export default {
   mixins: [colors],
   data() {
     return {
-      scrollTopRatio: 0,
+      ratio: 0,
     };
   },
   mounted() {
@@ -16,10 +17,11 @@ export default {
     this.mousetrack.unbind();
   },
   methods: {
-    updateColors(top = 0) {
-      this.scrollTopRatio = top;
+    updateColors(ratio = this.ratio) {
+      this.ratio = this.noramlizedRatio(ratio);
       this.$el.style.setProperty('--section-text', this.textColor);
       this.$el.style.setProperty('--section-primary', this.primaryColor);
+      // this.$el.style.setProperty('--section-primary-contrast', this.primaryContrastColor);
       this.$el.style.setProperty('--section-secondary', this.secondaryColor);
     },
   },
@@ -28,13 +30,16 @@ export default {
       return new Mousetrack();
     },
     textColor() {
-      return this.colorScaleText(this.scrollTopRatio);
+      return this.colorScaleText(this.ratio);
     },
     primaryColor() {
-      return this.colorScalePrimary(this.scrollTopRatio);
+      return this.colorScalePrimary(this.ratio);
+    },
+    primaryContrastColor() {
+      return chroma.contrast(this.primaryColor, '#fff') < 4.5 ? '#000' : '#fff';
     },
     secondaryColor() {
-      return this.colorScaleSecondary(this.scrollTopRatio);
+      return this.colorScaleSecondary(this.ratio);
     },
   },
 };

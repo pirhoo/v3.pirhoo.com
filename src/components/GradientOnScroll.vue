@@ -6,7 +6,7 @@
 
 <script>
 import Granim from 'granim';
-import { range, reduce, assign } from 'lodash';
+import { reduce, assign } from 'lodash';
 
 import Mousetrack from '@/utils/mousetrack';
 import colors from '@/mixins/colors';
@@ -23,9 +23,9 @@ export default {
     this.granim = new Granim({
       element: this.$el.querySelector('.gradient-on-scroll__canvas'),
       direction: 'diagonal',
-      defaultStateName: this.ratioState(0.1),
+      defaultStateName: this.ratioState(0),
       opacity: [1, 1],
-      stateTransitionSpeed: 300,
+      stateTransitionSpeed: parseInt(this.scss.colorTransitionDuration, 10),
       states: this.granimStates,
       isPausedWhenNotInView: false,
     });
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     ratioState(ratio) {
-      return `state-${Math.round(ratio * 10) / 10}`;
+      return `state-${this.noramlizedRatio(ratio)}`;
     },
   },
   computed: {
@@ -48,7 +48,7 @@ export default {
       return new Mousetrack();
     },
     granimStates() {
-      return reduce(range(0, 1.1, 0.1), (states, ratio) => assign(states, {
+      return reduce(this.domains, (states, ratio) => assign(states, {
         [this.ratioState(ratio)]: {
           loop: true,
           transitionSpeed: 5000,

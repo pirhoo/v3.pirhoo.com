@@ -1,33 +1,42 @@
-import * as d3 from 'd3';
+import { bisector } from 'd3';
+import * as chroma from 'chroma-js';
+import { range, first, last, reduce, map, shuffle, identity } from 'lodash';
+import gradients from '@/assets/json/gradients.json';
 /* ignore eslint start */
-import variables from '!!sass-variable-loader!@/utils/_variables.scss';
+import scss from '!!sass-variable-loader!@/utils/_variables.scss';
 /* ignore eslint end */
+
+// Only create the slice once
+export const gradientsSlice = shuffle(gradients).slice(0, 16);
 
 export default {
   computed: {
     colorScaleText() {
-      const scale = d3.scaleLinear().domain([0, 0.5, 1]).range([
-        variables.color1Text,
-        variables.color2Text,
-        variables.color3Text,
-      ]);
-      return ratio => d3.color(scale(ratio)).hex();
+      return ratio => chroma.mix(this.colorScalePrimary(ratio), scss.bodyColor, 0.8);
     },
     colorScalePrimary() {
-      const scale = d3.scaleLinear().domain([0, 0.5, 1]).range([
-        variables.color1Primary,
-        variables.color2Primary,
-        variables.color3Primary,
-      ]);
-      return ratio => d3.color(scale(ratio)).hex();
+      const scale = chroma.scale(map(this.gradients, first));
+      return ratio => scale(ratio).hex();
     },
     colorScaleSecondary() {
-      const scale = d3.scaleLinear().domain([0, 0.5, 1]).range([
-        variables.color1Secondary,
-        variables.color2Secondary,
-        variables.color3Secondary,
-      ]);
-      return ratio => d3.color(scale(ratio)).hex();
+      const scale = chroma.scale(map(this.gradients, last));
+      return ratio => scale(ratio).hex();
+    },
+    gradients() {
+      return reduce(gradientsSlice, (all, gradient) => all.concat([gradient.colors]), []);
+    },
+    domains() {
+      const tick = 1 / this.gradients.length;
+      return range(0, 1 + tick, tick);
+    },
+    scss() {
+      return scss;
+    },
+  },
+  methods: {
+    noramlizedRatio(ratio) {
+      const index = bisector(identity).left(this.domains, ratio);
+      return this.domains[index];
     },
   },
 };

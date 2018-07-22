@@ -33,6 +33,7 @@ export default {
     min-height: 90vh;
 
     --section-primary: black;
+    --section-primary-contrast: white;
     --section-secondary:  black;
     --section-text:  $body-color;
 
@@ -48,13 +49,14 @@ export default {
       padding-top:60px;
       max-width: 800px;
       color: var(--section-text);
+      transition: color $color-transition-duration;
 
       &:after {
         position: absolute;
-        top:5px;
-        bottom:5px;
-        left:5px;
-        right:5px;
+        top:.3rem;
+        bottom:.3rem;
+        left:.3rem;
+        right:.3rem;
         content:"";
         z-index:-1;
         background:white;
@@ -62,10 +64,12 @@ export default {
 
       html body & strong {
         color: var(--section-secondary);
+        transition: color $color-transition-duration;
       }
 
       html body & a {
         color: var(--section-primary);
+        transition: color $color-transition-duration;
       }
 
 
@@ -106,6 +110,7 @@ export default {
         &:before, &:after {
           color: var(--section-secondary);
           border-color: var(--section-secondary);
+          transition:$color-transition-duration;
         }
 
         @include media-breakpoint-up('lg') {
@@ -121,11 +126,12 @@ export default {
       min-height: 61px;
       margin:20px auto;
       max-width: 800px;
-      color: theme-color('light');
       position: relative;
+      color: var(--section-primary-contrast);
+      transition: color $color-transition-duration;
 
       strong {
-        color: theme-color('light');
+        color: inherit;
       }
 
       @include media-breakpoint-down('sm') {
@@ -140,6 +146,10 @@ export default {
         padding:10px 0;
         text-decoration: none;
         color: inherit;
+
+        &:hover, &:focus {
+          color: inherit;
+        }
 
         @include media-breakpoint-down('sm') {
           width:100%;

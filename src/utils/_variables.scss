@@ -7,7 +7,7 @@ $danger: #dc3545;
 $light: #F0F0F0;
 
 $body-bg: #fff;
-$body-color: #312e31;
+$body-color: #505050;
 
 $font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial,sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
 $font-family-serif: "Quando", "Merriweather", Georgia, "Times New Roman", Times, serif;
@@ -19,17 +19,7 @@ $font-size-base: .9rem;
 
 $text-muted: #717171;
 
+$color-transition-duration: 300ms;
+
 $input-focus-border-color: $secondary;
 $link-hover-color: darken($warning, 10%);
-
-$color-1-primary: #291c29;
-$color-1-secondary: #C4657E;
-$color-1-text: lighten(mix($color-1-primary, $body-color, 20%), 15%);
-
-$color-2-primary: #DC6448;
-$color-2-secondary: #EDD0A3;
-$color-2-text: lighten(mix($color-2-primary, $body-color, 20%), 15%);
-
-$color-3-primary: #025066;
-$color-3-secondary: #649e8a;
-$color-3-text: lighten(mix($color-3-primary, $body-color, 20%), 15%);
