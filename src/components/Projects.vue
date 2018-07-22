@@ -18,7 +18,7 @@
           </a>.</p>
         </div>
         <div class="projects__cascading">
-          <masonry :gutter="25" :cols="{default: 4, 600: 3, 500: 2, 400: 1}">
+          <masonry :gutter="25" :cols="{default: 4, 600: 3, 500: 2, 200: 1}">
             <div class="projects__cascading__item" v-for="(project, index) in projects"
               :key="index"
               :style="{ 'border-color': project.color }">
