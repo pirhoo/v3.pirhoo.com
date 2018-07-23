@@ -9,6 +9,9 @@ import scss from '!!sass-variable-loader!@/utils/_variables.scss';
 // Only create the slice once
 export const gradientsSlice = shuffle(gradients).slice(0, 16);
 
+// Export colors from here to avoid ignoring eslint again...
+export { scss };
+
 export default {
   computed: {
     colorScaleText() {

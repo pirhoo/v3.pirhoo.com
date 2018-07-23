@@ -51,7 +51,7 @@ export default {
       return reduce(this.domains, (states, ratio) => assign(states, {
         [this.ratioState(ratio)]: {
           loop: true,
-          transitionSpeed: 5000,
+          transitionSpeed: parseInt(this.scss.colorTransitionSpeed, 10),
           gradients: [
             [this.colorScalePrimary(ratio), this.colorScaleSecondary(ratio)],
             [this.colorScaleSecondary(ratio), this.colorScalePrimary(ratio)],
