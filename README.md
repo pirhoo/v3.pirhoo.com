@@ -1,5 +1,7 @@
 # v3.pirhoo.com
 
+![](src/assets/images/screenshot.png)
+
 ## Project setup
 ```
 yarn install
