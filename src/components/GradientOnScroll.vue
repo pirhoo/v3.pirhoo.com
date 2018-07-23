@@ -30,9 +30,13 @@ export default {
       isPausedWhenNotInView: false,
     });
 
-    this.mousetrack.on('update.ratio', ({ top, left }) => {
-      this.granim.changeState(this.ratioState(top * left));
-    });
+    if (Mousetrack.isMobile) {
+      this.granim.pause();
+    } else {
+      this.mousetrack.on('update.ratio', ({ top, left }) => {
+        this.granim.changeState(this.ratioState(top * left));
+      });
+    }
   },
   destroyed() {
     this.mousetrack.unbind();
