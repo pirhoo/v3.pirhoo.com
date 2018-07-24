@@ -1,0 +1,14 @@
+# humanstxt.org/
+
+# TEAM
+
+Your title: Pierre Romera 
+Biography: CTO of the International Consortium of Investigative Journalists (ICIJ)
+Twitter: @pirhoo
+Github: @pirhoo
+Keybase: @pirhoo
+Location: Paris, France
+
+# TECHNOLOGY COLOPHON
+
+HTML5, CSS3, Vue, Angular, Node, Webpack, Rails, Django
