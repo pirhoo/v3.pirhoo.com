@@ -2539,6 +2539,12 @@ csso@^3.5.0:
   dependencies:
     css-tree "1.0.0-alpha.29"
 
+csv-stringify@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/csv-stringify/-/csv-stringify-3.1.1.tgz#3a4e180a84f9c45a6a0a0401c1b41b315b9131f0"
+  dependencies:
+    lodash.get "~4.4.2"
+
 csv@~0.3.6:
   version "0.3.7"
   resolved "https://registry.yarnpkg.com/csv/-/csv-0.3.7.tgz#a4f8a363f0072cd155181e6bb49bd58e5497b31c"
@@ -5607,7 +5613,7 @@ lodash.escape@^3.0.0:
   dependencies:
     lodash._root "^3.0.0"
 
-lodash.get@^4.4.2:
+lodash.get@^4.4.2, lodash.get@~4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
@@ -7984,6 +7990,12 @@ sigmund@^1.0.1, sigmund@~1.0.0:
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+simple-git@^1.96.0:
+  version "1.96.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-1.96.0.tgz#d0279b771ed89a2d1e7d9e15f9abd7f26e319d7c"
+  dependencies:
+    debug "^3.1.0"
 
 simple-swizzle@^0.2.2:
   version "0.2.2"

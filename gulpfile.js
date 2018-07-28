@@ -1,14 +1,18 @@
-const gulp = require('gulp');
-const sizeOf = require('image-size');
-const slug = require('slug');
+const _ = require('lodash');
 const async = require('async');
 const fs = require('fs');
-const webshot = require('webshot');
-const through = require('through2');
 const gh = require('gh-pages');
-const path = require('path');
-const _ = require('lodash');
+const gulp = require('gulp');
 const loadPlugins = require('gulp-load-plugins');
+const path = require('path');
+const simpleGit = require('simple-git/promise');
+const sizeOf = require('image-size');
+const slug = require('slug');
+const through = require('through2');
+const webshot = require('webshot');
+const { spawnSync } = require('child_process');
+const { promisify } = require('util');
+const stringify = promisify(require('csv-stringify'));
 
 const { paths } = gulp;
 
@@ -21,6 +25,12 @@ function removeHttp(str) {
 function toThumbnailPath(str) {
   const name = slug(removeHttp(str)).toLowerCase();
   return `assets/images/thumbnails/${name}.png`;
+}
+
+function getFolders(dir) {
+  // return ['xemx']
+  return fs.readdirSync(dir)
+    .filter(file => fs.statSync(path.join(dir, file)).isDirectory());
 }
 
 gulp.task('resize', () => gulp.src(`${paths.src}/assets/images/thumbnails/*.{png,jpg}`)
@@ -47,7 +57,34 @@ gulp.task('csv:trainings', () => gulp.src(['src/assets/csv/trainings.csv'])
   })))
   .pipe(gulp.dest('src/assets/json/')));
 
-gulp.task('csv:commits', () => gulp.src(['src/assets/csv/commits.csv'])
+gulp.task('csv:commits', async () => {
+  const names = ['pirhoo', 'pierre romera', 'romera', 'hello@pirhoo.com', 'pierre.romera@gmail.com'];
+  let commits = [];
+  for (const dir of getFolders('..')) {
+    // Instanciate git instance from the dir path
+    const git = simpleGit(path.join('..', dir));
+    // Is it a git repository?
+    if (await git.checkIsRepo()) {
+      // Build an hash with a cksum of the dir
+      const { stdout } = spawnSync('sh', ['-c', `echo ${dir} | cksum`]);
+      const repository = stdout.toString().split(' ')[0];
+      // Get all logs with a custom format
+      const logs = await git.log({
+        format: {
+          repository, timestamp: '%ct', hash: '%H', author: '%aN <%ae>',
+        },
+      });
+      // Filter logs by author email
+      commits = commits.concat(_.filter(logs.all, log => _.some(names, name => log.author.toLowerCase().indexOf(name) > -1)));
+    }
+  }
+  // Create the CSV in a promise
+  const csv = await stringify(commits, { header: true, columns: ['repository', 'timestamp', 'hash'] });
+  // Write the file!
+  fs.writeFileSync(path.resolve('src/assets/csv/commits.csv'), csv);
+});
+
+gulp.task('csv:count', () => gulp.src(['src/assets/csv/commits.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor((data) => {
     // Grount commits by month
@@ -123,6 +160,7 @@ gulp.task('csv:sizes', () => gulp.src(['src/assets/json/projects.json'])
 gulp.task('csv', gulp.series(
   'csv:trainings',
   'csv:commits',
+  'csv:count',
   'csv:projects',
   'csv:awards',
   'csv:webshots',
