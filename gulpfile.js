@@ -13,8 +13,7 @@ const webshot = require('webshot');
 const { spawnSync } = require('child_process');
 const { promisify } = require('util');
 const stringify = promisify(require('csv-stringify'));
-
-const { paths } = gulp;
+const Vibrant = require('node-vibrant');
 
 const $ = loadPlugins({ pattern: ['gulp-*'] });
 
@@ -33,13 +32,13 @@ function getFolders(dir) {
     .filter(file => fs.statSync(path.join(dir, file)).isDirectory());
 }
 
-gulp.task('resize', () => gulp.src(`${paths.src}/assets/images/thumbnails/*.{png,jpg}`)
+gulp.task('resize', () => gulp.src('src/assets/images/thumbnails/*.{png,jpg}')
   .pipe($.filter(image => sizeOf(image.path).width !== 200))
   .pipe($.imageResize({
     width: 200,
     upscale: true,
   }))
-  .pipe(gulp.dest(`${paths.src}/assets/images/thumbnails/`)));
+  .pipe(gulp.dest('src/assets/images/thumbnails/')));
 
 gulp.task('csv:trainings', () => gulp.src(['src/assets/csv/trainings.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
@@ -153,6 +152,29 @@ gulp.task('csv:webshots', () => gulp.src(['src/assets/csv/projects.csv'])
     }, cb);
   })));
 
+gulp.task('csv:colors', async () => {
+  const projects = require('./src/assets/json/projects.json');
+  // Get color for each projects
+  for (const site of projects) {
+    if ((!site.color || site.color === '') && site.thumbnail) {
+      // Extract the palette
+      const palette = await Vibrant.from(path.join('src', site.thumbnail)).getPalette();
+      const nonNullVibrants = _.compact([
+        palette.Vibrant,
+        palette.LightVibrant,
+        palette.DarkVibrant,
+        palette.Muted,
+        palette.LightMuted,
+        palette.DarkMuted,
+      ]);
+      // Take the first non null as main colors
+      site.color = nonNullVibrants[0].getHex();
+    }
+  }
+  // Write the JSON back
+  fs.writeFileSync(path.resolve('./src/assets/json/projects.json'), JSON.stringify(projects, null, 2));
+});
+
 gulp.task('csv:sizes', () => gulp.src(['src/assets/json/projects.json'])
   .pipe($.jsonEditor(data => _.map(data, site => _.extend(site, sizeOf(`src/${site.thumbnail}`)))))
   .pipe(gulp.dest('src/assets/json/')));
@@ -165,6 +187,7 @@ gulp.task('csv', gulp.series(
   'csv:awards',
   'csv:webshots',
   'csv:sizes',
+  'csv:colors',
 ));
 
 gulp.task('deploy', (cb) => {
