@@ -19,24 +19,24 @@
             <div class="activity__figures__item section__footer__item col-md">
               <fa icon="code"
                 class="activity__figures__item__icon section__footer__item__icon" />
-              I authored <strong>{{ commits.commitsCount }}</strong>&nbsp;
+              I authored <strong>{{ commits.commitsCount | number }}</strong>&nbsp;
               <abbr title="A submission of my latest changes of a source code">commits</abbr>
               <br class="d-none d-md-inline" />
-              over<strong>{{ commits.repositoriesCount }}</strong>&nbsp;projects
+              over<strong>{{ commits.repositoriesCount | number }}</strong>&nbsp;projects
             </div>
             <div class="activity__figures__item section__footer__item col-md">
               <fa icon="graduation-cap"
                 class=" activity__figures__item__icon section__footer__item__icon" />
-              I gave ±<strong>{{ trainings.hoursCount }}</strong>&nbsp;hours
+              I gave ±<strong>{{ trainings.hoursCount | number }}</strong>&nbsp;hours
               <br class="d-none d-md-inline" />of training in
-              <strong>{{ trainings.countriesCount }}</strong>&nbsp;countries
+              <strong>{{ trainings.countriesCount | number }}</strong>&nbsp;countries
             </div>
             <div class="activity__figures__item section__footer__item col-md">
               <fa icon="trophy"
                 class="activity__figures__item__icon section__footer__item__icon" />
-              <strong>{{ awards.awardsCount }}</strong>&nbsp;prizes awarded
+              <strong>{{ awards.awardsCount | number }}</strong>&nbsp;prizes awarded
               <br class="d-none d-md-inline" />
-              for <strong>{{ awards.projectsCount }}</strong>&nbsp;projects I worked on
+              for <strong>{{ awards.projectsCount | number }}</strong>&nbsp;projects I worked on
             </div>
           </div>
         </div>
@@ -83,6 +83,11 @@ export default {
         customersCount,
       },
     };
+  },
+  filters: {
+    number(value) {
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    },
   },
 };
 </script>
