@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { range, sortBy, reduce, keys, maxBy, minBy } from 'lodash';
+import { range, sortBy, reduce, keys, maxBy, minBy, assign } from 'lodash';
 import * as d3 from 'd3';
 import tip from 'd3-tip';
 import commits from '@/assets/json/commits.json';
@@ -45,6 +45,13 @@ export default {
     newer() {
       return new Date(commits.newerCommit.timestamp * 1000);
     },
+    // Maximum and minimum commits count to calculate scale domain
+    commitCountMax() {
+      return maxBy(this.data, 'count').count;
+    },
+    commitCountMin() {
+      return minBy(this.data, 'count').count;
+    },
     // List of years
     years() {
       return range(this.older.getFullYear(), this.newer.getFullYear() + 1);
@@ -75,12 +82,11 @@ export default {
         },
       ]), []), 'month');
     },
-    // Maximum and minimum commits count to calculate scale domain
-    commitCountMax() {
-      return maxBy(this.data, 'count').count;
-    },
-    commitCountMin() {
-      return minBy(this.data, 'count').count;
+    // The same data but stack by month
+    stackedData() {
+      return this.data.map((datum, i) => assign(datum, {
+        count: i > 0 ? this.data[i - 1].count + datum.count : datum.count,
+      }));
     },
     // Function to draw the line
     lineFn() {
