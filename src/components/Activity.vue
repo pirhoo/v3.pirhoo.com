@@ -19,10 +19,12 @@
             <div class="activity__figures__item section__footer__item col-md">
               <fa icon="code"
                 class="activity__figures__item__icon section__footer__item__icon" />
-              I authored <strong>{{ commits.commitsCount | number }}</strong>&nbsp;
-              <abbr title="A submission of my latest changes of a source code">commits</abbr>
+              I authored <strong>{{ commits.commitsCount | number }}</strong>
+              <abbr title="A submission of my latest changes of a source code">
+                commits
+              </abbr>
               <br class="d-none d-md-inline" />
-              over<strong>{{ commits.repositoriesCount | number }}</strong>&nbsp;projects
+              over <strong>{{ commits.repositoriesCount | number }}</strong> projects
             </div>
             <div class="activity__figures__item section__footer__item col-md">
               <fa icon="graduation-cap"
