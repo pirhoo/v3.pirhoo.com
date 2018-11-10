@@ -42,7 +42,7 @@ export default {
   props: {
     src: {
       type: String,
-      default: 'http://api.pirhoo.com/photos',
+      default: '//api-pirhoo.herokuapp.com/photos',
     },
   },
   data() {
