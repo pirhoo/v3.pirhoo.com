@@ -40,6 +40,17 @@ export default {
     --section-secondary:  black;
     --section-text:  $body-color;
 
+    .btn-outline-section {
+      color: var(--section-primary);
+      border-color: var(--section-primary);
+      background: transparent;
+    }
+
+    .btn-link-section {
+      color: var(--section-primary);
+      background: transparent;
+    }
+
     .wrapper {
       padding-top:5vh;
       padding-bottom:1px;

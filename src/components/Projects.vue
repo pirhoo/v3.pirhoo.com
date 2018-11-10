@@ -22,7 +22,7 @@
             <div class="projects__cascading__item" v-for="(project, index) in projects"
               :key="index"
               :style="{ 'border-color': project.color }">
-              <a class="projects__cascading__item__wrapper" :href="project.url">
+              <a class="projects__cascading__item__wrapper bg-light" :href="project.url">
                 <div class="projects__cascading__item__wrapper__ghost">
                   <div :style="{ 'padding-top': project.paddingTop }"></div>
                 </div>

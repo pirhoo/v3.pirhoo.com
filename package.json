@@ -64,7 +64,8 @@
       "@vue/airbnb"
     ],
     "rules": {
-      "import/no-webpack-loader-syntax": false
+      "import/no-webpack-loader-syntax": false,
+      "max-len": "off"
     },
     "parserOptions": {
       "parser": "babel-eslint"
