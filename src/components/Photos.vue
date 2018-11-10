@@ -74,6 +74,10 @@ export default {
       max-width: 800px;
       padding-top: 25px;
 
+      @media (max-width: 800px) {
+        margin:0 20px;
+      }
+
       &__item {
         margin-bottom: 25px;
         position: relative;

@@ -65,6 +65,10 @@ export default {
       color: var(--section-text);
       transition: color $color-transition-duration;
 
+      @media (max-width: 800px) {
+        margin:40px 20px;
+      }
+
       &:after {
         position: absolute;
         top:.3rem;

@@ -18,7 +18,7 @@
           </a>.</p>
         </div>
         <div class="projects__cascading">
-          <masonry :gutter="25" :cols="{default: 4, 600: 3, 500: 2, 200: 1}">
+          <masonry :gutter="25" :cols="{default: 4, 600: 3, 500: 2, 250: 1}">
             <div class="projects__cascading__item" v-for="(project, index) in projects"
               :key="index"
               :style="{ 'border-color': project.color }">
@@ -78,8 +78,8 @@ export default {
       max-width: 800px;
       overflow: hidden;
 
-      @include media-breakpoint-down('sm') {
-        margin:20px;
+      @media (max-width: 800px) {
+        margin:0 20px;
       }
 
       &__item {
