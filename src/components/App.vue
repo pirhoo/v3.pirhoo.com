@@ -3,6 +3,7 @@
     <introduction></introduction>
     <activity></activity>
     <projects></projects>
+    <photos></photos>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import Introduction from '@/components/Introduction.vue';
 import Activity from '@/components/Activity.vue';
 import Projects from '@/components/Projects.vue';
+import Photos from '@/components/Photos.vue';
 
 export default {
   name: 'app',
@@ -17,6 +19,7 @@ export default {
     Introduction,
     Activity,
     Projects,
+    Photos,
   },
 };
 </script>

@@ -16,6 +16,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.1.1",
     "@fortawesome/free-solid-svg-icons": "^5.1",
     "@fortawesome/vue-fontawesome": "^0.0.22",
+    "axios": "^0.18.0",
     "bootstrap": "^4.1.2",
     "chroma-js": "^1.3.7",
     "d3": "^5.5.0",
@@ -27,10 +28,10 @@
     "vue-masonry-css": "^1.0.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.5",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.5",
-    "@vue/cli-service": "^3.0.0-rc.5",
-    "@vue/eslint-config-airbnb": "^3.0.0-rc.5",
+    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-eslint": "^3.0.5",
+    "@vue/cli-service": "^3.0.5",
+    "@vue/eslint-config-airbnb": "^3.0.5",
     "async": "^2.6.1",
     "csv-stringify": "^3.1.1",
     "fs": "^0.0.1-security",
