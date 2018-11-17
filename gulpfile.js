@@ -40,7 +40,7 @@ gulp.task('resize', () => gulp.src('src/assets/images/thumbnails/*.{png,jpg}')
   }))
   .pipe(gulp.dest('src/assets/images/thumbnails/')));
 
-gulp.task('csv:trainings', () => gulp.src(['src/assets/csv/trainings.csv'])
+gulp.task('csv:trainings', () => gulp.src(['data/trainings.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor(data => ({
     hoursCount: _.reduce(data, (sum, training) => (training.duration * 8) + sum, 0),
@@ -80,10 +80,10 @@ gulp.task('csv:commits', async () => {
   // Create the CSV in a promise
   const csv = await stringify(commits, { header: true, columns: ['repository', 'timestamp', 'hash'] });
   // Write the file!
-  fs.writeFileSync(path.resolve('src/assets/csv/commits.csv'), csv);
+  fs.writeFileSync(path.resolve('data/commits.csv'), csv);
 });
 
-gulp.task('csv:count', () => gulp.src(['src/assets/csv/commits.csv'])
+gulp.task('csv:count', () => gulp.src(['data/commits.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor((data) => {
     // Grount commits by month
@@ -110,14 +110,14 @@ gulp.task('csv:count', () => gulp.src(['src/assets/csv/commits.csv'])
   .pipe(gulp.dest('src/assets/json/')));
 
 
-gulp.task('csv:projects', () => gulp.src(['src/assets/csv/projects.csv'])
+gulp.task('csv:projects', () => gulp.src(['data/projects.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor(data => _.map(data, site => _.extend(site, {
     thumbnail: site.thumbnail || toThumbnailPath(site.url, true),
   }))))
   .pipe(gulp.dest('src/assets/json/')));
 
-gulp.task('csv:awards', () => gulp.src(['src/assets/csv/awards.csv'])
+gulp.task('csv:awards', () => gulp.src(['data/awards.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor(data => ({
     awardsCount: data.length,
@@ -126,7 +126,7 @@ gulp.task('csv:awards', () => gulp.src(['src/assets/csv/awards.csv'])
   })))
   .pipe(gulp.dest('src/assets/json/')));
 
-gulp.task('csv:webshots', () => gulp.src(['src/assets/csv/projects.csv'])
+gulp.task('csv:webshots', () => gulp.src(['data/projects.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe(through.obj((file, enc, cb) => {
     let data = JSON.parse(file.contents);
