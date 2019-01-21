@@ -31,21 +31,28 @@
               href="https://twitter.com/pirhoo" target="_blank">
               <fa :icon="['fab', 'twitter']"
                 class="introduction__social__item__icon section__footer__item__icon" />
-              Find me<br class="d-none d-md-inline" />
+              @pirhoo<br class="d-none d-md-inline" />
               on Twitter
+            </a>
+            <a class="introduction__social__item section__footer__item col-sm-6 col-md"
+              href="https://wire.com" target="_blank">
+              <fa :icon="['fa', 'unlock-alt']"
+                class="introduction__social__item__icon section__footer__item__icon" />
+              @pirhoo<br class="d-none d-md-inline" />
+              on Wire
             </a>
             <a class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://github.com/pirhoo" target="_blank">
               <fa :icon="['fab', 'github']"
                 class="introduction__social__item__icon section__footer__item__icon" />
-              Find me<br class="d-none d-md-inline" />
+              @pirhoo<br class="d-none d-md-inline" />
               on Github
             </a>
             <a class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://keybase.io/pirhoo" target="_blank">
               <fa icon="key"
                 class="introduction__social__item__icon section__footer__item__icon" />
-              Find me<br class="d-none d-md-inline" />
+              @pirhoo<br class="d-none d-md-inline" />
               on Keybase
             </a>
             <a class="introduction__social__item section__footer__item col-sm-6 col-md"

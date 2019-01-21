@@ -2,7 +2,6 @@ import Vue from 'vue';
 import VueLazyload from 'vue-lazyload';
 import VueMasonry from 'vue-masonry-css';
 
-
 import App from './components/App.vue';
 import FontAwesomeIcon from './components/FontAwesomeIcon';
 
