@@ -1,9 +1,39 @@
 [
   {
+    "title": "Murmur Design System",
+    "thumbnail": "assets/images/thumbnails/icijgithubiomurmur.png",
+    "url": "https://icij.github.io/murmur/#/",
+    "color": "#c11354",
+    "year": "",
+    "width": 1910,
+    "height": 1219,
+    "type": "png"
+  },
+  {
+    "title": "Datashare",
+    "thumbnail": "assets/images/thumbnails/datashareicijorg.png",
+    "url": "https://datashare.icij.org/",
+    "color": "#dc4577",
+    "year": "",
+    "width": 1382,
+    "height": 791,
+    "type": "png"
+  },
+  {
+    "title": "International Medical Devices Database - Implant Files",
+    "thumbnail": "assets/images/thumbnails/medicaldevicesicijorg.png",
+    "url": "https://medicaldevices.icij.org",
+    "color": "#21dbef",
+    "year": "2018",
+    "width": 1382,
+    "height": 2721,
+    "type": "png"
+  },
+  {
     "title": "Out d'or 2018",
     "thumbnail": "assets/images/thumbnails/2018outdorfr.png",
     "url": "http://2018.outdor.fr",
-    "color": "#89008E",
+    "color": "#FFC465",
     "year": "2018",
     "width": 200,
     "height": 470,
@@ -182,7 +212,7 @@
   {
     "title": "Fledit",
     "thumbnail": "assets/images/thumbnails/fledit.png",
-    "url": "http://fledit.pirhoo.com/",
+    "url": "http://fledit.pirhoo.com",
     "color": "#474244",
     "year": "2015",
     "width": 200,
@@ -262,7 +292,7 @@
   {
     "title": "MSF: One year of fight against Ebola",
     "thumbnail": "assets/images/thumbnails/ebola.png",
-    "url": "http://www.msf-azg.be/ebola_data/",
+    "url": "https://jplusplus.github.io/msf-ebola/",
     "color": "#E22000",
     "year": "2015",
     "width": 200,

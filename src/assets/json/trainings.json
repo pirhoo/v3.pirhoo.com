@@ -1,10 +1,10 @@
 {
-  "hoursCount": 1188,
+  "hoursCount": 1212,
   "countriesCount": 9,
   "customersCount": 39,
   "categoryCount": {
     "ddj": 50,
-    "code": 9,
+    "code": 11,
     "security": 2,
     "cartodb": 3
   },
@@ -48,7 +48,8 @@
     "2017-03-01": 2,
     "2017-04-01": 1,
     "2017-08-01": 1,
-    "2017-12-01": 1
+    "2017-12-01": 1,
+    "2018-10-01": 2
   },
   "olderTraining": {
     "category": "ddj",
@@ -61,8 +62,8 @@
   "newerTraining": {
     "category": "code",
     "customer": "SAMSA",
-    "date_start": "2017-12-14",
-    "date_end": "2017-12-15",
+    "date_start": "2018-10-18",
+    "date_end": "2018-10-19",
     "duration": "2",
     "country": "FRA"
   }

@@ -138,7 +138,7 @@ gulp.task('csv:webshots', () => gulp.src(['data/projects.csv'])
     // Async function to iterate over websites
     async.eachSeries(data, (site, next) => {
       // Inform the user
-      $.util.log('Screenshoting %s', site.url);
+      console.log('Screenshoting %s', site.url);
       // Start the screenshot
       webshot(removeHttp(site.url), `src/${toThumbnailPath(site.url)}`, {
         // We are not in hurry
