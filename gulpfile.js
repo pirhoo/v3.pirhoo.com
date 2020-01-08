@@ -9,7 +9,6 @@ const simpleGit = require('simple-git/promise');
 const sizeOf = require('image-size');
 const slug = require('slug');
 const through = require('through2');
-const webshot = require('webshot');
 const { spawnSync } = require('child_process');
 const { promisify } = require('util');
 const stringify = promisify(require('csv-stringify'));
@@ -30,6 +29,34 @@ function getFolders(dir) {
   // return ['xemx']
   return fs.readdirSync(dir)
     .filter(file => fs.statSync(path.join(dir, file)).isDirectory());
+}
+
+async function getFolderCommits(dir, depth = 0) {
+  const names = ['pirhoo', 'pierre romera', 'romera', 'hello@pirhoo.com', 'pierre.romera@gmail.com'];
+  // Maxium depth reached
+  if (depth > 3) return [];
+  // Instanciate git instance from the dir path
+  const git = simpleGit(dir);
+  // Is it a git repository?
+  if (await git.checkIsRepo()) {
+    // Build an hash with a cksum of the dir
+    const { stdout } = spawnSync('sh', ['-c', `echo "${dir}" | cksum`]);
+    const repository = stdout.toString().split(' ')[0];
+    // Get all logs with a custom format
+    const logs = await git.log({
+      format: {
+        repository, timestamp: '%ct', hash: '%H', author: '%aN <%ae>',
+      },
+    });
+    // Filter logs by author email
+    return _.filter(logs.all, log => _.some(names, name => log.author.toLowerCase().indexOf(name) > -1));
+  }
+  let commits = [];
+  for (const child of getFolders(dir)) {
+    const childPath = path.join(dir, child);
+    commits = commits.concat(await getFolderCommits(childPath, depth + 1));
+  }
+  return commits;
 }
 
 gulp.task('resize', () => gulp.src('src/assets/images/thumbnails/*.{png,jpg}')
@@ -57,26 +84,7 @@ gulp.task('csv:trainings', () => gulp.src(['data/trainings.csv'])
   .pipe(gulp.dest('src/assets/json/')));
 
 gulp.task('csv:commits', async () => {
-  const names = ['pirhoo', 'pierre romera', 'romera', 'hello@pirhoo.com', 'pierre.romera@gmail.com'];
-  let commits = [];
-  for (const dir of getFolders('..')) {
-    // Instanciate git instance from the dir path
-    const git = simpleGit(path.join('..', dir));
-    // Is it a git repository?
-    if (await git.checkIsRepo()) {
-      // Build an hash with a cksum of the dir
-      const { stdout } = spawnSync('sh', ['-c', `echo ${dir} | cksum`]);
-      const repository = stdout.toString().split(' ')[0];
-      // Get all logs with a custom format
-      const logs = await git.log({
-        format: {
-          repository, timestamp: '%ct', hash: '%H', author: '%aN <%ae>',
-        },
-      });
-      // Filter logs by author email
-      commits = commits.concat(_.filter(logs.all, log => _.some(names, name => log.author.toLowerCase().indexOf(name) > -1)));
-    }
-  }
+  const commits = await getFolderCommits(path.join(__dirname, '..'));
   // Create the CSV in a promise
   const csv = await stringify(commits, { header: true, columns: ['repository', 'timestamp', 'hash'] });
   // Write the file!
@@ -140,7 +148,7 @@ gulp.task('csv:webshots', () => gulp.src(['data/projects.csv'])
       // Inform the user
       console.log('Screenshoting %s', site.url);
       // Start the screenshot
-      webshot(removeHttp(site.url), `src/${toThumbnailPath(site.url)}`, {
+      /* webshot(removeHttp(site.url), `src/${toThumbnailPath(site.url)}`, {
         // We are not in hurry
         renderDelay: 6000,
         // We need a bigger screen
@@ -148,7 +156,7 @@ gulp.task('csv:webshots', () => gulp.src(['data/projects.csv'])
           width: site.width || 1600,
           height: site.height || 900,
         },
-      }, next);
+      }, next); */
     }, cb);
   })));
 
