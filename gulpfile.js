@@ -125,6 +125,10 @@ gulp.task('csv:projects', () => gulp.src(['data/projects.csv'])
   }))))
   .pipe(gulp.dest('src/assets/json/')));
 
+gulp.task('csv:investigations', () => gulp.src(['data/investigations.csv'])
+  .pipe($.convert({ from: 'csv', to: 'json' }))
+  .pipe(gulp.dest('src/assets/json/')));
+
 gulp.task('csv:awards', () => gulp.src(['data/awards.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor(data => ({
@@ -191,6 +195,7 @@ gulp.task('csv', gulp.series(
   'csv:trainings',
   'csv:commits',
   'csv:count',
+  'csv:investigations',
   'csv:projects',
   'csv:awards',
   'csv:webshots',

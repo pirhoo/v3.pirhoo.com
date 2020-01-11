@@ -1,25 +1,25 @@
 <template>
   <div class="app">
     <introduction></introduction>
+    <investigations></investigations>
     <activity></activity>
     <projects></projects>
-    <photos></photos>
   </div>
 </template>
 
 <script>
-import Introduction from '@/components/Introduction.vue';
-import Activity from '@/components/Activity.vue';
-import Projects from '@/components/Projects.vue';
-import Photos from '@/components/Photos.vue';
+import Introduction from './Introduction.vue';
+import Activity from './Activity.vue';
+import Investigations from './Investigations.vue';
+import Projects from './Projects.vue';
 
 export default {
   name: 'app',
   components: {
     Introduction,
     Activity,
+    Investigations,
     Projects,
-    Photos,
   },
 };
 </script>
@@ -33,7 +33,7 @@ export default {
     margin:0;
     position: relative;
     clear:both;
-    min-height: 90vh;
+    min-height: 85vh;
 
     --section-primary: black;
     --section-primary-contrast: white;

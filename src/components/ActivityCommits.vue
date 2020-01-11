@@ -1,8 +1,8 @@
 <template>
-  <div class="activity__commits">
-    <div class="activity__commits__wrapper">
+  <div class="activity__commits" @show="drawCommits">
+    <vue-perfect-scrollbar class="activity__commits__wrapper" ref="wrapper">
       <svg class="activity__commits__chart"></svg>
-    </div>
+    </vue-perfect-scrollbar>
     <h3 class="activity__commits__lead mt-2">
       <abbr title="A submission of my latest changes of a source code">
         Commits
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import VuePerfectScrollbar from 'vue-perfect-scrollbar';
+// eslint-disable-next-line
 import { range, sortBy, reduce, keys, maxBy, minBy, assign } from 'lodash';
 import * as d3 from 'd3';
 import tip from 'd3-tip';
@@ -20,6 +22,9 @@ import commits from '@/assets/json/commits.json';
 
 export default {
   name: 'ActivityCommits',
+  components: {
+    VuePerfectScrollbar,
+  },
   data() {
     return {
       padding: 20,
@@ -108,8 +113,8 @@ export default {
   mounted() {
     this.drawSvg();
     this.drawYears();
-    this.drawCommitsLine();
-    this.drawCommitsDots();
+    this.drawCommits();
+    this.updateScrollbar();
   },
   methods: {
     drawSvg() {
@@ -169,6 +174,15 @@ export default {
         .on('mouseover', this.tipFn.show)
         .on('mouseout', this.tipFn.hide);
     },
+    drawCommits() {
+      this.drawCommitsLine();
+      this.drawCommitsDots();
+    },
+    updateScrollbar() {
+      if (this.$refs.wrapper && this.$refs.wrapper.ps) {
+        this.$refs.wrapper.ps.update();
+      }
+    },
   },
 };
 </script>
@@ -182,7 +196,6 @@ export default {
   .activity__commits {
     z-index: 0;
     position: relative;
-    @include animation(1s fadein);
 
     &__lead {
       font-size: .9rem;
@@ -193,8 +206,9 @@ export default {
     &__wrapper {
       width:100%;
       display: block;
-      overflow-x: auto;
-      overflow-y: visible;
+      overflow: hidden;
+      position: relative;
+      padding-bottom: $spacer;
     }
 
     &__chart {

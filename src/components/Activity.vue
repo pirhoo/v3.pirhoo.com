@@ -1,6 +1,6 @@
 <template>
-  <section class="activity section">
-    <div class="wrapper">
+  <section class="activity section d-flex flex-column">
+    <div class="wrapper d-flex flex-column flex-grow-1">
       <div class="activity__body section__panel">
         <gradient-on-scroll></gradient-on-scroll>
         <h2 aria-section="Activity" class="section__panel__lead">
@@ -12,7 +12,7 @@
           I’m better with numbers so let the figures below speak for themselves.
         </p>
       </div>
-      <div class="activity__figures section__footer">
+      <div class="activity__figures section__footer w-100">
         <gradient-on-scroll></gradient-on-scroll>
         <div class="container-fluid">
           <div class="row">
@@ -43,9 +43,9 @@
           </div>
         </div>
       </div>
-      <lazy-component @show="activityInView = true">
-        <activity-commits v-if="activityInView"></activity-commits>
-      </lazy-component>
+      <div class="flex-grow-1 d-flex flex-column justify-content-center">
+        <activity-commits></activity-commits>
+      </div>
     </div>
   </section>
 </template>

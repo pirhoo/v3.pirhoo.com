@@ -65,12 +65,6 @@
           </div>
         </div>
       </div>
-      <a class="introduction__discover" title="Discover more" href="#activity">
-        <span class="sr-only">
-          Discover more
-        </span>
-        <i class="fa fa-4x fa-angle-down"></i>
-      </a>
     </div>
   </section>
 </template>
