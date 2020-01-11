@@ -62,8 +62,8 @@ export default {
     &__list {
 
       &__wrapper {
-        padding-right: $spacer * 2;
-        padding-bottom: $spacer;
+        padding-right: 20px;
+        padding-bottom: 20px;
         overflow: hidden;
       }
 
@@ -71,7 +71,7 @@ export default {
         padding: $spacer;
         min-width: 330px;
         max-width: 330px;
-        margin: 0 0 0 $spacer * 2;
+        margin: 0 0 0 20px;
         position: relative;
 
         &:before {
