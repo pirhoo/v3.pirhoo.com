@@ -59,6 +59,7 @@ export default {
       return { color, backgroundColor };
     },
     investigationImage({ image }) {
+      // eslint-disable-next-line
       return image ? require(`@/assets/images/investigations/${image}`) : null;
     },
   },
@@ -139,6 +140,8 @@ export default {
           opacity: 0;
           transform: translateY(-10%);
           transition: 300ms;
+          position: relative;
+          z-index: 100;
         }
 
         &:hover &__lead {

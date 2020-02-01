@@ -1,6 +1,8 @@
 import { bisector } from 'd3';
 import * as chroma from 'chroma-js';
-import { range, first, last, reduce, map, shuffle, identity } from 'lodash';
+import {
+  range, first, last, reduce, map, shuffle, identity,
+} from 'lodash';
 import gradients from '@/assets/json/gradients.json';
 /* ignore eslint start */
 import scss from '!!sass-variable-loader!@/utils/_variables.scss';
