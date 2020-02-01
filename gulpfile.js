@@ -59,13 +59,21 @@ async function getFolderCommits(dir, depth = 0) {
   return commits;
 }
 
-gulp.task('resize', () => gulp.src('src/assets/images/thumbnails/*.{png,jpg}')
-  .pipe($.filter(image => sizeOf(image.path).width !== 200))
+gulp.task('resize:thumbnails', () => gulp.src('src/assets/images/thumbnails/*.{png,jpg}')
+  .pipe($.filter(image => sizeOf(image.path).width > 200))
   .pipe($.imageResize({
     width: 200,
     upscale: true,
   }))
   .pipe(gulp.dest('src/assets/images/thumbnails/')));
+
+gulp.task('resize:investigations', () => gulp.src('src/assets/images/investigations/*.{png,jpg}')
+  .pipe($.filter(image => sizeOf(image.path).width > 600))
+  .pipe($.imageResize({
+    width: 600,
+    upscale: true,
+  }))
+  .pipe(gulp.dest('src/assets/images/investigations/')));
 
 gulp.task('csv:trainings', () => gulp.src(['data/trainings.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))

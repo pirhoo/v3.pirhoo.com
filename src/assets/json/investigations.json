@@ -1,12 +1,23 @@
 [
   {
     "organization": "ICIJ",
+    "title": "Luanda Leaks",
+    "description": "Isabel dos Santos made a fortune at the expense of the Angolan people, Luanda Leaks reveals. ",
+    "url": "https://www.icij.org/investigations/luanda-leaks/",
+    "year": "2020",
+    "backgroundColor": "#ECBE0A",
+    "color": "#191818",
+    "image": "luanda-leaks.jpg"
+  },
+  {
+    "organization": "ICIJ",
     "title": "China Cables",
     "description": "China Cables is an investigation into the surveillance and mass internment without charge or trial of Uighurs and other Muslim minorities in Xinjiang.",
     "url": "https://www.icij.org/investigations/china-cables/",
     "year": "2019",
     "backgroundColor": "#DB3035",
-    "color": "white"
+    "color": "#E9EBEB",
+    "image": "china-cables.png"
   },
   {
     "organization": "ICIJ",
@@ -15,7 +26,8 @@
     "url": "https://www.icij.org/investigations/implant-files/",
     "year": "2018",
     "backgroundColor": "#3B98AB",
-    "color": "white"
+    "color": "white",
+    "image": "implant-files.jpg"
   },
   {
     "organization": "ICIJ",
@@ -24,7 +36,8 @@
     "url": "https://www.icij.org/investigations/paradise-papers/",
     "year": "2017",
     "backgroundColor": "#852308",
-    "color": "white"
+    "color": "white",
+    "image": "paradise-papers.jpg"
   },
   {
     "organization": "Journalism++",
@@ -33,7 +46,8 @@
     "url": "http://thefootballtax.pirhoo.com/#!/",
     "year": "2016",
     "backgroundColor": "#FFDF54",
-    "color": "#001D2B"
+    "color": "#001059",
+    "image": "football-tax.jpg"
   },
   {
     "organization": "Journalism++",
@@ -42,7 +56,8 @@
     "url": "http://rentswatch.pirhoo.com/#!/",
     "year": "2016",
     "backgroundColor": "#D35F5F",
-    "color": "white"
+    "color": "white",
+    "image": "rentswatch.png"
   },
   {
     "organization": "Journalism++",
@@ -51,7 +66,8 @@
     "url": "http://www.themigrantsfiles.com/",
     "year": "2014",
     "backgroundColor": "#161616",
-    "color": "#d2b813"
+    "color": "#d2b813",
+    "image": "migrants-files.jpg"
   },
   {
     "organization": "Wikileaks",
@@ -60,7 +76,8 @@
     "url": "https://wikileaks.org/plusd/",
     "year": "2013",
     "backgroundColor": "#91D2E4",
-    "color": "black"
+    "color": "black",
+    "image": "kissinger-cables.jpg"
   },
   {
     "organization": "Wikileaks",
@@ -69,7 +86,8 @@
     "url": "https://wikileaks.org/irq/",
     "year": "2010",
     "backgroundColor": "#C4021B",
-    "color": "white"
+    "color": "white",
+    "image": "iraq-warlogs.jpg"
   },
   {
     "organization": "Wikileaks",
@@ -78,6 +96,7 @@
     "url": "https://wikileaks.org/afg/",
     "year": "2010",
     "backgroundColor": "#C4021B",
-    "color": "white"
+    "color": "white",
+    "image": ""
   }
 ]

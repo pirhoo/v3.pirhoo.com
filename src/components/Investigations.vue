@@ -20,10 +20,13 @@
             :aria-year="investigation.year"
             :aria-organization="investigation.organization"
             :href="investigation.url"
-            :style="{ ...investigation }"
+            :style="investigationStyle(investigation)"
             class="investigations__list__item d-block d-flex flex-column-reverse justify-content-between"
             target="_blank">
-            <h4 class="investigations__list__item__heading">{{ investigation.title }}</h4>
+            <div class="investigations__list__item__image" :style="{ backgroundImage: `url(${investigationImage(investigation)})` }"></div>
+            <h4 class="investigations__list__item__heading">
+              {{ investigation.title }}
+            </h4>
             <p class="investigations__list__item__lead flex-grow-1">{{ investigation.description }}</p>
           </a>
         </vue-perfect-scrollbar>
@@ -51,6 +54,14 @@ export default {
       investigations,
     };
   },
+  methods: {
+    investigationStyle({ color, backgroundColor }) {
+      return { color, backgroundColor };
+    },
+    investigationImage({ image }) {
+      return image ? require(`@/assets/images/investigations/${image}`) : null;
+    },
+  },
 };
 </script>
 
@@ -77,6 +88,8 @@ export default {
         &:before {
           font-size: 0.9rem;
           content:attr(aria-organization);
+          position: relative;
+          z-index: 100;
         }
 
         &:after {
@@ -85,16 +98,40 @@ export default {
           position: absolute;
           right: $spacer;
           bottom: $spacer;
+          z-index: 100;
         }
 
         &:hover {
           text-decoration: none;
         }
 
+        &__image {
+          background-size: cover;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0.5;
+          z-index: 50;
+
+          &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            @include gradient-directional(currentColor, transparent);
+          }
+        }
+
         &__heading {
           margin: 0 0 $spacer * 0.5;
           padding: $spacer * 0.5 0;
-          border-bottom: 1px solid currentColor;
+          border-bottom: 2px solid currentColor;
+          position: relative;
+          z-index: 100;
         }
 
         &__lead {

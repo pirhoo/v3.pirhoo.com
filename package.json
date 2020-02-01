@@ -38,6 +38,8 @@
     "gh-pages": "^2.2.0",
     "gulp": "^4.0.2",
     "gulp-convert": "^0.2.0",
+    "gulp-filter": "^6.0.0",
+    "gulp-image-resize": "^0.13.1",
     "gulp-json-editor": "^2.5.4",
     "gulp-load-plugins": "^2.0.2",
     "image-size": "^0.7.3",
