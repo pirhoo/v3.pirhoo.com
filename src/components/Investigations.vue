@@ -9,7 +9,7 @@
         </h2>
         <p>
           I do beleive technology and data can help jounalists solve issues of
-          global importance. Since 10 years I'm taking part in cross-border
+          global importance. Since {{ currentYear - 2010 }} years I'm taking part in cross-border
           investigations. Here is a selection of the ones I'm the most proud of.
         </p>
       </div>
@@ -61,6 +61,11 @@ export default {
     investigationImage({ image }) {
       // eslint-disable-next-line
       return image ? require(`@/assets/images/investigations/${image}`) : null;
+    },
+  },
+  computed: {
+    currentYear() {
+      return new Date().getFullYear();
     },
   },
 };
