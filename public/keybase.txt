@@ -4,7 +4,7 @@ https://keybase.io/pirhoo
 
 I hereby claim:
 
-  * I am an admin of http://pirhoo.com
+  * I am an admin of https://www.pirhoo.com
   * I am pirhoo (https://keybase.io/pirhoo) on keybase.
   * I have a public key ASC00iiFgFC4JVufD7x2j40GQcY0-WUAsronURKcxnFvFgo
 
@@ -20,33 +20,33 @@ To do so, I am signing this object:
       "username": "pirhoo"
     },
     "merkle_root": {
-      "ctime": 1538404188,
-      "hash": "176c7e782f8f27fbb3969a4929c76839aa8a65c6e865ae15499d165c4b8a0bdef6412e489b27ed28207062db418b19b787cf213524d1d4c0ed162ecd598671af",
-      "hash_meta": "12be75de22878c299ca966a4891d03df8050a8b0422be8102b3527df96e847b8",
-      "seqno": 3719879
+      "ctime": 1581589568,
+      "hash": "4319870844cd2b54fe78c13e220b8234161ec5fb68790945f5ad5b3e9a488c379b7f28c5925803263ccbf1cc6787de76c9f18dd11c73a942bcd84e6461f6b486",
+      "hash_meta": "3e48805c63162255cfee792c1f842e49b6c4731098db97092fcf78ee932326ee",
+      "seqno": 14590739
     },
     "service": {
-      "entropy": "PscGaGMKsB4nvztMUSS9O0Zo",
-      "hostname": "pirhoo.com",
-      "protocol": "http:"
+      "entropy": "vKYjbomSF0Ko0+wKBCSqrNPe",
+      "hostname": "www.pirhoo.com",
+      "protocol": "https:"
     },
     "type": "web_service_binding",
     "version": 2
   },
   "client": {
     "name": "keybase.io go client",
-    "version": "2.7.0"
+    "version": "5.2.0"
   },
-  "ctime": 1538404201,
+  "ctime": 1581589602,
   "expire_in": 504576000,
-  "prev": "c3a5ca6fb235cac83f15e907c546967c1195d78878455f6888357534dd9fab17",
-  "seqno": 68,
+  "prev": "079140f6e500747db2d0bb8dc72a56fbd538cf902f18276b0eb3b00d83342c43",
+  "seqno": 124,
   "tag": "signature"
 }
 
 which yields the signature:
 
-hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgtNIohYBQuCVbnw+8do+NBkHGNPllALK6J1ESnMZxbxYKp3BheWxvYWTESpcCRMQgw6XKb7I1ysg/FekHxUaWfBGV14h4RV9oiDV1NN2fqxfEIMFb80MwAN3J/NEznlX0Vp+TapPoGy6c1KNLQzES8y+wAgHCo3NpZ8RASve2LkH/ACxhlApF6C5ev5iSW358AyGd/4/eEOjggUuDOzLWWAaVhdFL6Hee4MpwNSOgv0SfZBrAoVWG0s26AKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEICMwhaDcNsN18vBccWkQHvXy/NaE5/df6e43E3+VqYdno3RhZ80CAqd2ZXJzaW9uAQ==
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgtNIohYBQuCVbnw+8do+NBkHGNPllALK6J1ESnMZxbxYKp3BheWxvYWTESpcCfMQgB5FA9uUAdH2y0LuNxypW+9U4z5AvGCdrDrOwDYM0LEPEIC3cm8xmOKuOvy9xU4PK9NBPFrUBy7qiVM1xWEd3E3GbAgHCo3NpZ8RARgGH1LEyEYXjaSAZleOVO1P/XXYNCocEZIeMC4zb7pRSBQ2jOuSfXoekiNxNHoCYHJ3WaR4W2jG7HbFdkIquAahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIKH7Hj2wbkVfu7hlnTKNjOblbbnTEJSTmrnW2vy5iNvEo3RhZ80CAqd2ZXJzaW9uAQ==
 
 And finally, I am proving ownership of this host by posting or
 appending to this document.
@@ -54,4 +54,3 @@ appending to this document.
 View my publicly-auditable identity here: https://keybase.io/pirhoo
 
 ==================================================================
-
