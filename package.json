@@ -44,7 +44,7 @@
     "gulp-load-plugins": "^2.0.2",
     "image-size": "^0.7.3",
     "lint-staged": "^8.1.5",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "node-vibrant": "^3.2.0-alpha",
     "path": "^0.12.7",
     "push-dir": "^0.4.1",
