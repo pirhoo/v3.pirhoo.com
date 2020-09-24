@@ -16,7 +16,7 @@
     "url": "https://www.icij.org/investigations/luanda-leaks/",
     "year": "2020",
     "backgroundColor": "#ECBE0A",
-    "color": "#191818",
+    "color": "white",
     "image": "luanda-leaks.jpg"
   },
   {
@@ -56,7 +56,7 @@
     "url": "http://thefootballtax.pirhoo.com/#!/",
     "year": "2016",
     "backgroundColor": "#FFDF54",
-    "color": "#001059",
+    "color": "white",
     "image": "football-tax.jpg"
   },
   {
@@ -85,7 +85,7 @@
     "description": "The Kissinger cables are 1.7 million United States diplomatic and intelligence records dating from 1973 to 1976 that WikiLeaks republished in April 2013.",
     "url": "https://wikileaks.org/plusd/",
     "year": "2013",
-    "backgroundColor": "#91D2E4",
+    "backgroundColor": "white",
     "color": "black",
     "image": "kissinger-cables.jpg"
   },

@@ -93,6 +93,7 @@ export default {
 
         &:before {
           font-size: 0.9rem;
+          font-weight: bold;
           content:attr(aria-organization);
           position: relative;
           z-index: 100;
@@ -128,7 +129,7 @@ export default {
             left: 0;
             right: 0;
             bottom: 0;
-            @include gradient-directional(currentColor, transparent);
+            @include gradient-directional(rgba(black, 0.5), transparent);
           }
         }
 
