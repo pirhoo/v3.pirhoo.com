@@ -7,10 +7,6 @@
           Here’s what I’ve <strong>done</strong>
         </h2>
         <p>
-          According to my
-          <a href="http://coderstats.net/github/pirhoo/" target="_blank">
-            Github Stats
-          </a>
           I mostly code in Javascript and Ruby. Both are my favorite languages.
           Almost all my projects are Open Source and available on
           <a href="https://github.com/pirhoo?tab=activity" target="_blank">
