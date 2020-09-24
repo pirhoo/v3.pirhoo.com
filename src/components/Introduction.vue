@@ -18,9 +18,10 @@
           at <a href="http://owni.fr">OWNI</a>.
         </p>
         <p>
-          I’m also a Associate Professor at Sciences Po, where I teach computer
-          science to journalists. I otherwise do many trainings for professional
-          journalists, covering data-journalism, computer security and programming.
+          Between 2012 and 2019, I was an Associate Professor at Sciences Po,
+          where I taught computer science and interactive storytelling. For years I did trainings
+          in many journalism schools and for professional journalists as well,
+          covering data-journalism, computer security and programming.
         </p>
       </div>
       <div class="introduction__social section__footer">
