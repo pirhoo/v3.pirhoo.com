@@ -50,7 +50,7 @@
     "push-dir": "^0.4.1",
     "sass-loader": "^7.1.0",
     "sass-variable-loader": "^0.1.2",
-    "simple-git": "^1.129.0",
+    "simple-git": "^2.20.1",
     "slug": "^1.1.0",
     "through2": "^3.0.1",
     "vue-template-compiler": "^2.6.11",

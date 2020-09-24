@@ -1,6 +1,16 @@
 [
   {
     "organization": "ICIJ",
+    "title": "FinCEN Files",
+    "description": "An ICIJ investigation reveals the role of global banks in industrial-scale money laundering — and the bloodshed and suffering that flow in its wake.",
+    "url": "https://www.icij.org/investigations/fincen-files/",
+    "year": "2020",
+    "backgroundColor": "#236243",
+    "color": "white",
+    "image": "fincen-files.jpg"
+  },
+  {
+    "organization": "ICIJ",
     "title": "Luanda Leaks",
     "description": "Isabel dos Santos made a fortune at the expense of the Angolan people, Luanda Leaks reveals. ",
     "url": "https://www.icij.org/investigations/luanda-leaks/",

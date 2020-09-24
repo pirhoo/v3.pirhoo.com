@@ -5,7 +5,7 @@ const gh = require('gh-pages');
 const gulp = require('gulp');
 const loadPlugins = require('gulp-load-plugins');
 const path = require('path');
-const simpleGit = require('simple-git/promise');
+const simpleGit = require('simple-git');
 const sizeOf = require('image-size');
 const slug = require('slug');
 const through = require('through2');
@@ -35,21 +35,27 @@ async function getFolderCommits(dir, depth = 0) {
   const names = ['pirhoo', 'pierre romera', 'romera', 'hello@pirhoo.com', 'pierre.romera@gmail.com'];
   // Maxium depth reached
   if (depth > 3) return [];
+  // Foce git locale to English
+  process.env.LANG = 'en_GB';
   // Instanciate git instance from the dir path
   const git = simpleGit(dir);
   // Is it a git repository?
-  if (await git.checkIsRepo()) {
+  if (await git.checkIsRepo('root')) {
     // Build an hash with a cksum of the dir
     const { stdout } = spawnSync('sh', ['-c', `echo "${dir}" | cksum`]);
     const repository = stdout.toString().split(' ')[0];
-    // Get all logs with a custom format
-    const logs = await git.log({
-      format: {
-        repository, timestamp: '%ct', hash: '%H', author: '%aN <%ae>',
-      },
-    });
-    // Filter logs by author email
-    return _.filter(logs.all, log => _.some(names, name => log.author.toLowerCase().indexOf(name) > -1));
+    try {
+      // Get all logs with a custom format
+      const logs = await git.log({
+        format: {
+          repository, timestamp: '%ct', hash: '%H', author: '%aN <%ae>',
+        },
+      });
+      // Filter logs by author email
+      return _.filter(logs.all, log => _.some(names, name => log.author.toLowerCase().indexOf(name) > -1));
+    } catch (_) {
+      return [];
+    }
   }
   let commits = [];
   for (const child of getFolders(dir)) {
