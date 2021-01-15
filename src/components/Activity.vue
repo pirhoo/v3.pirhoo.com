@@ -8,7 +8,7 @@
           <strong>let the data talk</strong>
         </h2>
         <p>
-          My time is split between coding, investigating and teaching.
+          My time is shared between coding, investigating and teaching.
           I’m better with numbers so let the figures below speak for themselves.
         </p>
       </div>

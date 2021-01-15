@@ -10,7 +10,7 @@
         <p>
           I’m CTO at the <a href="http://icij.org">International Consortium
           of Investigative Journalists (ICIJ)</a> where I build
-          interactive stories and tools.
+          interactive stories, data driven investigations and tools.
         </p>
         <p>
           I used to be CTO at <a href="http://jplusplus.org">Journalism++</a>,
