@@ -19,7 +19,7 @@
         </p>
         <p>
           Between 2012 and 2019, I was an Associate Professor at Sciences Po,
-          where I taught computer science and interactive storytelling. For years I did trainings
+          where I taught programming and interactive storytelling. For years I did trainings
           in many journalism schools and for professional journalists as well,
           covering data-journalism, computer security and programming.
         </p>
@@ -82,7 +82,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-  @import '../utils/_settings';
-</style>
