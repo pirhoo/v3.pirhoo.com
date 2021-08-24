@@ -152,7 +152,7 @@ export default {
         .datum(this.data)
         .attr('class', 'activity__commits__chart__line')
         .attr('d', this.lineFn);
-        // Needs the number of nodes to animate the path drawing
+      // Needs the number of nodes to animate the path drawing
       const totalLength = path.node().getTotalLength();
       path
         .attr('stroke-dasharray', `${totalLength} ${totalLength}`)
@@ -167,12 +167,18 @@ export default {
         .data(this.data)
         .enter()
         .append('circle')
+        .attr('opacity', 0)
         .attr('class', 'activity__commits__chart__dot')
         .attr('cx', d => this.xScaleFn(d.month))
         .attr('cy', d => this.yScaleFn(d.count))
         .attr('r', 4)
         .on('mouseover', this.tipFn.show)
-        .on('mouseout', this.tipFn.hide);
+        .on('mouseout', this.tipFn.hide)
+        .transition()
+        .duration(100)
+        .delay((_, i) => 2000 * (i / this.data.length))
+        .ease(d3.easeLinear)
+        .attr('opacity', 1);
     },
     drawCommits() {
       this.drawCommitsLine();
@@ -181,6 +187,8 @@ export default {
     updateScrollbar() {
       if (this.$refs.wrapper && this.$refs.wrapper.ps) {
         this.$refs.wrapper.ps.update();
+        const x = this.$refs.wrapper.$el.offsetWidth;
+        this.$refs.wrapper.$el.scrollTo(x, 0);
       }
     },
   },
