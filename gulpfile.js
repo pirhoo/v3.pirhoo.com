@@ -1,4 +1,7 @@
-const _ = require('lodash');
+const {
+  compact, countBy, extend, filter, groupBy, keys,
+  map, maxBy, minBy, reduce, some,
+} = require('lodash');
 const async = require('async');
 const fs = require('fs');
 const gh = require('gh-pages');
@@ -27,16 +30,17 @@ function toThumbnailPath(str) {
 
 function getFolders(dir) {
   // return ['xemx']
-  return fs.readdirSync(dir)
-    .filter(file => fs.statSync(path.join(dir, file)).isDirectory());
+  return fs.readdirSync(dir).filter(file => fs.statSync(path.join(dir, file)).isDirectory());
 }
 
 async function getFolderCommits(dir, depth = 0) {
-  const names = ['pirhoo', 'pierre romera', 'romera', 'hello@pirhoo.com', 'pierre.romera@gmail.com'];
+  const names = ['pirhoo', 'pierre romera', 'romera', 'hello@pirhoo.com', 'pierre.romera@gmail.com', 'promera@icij.org'];
   // Maxium depth reached
   if (depth > 3) return [];
   // Foce git locale to English
   process.env.LANG = 'en_GB';
+  /* eslint-disable no-console */
+  console.log(`Scanning ${dir}...`);
   // Instanciate git instance from the dir path
   const git = simpleGit(dir);
   // Is it a git repository?
@@ -52,15 +56,17 @@ async function getFolderCommits(dir, depth = 0) {
         },
       });
       // Filter logs by author email
-      return _.filter(logs.all, log => _.some(names, name => log.author.toLowerCase().indexOf(name) > -1));
+      return filter(logs.all, log => some(names, name => log.author.toLowerCase().indexOf(name) > -1));
     } catch (_) {
       return [];
     }
   }
   let commits = [];
+  /* eslint-disable no-await-in-loop,no-restricted-syntax */
   for (const child of getFolders(dir)) {
     const childPath = path.join(dir, child);
-    commits = commits.concat(await getFolderCommits(childPath, depth + 1));
+    const folderCommits = await getFolderCommits(childPath, depth + 1);
+    commits = commits.concat(folderCommits);
   }
   return commits;
 }
@@ -84,21 +90,23 @@ gulp.task('resize:investigations', () => gulp.src('src/assets/images/investigati
 gulp.task('csv:trainings', () => gulp.src(['data/trainings.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor(data => ({
-    hoursCount: _.reduce(data, (sum, training) => (training.duration * 8) + sum, 0),
-    countriesCount: _.keys(_.countBy(data, 'country')).length,
-    customersCount: _.keys(_.countBy(data, 'customer')).length,
-    categoryCount: _.countBy(data, 'category'),
-    monthsCount: _.countBy(data, (training) => {
+    hoursCount: reduce(data, (sum, training) => (training.duration * 8) + sum, 0),
+    countriesCount: keys(countBy(data, 'country')).length,
+    customersCount: keys(countBy(data, 'customer')).length,
+    categoryCount: countBy(data, 'category'),
+    monthsCount: countBy(data, (training) => {
       const date = new Date(Date.parse(training.date_start));
       return `${date.getFullYear()}-${(`0${date.getMonth() + 1}`).slice(-2)}-01`;
     }),
-    olderTraining: _.minBy(data, training => Date.parse(training.date_start)),
-    newerTraining: _.maxBy(data, training => Date.parse(training.date_start)),
+    olderTraining: minBy(data, training => Date.parse(training.date_start)),
+    newerTraining: maxBy(data, training => Date.parse(training.date_start)),
   })))
   .pipe(gulp.dest('src/assets/json/')));
 
 gulp.task('csv:commits', async () => {
   const commits = await getFolderCommits(path.join(__dirname, '..'));
+  // eslint-disable-next-line
+  console.log('Collected %s commits', commits.length);
   // Create the CSV in a promise
   const csv = await stringify(commits, { header: true, columns: ['repository', 'timestamp', 'hash'] });
   // Write the file!
@@ -109,24 +117,24 @@ gulp.task('csv:count', () => gulp.src(['data/commits.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor((data) => {
     // Grount commits by month
-    let monthsCount = _.groupBy(data, (commit) => {
+    let monthsCount = groupBy(data, (commit) => {
       const date = new Date(commit.timestamp * 1000);
       return `${date.getFullYear()}-${date.getMonth() + 1}-01`;
     });
       // Aggregate commits data by month
-    monthsCount = _.reduce(monthsCount, (result, month, key) => ({
+    monthsCount = reduce(monthsCount, (result, month, key) => ({
       ...result,
       [key]: {
         count: month.length,
-        repositories: _.countBy(month, 'repository'),
+        repositories: countBy(month, 'repository'),
       },
     }), {});
     return {
       commitsCount: data.length,
-      repositoriesCount: _.keys(_.countBy(data, 'repository')).length,
+      repositoriesCount: keys(countBy(data, 'repository')).length,
       monthsCount,
-      olderCommit: _.minBy(data, 'timestamp'),
-      newerCommit: _.maxBy(data, 'timestamp'),
+      olderCommit: minBy(data, 'timestamp'),
+      newerCommit: maxBy(data, 'timestamp'),
     };
   }))
   .pipe(gulp.dest('src/assets/json/')));
@@ -134,7 +142,7 @@ gulp.task('csv:count', () => gulp.src(['data/commits.csv'])
 
 gulp.task('csv:projects', () => gulp.src(['data/projects.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
-  .pipe($.jsonEditor(data => _.map(data, site => _.extend(site, {
+  .pipe($.jsonEditor(data => map(data, site => extend(site, {
     thumbnail: site.thumbnail || toThumbnailPath(site.url, true),
   }))))
   .pipe(gulp.dest('src/assets/json/')));
@@ -147,8 +155,8 @@ gulp.task('csv:awards', () => gulp.src(['data/awards.csv'])
   .pipe($.convert({ from: 'csv', to: 'json' }))
   .pipe($.jsonEditor(data => ({
     awardsCount: data.length,
-    countriesCount: _.keys(_.countBy(data, 'country')).length,
-    projectsCount: _.keys(_.countBy(data, 'project')).length,
+    countriesCount: keys(countBy(data, 'country')).length,
+    projectsCount: keys(countBy(data, 'project')).length,
   })))
   .pipe(gulp.dest('src/assets/json/')));
 
@@ -157,13 +165,13 @@ gulp.task('csv:webshots', () => gulp.src(['data/projects.csv'])
   .pipe(through.obj((file, enc, cb) => {
     let data = JSON.parse(file.contents);
     // Filter data to only have the website with no screenshot yet
-    data = _.filter(data, (site) => {
+    data = filter(data, (site) => {
       const thumbnailPath = `src/${toThumbnailPath(site.url)}`;
       return site.thumbnail === '' && !fs.existsSync(thumbnailPath);
     });
     // Async function to iterate over websites
-    async.eachSeries(data, (site, next) => {
-      // Inform the user
+    async.eachSeries(data, (site) => {
+      // eslint-disable-next-line
       console.log('Screenshoting %s', site.url);
       // Start the screenshot
       /* webshot(removeHttp(site.url), `src/${toThumbnailPath(site.url)}`, {
@@ -178,14 +186,16 @@ gulp.task('csv:webshots', () => gulp.src(['data/projects.csv'])
     }, cb);
   })));
 
-gulp.task('csv:colors', async () => {
+gulp.task('csv:colors', async () => {
+  // eslint-disable-next-line
   const projects = require('./src/assets/json/projects.json');
   // Get color for each projects
-  for (const site of projects) {
-    if ((!site.color || site.color === '') && site.thumbnail) {
+  const projectsPromises = await projects.map(async (orginalProject) => {
+    const project = { ...orginalProject };
+    if ((!project.color || project.color === '') && project.thumbnail) {
       // Extract the palette
-      const palette = await Vibrant.from(path.join('src', site.thumbnail)).getPalette();
-      const nonNullVibrants = _.compact([
+      const palette = await Vibrant.from(path.join('src', project.thumbnail)).getPalette();
+      const nonNullVibrants = compact([
         palette.Vibrant,
         palette.LightVibrant,
         palette.DarkVibrant,
@@ -194,15 +204,18 @@ gulp.task('csv:colors', async () => {
         palette.DarkMuted,
       ]);
       // Take the first non null as main colors
-      site.color = nonNullVibrants[0].getHex();
+      project.color = nonNullVibrants[0].getHex();
     }
-  }
+    return project;
+  });
+  const projectsWithColor = await Promise.all(projectsPromises);
   // Write the JSON back
-  fs.writeFileSync(path.resolve('./src/assets/json/projects.json'), JSON.stringify(projects, null, 2));
+  const json = JSON.stringify(projectsWithColor, null, 2);
+  fs.writeFileSync(path.resolve('./src/assets/json/projects.json'), json);
 });
 
 gulp.task('csv:sizes', () => gulp.src(['src/assets/json/projects.json'])
-  .pipe($.jsonEditor(data => _.map(data, site => _.extend(site, sizeOf(`src/${site.thumbnail}`)))))
+  .pipe($.jsonEditor(data => map(data, site => extend(site, sizeOf(`src/${site.thumbnail}`)))))
   .pipe(gulp.dest('src/assets/json/')));
 
 gulp.task('csv', gulp.series(
