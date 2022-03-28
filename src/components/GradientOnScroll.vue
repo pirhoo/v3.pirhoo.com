@@ -75,7 +75,7 @@ export default {
     left:0;
     right:0;
     z-index: -1;
-    background: black;
+    background: transparent;
 
     &__canvas {
       width: 100%;
