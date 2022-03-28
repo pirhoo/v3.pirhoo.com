@@ -2,7 +2,6 @@ const {
   compact, countBy, extend, filter, groupBy, keys,
   map, maxBy, minBy, reduce, some,
 } = require('lodash');
-const async = require('async');
 const fs = require('fs');
 const gh = require('gh-pages');
 const gulp = require('gulp');
@@ -11,7 +10,6 @@ const path = require('path');
 const simpleGit = require('simple-git');
 const sizeOf = require('image-size');
 const slug = require('slug');
-const through = require('through2');
 const { spawnSync } = require('child_process');
 const { promisify } = require('util');
 const stringify = promisify(require('csv-stringify'));
@@ -160,32 +158,6 @@ gulp.task('csv:awards', () => gulp.src(['data/awards.csv'])
   })))
   .pipe(gulp.dest('src/assets/json/')));
 
-gulp.task('csv:webshots', () => gulp.src(['data/projects.csv'])
-  .pipe($.convert({ from: 'csv', to: 'json' }))
-  .pipe(through.obj((file, enc, cb) => {
-    let data = JSON.parse(file.contents);
-    // Filter data to only have the website with no screenshot yet
-    data = filter(data, (site) => {
-      const thumbnailPath = `src/${toThumbnailPath(site.url)}`;
-      return site.thumbnail === '' && !fs.existsSync(thumbnailPath);
-    });
-    // Async function to iterate over websites
-    async.eachSeries(data, (site) => {
-      // eslint-disable-next-line
-      console.log('Screenshoting %s', site.url);
-      // Start the screenshot
-      /* webshot(removeHttp(site.url), `src/${toThumbnailPath(site.url)}`, {
-        // We are not in hurry
-        renderDelay: 6000,
-        // We need a bigger screen
-        windowSize: {
-          width: site.width || 1600,
-          height: site.height || 900,
-        },
-      }, next); */
-    }, cb);
-  })));
-
 gulp.task('csv:colors', async () => {
   // eslint-disable-next-line
   const projects = require('./src/assets/json/projects.json');
@@ -225,7 +197,6 @@ gulp.task('csv', gulp.series(
   'csv:investigations',
   'csv:projects',
   'csv:awards',
-  'csv:webshots',
   'csv:sizes',
   'csv:colors',
 ));
