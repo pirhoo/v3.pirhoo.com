@@ -5,7 +5,7 @@ import {
 } from 'lodash';
 import gradients from '@/assets/json/gradients.json';
 /* ignore eslint start */
-import scss from '!!sass-variable-loader!@/utils/_variables.scss';
+import scss from '!!dart-sass-variable-loader!@/utils/_variables.scss';
 /* ignore eslint end */
 
 // Only create the slice once
