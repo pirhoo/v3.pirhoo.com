@@ -1,4 +1,5 @@
 organization,title,description,url,year,backgroundColor,color,image
+ICIJ,Pandora Papers,The largest investigation in journalism history exposes a shadow financial system that benefits the world’s most rich and powerful.,https://www.icij.org/investigations/pandora-papers/,2021,#b73133,white,pandora-papers.jpg
 ICIJ,FinCEN Files,An ICIJ investigation reveals the role of global banks in industrial-scale money laundering — and the bloodshed and suffering that flow in its wake.,https://www.icij.org/investigations/fincen-files/,2020,#236243,white,fincen-files.jpg
 ICIJ,Luanda Leaks,"Isabel dos Santos made a fortune at the expense of the Angolan people, Luanda Leaks reveals. ",https://www.icij.org/investigations/luanda-leaks/,2020,#ECBE0A,white,luanda-leaks.jpg
 ICIJ,China Cables,China Cables is an investigation into the surveillance and mass internment without charge or trial of Uighurs and other Muslim minorities in Xinjiang.,https://www.icij.org/investigations/china-cables/,2019,#DB3035,#E9EBEB,china-cables.png
@@ -7,6 +8,6 @@ ICIJ,Paradise Papers,"A major global collaboration reveals secrets from one of t
 Journalism++,Football Tax,Football clubs receive millions in public funds. Our team investigated to tell you how much you paid.,http://thefootballtax.pirhoo.com/#!/,2016,#FFDF54,white,football-tax.jpg
 Journalism++,Rentswatch,An inventory of the renting industry in the biggest European cities.,http://rentswatch.pirhoo.com/#!/,2016,#D35F5F,white,rentswatch.png
 Journalism++,Migrants Files,An investigation into the human and financial cost of 15 years of Fortress Europe.,http://www.themigrantsfiles.com/,2014,#161616,#d2b813,migrants-files.jpg
-Wikileaks,Kissinger Cables,The Kissinger cables are 1.7 million United States diplomatic and intelligence records dating from 1973 to 1976 that WikiLeaks republished in April 2013.,https://wikileaks.org/plusd/,2013,white,black,kissinger-cables.jpg
+Wikileaks,Kissinger Cables,The Kissinger cables are 1.7 million United States diplomatic and intelligence records dating from 1973 to 1976 that WikiLeaks republished in April 2013.,https://wikileaks.org/plusd/,2013,#91D2E4,white,kissinger-cables.jpg
 Wikileaks,Iraq Warlogs,"The Iraq War documents leak is the disclosure to WikiLeaks of more than 390,000 internal U. S. military field reports, of the Iraq War from 2004 to 2009.",https://wikileaks.org/irq/,2010,#C4021B,white,iraq-warlogs.jpg
 Wikileaks,Afghan Warlogs,"The Afghan War documents leak is the disclosure of Wikileaks of more than 75,000 internal U.S. military logs of the War in Afghanistan.",https://wikileaks.org/afg/,2010,#C4021B,white,

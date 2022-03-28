@@ -1,5 +1,45 @@
 [
   {
+    "title": "Prophecies: fact checking platform for teams",
+    "thumbnail": "assets/images/thumbnails/prophecies.png",
+    "url": "https://github.com/icij/prophecies/",
+    "color": "#235B59",
+    "year": "2021",
+    "width": 1456,
+    "height": 2893,
+    "type": "png"
+  },
+  {
+    "title": "Pandora Papers: By the numbers",
+    "thumbnail": "assets/images/thumbnails/pandora-papers.png",
+    "url": "https://projects.icij.org/investigations/pandora-papers/charts/",
+    "color": "#b53737",
+    "year": "2021",
+    "width": 1908,
+    "height": 12639,
+    "type": "png"
+  },
+  {
+    "title": "Les Grosses Têtes",
+    "thumbnail": "assets/images/thumbnails/grosses-tetes.png",
+    "url": "https://grossestetes.ajlgbt.info/",
+    "color": "#e3041c",
+    "year": "2020",
+    "width": 1908,
+    "height": 3482,
+    "type": "png"
+  },
+  {
+    "title": "Offshore Leaks Database",
+    "thumbnail": "assets/images/thumbnails/offshoreleaksicijorg.png",
+    "url": "https://offshoreleaks.icij.org/",
+    "color": "#a45444",
+    "year": "2022",
+    "width": 200,
+    "height": 113,
+    "type": "png"
+  },
+  {
     "title": "Murmur Design System",
     "thumbnail": "assets/images/thumbnails/icijgithubiomurmur.png",
     "url": "https://icij.github.io/murmur/#/",
@@ -50,19 +90,9 @@
     "type": "png"
   },
   {
-    "title": "Offshore Leaks Database - Paradise Papers",
-    "thumbnail": "assets/images/thumbnails/offshoreleaksicijorg.png",
-    "url": "http://offshoreleaks.icij.org/",
-    "color": "#a45444",
-    "year": "2017",
-    "width": 200,
-    "height": 113,
-    "type": "png"
-  },
-  {
     "title": "Gateway to Africa - Paradise Papers",
-    "thumbnail": "assets/images/thumbnails/projectscloudicijorgparadise-papersmauritius.png",
-    "url": "http://projects.cloud.icij.org/paradise-papers/mauritius/",
+    "thumbnail": "assets/images/thumbnails/projectsicijorgparadise-papersmauritius.png",
+    "url": "https://projects.icij.org/paradise-papers/mauritius/",
     "color": "#50676B",
     "year": "2017",
     "width": 200,
@@ -482,7 +512,7 @@
   {
     "title": "L’Express: Des données pour l’autisme",
     "thumbnail": "assets/images/thumbnails/dap.png",
-    "url": "http://www.desdonneespourlautisme.pirhoo.com",
+    "url": "http://desdonneespourlautisme.pirhoo.com",
     "color": "#E20022",
     "year": "2013",
     "width": 200,
@@ -732,7 +762,7 @@
   {
     "title": "Aucun Lien",
     "thumbnail": "assets/images/thumbnails/al-150x150.png",
-    "url": "http://aucun-lien.com",
+    "url": "",
     "color": "#FF0095",
     "year": "2012",
     "width": 200,

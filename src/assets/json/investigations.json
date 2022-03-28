@@ -1,6 +1,16 @@
 [
   {
     "organization": "ICIJ",
+    "title": "Pandora Papers",
+    "description": "The largest investigation in journalism history exposes a shadow financial system that benefits the world’s most rich and powerful.",
+    "url": "https://www.icij.org/investigations/pandora-papers/",
+    "year": "2021",
+    "backgroundColor": "#b73133",
+    "color": "white",
+    "image": "pandora-papers.jpg"
+  },
+  {
+    "organization": "ICIJ",
     "title": "FinCEN Files",
     "description": "An ICIJ investigation reveals the role of global banks in industrial-scale money laundering — and the bloodshed and suffering that flow in its wake.",
     "url": "https://www.icij.org/investigations/fincen-files/",
@@ -85,8 +95,8 @@
     "description": "The Kissinger cables are 1.7 million United States diplomatic and intelligence records dating from 1973 to 1976 that WikiLeaks republished in April 2013.",
     "url": "https://wikileaks.org/plusd/",
     "year": "2013",
-    "backgroundColor": "white",
-    "color": "black",
+    "backgroundColor": "#91D2E4",
+    "color": "white",
     "image": "kissinger-cables.jpg"
   },
   {
