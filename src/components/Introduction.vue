@@ -36,13 +36,6 @@
               on Twitter
             </a>
             <a class="introduction__social__item section__footer__item col-sm-6 col-md"
-              href="https://wire.com" target="_blank">
-              <fa :icon="['fa', 'unlock-alt']"
-                class="introduction__social__item__icon section__footer__item__icon" />
-              @pirhoo<br class="d-none d-md-inline" />
-              on Wire
-            </a>
-            <a class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://github.com/pirhoo" target="_blank">
               <fa :icon="['fab', 'github']"
                 class="introduction__social__item__icon section__footer__item__icon" />
