@@ -29,7 +29,7 @@
         <div class="container-fluid">
           <div class="row">
             <a class="introduction__social__item section__footer__item col-sm-6 col-md"
-              href="https://twitter.com/pirhoo" rel="me" target="_blank">
+              href="https://twitter.com/pirhoo" target="_blank">
               <fa :icon="['fab', 'twitter']"
                 class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo<br class="d-none d-md-inline" />
@@ -43,14 +43,14 @@
               on Mastodon
             </a>
             <a class="introduction__social__item section__footer__item col-sm-6 col-md"
-              href="https://github.com/pirhoo" rel="me" target="_blank">
+              href="https://github.com/pirhoo" target="_blank">
               <fa :icon="['fab', 'github']"
                 class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo<br class="d-none d-md-inline" />
               on Github
             </a>
             <a class="introduction__social__item section__footer__item col-sm-6 col-md"
-              href="https://keybase.io/pirhoo" rel="me" target="_blank">
+              href="https://keybase.io/pirhoo" target="_blank">
               <fa icon="key"
                 class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo<br class="d-none d-md-inline" />
