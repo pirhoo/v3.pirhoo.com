@@ -27,12 +27,13 @@ function toThumbnailPath(str) {
 }
 
 function getFolders(dir) {
-  // return ['xemx']
-  return fs.readdirSync(dir).filter(file => fs.statSync(path.join(dir, file)).isDirectory());
+  return fs.readdirSync(dir).filter((childDir) => {
+    const fullpath = path.join(dir, childDir);
+    return fs.existsSync(fullpath) && fs.statSync(fullpath).isDirectory();
+  });
 }
 
 async function getFolderCommits(dir, depth = 0) {
-  const names = ['pirhoo', 'pierre romera', 'romera', 'hello@pirhoo.com', 'pierre.romera@gmail.com', 'promera@icij.org'];
   // Maxium depth reached
   if (depth > 3) return [];
   // Foce git locale to English
@@ -43,6 +44,8 @@ async function getFolderCommits(dir, depth = 0) {
   const git = simpleGit(dir);
   // Is it a git repository?
   if (await git.checkIsRepo('root')) {
+    // All possible author name
+    const names = ['pirhoo', 'pierre romera', 'romera', 'hello@pirhoo.com', 'pierre.romera@gmail.com', 'promera@icij.org'];
     // Build an hash with a cksum of the dir
     const { stdout } = spawnSync('sh', ['-c', `echo "${dir}" | cksum`]);
     const repository = stdout.toString().split(' ')[0];
