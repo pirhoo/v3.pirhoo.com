@@ -1,9 +1,49 @@
 [
   {
+    "title": "Politiyacht",
+    "thumbnail": "assets/images/thumbnails/politiyacht.png",
+    "url": "https://www.instagram.com/politiyacht/",
+    "color": "#fbc404",
+    "year": "2022",
+    "width": 1534,
+    "height": 6012,
+    "type": "png"
+  },
+  {
+    "title": "Étude : Transidentités dans les médias",
+    "thumbnail": "assets/images/thumbnails/transidentites.png",
+    "url": "https://transidentites.ajlgbt.info/",
+    "color": "#ebc0ae",
+    "year": "2023",
+    "width": 3840,
+    "height": 8364,
+    "type": "png"
+  },
+  {
+    "title": "Out d'or 2021",
+    "thumbnail": "assets/images/thumbnails/outdor2021.png",
+    "url": "https://2021.outdor.fr/",
+    "color": "#04f3db",
+    "year": "2021",
+    "width": 3840,
+    "height": 3192,
+    "type": "png"
+  },
+  {
+    "title": "Out d'or 2019",
+    "thumbnail": "assets/images/thumbnails/outdor2019.png",
+    "url": "https://2019.outdor.fr/",
+    "color": "#0c139b",
+    "year": "2019",
+    "width": 3840,
+    "height": 5415,
+    "type": "png"
+  },
+  {
     "title": "Prophecies: fact checking platform for teams",
     "thumbnail": "assets/images/thumbnails/prophecies.png",
     "url": "https://github.com/icij/prophecies/",
-    "color": "#235B59",
+    "color": "#fc6464",
     "year": "2021",
     "width": 1456,
     "height": 2893,
@@ -20,7 +60,7 @@
     "type": "png"
   },
   {
-    "title": "Les Grosses Têtes",
+    "title": "Étude : Les Grosses Têtes",
     "thumbnail": "assets/images/thumbnails/grosses-tetes.png",
     "url": "https://grossestetes.ajlgbt.info/",
     "color": "#e3041c",

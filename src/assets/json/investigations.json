@@ -1,6 +1,16 @@
 [
   {
     "organization": "ICIJ",
+    "title": "Uber Files",
+    "description": "The secret story of how the tech giant won access to world leaders, cozied up to oligarchs and dodged taxes amid chaotic global expansion.",
+    "url": "https://www.icij.org/investigations/uber-files/",
+    "year": "2022",
+    "backgroundColor": "#000000",
+    "color": "white",
+    "image": "uber-files.jpg"
+  },
+  {
+    "organization": "ICIJ",
     "title": "Pandora Papers",
     "description": "The largest investigation in journalism history exposes a shadow financial system that benefits the world’s most rich and powerful.",
     "url": "https://www.icij.org/investigations/pandora-papers/",
