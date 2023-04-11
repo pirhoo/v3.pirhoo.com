@@ -5,8 +5,8 @@
     "url": "https://www.instagram.com/politiyacht/",
     "color": "#fbc404",
     "year": "2022",
-    "width": 1534,
-    "height": 6012,
+    "width": 200,
+    "height": 727,
     "type": "png"
   },
   {
@@ -15,28 +15,28 @@
     "url": "https://transidentites.ajlgbt.info/",
     "color": "#ebc0ae",
     "year": "2023",
-    "width": 3840,
-    "height": 8364,
+    "width": 200,
+    "height": 436,
     "type": "png"
   },
   {
     "title": "Out d'or 2021",
     "thumbnail": "assets/images/thumbnails/outdor2021.png",
     "url": "https://2021.outdor.fr/",
-    "color": "#04f3db",
+    "color": "#04f3dc",
     "year": "2021",
-    "width": 3840,
-    "height": 3192,
+    "width": 200,
+    "height": 166,
     "type": "png"
   },
   {
     "title": "Out d'or 2019",
     "thumbnail": "assets/images/thumbnails/outdor2019.png",
     "url": "https://2019.outdor.fr/",
-    "color": "#0c139b",
+    "color": "#fb53a9",
     "year": "2019",
-    "width": 3840,
-    "height": 5415,
+    "width": 200,
+    "height": 282,
     "type": "png"
   },
   {
