@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "build": "vue-cli-service build",
-    "deploy": "push-dir --dir=dist --branch=gh-pages",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --overwrite-local",
     "predeploy": "yarn run build",
     "csv": "gulp csv"
   },
