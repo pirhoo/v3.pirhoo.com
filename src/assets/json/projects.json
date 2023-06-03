@@ -1,5 +1,15 @@
 [
   {
+    "title": "Out d'or 2023",
+    "thumbnail": "assets/images/thumbnails/outdor2023.png",
+    "url": "https://2023.outdor.fr/",
+    "color": "#e26bc2",
+    "year": "2023",
+    "width": 200,
+    "height": 131,
+    "type": "png"
+  },
+  {
     "title": "Politiyacht",
     "thumbnail": "assets/images/thumbnails/politiyacht.png",
     "url": "https://www.instagram.com/politiyacht/",
