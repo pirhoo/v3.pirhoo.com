@@ -109,7 +109,7 @@ export default {
           top:22px;
           left:30px;
           margin-left:40px;
-          color:theme-color('dark');
+          color: var(--bs-dark);
           font-family:$font-family-serif;
           font-weight:bold;
           font-size:.9rem;
@@ -119,8 +119,8 @@ export default {
           position:absolute;
           top:calc(20px + 0.6rem);
           left:30px;
-          height:0px;
-          border-top:1px solid theme-color('dark');
+          height:0;
+          border-top:1px solid  var(--bs-dark);
           width:30px;
           content:"";
         }
