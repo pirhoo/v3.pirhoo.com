@@ -2,7 +2,7 @@
 
 # TEAM
 
-Your title: Pierre Romera-Zhang
+Your title: Pierre Romera Zhang
 Biography: CTO of the International Consortium of Investigative Journalists (ICIJ)
 Twitter: @pirhoo
 Github: @pirhoo

@@ -4,7 +4,7 @@
       <div class="introduction__body section__panel">
         <gradient-on-scroll></gradient-on-scroll>
         <h2 aria-section="Introduction" class="section__panel__lead">
-          Hi, I’m <strong>Pierre Romera-Zhang</strong><br />
+          Hi, I’m <strong>Pierre Romera Zhang</strong><br />
           developer &amp; datajournalist
         </h2>
         <p>
