@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/pirhoo
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://www.pirhoo.com
+  * I am pirhoo (https://keybase.io/pirhoo) on keybase.
+  * I have a public key ASC00iiFgFC4JVufD7x2j40GQcY0-WUAsronURKcxnFvFgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120b4d228858050b8255b9f0fbc768f8d0641c634f96500b2ba2751129cc6716f160a",
+      "host": "keybase.io",
+      "kid": "0120b4d228858050b8255b9f0fbc768f8d0641c634f96500b2ba2751129cc6716f160a",
+      "uid": "da4bfb52675f52b3376877280876af19",
+      "username": "pirhoo"
+    },
+    "merkle_root": {
+      "ctime": 1581589568,
+      "hash": "4319870844cd2b54fe78c13e220b8234161ec5fb68790945f5ad5b3e9a488c379b7f28c5925803263ccbf1cc6787de76c9f18dd11c73a942bcd84e6461f6b486",
+      "hash_meta": "3e48805c63162255cfee792c1f842e49b6c4731098db97092fcf78ee932326ee",
+      "seqno": 14590739
+    },
+    "service": {
+      "entropy": "vKYjbomSF0Ko0+wKBCSqrNPe",
+      "hostname": "www.pirhoo.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.2.0"
+  },
+  "ctime": 1581589602,
+  "expire_in": 504576000,
+  "prev": "079140f6e500747db2d0bb8dc72a56fbd538cf902f18276b0eb3b00d83342c43",
+  "seqno": 124,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgtNIohYBQuCVbnw+8do+NBkHGNPllALK6J1ESnMZxbxYKp3BheWxvYWTESpcCfMQgB5FA9uUAdH2y0LuNxypW+9U4z5AvGCdrDrOwDYM0LEPEIC3cm8xmOKuOvy9xU4PK9NBPFrUBy7qiVM1xWEd3E3GbAgHCo3NpZ8RARgGH1LEyEYXjaSAZleOVO1P/XXYNCocEZIeMC4zb7pRSBQ2jOuSfXoekiNxNHoCYHJ3WaR4W2jG7HbFdkIquAahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIKH7Hj2wbkVfu7hlnTKNjOblbbnTEJSTmrnW2vy5iNvEo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/pirhoo
+
+==================================================================
