@@ -29,11 +29,11 @@
         <div class="container-fluid">
           <div class="row">
             <a class="introduction__social__item section__footer__item col-sm-6 col-md"
-              href="https://twitter.com/pirhoo">
-              <fa :icon="['fab', 'twitter']"
+              href="https://bsky.app/profile/pirhoo.com">
+              <fa :icon="['fab', 'bluesky']"
                 class="introduction__social__item__icon section__footer__item__icon" />
-              @pirhoo<br class="d-none d-md-inline" />
-              on Twitter
+              @pirhoo.com<br class="d-none d-md-inline" />
+              on Bluesky
             </a>
             <a rel="me" href="https://mastodon.social/@pirhoo" class="introduction__social__item section__footer__item col-sm-6 col-md">
               <fa :icon="['fab', 'mastodon']"

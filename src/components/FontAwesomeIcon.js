@@ -6,14 +6,14 @@ import {
   faKey, faCode, faGraduationCap, faTrophy, faUnlockAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import {
-  faTwitter, faGithub, faInstagram, faMastodon,
+  faBluesky, faGithub, faInstagram, faMastodon,
 } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 // And add them to the library
 library.add(
   faMastodon,
-  faTwitter,
+  faBluesky,
   faGithub,
   faInstagram,
   faKey,
