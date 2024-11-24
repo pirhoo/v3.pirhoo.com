@@ -1,6 +1,16 @@
 [
   {
     "organization": "ICIJ",
+    "title": "Cyprus Confidential",
+    "description": "An investigation exposing the sprawling financial industry that has powered the Putin regime as it dominates its neighbors — and undermines the West.",
+    "url": "https://www.icij.org/investigations/cyprus-confidential/",
+    "year": "2023",
+    "backgroundColor": "#b46723",
+    "color": "white",
+    "image": "cyprus-confidential.jpg"
+  },
+  {
+    "organization": "ICIJ",
     "title": "Uber Files",
     "description": "The secret story of how the tech giant won access to world leaders, cozied up to oligarchs and dodged taxes amid chaotic global expansion.",
     "url": "https://www.icij.org/investigations/uber-files/",
