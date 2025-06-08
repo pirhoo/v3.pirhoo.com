@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "lint": "vue-cli-service lint",
-    "build": "vue-cli-service build",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --overwrite-local",
-    "predeploy": "yarn run build",
+    "serve": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
+    "lint": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service lint",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
+    "deploy": "NODE_OPTIONS=--openssl-legacy-provider push-dir --dir=dist --branch=gh-pages --overwrite-local",
+    "predeploy": "NODE_OPTIONS=--openssl-legacy-provider yarn run build",
     "csv": "gulp csv"
   },
   "dependencies": {
