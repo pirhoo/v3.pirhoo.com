@@ -1,27 +1,50 @@
-title,year,country,project,url
-ONA non-english small site,2010,USA,OWNI,http://owni.fr/2010/10/31/owni-ona-2010-winner-non-english-small-site/
-ONA non-english small site,2011,USA,OWNI,http://owni.fr/2011/09/25/owni-recompense-aux-etats-unis/
-Guardian API Price,2013,DEU,Broken Promises,http://www.observatoiredesmedias.com/2013/12/17/broken-promises-retrouvez-la-memoire-que-vous-avez-perdu/
-GEN Data Journalism Award,2014,FRA,The Migrants Files,http://www.interhacktives.com/2016/03/08/data-journalism-awards-past-winner-spotlight-migrant-files/
-Liège Webdoc Festival,2014,FRA,Jeu d'influence,
-Courrier International,2014,FRA,Jeu d'influence,http://www.journalismesinfo.fr/Courrier-International-distingue-le-webdoc-Jeu-d-influences_a5309.html
-European Press Prize,2015,HUN,The Migrants Files,http://www.europeanpressprize.com/winners/year-2015/
-Investigative Reporters and Editors – Innovation in Investigative Journalism,2018,USA,Paradise Papers,https://ire.org/awards/ire-awards/winners/2017-ire-award-winners/
-The George Polk Awards – Financial Reporting,2018,USA,Paradise Papers,https://www.icij.org/blog/2018/02/paradise-papers-wins-polk-award/
-Society of Professional Journalists – Non-Deadline Reporting,2018,USA,Paradise Papers,https://www.spj.org/sdxa17.asp
-EPPY Awards – Best Collaborative Investigative/Enterprise Reporting,2018,USA,Paradise Papers,http://www.editorandpublisher.com/eppy-winners-2018/
-NYC SPJ Deadline Club – Busines Investigative Reporting Award,2018,USA,Paradise Papers,http://deadlineclub.org/2018-winners/
-"Society of Professional Journalists Washington, D.C. Chapter Dateline Awards – Robert D.G. Lewis Award (best in show); Investigative; Infographics",2017,USA,Paradise Papers,http://spjdc.org/2018/06/winners-dateline-awards-2017-journalism-announced/
-New York State Society of CPAs – Excellence in Financial Journalism Enterprise Award (Enterprise Reporting),2018,USA,Paradise Papers,http://www.nysscpa.org/cpe/press-room/press-releases/release/nysscpa-announces-winners-of-2018-excellence-in-financial-journalism-awards#sthash.98TbcDqw.dpbs
-New York State Society of CPAs – Excellence in Financial Journalism Enterprise Reporting Award,2018,USA,West Africa Leaks,https://www.nysscpa.org/news/publications/the-trusted-professional/article/society-honors-best-financial-reporting-of-2018-at-efj-awards
-The Society of American Business Editors and Writers – “Best in Business” for International Reporting,2019,USA,West Africa Leaks,https://sabew.org/2019/03/complete-list-of-bib-winning-entries-and-newsrooms/
-"Society of Professional Journalists Washington, D.C. Chapter Dateline Awards – Online Series Award",2019,USA,West Africa Leaks,http://spjdc.org/2019/06/list-dateline-awards-winners-announced-dinner/
-Scripps Howard Foundation – Award for Business/Financial Reporting,2019,USA,The Implant Files,http://scripps.com/foundation/news/1231-winners-of-2018-scripps-howard-awards-announced-honoring-the-best-in-journalism
-The Society of American Business Editors and Writers – “Best in Business” for Health/Science,2019,USA,The Implant Files,https://sabew.org/2019/03/complete-list-of-bib-winning-entries-and-newsrooms/
-Association of Health Care Journalists – Excellence in Health Care Journalism (Investigative),2019,USA,The Implant Files,https://healthjournalism.org/awards-winners.php?Year=2018#cat-34
-Overseas Press Club of America – Roy Rowan Award for Investigative Reporting,2019,USA,The Implant Files,https://opcofamerica.org/overseas-press-club-of-america-announces-annual-award-winners-2018/
-New York State Society of CPAs – Excellence in Financial Journalism Public Service Reporting Award,2019,USA,The Implant Files,https://www.nysscpa.org/news/publications/the-trusted-professional/article/society-honors-best-financial-reporting-of-2018-at-efj-awards
-"NYC SPJ Deadline Club – Daniel Pearl Prize for Investigative Reporting; Science, Technology, Medical or Environmental Reporting Award; National Television Series or Investigative Reporting Award",2019,USA,The Implant Files,http://deadlineclub.org/deadline-club-announces-contest-winners-at-2019-awards-dinner/
-"Society of Professional Journalists Washington, D.C. Chapter Dateline Awards – Robert D.G. Lewis Award; Investigative Journalism Award",2019,USA,The Implant Files,http://spjdc.org/2019/06/list-dateline-awards-winners-announced-dinner/
-Open Source Summit Paris: Best Open Source Project,2019,FRA,Datashare,https://www.silicon.fr/paris-open-source-summit-acteurs-du-libre-primes-329293.html
-"Society of Professional Journalists Washington, D.C. Chapter Dateline Awards",2020,USA,China Cable,https://spjdc.org/2020/06/dateline-awards-for-work-published-broadcast-in-2019-announced-online-in-historic-first-for-dc-pro-chapter/
+title,year,project,url
+ONA non-english small site,2010,OWNI,http://owni.fr/2010/10/31/owni-ona-2010-winner-non-english-small-site/
+ONA non-english small site,2011,OWNI,http://owni.fr/2011/09/25/owni-recompense-aux-etats-unis/
+Guardian API Price,2013,Broken Promises,http://www.observatoiredesmedias.com/2013/12/17/broken-promises-retrouvez-la-memoire-que-vous-avez-perdu/
+GEN Data Journalism Award,2014,The Migrants Files,http://www.interhacktives.com/2016/03/08/data-journalism-awards-past-winner-spotlight-migrant-files/
+Liège Webdoc Festival,2014,Jeu d'influence,
+Courrier International,2014,Jeu d'influence,http://www.journalismesinfo.fr/Courrier-International-distingue-le-webdoc-Jeu-d-influences_a5309.html
+European Press Prize,2015,The Migrants Files,http://www.europeanpressprize.com/winners/year-2015/
+"Society of Professional Journalists Washington, D.C. Chapter Dateline Awards – Robert D.G. Lewis Award (best in show); Investigative; Infographics",2017,Paradise Papers,http://spjdc.org/2018/06/winners-dateline-awards-2017-journalism-announced/
+Investigative Reporters and Editors – Innovation in Investigative Journalism,2018,Paradise Papers,https://ire.org/awards/ire-awards/winners/2017-ire-award-winners/
+The George Polk Awards – Financial Reporting,2018,Paradise Papers,https://www.icij.org/blog/2018/02/paradise-papers-wins-polk-award/
+Society of Professional Journalists – Non-Deadline Reporting,2018,Paradise Papers,https://www.spj.org/sdxa17.asp
+EPPY Awards – Best Collaborative Investigative/Enterprise Reporting,2018,Paradise Papers,http://www.editorandpublisher.com/eppy-winners-2018/
+NYC SPJ Deadline Club – Busines Investigative Reporting Award,2018,Paradise Papers,http://deadlineclub.org/2018-winners/
+New York State Society of CPAs – Excellence in Financial Journalism Enterprise Award (Enterprise Reporting),2018,Paradise Papers,http://www.nysscpa.org/cpe/press-room/press-releases/release/nysscpa-announces-winners-of-2018-excellence-in-financial-journalism-awards#sthash.98TbcDqw.dpbs
+New York State Society of CPAs – Excellence in Financial Journalism Enterprise Reporting Award,2018,West Africa Leaks,https://www.nysscpa.org/news/publications/the-trusted-professional/article/society-honors-best-financial-reporting-of-2018-at-efj-awards
+The Society of American Business Editors and Writers – “Best in Business” for International Reporting,2019,West Africa Leaks,https://sabew.org/2019/03/complete-list-of-bib-winning-entries-and-newsrooms/
+"Society of Professional Journalists Washington, D.C. Chapter Dateline Awards – Online Series Award",2019,West Africa Leaks,http://spjdc.org/2019/06/list-dateline-awards-winners-announced-dinner/
+Scripps Howard Foundation – Award for Business/Financial Reporting,2019,The Implant Files,http://scripps.com/foundation/news/1231-winners-of-2018-scripps-howard-awards-announced-honoring-the-best-in-journalism
+The Society of American Business Editors and Writers – “Best in Business” for Health/Science,2019,The Implant Files,https://sabew.org/2019/03/complete-list-of-bib-winning-entries-and-newsrooms/
+Association of Health Care Journalists – Excellence in Health Care Journalism (Investigative),2019,The Implant Files,https://healthjournalism.org/awards-winners.php?Year=2018#cat-34
+Overseas Press Club of America – Roy Rowan Award for Investigative Reporting,2019,The Implant Files,https://opcofamerica.org/overseas-press-club-of-america-announces-annual-award-winners-2018/
+New York State Society of CPAs – Excellence in Financial Journalism Public Service Reporting Award,2019,The Implant Files,https://www.nysscpa.org/news/publications/the-trusted-professional/article/society-honors-best-financial-reporting-of-2018-at-efj-awards
+"NYC SPJ Deadline Club – Daniel Pearl Prize for Investigative Reporting; Science, Technology, Medical or Environmental Reporting Award; National Television Series or Investigative Reporting Award",2019,The Implant Files,http://deadlineclub.org/deadline-club-announces-contest-winners-at-2019-awards-dinner/
+"Society of Professional Journalists Washington, D.C. Chapter Dateline Awards – Robert D.G. Lewis Award; Investigative Journalism Award",2019,The Implant Files,http://spjdc.org/2019/06/list-dateline-awards-winners-announced-dinner/
+Barlett and Steele Awards,2019,The Implant Files,https://businessjournalism.org/barlett-steele-awards/
+National Press Club Awards,2019,The Implant Files,https://www.press.org/newsroom/annapolis-capital-gazette-baltimore-sun-win-breaking-news-award-national-press-club
+RTDNA Edward R. Murrow Awards,2019,The Implant Files,https://www.rtdna.org/content/2019_national_edward_r_murrow_award_winners
+Inter American Press Association Excellence in Journalism Awards,2019,The Implant Files,https://en.sipiapa.org/notas/1213325-winners-of-2019-iapa-excellence-in-journalism-awards-are-announced
+EPPY Awards – Best Collaborative Investigative/Enterprise Reporting,2019,Mauritius Leaks,https://www.editorandpublisher.com/eppy-winners-2019/
+Open Source Summit Paris: Best Open Source Project,2019,Datashare,https://www.silicon.fr/paris-open-source-summit-acteurs-du-libre-primes-329293.html
+KC Kulish International Award For Excellence In Journalism 2019,2019,China Cables,http://kckawards.patrika.com/result.html
+"Society of Professional Journalists Washington, D.C. Chapter Dateline Awards",2020,China Cable,https://spjdc.org/2020/06/dateline-awards-for-work-published-broadcast-in-2019-announced-online-in-historic-first-for-dc-pro-chapter/
+Barlett and Steele Awards,2020,Luanda Leaks,https://businessjournalism.org/2020/10/icij-team-cpi-and-the-los-angeles-times-and-mlk50-propublica-win-2020-barlett-steele-awards/
+Emmy Award - Outstanding Investigative Report in a Newsmagazine,2021,Luanda Leaks,"https://www.editorandpublisher.com/stories/2020-eppy-award-winners-announced,178548"
+TRACE Prize for Investigative Reporting,2021,FinCEN Files,https://www.traceinternational.org/investigative-reporting
+Investigative Reporters and Editors,2021,FinCEN Files,https://www.ire.org/awards/past-award-winners/2020-award-winners/
+"RTDNA Edward R. Murrow Awards – Overall Excellence, Small Digital News Organization",2021,General Honors,https://www.rtdna.org/content/2021_national_edward_r_murrow_award_winners?_zs=kjXDW&_zl=m5ki2#smalldigital
+Scripps Howard Foundation — The Ursula and Gilbert Farfel Prize for excellence in national/international investigative reporting,2022,Pandora Papers,https://scripps.com/wp-content/uploads/2022/06/SHA-2021_Program_2.pdf
+WAN-IFRA North American Digital Media Awards — Journalism Project award,2022,Pandora Papers,https://wan-ifra.org/events/north-american-digital-media-awards/?pagetype=participants
+"National Headliner Award — First place, Online investigative reporting for digital partnerships",2022,Pandora Papers,https://www.icij.org/investigations/pandora-papers/pandora-papers-investigation-receives-national-headliner-award-other-honors/
+White House Correspondents’ Association — Katharine Graham Award for courage and accountability,2022,Pandora Papers,https://whca.press/2022/04/06/whca-announces-2022-journalism-awards/
+Overseas Press Club of America — Malcolm Forbes Award for international business reporting,2022,Pandora Papers,https://opcofamerica.org/Awardarchive/the-malcolm-forbes-award-2021/
+NYC SPJ Deadline Club – Daniel Pearl Prize for Investigative Reporting; Business Investigative Reporting Award,2022,Pandora Papers,https://www.deadlineclub.org/the-deadline-club-awards-2022-winners/
+Ithaca College — Izzy Award for outstanding achievement in independent media,2022,Pandora Papers,https://www.ithaca.edu/news/park-center-independent-media-ithaca-college-announces-years-izzy-award
+"National Headliner Award — First place, Online investigative reporting for digital partnerships",2023,Uber Files,https://www.headlinerawards.org/2023-online/
+Overseas Press Club of America — Malcolm Forbes and Morton Frank Award,2024,Cyprus Confidential,https://opcofamerica.org/citation-winners-2023/
+TRACE Prize for Investigative Reporting,2024,Cyprus Confidential,https://www.traceinternational.org/investigative-reporting/
+The Society of American Business Editors and Writers — “Best in Business” for Banking/Finance,2024,Cyprus Confidential,https://sabew.org/contestsawards/best-in-business/
+ICIJ’s Caspian Cabals investigation wins prestigious TRACE Prize,2025,Caspian Cabals,https://www.icij.org/investigations/caspian-cabals/icijs-caspian-cabals-investigation-wins-prestigious-trace-prize/?utm_content=bufferf8773&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer

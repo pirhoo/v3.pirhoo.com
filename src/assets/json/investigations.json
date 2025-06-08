@@ -1,6 +1,26 @@
 [
   {
     "organization": "ICIJ",
+    "title": "China Targets",
+    "description": "How Beijing abuses international institutions to terrorize its critics and extend its repressive tactics worldwide.",
+    "url": "https://www.icij.org/investigations/china-targets/",
+    "year": "2025",
+    "backgroundColor": "#e34738",
+    "color": "white",
+    "image": "china-targets.jpg"
+  },
+  {
+    "organization": "ICIJ",
+    "title": "Caspian Cabals",
+    "description": "How Western oil companies bet on Kazakhstan, turned a blind eye to corruption risks — and ended up at the mercy of Vladimir Putin.",
+    "url": "https://www.icij.org/investigations/caspian-cabals/",
+    "year": "2024",
+    "backgroundColor": "#f3de1e",
+    "color": "black",
+    "image": "caspian-cabals.jpg"
+  },
+  {
+    "organization": "ICIJ",
     "title": "Cyprus Confidential",
     "description": "An investigation exposing the sprawling financial industry that has powered the Putin regime as it dominates its neighbors — and undermines the West.",
     "url": "https://www.icij.org/investigations/cyprus-confidential/",

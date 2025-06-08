@@ -1,5 +1,35 @@
 [
   {
+    "title": "Trotsky: type-safe library to build automation on Bluesky",
+    "thumbnail": "assets/images/thumbnails/trotsky.png",
+    "url": "https://trotsky.pirhoo.com/",
+    "color": "#c42a2a",
+    "year": "2025",
+    "width": 1920,
+    "height": 1019,
+    "type": "png"
+  },
+  {
+    "title": "Byesky: clean-up your Bluesky account",
+    "thumbnail": "assets/images/thumbnails/byesky.png",
+    "url": "https://byesky.pirhoo.com/",
+    "color": "#ffdc5d",
+    "year": "2025",
+    "width": 995,
+    "height": 899,
+    "type": "png"
+  },
+  {
+    "title": "Étude :  “Affaire Palmade”, obsessions et errements médiatiques ",
+    "thumbnail": "assets/images/thumbnails/affaire-palmade.png",
+    "url": "https://affaire-palmade.ajlgbt.info/",
+    "color": "#004542",
+    "year": "2024",
+    "width": 1920,
+    "height": 5585,
+    "type": "png"
+  },
+  {
     "title": "Out d'or 2023",
     "thumbnail": "assets/images/thumbnails/outdor2023.png",
     "url": "https://2023.outdor.fr/",
