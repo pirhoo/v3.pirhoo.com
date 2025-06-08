@@ -4,9 +4,7 @@
       <svg class="activity__commits__chart"></svg>
     </vue-perfect-scrollbar>
     <h3 class="activity__commits__lead mt-2">
-      <abbr title="A submission of my latest changes of a source code">
-        Commits
-      </abbr>
+      <abbr title="A submission of my latest changes of a source code">Commits</abbr>
       by month
     </h3>
   </div>
