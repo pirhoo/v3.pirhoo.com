@@ -53,11 +53,15 @@ async function getFolderCommits(dir, depth = 0) {
       // Get all logs with a custom format
       const logs = await git.log({
         format: {
-          repository, timestamp: '%ct', hash: '%H', author: '%aN <%ae>',
+          repository, timestamp: '%at', hash: '%H', author: '%aN <%ae>',
         },
       });
       // Filter logs by author email
-      return filter(logs.all, log => some(names, name => log.author.toLowerCase().indexOf(name) > -1));
+      return filter(logs.all, (log) => {
+        const after2011 = new Date(log.timestamp * 1000) > new Date(2011, 0, 1);
+        const byPirhoo = some(names, name => log.author.toLowerCase().indexOf(name) > -1);
+        return after2011 && byPirhoo;
+      });
     } catch (_) {
       return [];
     }
