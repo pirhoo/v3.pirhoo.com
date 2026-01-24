@@ -1,6 +1,6 @@
 <template>
-  <div class="activity__commits" @show="drawCommits">
-    <div ref="wrapper" class="activity__commits__wrapper">
+  <div ref="rootRef" class="activity__commits" @show="drawCommits">
+    <div ref="wrapperRef" class="activity__commits__wrapper">
       <svg class="activity__commits__chart" />
     </div>
     <h3 class="activity__commits__lead mt-2">
@@ -10,203 +10,183 @@
   </div>
 </template>
 
-<script>
-// eslint-disable-next-line
-import { range, sortBy, reduce, keys, maxBy, minBy, assign } from 'lodash';
+<script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { range, sortBy, reduce, keys, maxBy, minBy } from 'lodash'
 import * as d3 from 'd3'
 import commits from '@/assets/json/commits.json'
 
-export default {
-  name: 'ActivityCommits',
-  data() {
-    return {
-      padding: 20,
-      monthWidth: Math.max(25, (window.innerWidth - 20) / keys(commits.monthsCount).length),
-      months: ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December']
+const rootRef = ref(null)
+const wrapperRef = ref(null)
+let tooltip = null
+
+const padding = 20
+const monthWidth = Math.max(25, (window.innerWidth - 20) / keys(commits.monthsCount).length)
+const months = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December']
+
+const svg = computed(() => d3.select(rootRef.value).select('svg'))
+
+const data = computed(() => {
+  return sortBy(reduce(keys(commits.monthsCount), (arr, month) => arr.concat([
+    {
+      month: new Date(month),
+      count: commits.monthsCount[month].count,
+      repositories: commits.monthsCount[month].repositories
     }
-  },
-  computed: {
-    svg() {
-      return d3.select(this.$el).select('svg')
-    },
-    width() {
-      return this.monthWidth * this.data.length
-    },
-    height() {
-      return this.svg.node().getBoundingClientRect().height
-    },
-    // To scale x alongside months
-    older() {
-      return new Date(commits.olderCommit.timestamp * 1000)
-    },
-    newer() {
-      return new Date(commits.newerCommit.timestamp * 1000)
-    },
-    // Maximum and minimum commits count to calculate scale domain
-    commitCountMax() {
-      return maxBy(this.data, 'count').count
-    },
-    commitCountMin() {
-      return minBy(this.data, 'count').count
-    },
-    // List of years
-    years() {
-      return range(this.older.getFullYear(), this.newer.getFullYear() + 1)
-    },
-    // Month scale
-    xScaleFn() {
-      return d3.scaleTime()
-        .domain([this.older, this.newer])
-        .range([this.padding, this.width - (this.padding * 2)])
-    },
-    // Dynamic scale
-    yScaleFn() {
-      return d3.scaleLinear()
-        .domain([this.commitCountMin, this.commitCountMax])
-        .range([this.height - (this.padding * 2), this.padding])
-    },
-    // Width of a year
-    yearWidthFn() {
-      return y => this.xScaleFn(new Date(y + 1, 0, 1)) - this.xScaleFn(new Date(y, 0, 1))
-    },
-    // Data ready to be read by D3
-    data() {
-      return sortBy(reduce(keys(commits.monthsCount), (data, month) => data.concat([
-        {
-          month: new Date(month),
-          count: commits.monthsCount[month].count,
-          repositories: commits.monthsCount[month].repositories
-        }
-      ]), []), 'month')
-    },
-    // The same data but stack by month
-    stackedData() {
-      return this.data.map((datum, i) => assign(datum, {
-        count: i > 0 ? this.data[i - 1].count + datum.count : datum.count
-      }))
-    },
-    // Function to draw the line
-    lineFn() {
-      return d3.line()
-        .curve(d3.curveMonotoneX)
-        .x(d => this.xScaleFn(d.month))
-        .y(d => this.yScaleFn(d.count))
-    }
-  },
-  mounted() {
-    this.createTooltip()
-    this.drawSvg()
-    this.drawYears()
-    this.drawCommits()
-    this.updateScrollbar()
-  },
-  unmounted() {
-    if (this.tooltip) {
-      this.tooltip.remove()
-    }
-  },
-  methods: {
-    getTooltipContent(d) {
-      const projectsCount = keys(d.repositories).length
-      return `${this.months[d.month.getMonth()]} ${d.month.getFullYear()}:
-          <strong>${d.count} commits</strong><br />
-          on ${projectsCount} project${projectsCount > 1 ? 's' : ''}`
-    },
-    createTooltip() {
-      // Create tooltip element
-      this.tooltip = d3.select('body')
-        .append('div')
-        .attr('class', 'd3-tip n')
-        .style('opacity', 0)
-        .style('position', 'absolute')
-        .style('pointer-events', 'none')
-    },
-    showTooltip(event, d) {
-      this.tooltip
-        .html(this.getTooltipContent(d))
-        .style('opacity', 1)
-        .style('left', `${event.pageX}px`)
-        .style('top', `${event.pageY - 40}px`)
-    },
-    hideTooltip() {
-      this.tooltip.style('opacity', 0)
-    },
-    drawSvg() {
-      // Set SVG sizes
-      this.svg.style('width', `${this.width}px`)
-    },
-    drawYears() {
-      // Draw the grid
-      this.svg.selectAll('g.activity__commits__chart__year')
-        .data(this.years)
-        .enter()
-        .append('g')
-        .attr('class', 'activity__commits__chart__year')
-        .append('rect')
-        .attr('x', y => this.xScaleFn(new Date(y, 0, 1)))
-        .attr('y', 0)
-        .attr('width', this.yearWidthFn)
-        .attr('height', this.height)
-      // Draw the labels
-      this.svg.selectAll('g.activity__commits__chart__year')
-        .append('text')
-        .attr('class', 'activity__commits__chart__year__label')
-        .text(y => y)
-        .attr('text-anchor', 'middle')
-        .attr('x', y => {
-          const x = this.xScaleFn(new Date(y, 0, 1)) + (this.yearWidthFn(y) / 2)
-          // Avoid label to go outside the svg
-          return Math.min(this.width - 25, Math.max(25, x))
-        })
-        .attr('y', 20)
-    },
-    drawCommitsLine() {
-      // Use a path to render the line
-      const path = this.svg.append('path')
-        .datum(this.data)
-        .attr('class', 'activity__commits__chart__line')
-        .attr('d', this.lineFn)
-      // Needs the number of nodes to animate the path drawing
-      const totalLength = path.node().getTotalLength()
-      path
-        .attr('stroke-dasharray', `${totalLength} ${totalLength}`)
-        .attr('stroke-dashoffset', totalLength)
-        .transition()
-        .duration(2000)
-        .ease(d3.easeLinear)
-        .attr('stroke-dashoffset', 0)
-    },
-    drawCommitsDots() {
-      this.svg.selectAll('circle.activity__commits__chart__dot')
-        .data(this.data)
-        .enter()
-        .append('circle')
-        .attr('opacity', 0)
-        .attr('class', 'activity__commits__chart__dot')
-        .attr('cx', d => this.xScaleFn(d.month))
-        .attr('cy', d => this.yScaleFn(d.count))
-        .attr('r', 4)
-        .on('mouseover', (event, d) => this.showTooltip(event, d))
-        .on('mouseout', () => this.hideTooltip())
-        .transition()
-        .duration(100)
-        .delay((_, i) => 2000 * (i / this.data.length))
-        .ease(d3.easeLinear)
-        .attr('opacity', 1)
-    },
-    drawCommits() {
-      this.drawCommitsLine()
-      this.drawCommitsDots()
-    },
-    updateScrollbar() {
-      if (this.$refs.wrapper) {
-        const x = this.$refs.wrapper.offsetWidth
-        this.$refs.wrapper.scrollTo(x, 0)
-      }
-    }
+  ]), []), 'month')
+})
+
+const width = computed(() => monthWidth * data.value.length)
+const height = computed(() => svg.value.node()?.getBoundingClientRect().height || 250)
+
+const older = computed(() => new Date(commits.olderCommit.timestamp * 1000))
+const newer = computed(() => new Date(commits.newerCommit.timestamp * 1000))
+
+const commitCountMax = computed(() => maxBy(data.value, 'count').count)
+const commitCountMin = computed(() => minBy(data.value, 'count').count)
+
+const years = computed(() => range(older.value.getFullYear(), newer.value.getFullYear() + 1))
+
+const xScaleFn = computed(() => {
+  return d3.scaleTime()
+    .domain([older.value, newer.value])
+    .range([padding, width.value - (padding * 2)])
+})
+
+const yScaleFn = computed(() => {
+  return d3.scaleLinear()
+    .domain([commitCountMin.value, commitCountMax.value])
+    .range([height.value - (padding * 2), padding])
+})
+
+const yearWidthFn = computed(() => {
+  return y => xScaleFn.value(new Date(y + 1, 0, 1)) - xScaleFn.value(new Date(y, 0, 1))
+})
+
+const lineFn = computed(() => {
+  return d3.line()
+    .curve(d3.curveMonotoneX)
+    .x(d => xScaleFn.value(d.month))
+    .y(d => yScaleFn.value(d.count))
+})
+
+function getTooltipContent(d) {
+  const projectsCount = keys(d.repositories).length
+  return `${months[d.month.getMonth()]} ${d.month.getFullYear()}:
+      <strong>${d.count} commits</strong><br />
+      on ${projectsCount} project${projectsCount > 1 ? 's' : ''}`
+}
+
+function createTooltip() {
+  tooltip = d3.select('body')
+    .append('div')
+    .attr('class', 'd3-tip n')
+    .style('opacity', 0)
+    .style('position', 'absolute')
+    .style('pointer-events', 'none')
+}
+
+function showTooltip(event, d) {
+  tooltip
+    .html(getTooltipContent(d))
+    .style('opacity', 1)
+    .style('left', `${event.pageX}px`)
+    .style('top', `${event.pageY - 40}px`)
+}
+
+function hideTooltip() {
+  tooltip.style('opacity', 0)
+}
+
+function drawSvg() {
+  svg.value.style('width', `${width.value}px`)
+}
+
+function drawYears() {
+  svg.value.selectAll('g.activity__commits__chart__year')
+    .data(years.value)
+    .enter()
+    .append('g')
+    .attr('class', 'activity__commits__chart__year')
+    .append('rect')
+    .attr('x', y => xScaleFn.value(new Date(y, 0, 1)))
+    .attr('y', 0)
+    .attr('width', yearWidthFn.value)
+    .attr('height', height.value)
+
+  svg.value.selectAll('g.activity__commits__chart__year')
+    .append('text')
+    .attr('class', 'activity__commits__chart__year__label')
+    .text(y => y)
+    .attr('text-anchor', 'middle')
+    .attr('x', y => {
+      const x = xScaleFn.value(new Date(y, 0, 1)) + (yearWidthFn.value(y) / 2)
+      return Math.min(width.value - 25, Math.max(25, x))
+    })
+    .attr('y', 20)
+}
+
+function drawCommitsLine() {
+  const path = svg.value.append('path')
+    .datum(data.value)
+    .attr('class', 'activity__commits__chart__line')
+    .attr('d', lineFn.value)
+
+  const totalLength = path.node().getTotalLength()
+  path
+    .attr('stroke-dasharray', `${totalLength} ${totalLength}`)
+    .attr('stroke-dashoffset', totalLength)
+    .transition()
+    .duration(2000)
+    .ease(d3.easeLinear)
+    .attr('stroke-dashoffset', 0)
+}
+
+function drawCommitsDots() {
+  svg.value.selectAll('circle.activity__commits__chart__dot')
+    .data(data.value)
+    .enter()
+    .append('circle')
+    .attr('opacity', 0)
+    .attr('class', 'activity__commits__chart__dot')
+    .attr('cx', d => xScaleFn.value(d.month))
+    .attr('cy', d => yScaleFn.value(d.count))
+    .attr('r', 4)
+    .on('mouseover', (event, d) => showTooltip(event, d))
+    .on('mouseout', () => hideTooltip())
+    .transition()
+    .duration(100)
+    .delay((_, i) => 2000 * (i / data.value.length))
+    .ease(d3.easeLinear)
+    .attr('opacity', 1)
+}
+
+function drawCommits() {
+  drawCommitsLine()
+  drawCommitsDots()
+}
+
+function updateScrollbar() {
+  if (wrapperRef.value) {
+    const x = wrapperRef.value.offsetWidth
+    wrapperRef.value.scrollTo(x, 0)
   }
 }
+
+onMounted(() => {
+  createTooltip()
+  drawSvg()
+  drawYears()
+  drawCommits()
+  updateScrollbar()
+})
+
+onUnmounted(() => {
+  if (tooltip) {
+    tooltip.remove()
+  }
+})
 </script>
 
 <style lang="scss">
