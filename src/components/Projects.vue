@@ -1,10 +1,10 @@
 <template>
-  <section class="projects section">
+  <section ref="sectionRef" class="projects section">
     <div class="wrapper">
       <div class="section__panel">
         <gradient-on-scroll />
         <h2 aria-section="Projects" class="section__panel__lead">
-          Here’s what I’ve <strong>done</strong>
+          Here's what I've <strong>done</strong>
         </h2>
         <p>
           I mostly code in Javascript and Ruby. Both are my favorite languages.
@@ -42,10 +42,10 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { map, assign } from 'lodash'
-
-import section from '@/mixins/section'
-import projects from '@/assets/json/projects.json'
+import { useSection } from '@/composables/useSection'
+import projectsData from '@/assets/json/projects.json'
 import GradientOnScroll from './GradientOnScroll.vue'
 
 // Import all thumbnails using Vite's glob import
@@ -56,19 +56,23 @@ export default {
   components: {
     GradientOnScroll
   },
-  mixins: [section],
-  data() {
-    return {
-      projects: map(projects, project => assign(project, {
-        paddingTop: `${(project.height / project.width) * 100}%`
-      }))
-    }
-  },
-  methods: {
-    getThumbnailUrl(thumbnail) {
-      // Convert path like 'assets/images/thumbnails/name.png' to the glob key
+  setup() {
+    const sectionRef = ref(null)
+    useSection(sectionRef)
+
+    const projects = map(projectsData, project => assign({}, project, {
+      paddingTop: `${(project.height / project.width) * 100}%`
+    }))
+
+    function getThumbnailUrl(thumbnail) {
       const key = `/src/${thumbnail}`
       return thumbnails[key] || ''
+    }
+
+    return {
+      sectionRef,
+      projects,
+      getThumbnailUrl
     }
   }
 }
@@ -97,15 +101,8 @@ export default {
       &__item {
         margin-bottom: 25px;
         padding: 15px;
-        // opacity:0;
-        // transform: translate(0%, 20%) scale(.7);
         transition: .4s;
         border:5px solid black;
-
-        &--in-view {
-          // opacity: 1;
-          // transform: translate(0, 0) scale(1);
-        }
 
         &__wrapper {
           display: block;

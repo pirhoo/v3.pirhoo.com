@@ -1,67 +1,77 @@
 <template>
   <div class="gradient-on-scroll">
-    <canvas class="gradient-on-scroll__canvas"></canvas>
+    <canvas ref="canvasRef" class="gradient-on-scroll__canvas"></canvas>
   </div>
 </template>
 
 <script>
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import Granim from 'granim'
 import { reduce, assign } from 'lodash'
-
-import Mousetrack from '@/utils/mousetrack'
-import colors from '@/mixins/colors'
+import { useColors } from '@/composables/useColors'
+import { useMousetrack } from '@/composables/useMousetrack'
 
 export default {
   name: 'GradientOnScroll',
-  mixins: [colors],
-  data() {
-    return {
-      granim: null
+  setup() {
+    const canvasRef = ref(null)
+    const granim = ref(null)
+
+    const {
+      scss,
+      domains,
+      colorScalePrimary,
+      colorScaleSecondary,
+      normalizedRatio
+    } = useColors()
+
+    const mousetrack = useMousetrack()
+
+    function ratioState(ratio) {
+      return `state-${normalizedRatio(ratio)}`
     }
-  },
-  computed: {
-    mousetrack() {
-      return new Mousetrack()
-    },
-    granimStates() {
-      return reduce(this.domains, (states, ratio) => assign(states, {
-        [this.ratioState(ratio)]: {
+
+    const granimStates = computed(() => {
+      return reduce(domains.value, (states, ratio) => assign(states, {
+        [ratioState(ratio)]: {
           loop: true,
-          transitionSpeed: parseInt(this.scss.colorTransitionSpeed, 10),
+          transitionSpeed: parseInt(scss.colorTransitionSpeed, 10),
           gradients: [
-            [this.colorScalePrimary(ratio), this.colorScaleSecondary(ratio)],
-            [this.colorScaleSecondary(ratio), this.colorScalePrimary(ratio)]
+            [colorScalePrimary.value(ratio), colorScaleSecondary.value(ratio)],
+            [colorScaleSecondary.value(ratio), colorScalePrimary.value(ratio)]
           ]
         }
       }), {})
-    }
-  },
-  mounted() {
-    this.granim = new Granim({
-      element: this.$el.querySelector('.gradient-on-scroll__canvas'),
-      direction: 'diagonal',
-      defaultStateName: this.ratioState(0),
-      opacity: [1, 1],
-      stateTransitionSpeed: parseInt(this.scss.colorTransitionDuration, 10),
-      states: this.granimStates,
-      isPausedWhenNotInView: false
     })
 
-    if (Mousetrack.isMobile) {
-      this.granim.pause()
-    } else {
-      this.mousetrack.on('update.ratio', ({ top, left }) => {
-        this.granim.changeState(this.ratioState(top * left))
+    onMounted(() => {
+      granim.value = new Granim({
+        element: canvasRef.value,
+        direction: 'diagonal',
+        defaultStateName: ratioState(0),
+        opacity: [1, 1],
+        stateTransitionSpeed: parseInt(scss.colorTransitionDuration, 10),
+        states: granimStates.value,
+        isPausedWhenNotInView: false
       })
-    }
-  },
-  unmounted() {
-    this.mousetrack.unbind()
-    this.granim.destroy()
-  },
-  methods: {
-    ratioState(ratio) {
-      return `state-${this.noramlizedRatio(ratio)}`
+
+      if (mousetrack.isMobile) {
+        granim.value.pause()
+      } else {
+        mousetrack.on('update.ratio', ({ top, left }) => {
+          granim.value.changeState(ratioState(top * left))
+        })
+      }
+    })
+
+    onUnmounted(() => {
+      if (granim.value) {
+        granim.value.destroy()
+      }
+    })
+
+    return {
+      canvasRef
     }
   }
 }

@@ -1,15 +1,15 @@
 <template>
-  <section class="activity section">
+  <section ref="sectionRef" class="activity section">
     <div class="wrapper">
       <div class="activity__body section__panel">
         <gradient-on-scroll />
         <h2 aria-section="Activity" class="section__panel__lead">
-          I’ve been busy,<br />
+          I've been busy,<br />
           <strong>let the data talk</strong>
         </h2>
         <p>
           My time is shared between coding, investigating and teaching.
-          I’m better with numbers so let the figures below speak for themselves.
+          I'm better with numbers so let the figures below speak for themselves.
         </p>
       </div>
       <div class="activity__figures section__footer">
@@ -55,7 +55,8 @@
 </template>
 
 <script>
-import section from '@/mixins/section'
+import { ref } from 'vue'
+import { useSection } from '@/composables/useSection'
 import ActivityCommits from './ActivityCommits.vue'
 import GradientOnScroll from './GradientOnScroll.vue'
 
@@ -69,29 +70,24 @@ export default {
     ActivityCommits,
     GradientOnScroll
   },
-  mixins: [section],
-  data() {
-    return {
-      activityInView: false,
-      commits: {
-        commitsCount,
-        repositoriesCount
-      },
-      awards: {
-        awardsCount,
-        countriesCount,
-        projectsCount
-      },
-      trainings: {
-        hoursCount,
-        countriesCount,
-        customersCount
-      }
-    }
-  },
-  methods: {
-    formatNumber(value) {
+  setup() {
+    const sectionRef = ref(null)
+    useSection(sectionRef)
+
+    const commits = { commitsCount, repositoriesCount }
+    const awards = { awardsCount, countriesCount, projectsCount }
+    const trainings = { hoursCount, countriesCount, customersCount }
+
+    function formatNumber(value) {
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
+
+    return {
+      sectionRef,
+      commits,
+      awards,
+      trainings,
+      formatNumber
     }
   }
 }
