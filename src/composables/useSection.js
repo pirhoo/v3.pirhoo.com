@@ -1,13 +1,12 @@
-import { ref, computed, onMounted, onUnmounted, isRef, unref } from 'vue'
+import { ref, computed, onMounted, isRef, unref } from 'vue'
 import * as chroma from 'chroma-js'
-import { useColors } from './useColors'
-import { useMousetrack } from './useMousetrack'
+import { useColors, colorRatio } from './useColors'
 
 export function useSection(elementRef = null) {
   const { colorScalePrimary, colorScaleSecondary, colorScaleText, normalizedRatio, scss, domains, gradientColors } = useColors()
-  const mousetrack = useMousetrack()
 
-  const ratio = ref(0)
+  // Use shared color ratio set once on page load
+  const ratio = ref(normalizedRatio(colorRatio))
 
   const textColor = computed(() => colorScaleText.value(ratio.value))
   const primaryColor = computed(() => colorScalePrimary.value(ratio.value))
@@ -16,8 +15,7 @@ export function useSection(elementRef = null) {
     return chroma.contrast(primaryColor.value, '#fff') < 4.5 ? '#000' : '#fff'
   })
 
-  function updateColors(newRatio = ratio.value) {
-    ratio.value = normalizedRatio(newRatio)
+  function updateColors() {
     const el = isRef(elementRef) ? unref(elementRef) : elementRef
     if (el) {
       el.style.setProperty('--section-text', textColor.value)
@@ -27,12 +25,7 @@ export function useSection(elementRef = null) {
   }
 
   onMounted(() => {
-    mousetrack.on('update.ratio', ({ top, left }) => updateColors(top * left))
     updateColors()
-  })
-
-  onUnmounted(() => {
-    mousetrack.unbind()
   })
 
   return {
@@ -42,7 +35,6 @@ export function useSection(elementRef = null) {
     secondaryColor,
     primaryContrastColor,
     updateColors,
-    mousetrack,
     scss,
     domains,
     gradientColors,
