@@ -13,7 +13,7 @@ export const bodyBg = '#fff'
 export const bodyColor = '#505050'
 
 export const fontFamilySansSerif = '"Helvetica Neue", Helvetica, Arial,sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto'
-export const fontFamilySerif = '"Quando", "Merriweather", Georgia, "Times New Roman", Times, serif'
+export const fontFamilySerif = '"Source Sans 3", "Neue Helvetica", "Helvetica", sans-serif'
 
 export const headingsFontFamily = fontFamilySerif
 export const headingsFontWeight = 500
