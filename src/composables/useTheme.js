@@ -1,14 +1,18 @@
-import { ref, watch, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const STORAGE_KEY = 'theme-preference'
 const THEMES = ['auto', 'light', 'dark']
 
-// Shared state across all components
-const theme = ref('auto')
-
 function getSystemTheme() {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
+
+// Load saved preference immediately at module load time
+const savedTheme = localStorage.getItem(STORAGE_KEY)
+const initialTheme = savedTheme && THEMES.includes(savedTheme) ? savedTheme : 'auto'
+
+// Shared state across all components
+const theme = ref(initialTheme)
 
 function getEffectiveTheme() {
   return theme.value === 'auto' ? getSystemTheme() : theme.value
@@ -18,6 +22,9 @@ function applyTheme() {
   const effective = getEffectiveTheme()
   document.documentElement.setAttribute('data-theme', effective)
 }
+
+// Apply theme immediately before any component mounts
+applyTheme()
 
 export function useTheme() {
   function setTheme(newTheme) {
@@ -35,13 +42,6 @@ export function useTheme() {
   }
 
   onMounted(() => {
-    // Load saved preference
-    const saved = localStorage.getItem(STORAGE_KEY)
-    if (saved && THEMES.includes(saved)) {
-      theme.value = saved
-    }
-    applyTheme()
-
     // Listen for system theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     mediaQuery.addEventListener('change', () => {
