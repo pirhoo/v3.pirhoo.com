@@ -32,45 +32,33 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from 'vue'
 import get from 'lodash/get'
 import axios from 'axios'
 import { useSection } from '@/composables/useSection'
 import GradientOnScroll from './GradientOnScroll.vue'
 
-export default {
-  name: 'Photos',
-  components: {
-    GradientOnScroll
-  },
-  props: {
-    src: {
-      type: String,
-      default: '//api-pirhoo.herokuapp.com/photos'
-    }
-  },
-  setup(props) {
-    const sectionRef = ref(null)
-    const photos = ref([])
-
-    useSection(sectionRef)
-
-    onMounted(async () => {
-      const response = await axios.get(props.src)
-      const photoData = get(response, 'data.photos', [])
-      photos.value = photoData.map(photo => ({
-        ...photo,
-        heightPercentage: `${(photo.images.low_resolution.height / photo.images.low_resolution.width) * 100}%`
-      }))
-    })
-
-    return {
-      sectionRef,
-      photos
-    }
+const props = defineProps({
+  src: {
+    type: String,
+    default: '//api-pirhoo.herokuapp.com/photos'
   }
-}
+})
+
+const sectionRef = ref(null)
+const photos = ref([])
+
+useSection(sectionRef)
+
+onMounted(async () => {
+  const response = await axios.get(props.src)
+  const photoData = get(response, 'data.photos', [])
+  photos.value = photoData.map(photo => ({
+    ...photo,
+    heightPercentage: `${(photo.images.low_resolution.height / photo.images.low_resolution.width) * 100}%`
+  }))
+})
 </script>
 
 <style lang="scss">
