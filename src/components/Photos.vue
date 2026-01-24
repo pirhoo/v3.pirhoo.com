@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="photos__container">
-        <MasonryGrid :columns="{ default: 4, 600: 3, 500: 2, 200: 1 }" gutter="25px">
+        <MasonryGrid :columns="{ default: 4, 600: 3, 500: 2, 200: 1 }" :gutter="25">
           <MasonryGridItem
             v-for="photo in photos"
             :key="photo.id"
@@ -75,13 +75,13 @@ onMounted(async () => {
     &__container {
       display: block;
       margin: 0 auto;
-      padding: 25px 25px 0;
+      padding: 25px calc(25px + 12.5px) 0;
       text-align: center;
       max-width: 800px;
 
       @media (max-width: 800px) {
         margin: 0;
-        padding: 25px 20px 0;
+        padding: 25px calc(20px + 12.5px) 0;
       }
 
       &__item {
