@@ -7,21 +7,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Introduction from './Introduction.vue'
 import Activity from './Activity.vue'
 import Investigations from './Investigations.vue'
 import Projects from './Projects.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Introduction,
-    Activity,
-    Investigations,
-    Projects
-  }
-}
 </script>
 
 <style lang="scss">
