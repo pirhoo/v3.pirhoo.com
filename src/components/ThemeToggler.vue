@@ -5,16 +5,14 @@
     @click="cycleTheme"
   >
     <icon-sun v-if="theme === 'light'" />
-    <icon-moon v-else-if="theme === 'dark'" />
-    <icon-circle-half-stroke v-else />
+    <icon-moon v-else />
   </button>
 </template>
 
 <script setup>
 import { useTheme } from '@/composables/useTheme'
-import IconSun from '~icons/fa6-solid/sun'
-import IconMoon from '~icons/fa6-solid/moon'
-import IconCircleHalfStroke from '~icons/fa6-solid/circle-half-stroke'
+import IconSun from '~icons/ph/sun-fill'
+import IconMoon from '~icons/ph/moon-fill'
 
 const { theme, cycleTheme } = useTheme()
 </script>
