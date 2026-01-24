@@ -32,12 +32,12 @@
               class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://bsky.app/profile/pirhoo.com"
             >
-              <IconBluesky class="introduction__social__item__icon section__footer__item__icon" />
+              <icon-bluesky class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo.com<br class="d-none d-md-inline" />
               on Bluesky
             </a>
             <a rel="me" href="https://mastodon.social/@pirhoo" class="introduction__social__item section__footer__item col-sm-6 col-md">
-              <IconMastodon class="introduction__social__item__icon section__footer__item__icon" />
+              <icon-mastodon class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo<br class="d-none d-md-inline" />
               on Mastodon
             </a>
@@ -45,7 +45,7 @@
               class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://github.com/pirhoo"
             >
-              <IconGithub class="introduction__social__item__icon section__footer__item__icon" />
+              <icon-github class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo<br class="d-none d-md-inline" />
               on Github
             </a>
@@ -53,7 +53,7 @@
               class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://keybase.io/pirhoo"
             >
-              <IconKey class="introduction__social__item__icon section__footer__item__icon" />
+              <icon-key class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo<br class="d-none d-md-inline" />
               on Keybase
             </a>
@@ -61,7 +61,7 @@
               class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="mailto:hello@pirhoo.com"
             >
-              <IconEnvelope class="introduction__social__item__icon section__footer__item__icon" />
+              <icon-envelope class="introduction__social__item__icon section__footer__item__icon" />
               Send me<br class="d-none d-md-inline" />
               an email
             </a>
