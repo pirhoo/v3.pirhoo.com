@@ -1,0 +1,54 @@
+// Theme CSS variables
+:root {
+  // Light theme (default)
+  --body-bg: #fff;
+  --body-color: #505050;
+  --panel-bg: #fff;
+  --card-bg: #F0F0F0;
+  --text-muted: #717171;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --theme-toggler-bg: rgba(255, 255, 255, 0.9);
+  --theme-toggler-color: #505050;
+  --activity-cell-empty: #ebedf0;
+  --year-separator-color: #000;
+  --tooltip-bg: #000;
+  --tooltip-color: #fff;
+  // In light mode, link-color falls back to --section-primary
+}
+
+[data-theme="dark"] {
+  --body-bg: #121212;
+  --body-color: #e0e0e0;
+  --panel-bg: #1e1e1e;
+  --card-bg: #2a2a2a;
+  --text-muted: #a0a0a0;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --theme-toggler-bg: rgba(30, 30, 30, 0.9);
+  --theme-toggler-color: #e0e0e0;
+  --activity-cell-empty: #2a2a2a;
+  --year-separator-color: #555;
+  --tooltip-bg: #333;
+  --tooltip-color: #fff;
+  --section-text: #fff;
+
+  // Override Bootstrap variables
+  --bs-body-bg: #121212;
+  --bs-body-color: #e0e0e0;
+  --bs-dark: #e0e0e0;
+  --bs-light: #2a2a2a;
+
+  .section {
+    --section-text: #fff;
+
+    &__panel:after {
+      background: var(--body-bg);
+    }
+  }
+}
+
+// Apply theme to body
+body {
+  background-color: var(--body-bg);
+  color: var(--body-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

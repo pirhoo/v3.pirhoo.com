@@ -5,13 +5,15 @@
   font-size:1rem;
   max-width: $tooltip-max-width;
   padding: .3em .8em;
-  color: $tooltip-color;
+  color: var(--tooltip-color, $tooltip-color);
   text-align: center;
   text-decoration: none;
-  background-color: $tooltip-bg;
+  background-color: var(--tooltip-bg, $tooltip-bg);
   white-space: auto;
   z-index: $zindex-tooltip;
   transform: translate(0, -10px);
+  border-radius: $border-radius;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Creates a small triangle extender for the tooltip */
