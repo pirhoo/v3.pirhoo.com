@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --fix",
-    "csv": "gulp --gulpfile gulpfile.cjs csv"
+    "csv": "node scripts/csv.mjs"
   },
   "dependencies": {
     "axios": "^1.7.9",
@@ -26,22 +26,18 @@
     "@iconify/json": "^2.2.431",
     "@stylistic/eslint-plugin": "^2.13.0",
     "@vitejs/plugin-vue": "^5.2.1",
-    "csv-stringify": "^6.5.2",
+    "csv-parse": "^6.1.0",
     "eslint": "^9.18.0",
     "eslint-plugin-vue": "^9.32.0",
-    "gulp": "^4.0.2",
-    "gulp-convert": "^0.2.0",
-    "gulp-filter": "^6.0.0",
-    "gulp-image-resize": "^0.13.1",
-    "gulp-json-editor": "^2.5.5",
-    "gulp-load-plugins": "^2.0.6",
     "image-size": "^1.2.0",
+    "lodash-es": "^4.17.23",
     "node-vibrant": "^3.2.1-alpha.1",
     "sass": "^1.83.4",
     "simple-git": "^3.27.0",
     "slug": "^10.0.0",
     "unplugin-icons": "^23.0.1",
-    "vite": "^6.0.7"
+    "vite": "^6.0.7",
+    "zx": "^8.8.5"
   },
   "browserslist": [
     "> 1%",
