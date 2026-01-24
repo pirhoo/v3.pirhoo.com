@@ -24,7 +24,7 @@
           </a>
         </masonry>
         <a class="photos__container__more btn btn-link-section btn-block btn-lg mt-2 mb-5 text-uppercase font-weight-bold" href="https://instagram.com/pirhoo" target="_blank">
-          <fa :icon="['fab', 'instagram']" size="2x" class="mr-2" />
+          <IconInstagram class="me-2" style="font-size: 2em" />
           More on instagram
         </a>
       </div>
@@ -38,6 +38,7 @@ import get from 'lodash/get'
 import axios from 'axios'
 import { useSection } from '@/composables/useSection'
 import GradientOnScroll from './GradientOnScroll.vue'
+import IconInstagram from '~icons/fa6-brands/instagram'
 
 const props = defineProps({
   src: {
