@@ -72,7 +72,6 @@ import ThemeToggler from './ThemeToggler.vue'
         z-index:-1;
         background: var(--panel-bg);
         border-radius: $border-radius-sm;
-        transition: background 0.3s ease;
       }
 
       html body & strong {

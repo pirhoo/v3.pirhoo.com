@@ -17,7 +17,7 @@
 }
 
 [data-theme="dark"] {
-  --body-bg: #121212;
+  --body-bg: #070707;
   --body-color: #e0e0e0;
   --panel-bg: #1e1e1e;
   --card-bg: #2a2a2a;
@@ -50,5 +50,4 @@
 body {
   background-color: var(--body-bg);
   color: var(--body-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }

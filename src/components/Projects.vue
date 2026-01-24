@@ -126,7 +126,6 @@ function getThumbnailUrl(thumbnail) {
             text-align: center;
             text-decoration: none;
             color: var(--body-color);
-            transition: color 0.3s ease;
           }
         }
       }
