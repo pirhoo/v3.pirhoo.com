@@ -2,16 +2,18 @@ import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import App from '@/components/App.vue'
 
-// Mock the child components to avoid complex setup
 vi.mock('@/components/Introduction.vue', () => ({
   default: { template: '<div class="mock-introduction">Introduction</div>' }
 }))
+
 vi.mock('@/components/Activity.vue', () => ({
   default: { template: '<div class="mock-activity">Activity</div>' }
 }))
+
 vi.mock('@/components/Investigations.vue', () => ({
   default: { template: '<div class="mock-investigations">Investigations</div>' }
 }))
+
 vi.mock('@/components/Projects.vue', () => ({
   default: { template: '<div class="mock-projects">Projects</div>' }
 }))
