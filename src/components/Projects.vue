@@ -91,10 +91,11 @@ function getThumbnailUrl(thumbnail) {
       }
 
       &__item {
-        padding: 15px;
         transition: .4s;
-        border: 5px solid black;
+        padding: 15px;
+        border: 3px solid black;
         border-radius: $border-radius-lg;
+        overflow: hidden;
 
         &__wrapper {
           display: block;
@@ -102,8 +103,6 @@ function getThumbnailUrl(thumbnail) {
           overflow: hidden;
           text-decoration: none;
           border-radius: $border-radius;
-          background: var(--card-bg);
-          transition: background 0.3s ease;
 
           img {
             display: block;
@@ -124,11 +123,10 @@ function getThumbnailUrl(thumbnail) {
             font-size:10px;
             font-weight: lighter;
             display: block;
-            background: var(--panel-bg);
             text-align: center;
             text-decoration: none;
             color: var(--body-color);
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: color 0.3s ease;
           }
         }
       }
