@@ -73,7 +73,8 @@ function investigationImage({ image }) {
       &__wrapper {
         padding-right: 20px;
         padding-bottom: 20px;
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
       }
 
       &__item {
