@@ -37,7 +37,7 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import { ref, computed } from 'vue'
 import investigationsData from '@/assets/json/investigations.json'
 import { useSection } from '@/composables/useSection'
@@ -46,36 +46,20 @@ import GradientOnScroll from './GradientOnScroll.vue'
 // Import all investigation images using Vite's glob import
 const investigationImages = import.meta.glob('@/assets/images/investigations/*', { eager: true, query: '?url', import: 'default' })
 
-export default {
-  name: 'Investigations',
-  components: {
-    GradientOnScroll
-  },
-  setup() {
-    const sectionRef = ref(null)
-    useSection(sectionRef)
+const sectionRef = ref(null)
+useSection(sectionRef)
 
-    const investigations = investigationsData
-    const currentYear = computed(() => new Date().getFullYear())
+const investigations = investigationsData
+const currentYear = computed(() => new Date().getFullYear())
 
-    function investigationStyle({ color, backgroundColor }) {
-      return { color, backgroundColor }
-    }
+function investigationStyle({ color, backgroundColor }) {
+  return { color, backgroundColor }
+}
 
-    function investigationImage({ image }) {
-      if (!image) return null
-      const key = `/src/assets/images/investigations/${image}`
-      return investigationImages[key] || ''
-    }
-
-    return {
-      sectionRef,
-      investigations,
-      currentYear,
-      investigationStyle,
-      investigationImage
-    }
-  }
+function investigationImage({ image }) {
+  if (!image) return null
+  const key = `/src/assets/images/investigations/${image}`
+  return investigationImages[key] || ''
 }
 </script>
 
