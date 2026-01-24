@@ -68,6 +68,7 @@ import Projects from './Projects.vue'
         content:"";
         z-index:-1;
         background:white;
+        border-radius: $border-radius-sm;
       }
 
       html body & strong {
@@ -136,6 +137,8 @@ import Projects from './Projects.vue'
       position: relative;
       color: var(--section-primary-contrast);
       transition: color $color-transition-duration;
+      border-radius: $border-radius-lg;
+      overflow: hidden;
 
       strong {
         color: inherit;
