@@ -2,13 +2,25 @@ import { computed } from 'vue'
 import { bisector } from 'd3'
 import * as chroma from 'chroma-js'
 import {
-  range, first, last, reduce, map, shuffle, identity
+  range, first, last, reduce, map, shuffle, identity, filter
 } from 'lodash'
 import gradients from '@/assets/json/gradients.json'
 import scss from '@/utils/variables.js'
 
-// Only create the slice once
-export const gradientsSlice = shuffle(gradients).slice(0, 16)
+// Filter out garish colors (yellow, orange - high saturation warm hues)
+function isGarishColor(hex) {
+  const [h, s, l] = chroma.default(hex).hsl()
+  // Yellow/orange hues (20-80) with high saturation and lightness
+  return h >= 20 && h <= 80 && s > 0.5 && l > 0.4
+}
+
+function hasGarishColors(gradient) {
+  return gradient.colors.some(isGarishColor)
+}
+
+// Filter gradients to only sober colors, then shuffle and slice
+const soberGradients = filter(gradients, g => !hasGarishColors(g))
+export const gradientsSlice = shuffle(soberGradients).slice(0, 16)
 
 // Random ratio set once on page load, shared across components
 export const colorRatio = Math.random()
