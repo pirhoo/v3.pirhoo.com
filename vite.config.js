@@ -8,6 +8,9 @@ export default defineConfig({
     vue(),
     Icons({ compiler: 'vue3' })
   ],
+  server: {
+    port: 9009
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
