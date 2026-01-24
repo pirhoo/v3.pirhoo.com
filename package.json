@@ -2,97 +2,53 @@
   "name": "v3.pirhoo.com",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "serve": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
-    "lint": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service lint",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
-    "deploy": "NODE_OPTIONS=--openssl-legacy-provider push-dir --dir=dist --branch=gh-pages --overwrite-local",
-    "predeploy": "NODE_OPTIONS=--openssl-legacy-provider yarn run build",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --fix",
     "csv": "gulp csv"
   },
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.4",
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-brands-svg-icons": "^6.7.1",
     "@fortawesome/free-regular-svg-icons": "^6.7.1",
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
-    "@fortawesome/vue-fontawesome": "^2.0.10",
-    "axios": "^0.21.1",
-    "bootstrap": "^5.0.1",
-    "chroma-js": "^2.1.1",
-    "d3": "^5.15.0",
-    "d3-tip": "^0.9.1",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "axios": "^1.7.9",
+    "bootstrap": "^5.3.3",
+    "chroma-js": "^3.1.2",
+    "d3": "^7.9.0",
     "granim": "^2.0.0",
     "lodash": "^4.17.21",
-    "vue": "^2.6.12",
-    "vue-lazyload": "^1.3.3",
-    "vue-masonry-css": "^1.0.3",
-    "vue-perfect-scrollbar": "^0.2.1"
+    "mitt": "^3.0.1",
+    "vue": "^3.5.13",
+    "vue3-lazyload": "^0.3.8",
+    "vue-masonry-css": "^1.0.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.6.0",
-    "@vue/cli-plugin-eslint": "^3.6.0",
-    "@vue/cli-service": "^3.6.0",
-    "@vue/eslint-config-airbnb": "^4.0.0",
-    "csv-stringify": "^5.6.2",
-    "dart-sass-variable-loader": "^0.2.4",
-    "gh-pages": "^2.2.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "csv-stringify": "^6.5.2",
+    "eslint": "^9.18.0",
+    "@stylistic/eslint-plugin": "^2.13.0",
+    "eslint-plugin-vue": "^9.32.0",
     "gulp": "^4.0.2",
     "gulp-convert": "^0.2.0",
     "gulp-filter": "^6.0.0",
     "gulp-image-resize": "^0.13.1",
     "gulp-json-editor": "^2.5.5",
     "gulp-load-plugins": "^2.0.6",
-    "image-size": "^0.7.3",
-    "lint-staged": "^8.1.5",
+    "image-size": "^1.2.0",
     "node-vibrant": "^3.2.1-alpha.1",
-    "path": "^0.12.7",
-    "push-dir": "^0.4.1",
-    "sass": "^1.49.0",
-    "sass-loader": "^7.1.0",
-    "simple-git": "^2.39.0",
-    "slug": "^1.1.0",
-    "vue-template-compiler": "^2.6.12",
-    "webshot": "^0.18.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb"
-    ],
-    "rules": {
-      "import/no-webpack-loader-syntax": false,
-      "max-len": "off"
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
+    "sass": "^1.83.4",
+    "simple-git": "^3.27.0",
+    "slug": "^10.0.0",
+    "vite": "^6.0.7"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
-  ],
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
-  }
+    "not dead"
+  ]
 }
