@@ -73,7 +73,7 @@ const weeks = computed(() => {
   return result
 })
 
-// Get year boundaries for labels
+// Get year boundaries for labels and separators
 const yearBoundaries = computed(() => {
   const boundaries = []
   let currentYear = null
@@ -83,13 +83,39 @@ const yearBoundaries = computed(() => {
     const year = firstDayOfWeek.getFullYear()
 
     if (year !== currentYear) {
-      boundaries.push({ year, weekIndex })
+      // Find which day of the week Jan 1st falls on
+      const jan1 = new Date(year, 0, 1)
+      const jan1DayOfWeek = jan1.getDay()
+
+      boundaries.push({
+        year,
+        weekIndex,
+        startDayOfWeek: jan1DayOfWeek
+      })
       currentYear = year
     }
   })
 
   return boundaries
 })
+
+// Generate path for year separators
+function getYearSeparatorPath(boundary) {
+  const { weekIndex, startDayOfWeek } = boundary
+  const x = labelWidth + padding + (weekIndex * (cellSize + cellGap)) - (cellGap / 2)
+  const topY = yearLabelHeight + padding - (cellGap / 2)
+  const bottomY = yearLabelHeight + padding + (7 * (cellSize + cellGap)) - (cellGap / 2)
+  const stepX = x - (cellSize + cellGap)
+  const stepY = topY + (startDayOfWeek * (cellSize + cellGap))
+
+  if (startDayOfWeek === 0) {
+    // Year starts on Sunday - simple vertical line
+    return `M ${x} ${topY} L ${x} ${bottomY}`
+  }
+
+  // Stepped path: down to the start day, step left, then down to bottom
+  return `M ${x} ${topY} L ${x} ${stepY} L ${stepX} ${stepY} L ${stepX} ${bottomY}`
+}
 
 // Get all non-zero counts for quantile scale
 const allCounts = computed(() => {
@@ -179,6 +205,18 @@ function drawChart() {
     .attr('y', i => yearLabelHeight + padding + (i * (cellSize + cellGap)) + cellSize - 2)
     .style('font-size', '9px')
     .style('fill', 'var(--section-text)')
+
+  // Draw year separators (skip first year)
+  svg.value.selectAll('path.activity__commits__chart__year-separator')
+    .data(yearBoundaries.value.slice(1))
+    .enter()
+    .append('path')
+    .attr('class', 'activity__commits__chart__year-separator')
+    .attr('d', d => getYearSeparatorPath(d))
+    .attr('fill', 'none')
+    .attr('stroke', 'var(--section-text)')
+    .attr('stroke-width', 1)
+    .attr('stroke-opacity', 0.3)
 
   // Draw cells
   const weekGroups = svg.value.selectAll('g.activity__commits__chart__week')
