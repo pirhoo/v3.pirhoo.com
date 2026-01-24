@@ -42,7 +42,7 @@ import axios from 'axios'
 import { MasonryGrid, MasonryGridItem } from 'vue3-masonry-css'
 import { useSection } from '@/composables/useSection'
 import GradientOnScroll from './GradientOnScroll.vue'
-import IconInstagram from '~icons/fa6-brands/instagram'
+import IconInstagram from '~icons/ph/instagram-logo-fill'
 
 const props = defineProps({
   src: {

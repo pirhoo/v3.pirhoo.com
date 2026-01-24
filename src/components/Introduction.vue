@@ -77,10 +77,10 @@ import { ref } from 'vue'
 import { useSection } from '@/composables/useSection'
 import GradientOnScroll from './GradientOnScroll.vue'
 import IconBluesky from '~icons/fa6-brands/bluesky'
-import IconMastodon from '~icons/fa6-brands/mastodon'
-import IconGithub from '~icons/fa6-brands/github'
-import IconKey from '~icons/fa6-solid/key'
-import IconEnvelope from '~icons/fa6-regular/envelope'
+import IconMastodon from '~icons/ph/mastodon-logo-fill'
+import IconGithub from '~icons/ph/github-logo-fill'
+import IconKey from '~icons/ph/key-fill'
+import IconEnvelope from '~icons/ph/envelope-fill'
 
 const sectionRef = ref(null)
 useSection(sectionRef)
