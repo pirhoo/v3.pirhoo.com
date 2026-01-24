@@ -6,8 +6,7 @@
     "color": "#c42a2a",
     "year": "2025",
     "width": 1920,
-    "height": 1019,
-    "type": "png"
+    "height": 1019
   },
   {
     "title": "Byesky: clean-up your Bluesky account",
@@ -16,8 +15,7 @@
     "color": "#ffdc5d",
     "year": "2025",
     "width": 995,
-    "height": 899,
-    "type": "png"
+    "height": 899
   },
   {
     "title": "Étude :  “Affaire Palmade”, obsessions et errements médiatiques ",
@@ -26,8 +24,7 @@
     "color": "#004542",
     "year": "2024",
     "width": 1920,
-    "height": 5585,
-    "type": "png"
+    "height": 5585
   },
   {
     "title": "Out d'or 2023",
@@ -36,8 +33,7 @@
     "color": "#e26bc2",
     "year": "2023",
     "width": 200,
-    "height": 131,
-    "type": "png"
+    "height": 131
   },
   {
     "title": "Politiyacht",
@@ -46,8 +42,7 @@
     "color": "#fbc404",
     "year": "2022",
     "width": 200,
-    "height": 727,
-    "type": "png"
+    "height": 727
   },
   {
     "title": "Étude : Transidentités dans les médias",
@@ -56,8 +51,7 @@
     "color": "#ebc0ae",
     "year": "2023",
     "width": 200,
-    "height": 436,
-    "type": "png"
+    "height": 436
   },
   {
     "title": "Out d'or 2021",
@@ -66,8 +60,7 @@
     "color": "#04f3dc",
     "year": "2021",
     "width": 200,
-    "height": 166,
-    "type": "png"
+    "height": 166
   },
   {
     "title": "Out d'or 2019",
@@ -76,8 +69,7 @@
     "color": "#fb53a9",
     "year": "2019",
     "width": 200,
-    "height": 282,
-    "type": "png"
+    "height": 282
   },
   {
     "title": "Prophecies: fact checking platform for teams",
@@ -86,8 +78,7 @@
     "color": "#fc6464",
     "year": "2021",
     "width": 1456,
-    "height": 2893,
-    "type": "png"
+    "height": 2893
   },
   {
     "title": "Pandora Papers: By the numbers",
@@ -96,8 +87,7 @@
     "color": "#b53737",
     "year": "2021",
     "width": 1908,
-    "height": 12639,
-    "type": "png"
+    "height": 12639
   },
   {
     "title": "Étude : Les Grosses Têtes",
@@ -106,8 +96,7 @@
     "color": "#e3041c",
     "year": "2020",
     "width": 1908,
-    "height": 3482,
-    "type": "png"
+    "height": 3482
   },
   {
     "title": "Offshore Leaks Database",
@@ -116,8 +105,7 @@
     "color": "#a45444",
     "year": "2022",
     "width": 200,
-    "height": 113,
-    "type": "png"
+    "height": 113
   },
   {
     "title": "Murmur Design System",
@@ -126,8 +114,7 @@
     "color": "#197fe5",
     "year": "",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Datashare",
@@ -136,8 +123,7 @@
     "color": "#d64174",
     "year": "",
     "width": 200,
-    "height": 114,
-    "type": "png"
+    "height": 114
   },
   {
     "title": "International Medical Devices Database - Implant Files",
@@ -146,8 +132,7 @@
     "color": "#3ea9c1",
     "year": "2018",
     "width": 200,
-    "height": 394,
-    "type": "png"
+    "height": 394
   },
   {
     "title": "Out d'or 2018",
@@ -156,8 +141,7 @@
     "color": "#FFC465",
     "year": "2018",
     "width": 200,
-    "height": 470,
-    "type": "png"
+    "height": 470
   },
   {
     "title": "West Africa Leaks",
@@ -166,8 +150,7 @@
     "color": "#be5a40",
     "year": "2018",
     "width": 200,
-    "height": 113,
-    "type": "png"
+    "height": 113
   },
   {
     "title": "Gateway to Africa - Paradise Papers",
@@ -176,8 +159,7 @@
     "color": "#50676B",
     "year": "2017",
     "width": 200,
-    "height": 146,
-    "type": "png"
+    "height": 146
   },
   {
     "title": "The Influencers - Paradise Papers",
@@ -186,8 +168,7 @@
     "color": "#273681",
     "year": "2017",
     "width": 200,
-    "height": 113,
-    "type": "png"
+    "height": 113
   },
   {
     "title": "The Good, The Bad and The Accountant",
@@ -196,8 +177,7 @@
     "color": "#dcbc6c",
     "year": "2017",
     "width": 200,
-    "height": 102,
-    "type": "png"
+    "height": 102
   },
   {
     "title": "OOMG",
@@ -206,18 +186,16 @@
     "color": "#6e3ed4",
     "year": "2016",
     "width": 200,
-    "height": 129,
-    "type": "png"
+    "height": 129
   },
   {
     "title": "Geneva Watchers",
-    "thumbnail": "assets/images/thumbnails/twittercomgva_watcher.png",
+    "thumbnail": "assets/images/thumbnails/twittercomgvawatcher.png",
     "url": "https://twitter.com/gva_watcher",
-    "color": "#dd3d3c",
+    "color": "",
     "year": "2017",
-    "width": 200,
-    "height": 105,
-    "type": "png"
+    "width": "",
+    "height": ""
   },
   {
     "title": "Wege Rhein-Erft",
@@ -226,8 +204,7 @@
     "color": "#dfb31f",
     "year": "2017",
     "width": 200,
-    "height": 113,
-    "type": "png"
+    "height": 113
   },
   {
     "title": "Oeko Flotte",
@@ -236,18 +213,16 @@
     "color": "#3c9cd4",
     "year": "2017",
     "width": 200,
-    "height": 113,
-    "type": "png"
+    "height": 113
   },
   {
     "title": "OKF: Farm Compass",
-    "thumbnail": "assets/images/thumbnails/jplusplusgithubiookf-farmcompassen_be.png",
+    "thumbnail": "assets/images/thumbnails/jplusplusgithubiookf-farmcompassenbe.png",
     "url": "https://jplusplus.github.io/okf-farmcompass/#!/en_BE",
-    "color": "#767688",
+    "color": "",
     "year": "2017",
-    "width": 200,
-    "height": 102,
-    "type": "png"
+    "width": "",
+    "height": ""
   },
   {
     "title": "Political Gaps",
@@ -256,8 +231,7 @@
     "color": "#348744",
     "year": "2016",
     "width": 200,
-    "height": 129,
-    "type": "png"
+    "height": 129
   },
   {
     "title": "jQuest",
@@ -266,8 +240,7 @@
     "color": "#b24cb2",
     "year": "2016",
     "width": 200,
-    "height": 140,
-    "type": "png"
+    "height": 140
   },
   {
     "title": "The Turkish Puppets",
@@ -276,8 +249,7 @@
     "color": "#a87f56",
     "year": "2016",
     "width": 200,
-    "height": 92,
-    "type": "png"
+    "height": 92
   },
   {
     "title": "Rentswatch",
@@ -286,8 +258,7 @@
     "color": "#d35d5e",
     "year": "2016",
     "width": 200,
-    "height": 208,
-    "type": "png"
+    "height": 208
   },
   {
     "title": "The Football Tax",
@@ -296,8 +267,7 @@
     "color": "#FFDF54",
     "year": "2016",
     "width": 200,
-    "height": 259,
-    "type": "png"
+    "height": 259
   },
   {
     "title": "Oeko Kostenrechner",
@@ -306,8 +276,7 @@
     "color": "#71BF44",
     "year": "2016",
     "width": 200,
-    "height": 109,
-    "type": "png"
+    "height": 109
   },
   {
     "title": "Future by Trump",
@@ -316,8 +285,7 @@
     "color": "#B20107",
     "year": "2016",
     "width": 200,
-    "height": 99,
-    "type": "png"
+    "height": 99
   },
   {
     "title": "Fledit",
@@ -326,8 +294,7 @@
     "color": "#474244",
     "year": "2015",
     "width": 200,
-    "height": 99,
-    "type": "png"
+    "height": 99
   },
   {
     "title": "Morano 2017",
@@ -336,8 +303,7 @@
     "color": "#3695ff",
     "year": "2015",
     "width": 200,
-    "height": 99,
-    "type": "png"
+    "height": 99
   },
   {
     "title": "RTS: Parlomètre Roman",
@@ -346,8 +312,7 @@
     "color": "#B5001E",
     "year": "2015",
     "width": 200,
-    "height": 229,
-    "type": "png"
+    "height": 229
   },
   {
     "title": "Journalism++ Graveyard",
@@ -356,8 +321,7 @@
     "color": "#2E2E2E",
     "year": "2015",
     "width": 200,
-    "height": 284,
-    "type": "png"
+    "height": 284
   },
   {
     "title": "Google Iframe Scaffolder",
@@ -366,8 +330,7 @@
     "color": "#4285F4",
     "year": "2015",
     "width": 200,
-    "height": 160,
-    "type": "png"
+    "height": 160
   },
   {
     "title": "Diercke GIS",
@@ -376,8 +339,7 @@
     "color": "#1B2C8A",
     "year": "2015",
     "width": 200,
-    "height": 149,
-    "type": "png"
+    "height": 149
   },
   {
     "title": "The Migrant Files",
@@ -386,8 +348,7 @@
     "color": "#A30000",
     "year": "2015",
     "width": 200,
-    "height": 709,
-    "type": "png"
+    "height": 709
   },
   {
     "title": "Radio France : Départementales 2015",
@@ -396,8 +357,7 @@
     "color": "#007BC6",
     "year": "2015",
     "width": 200,
-    "height": 173,
-    "type": "png"
+    "height": 173
   },
   {
     "title": "MSF: One year of fight against Ebola",
@@ -406,8 +366,7 @@
     "color": "#E22000",
     "year": "2015",
     "width": 200,
-    "height": 101,
-    "type": "png"
+    "height": 101
   },
   {
     "title": "RSF: Index de la liberté de la presse",
@@ -416,8 +375,7 @@
     "color": "#DA032E",
     "year": "2015",
     "width": 200,
-    "height": 205,
-    "type": "png"
+    "height": 205
   },
   {
     "title": "Iframe Scaffolder",
@@ -426,8 +384,7 @@
     "color": "#53BF6B",
     "year": "2014",
     "width": 200,
-    "height": 113,
-    "type": "png"
+    "height": 113
   },
   {
     "title": "Global Witness: The Great Rip off",
@@ -436,8 +393,7 @@
     "color": "#EC1C24",
     "year": "2014",
     "width": 200,
-    "height": 233,
-    "type": "png"
+    "height": 233
   },
   {
     "title": "Île de France: 10 recettes",
@@ -446,8 +402,7 @@
     "color": "#E1C1C2",
     "year": "2014",
     "width": 200,
-    "height": 117,
-    "type": "png"
+    "height": 117
   },
   {
     "title": "AFDAS: carte de presse en 2015",
@@ -456,8 +411,7 @@
     "color": "#4DBFAC",
     "year": "2014",
     "width": 200,
-    "height": 129,
-    "type": "png"
+    "height": 129
   },
   {
     "title": "Île de France: les CFA de votre région",
@@ -466,8 +420,7 @@
     "color": "#00ACA8",
     "year": "2014",
     "width": 200,
-    "height": 96,
-    "type": "png"
+    "height": 96
   },
   {
     "title": "Arte: World of Work",
@@ -476,8 +429,7 @@
     "color": "#4A912E",
     "year": "2014",
     "width": 200,
-    "height": 96,
-    "type": "png"
+    "height": 96
   },
   {
     "title": "Detective.io",
@@ -486,8 +438,7 @@
     "color": "#237490",
     "year": "2014",
     "width": 200,
-    "height": 304,
-    "type": "png"
+    "height": 304
   },
   {
     "title": "OKF: Spending Stories",
@@ -496,8 +447,7 @@
     "color": "#DF1B4F",
     "year": "2014",
     "width": 200,
-    "height": 168,
-    "type": "png"
+    "height": 168
   },
   {
     "title": "Wikileaks: Kissinger Cables",
@@ -506,8 +456,7 @@
     "color": "#8BD6E5",
     "year": "2014",
     "width": 200,
-    "height": 112,
-    "type": "png"
+    "height": 112
   },
   {
     "title": "Île de France: Le Grand Quiz",
@@ -516,8 +465,7 @@
     "color": "#FF0000",
     "year": "2014",
     "width": 200,
-    "height": 96,
-    "type": "png"
+    "height": 96
   },
   {
     "title": "France Télévision: Jeu d'Influences",
@@ -526,8 +474,7 @@
     "color": "#440000",
     "year": "2014",
     "width": 200,
-    "height": 96,
-    "type": "png"
+    "height": 96
   },
   {
     "title": "France Télévision: Municipaly",
@@ -536,8 +483,7 @@
     "color": "#00D59B",
     "year": "2014",
     "width": 200,
-    "height": 92,
-    "type": "png"
+    "height": 92
   },
   {
     "title": "Fondation BNPP: Odyssée Jeunes",
@@ -546,8 +492,7 @@
     "color": "#00A1B5",
     "year": "2014",
     "width": 200,
-    "height": 127,
-    "type": "png"
+    "height": 127
   },
   {
     "title": "Arte: Une contre-histoire des Internets",
@@ -556,8 +501,7 @@
     "color": "#EE9B00",
     "year": "2014",
     "width": 200,
-    "height": 200,
-    "type": "png"
+    "height": 200
   },
   {
     "title": "Al Jazeera : Dragons Gifts",
@@ -566,8 +510,7 @@
     "color": "#FB9D04",
     "year": "2014",
     "width": 200,
-    "height": 120,
-    "type": "png"
+    "height": 120
   },
   {
     "title": "Benford's Law Calculator",
@@ -576,8 +519,7 @@
     "color": "#1A1E28",
     "year": "2013",
     "width": 200,
-    "height": 95,
-    "type": "png"
+    "height": 95
   },
   {
     "title": "Hackaton: Broken Promises",
@@ -586,8 +528,7 @@
     "color": "#5879A5",
     "year": "2013",
     "width": 200,
-    "height": 101,
-    "type": "png"
+    "height": 101
   },
   {
     "title": "L’Express: Des données pour l’autisme",
@@ -596,8 +537,7 @@
     "color": "#E20022",
     "year": "2013",
     "width": 200,
-    "height": 96,
-    "type": "png"
+    "height": 96
   },
   {
     "title": "Dataplayer",
@@ -606,8 +546,7 @@
     "color": "#00DBB5",
     "year": "2013",
     "width": 200,
-    "height": 339,
-    "type": "png"
+    "height": 339
   },
   {
     "title": "Île de France:  Actions pour le femmes",
@@ -616,8 +555,7 @@
     "color": "#ccba14",
     "year": "2013",
     "width": 200,
-    "height": 121,
-    "type": "png"
+    "height": 121
   },
   {
     "title": "Île de France:  Aides aux entreprises",
@@ -626,8 +564,7 @@
     "color": "#bccc04",
     "year": "2013",
     "width": 200,
-    "height": 121,
-    "type": "png"
+    "height": 121
   },
   {
     "title": "Île de France: Coworking",
@@ -636,8 +573,7 @@
     "color": "#ec2c04",
     "year": "2013",
     "width": 200,
-    "height": 121,
-    "type": "png"
+    "height": 121
   },
   {
     "title": "Île de France: se divertir",
@@ -646,8 +582,7 @@
     "color": "#e67414",
     "year": "2013",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Île de France: entreprendre",
@@ -656,8 +591,7 @@
     "color": "#c8d43a",
     "year": "2013",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Île de France: environnement",
@@ -666,8 +600,7 @@
     "color": "#aeba1b",
     "year": "2013",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Île de France: étudier",
@@ -676,8 +609,7 @@
     "color": "#f48204",
     "year": "2013",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Île de France: à l'international",
@@ -686,8 +618,7 @@
     "color": "#f49444",
     "year": "2013",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Île de France: se loger",
@@ -696,8 +627,7 @@
     "color": "#f4b239",
     "year": "2013",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Île de France: la recherche",
@@ -706,8 +636,7 @@
     "color": "#2cb4c6",
     "year": "2013",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Île de France: les transports",
@@ -716,8 +645,7 @@
     "color": "#fb610a",
     "year": "2013",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Île de France: RA 2013 - BU",
@@ -726,8 +654,7 @@
     "color": "#dc9414",
     "year": "2013",
     "width": 200,
-    "height": 100,
-    "type": "png"
+    "height": 100
   },
   {
     "title": "Île de France: RA 2013 - Energies",
@@ -736,8 +663,7 @@
     "color": "#a4c404",
     "year": "2013",
     "width": 200,
-    "height": 100,
-    "type": "png"
+    "height": 100
   },
   {
     "title": "Île de France: RA 2013 - Magazine",
@@ -746,8 +672,7 @@
     "color": "#e4c404",
     "year": "2013",
     "width": 200,
-    "height": 100,
-    "type": "png"
+    "height": 100
   },
   {
     "title": "Île de France: RA 2013 - Opendata",
@@ -756,8 +681,7 @@
     "color": "#0484b4",
     "year": "2013",
     "width": 200,
-    "height": 100,
-    "type": "png"
+    "height": 100
   },
   {
     "title": "Île de France: RA 2013 - Tourisme",
@@ -766,8 +690,7 @@
     "color": "#a6b411",
     "year": "2013",
     "width": 200,
-    "height": 100,
-    "type": "png"
+    "height": 100
   },
   {
     "title": "Île de France: RA 2013 - Transports",
@@ -776,8 +699,7 @@
     "color": "#58c8c4",
     "year": "2013",
     "width": 200,
-    "height": 100,
-    "type": "png"
+    "height": 100
   },
   {
     "title": "Île de France: les parcs naturels",
@@ -786,8 +708,7 @@
     "color": "#00975E",
     "year": "2013",
     "width": 200,
-    "height": 128,
-    "type": "png"
+    "height": 128
   },
   {
     "title": "Ile de France: Baromêtre",
@@ -796,8 +717,7 @@
     "color": "#d0240d",
     "year": "2013",
     "width": 200,
-    "height": 138,
-    "type": "png"
+    "height": 138
   },
   {
     "title": "Feowl: blackouts à Douala",
@@ -806,8 +726,7 @@
     "color": "#5999A2",
     "year": "2012",
     "width": 200,
-    "height": 107,
-    "type": "jpg"
+    "height": 107
   },
   {
     "title": "Île de France: les lycées de votre région",
@@ -816,8 +735,7 @@
     "color": "#E81C0C",
     "year": "2012",
     "width": 200,
-    "height": 108,
-    "type": "jpg"
+    "height": 108
   },
   {
     "title": "AFP: The e-diplomacy hub",
@@ -826,8 +744,7 @@
     "color": "#323B90",
     "year": "2012",
     "width": 200,
-    "height": 725,
-    "type": "png"
+    "height": 725
   },
   {
     "title": "Rue89: Alerte Politique !",
@@ -836,8 +753,7 @@
     "color": "#333239",
     "year": "2012",
     "width": 200,
-    "height": 97,
-    "type": "png"
+    "height": 97
   },
   {
     "title": "Aucun Lien",
@@ -846,8 +762,7 @@
     "color": "#FF0095",
     "year": "2012",
     "width": 200,
-    "height": 200,
-    "type": "png"
+    "height": 200
   },
   {
     "title": "Journalism++: we build data-first newsrooms",
@@ -856,8 +771,7 @@
     "color": "#9A0E3F",
     "year": "2012",
     "width": 200,
-    "height": 200,
-    "type": "png"
+    "height": 200
   },
   {
     "title": "RFI: les lois antiterroristes dans le monde",
@@ -866,8 +780,7 @@
     "color": "#910008",
     "year": "2011",
     "width": 200,
-    "height": 107,
-    "type": "png"
+    "height": 107
   },
   {
     "title": "Influence Networks: cartographie des réseaux d’influence",
@@ -876,8 +789,7 @@
     "color": "#5C2980",
     "year": "2011",
     "width": 200,
-    "height": 212,
-    "type": "png"
+    "height": 212
   },
   {
     "title": "Eurosport: Transferts 2011",
@@ -886,8 +798,7 @@
     "color": "#892AB3",
     "year": "2011",
     "width": 200,
-    "height": 147,
-    "type": "png"
+    "height": 147
   },
   {
     "title": "UPIAN & 5ème étage Prod: Opposition Birmane",
@@ -896,8 +807,7 @@
     "color": "#991B63",
     "year": "2011",
     "width": 200,
-    "height": 121,
-    "type": "png"
+    "height": 121
   },
   {
     "title": "France Inter: Serge Gainsbourg, aux Graph Et Cætera…",
@@ -906,8 +816,7 @@
     "color": "#D0C78A",
     "year": "2011",
     "width": 200,
-    "height": 135,
-    "type": "png"
+    "height": 135
   },
   {
     "title": "OWNI: A Paris, la police aura des yeux tout partout",
@@ -916,8 +825,7 @@
     "color": "#494397",
     "year": "2011",
     "width": 200,
-    "height": 135,
-    "type": "png"
+    "height": 135
   },
   {
     "title": "Geoffrey Dorne: Graphisme & interactivité",
@@ -926,8 +834,7 @@
     "color": "#3E3E3E",
     "year": "2011",
     "width": 200,
-    "height": 281,
-    "type": "png"
+    "height": 281
   },
   {
     "title": "Radio Nova: Nuit Sujet #2",
@@ -936,8 +843,7 @@
     "color": "#DBDB7E",
     "year": "2011",
     "width": 200,
-    "height": 187,
-    "type": "png"
+    "height": 187
   },
   {
     "title": "Radio Nova: Nuit Sujet #1",
@@ -946,8 +852,7 @@
     "color": "#FF0032",
     "year": "2011",
     "width": 200,
-    "height": 163,
-    "type": "png"
+    "height": 163
   },
   {
     "title": "Iconomani: Vern1ssage",
@@ -956,8 +861,7 @@
     "color": "#F8D3A8",
     "year": "2011",
     "width": 200,
-    "height": 307,
-    "type": "png"
+    "height": 307
   },
   {
     "title": "OWNI Live",
@@ -966,8 +870,7 @@
     "color": "#D83500",
     "year": "2011",
     "width": 200,
-    "height": 488,
-    "type": "png"
+    "height": 488
   },
   {
     "title": "OWNI Leaks",
@@ -976,8 +879,7 @@
     "color": "#6AC3D5",
     "year": "2011",
     "width": 200,
-    "height": 744,
-    "type": "png"
+    "height": 744
   },
   {
     "title": "FIDH: Despotic Mind",
@@ -986,8 +888,7 @@
     "color": "#F37E00",
     "year": "2010",
     "width": 200,
-    "height": 151,
-    "type": "png"
+    "height": 151
   },
   {
     "title": "Presseurop: Fonctionnement de la nouvelle Diplomatie Europeenne",
@@ -996,8 +897,7 @@
     "color": "#E90000",
     "year": "2010",
     "width": 200,
-    "height": 135,
-    "type": "png"
+    "height": 135
   },
   {
     "title": "Galerie Interactive, Argos et l’eau",
@@ -1006,8 +906,7 @@
     "color": "#93AFC9",
     "year": "2010",
     "width": 200,
-    "height": 135,
-    "type": "png"
+    "height": 135
   },
   {
     "title": "IFOP: l’emploi des jeunes",
@@ -1016,8 +915,7 @@
     "color": "#7E1B41",
     "year": "2010",
     "width": 200,
-    "height": 135,
-    "type": "png"
+    "height": 135
   },
   {
     "title": "Wikileaks: Warlogs Irakiens",
@@ -1026,8 +924,7 @@
     "color": "#970003",
     "year": "2010",
     "width": 200,
-    "height": 135,
-    "type": "png"
+    "height": 135
   },
   {
     "title": "La pilule de quel lendemain ?",
@@ -1036,8 +933,7 @@
     "color": "#00BCBD",
     "year": "2010",
     "width": 200,
-    "height": 135,
-    "type": "png"
+    "height": 135
   },
   {
     "title": "Wikileaks: Warlogs Afghans",
@@ -1046,8 +942,7 @@
     "color": "#D90000",
     "year": "2010",
     "width": 200,
-    "height": 151,
-    "type": "png"
+    "height": 151
   },
   {
     "title": "L’Oeil Du Pirate",
@@ -1056,8 +951,7 @@
     "color": "#010101",
     "year": "2010",
     "width": 200,
-    "height": 492,
-    "type": "png"
+    "height": 492
   },
   {
     "title": "Ubsek et Rica: What if?",
@@ -1066,8 +960,7 @@
     "color": "#F7FA00",
     "year": "2010",
     "width": 200,
-    "height": 281,
-    "type": "png"
+    "height": 281
   },
   {
     "title": "OWNI v2",
@@ -1076,8 +969,7 @@
     "color": "#2D2D2F",
     "year": "2010",
     "width": 200,
-    "height": 311,
-    "type": "jpg"
+    "height": 311
   },
   {
     "title": "RFI: Les objets symboles des indépendances africaines",
@@ -1086,8 +978,7 @@
     "color": "#F1F631",
     "year": "2009",
     "width": 200,
-    "height": 151,
-    "type": "png"
+    "height": 151
   },
   {
     "title": "Branche ton Sontone, le webzine qui t’aide à pécho en te donnant une super culture musicale",
@@ -1096,7 +987,6 @@
     "color": "#BC0E23",
     "year": "2009",
     "width": 200,
-    "height": 277,
-    "type": "png"
+    "height": 277
   }
 ]
