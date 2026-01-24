@@ -91,7 +91,6 @@ function getThumbnailUrl(thumbnail) {
       }
 
       &__item {
-        margin-bottom: 25px;
         padding: 15px;
         transition: .4s;
         border:5px solid black;
