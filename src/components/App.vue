@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <theme-toggler />
     <introduction />
     <investigations />
     <activity />
@@ -12,11 +13,13 @@ import Introduction from './Introduction.vue'
 import Activity from './Activity.vue'
 import Investigations from './Investigations.vue'
 import Projects from './Projects.vue'
+import ThemeToggler from './ThemeToggler.vue'
 </script>
 
 <style lang="scss">
   @import '@/utils/_settings.scss';
   @import 'bootstrap/scss/bootstrap';
+  @import '@/utils/_theme.scss';
 
   .section {
     display:block;
@@ -67,8 +70,9 @@ import Projects from './Projects.vue'
         right:.3rem;
         content:"";
         z-index:-1;
-        background:white;
+        background: var(--panel-bg);
         border-radius: $border-radius-sm;
+        transition: background 0.3s ease;
       }
 
       html body & strong {
@@ -77,7 +81,7 @@ import Projects from './Projects.vue'
       }
 
       html body & a {
-        color: var(--section-primary);
+        color: var(--section-link-color, var(--section-primary));
         transition: color $color-transition-duration;
       }
 

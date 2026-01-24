@@ -24,7 +24,7 @@
               class="projects__cascading__item"
               :style="{ 'border-color': project.color }"
             >
-              <a class="projects__cascading__item__wrapper bg-light" :href="project.url">
+              <a class="projects__cascading__item__wrapper" :href="project.url">
                 <div class="projects__cascading__item__wrapper__ghost">
                   <div :style="{ 'padding-top': project.paddingTop }"></div>
                 </div>
@@ -102,6 +102,8 @@ function getThumbnailUrl(thumbnail) {
           overflow: hidden;
           text-decoration: none;
           border-radius: $border-radius;
+          background: var(--card-bg);
+          transition: background 0.3s ease;
 
           img {
             display: block;
@@ -119,14 +121,14 @@ function getThumbnailUrl(thumbnail) {
 
           &__title {
             padding:5px;
-            color:inherit;
             font-size:10px;
             font-weight: lighter;
             display: block;
-            background: white;
+            background: var(--panel-bg);
             text-align: center;
             text-decoration: none;
-            color:$body-color;
+            color: var(--body-color);
+            transition: background 0.3s ease, color 0.3s ease;
           }
         }
       }

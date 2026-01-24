@@ -210,7 +210,7 @@ function hideTooltip() {
 }
 
 function getCellColor(count) {
-  if (count === 0) return '#ebedf0'
+  if (count === 0) return getComputedStyle(document.documentElement).getPropertyValue('--activity-cell-empty').trim() || '#ebedf0'
   return colorScale.value(count)
 }
 
@@ -253,7 +253,7 @@ function drawChart() {
     .attr('class', 'activity__commits__chart__year-separator')
     .attr('d', d => getYearSeparatorPath(d))
     .attr('fill', 'none')
-    .attr('stroke', '#000')
+    .attr('stroke', 'var(--year-separator-color)')
     .attr('stroke-width', 2)
     .attr('stroke-linejoin', 'round')
     .attr('stroke-linecap', 'round')
@@ -277,7 +277,7 @@ function drawChart() {
     .attr('height', cellSize)
     .attr('rx', cellRadius)
     .attr('ry', cellRadius)
-    .attr('fill', '#ebedf0')
+    .attr('fill', () => getCellColor(0))
     .on('mouseover', (event, d) => showTooltip(event, d))
     .on('mouseout', () => hideTooltip())
     .transition()
@@ -298,11 +298,31 @@ function updateScrollbar() {
   }
 }
 
+function updateChartColors() {
+  // Update cell colors
+  svg.value.selectAll('rect.activity__commits__chart__cell')
+    .attr('fill', d => getCellColor(d.count))
+
+  // Update year separator colors
+  svg.value.selectAll('path.activity__commits__chart__year-separator')
+    .attr('stroke', 'var(--year-separator-color)')
+}
+
 onMounted(async () => {
   createTooltip()
   drawChart()
   await nextTick()
   updateScrollbar()
+
+  // Watch for theme changes
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.attributeName === 'data-theme') {
+        updateChartColors()
+      }
+    }
+  })
+  observer.observe(document.documentElement, { attributes: true })
 })
 
 onUnmounted(() => {

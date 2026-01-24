@@ -2,6 +2,10 @@ import { ref, computed, onMounted, isRef, unref } from 'vue'
 import * as chroma from 'chroma-js'
 import { useColors, colorRatio } from './useColors'
 
+function isDarkMode() {
+  return document.documentElement.getAttribute('data-theme') === 'dark'
+}
+
 export function useSection(elementRef = null) {
   const { colorScalePrimary, colorScaleSecondary, colorScaleText, normalizedRatio, scss, domains, gradientColors } = useColors()
 
@@ -18,14 +22,29 @@ export function useSection(elementRef = null) {
   function updateColors() {
     const el = isRef(elementRef) ? unref(elementRef) : elementRef
     if (el) {
-      el.style.setProperty('--section-text', textColor.value)
+      // In dark mode, use white text; in light mode, use computed text color
+      const effectiveTextColor = isDarkMode() ? '#fff' : textColor.value
+      // In dark mode, use lighter color for links; in light mode, use primary
+      const effectiveLinkColor = isDarkMode() ? secondaryColor.value : primaryColor.value
+      el.style.setProperty('--section-text', effectiveTextColor)
       el.style.setProperty('--section-primary', primaryColor.value)
       el.style.setProperty('--section-secondary', secondaryColor.value)
+      el.style.setProperty('--section-link-color', effectiveLinkColor)
     }
   }
 
   onMounted(() => {
     updateColors()
+
+    // Watch for theme changes
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.attributeName === 'data-theme') {
+          updateColors()
+        }
+      }
+    })
+    observer.observe(document.documentElement, { attributes: true })
   })
 
   return {
