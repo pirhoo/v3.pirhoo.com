@@ -10,6 +10,9 @@ import scss from '@/utils/variables.js'
 // Only create the slice once
 export const gradientsSlice = shuffle(gradients).slice(0, 16)
 
+// Random ratio set once on page load, shared across components
+export const colorRatio = Math.random()
+
 export function useColors() {
   const gradientColors = computed(() => {
     return reduce(gradientsSlice, (all, gradient) => all.concat([gradient.colors]), [])
