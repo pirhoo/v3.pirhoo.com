@@ -1,67 +1,67 @@
-import * as d3 from 'd3';
-import { noop, uniqueId } from 'lodash';
-import Vue from 'vue';
+import * as d3 from 'd3'
+import { noop, uniqueId } from 'lodash'
+import mitt from 'mitt'
 
 class Mousetrack {
   constructor({ container } = { container: window }) {
-    // Event disaptcher
-    this.bus = new Vue();
+    // Event dispatcher using mitt
+    this.bus = mitt()
     // The mouse container
-    this.container = container;
+    this.container = container
     // Create a unique event name to bind the window
-    this.eventId = `mousemove.mousetrack-${uniqueId()}`;
+    this.eventId = `mousemove.mousetrack-${uniqueId()}`
     // Disable on mobile
     if (!Mousetrack.isMobile) {
       // Bind the mouse event
-      this.bind();
+      this.bind()
     }
   }
 
   unbind() {
-    d3.select(this.container).on(this.eventId, null);
+    d3.select(this.container).on(this.eventId, null)
   }
 
   bind() {
-    this.unbind();
+    this.unbind()
     // Bind mouse on container (and remove any other one)
-    return d3.select(this.container).on(this.eventId, this.update.bind(this));
+    return d3.select(this.container).on(this.eventId, event => this.update(event))
   }
 
-  update() {
-    this.bus.$emit('update', Mousetrack.values);
-    this.bus.$emit('update.ratio', Mousetrack.valuesRatio);
+  update(event) {
+    this.bus.emit('update', Mousetrack.getValues(event))
+    this.bus.emit('update.ratio', Mousetrack.getValuesRatio(event))
   }
 
   on(typenames, callback = noop) {
-    return this.bus.$on(typenames, callback);
+    return this.bus.on(typenames, callback)
   }
 
   static get clientHeight() {
-    return document.documentElement.clientHeight;
+    return document.documentElement.clientHeight
   }
 
   static get clientWidth() {
-    return document.documentElement.clientWidth;
+    return document.documentElement.clientWidth
   }
 
   static get isMobile() {
-    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
   }
 
-  static get values() {
+  static getValues(event) {
     return {
-      top: d3.event.clientY,
-      left: d3.event.clientX,
-    };
+      top: event.clientY,
+      left: event.clientX
+    }
   }
 
-  static get valuesRatio() {
-    const { top, left } = Mousetrack.values;
+  static getValuesRatio(event) {
+    const { top, left } = Mousetrack.getValues(event)
     return {
       top: top / Math.max(1, Mousetrack.clientHeight),
-      left: left / Math.max(1, Mousetrack.clientWidth),
-    };
+      left: left / Math.max(1, Mousetrack.clientWidth)
+    }
   }
 }
 
-export default Mousetrack;
+export default Mousetrack
