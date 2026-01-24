@@ -133,10 +133,20 @@ async function countCommits() {
     }
   }), {})
 
+  // Daily counts for GitHub-style heatmap (date string -> count)
+  const daysCount = countBy(data, commit => {
+    const date = new Date(parseInt(commit.timestamp, 10) * 1000)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  })
+
   const result = {
     commitsCount: data.length,
     repositoriesCount: keys(countBy(data, 'repository')).length,
     monthsCount,
+    daysCount,
     olderCommit: minBy(data, c => parseInt(c.timestamp, 10)),
     newerCommit: maxBy(data, c => parseInt(c.timestamp, 10))
   }
