@@ -1,5 +1,5 @@
 <template>
-  <section class="photos section">
+  <section ref="sectionRef" class="photos section">
     <div class="wrapper">
       <div class="section__panel">
         <gradient-on-scroll />
@@ -33,10 +33,10 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue'
 import get from 'lodash/get'
 import axios from 'axios'
-
-import section from '@/mixins/section'
+import { useSection } from '@/composables/useSection'
 import GradientOnScroll from './GradientOnScroll.vue'
 
 export default {
@@ -44,25 +44,31 @@ export default {
   components: {
     GradientOnScroll
   },
-  mixins: [section],
   props: {
     src: {
       type: String,
       default: '//api-pirhoo.herokuapp.com/photos'
     }
   },
-  data() {
-    return {
-      photos: []
-    }
-  },
-  async mounted() {
-    this.photos = get(await axios.get(this.src), 'data.photos', [])
-    // Add height percentage
-    this.photos.forEach((photo, i) => {
-      const { width, height } = photo.images.low_resolution
-      this.photos[i].heightPercentage = `${(height / width) * 100}%`
+  setup(props) {
+    const sectionRef = ref(null)
+    const photos = ref([])
+
+    useSection(sectionRef)
+
+    onMounted(async () => {
+      const response = await axios.get(props.src)
+      const photoData = get(response, 'data.photos', [])
+      photos.value = photoData.map(photo => ({
+        ...photo,
+        heightPercentage: `${(photo.images.low_resolution.height / photo.images.low_resolution.width) * 100}%`
+      }))
     })
+
+    return {
+      sectionRef,
+      photos
+    }
   }
 }
 </script>

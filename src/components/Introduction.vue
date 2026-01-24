@@ -1,14 +1,14 @@
 <template>
-  <section class="introduction section">
+  <section ref="sectionRef" class="introduction section">
     <div class="wrapper">
       <div class="introduction__body section__panel">
         <gradient-on-scroll />
         <h2 aria-section="Introduction" class="section__panel__lead">
-          Hi, I’m <strong>Pierre Romera Zhang</strong><br />
+          Hi, I'm <strong>Pierre Romera Zhang</strong><br />
           developer &amp; datajournalist
         </h2>
         <p>
-          I’m CTO at the <a href="http://icij.org">International Consortium
+          I'm CTO at the <a href="http://icij.org">International Consortium
             of Investigative Journalists (ICIJ)</a> where I build
           interactive stories, data driven investigations and tools.
         </p>
@@ -88,7 +88,8 @@
 </template>
 
 <script>
-import section from '@/mixins/section'
+import { ref } from 'vue'
+import { useSection } from '@/composables/useSection'
 import GradientOnScroll from './GradientOnScroll.vue'
 
 export default {
@@ -96,6 +97,10 @@ export default {
   components: {
     GradientOnScroll
   },
-  mixins: [section]
+  setup() {
+    const sectionRef = ref(null)
+    useSection(sectionRef)
+    return { sectionRef }
+  }
 }
 </script>

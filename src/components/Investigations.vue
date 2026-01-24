@@ -1,5 +1,5 @@
 <template>
-  <section class="investigations section d-flex flex-column">
+  <section ref="sectionRef" class="investigations section d-flex flex-column">
     <div class="wrapper d-flex flex-column flex-grow-1">
       <div class="investigations__body section__panel">
         <gradient-on-scroll />
@@ -38,8 +38,9 @@
 </template>
 
 <script>
-import investigations from '@/assets/json/investigations.json'
-import section from '@/mixins/section'
+import { ref, computed } from 'vue'
+import investigationsData from '@/assets/json/investigations.json'
+import { useSection } from '@/composables/useSection'
 import GradientOnScroll from './GradientOnScroll.vue'
 
 // Import all investigation images using Vite's glob import
@@ -50,25 +51,29 @@ export default {
   components: {
     GradientOnScroll
   },
-  mixins: [section],
-  data() {
-    return {
-      investigations
-    }
-  },
-  computed: {
-    currentYear() {
-      return new Date().getFullYear()
-    }
-  },
-  methods: {
-    investigationStyle({ color, backgroundColor }) {
+  setup() {
+    const sectionRef = ref(null)
+    useSection(sectionRef)
+
+    const investigations = investigationsData
+    const currentYear = computed(() => new Date().getFullYear())
+
+    function investigationStyle({ color, backgroundColor }) {
       return { color, backgroundColor }
-    },
-    investigationImage({ image }) {
+    }
+
+    function investigationImage({ image }) {
       if (!image) return null
       const key = `/src/assets/images/investigations/${image}`
       return investigationImages[key] || ''
+    }
+
+    return {
+      sectionRef,
+      investigations,
+      currentYear,
+      investigationStyle,
+      investigationImage
     }
   }
 }
