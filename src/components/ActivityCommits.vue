@@ -215,8 +215,8 @@ function drawChart() {
     .attr('d', d => getYearSeparatorPath(d))
     .attr('fill', 'none')
     .attr('stroke', 'var(--section-text)')
-    .attr('stroke-width', 1)
-    .attr('stroke-opacity', 0.3)
+    .attr('stroke-width', 2)
+    .attr('stroke-opacity', 0.4)
 
   // Draw cells
   const weekGroups = svg.value.selectAll('g.activity__commits__chart__week')
