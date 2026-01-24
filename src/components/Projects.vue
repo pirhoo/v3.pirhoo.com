@@ -15,8 +15,8 @@
         </p>
       </div>
       <div class="projects__cascading">
-        <MasonryGrid :columns="{ default: 4, 600: 3, 500: 2, 250: 1 }" :gutter="25">
-          <MasonryGridItem
+        <masonry-grid :columns="{ default: 4, 600: 3, 500: 2, 250: 1 }" :gutter="25">
+          <masonry-grid-item
             v-for="(project, index) in projects"
             :key="index"
           >
@@ -37,8 +37,8 @@
                 </div>
               </a>
             </div>
-          </MasonryGridItem>
-        </MasonryGrid>
+          </masonry-grid-item>
+        </masonry-grid>
       </div>
     </div>
   </section>
