@@ -13,7 +13,12 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import * as d3 from 'd3'
+import * as chroma from 'chroma-js'
 import commits from '@/assets/json/commits.json'
+import { useColors, colorRatio } from '@/composables/useColors'
+
+const { colorScalePrimary } = useColors()
+const primaryColor = colorScalePrimary.value(colorRatio)
 
 const rootRef = ref(null)
 const wrapperRef = ref(null)
@@ -122,10 +127,13 @@ const allCounts = computed(() => {
   return Object.values(commits.daysCount).filter(v => v > 0).sort((a, b) => a - b)
 })
 
+// Create color scale from light to primary color
+const colorRange = chroma.scale(['#ebedf0', primaryColor]).mode('lab').colors(4)
+
 const colorScale = computed(() => {
   return d3.scaleQuantile()
     .domain(allCounts.value)
-    .range(['#9be9a8', '#40c463', '#30a14e', '#216e39'])
+    .range(colorRange)
 })
 
 const width = computed(() => labelWidth + padding + (weeks.value.length * (cellSize + cellGap)))
@@ -236,8 +244,8 @@ function drawChart() {
     .attr('y', d => d.dayOfWeek * (cellSize + cellGap))
     .attr('width', cellSize)
     .attr('height', cellSize)
-    .attr('rx', 2)
-    .attr('ry', 2)
+    .attr('rx', 4)
+    .attr('ry', 4)
     .attr('fill', '#ebedf0')
     .on('mouseover', (event, d) => showTooltip(event, d))
     .on('mouseout', () => hideTooltip())
