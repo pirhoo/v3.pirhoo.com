@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import * as d3 from 'd3'
 import commits from '@/assets/json/commits.json'
 
@@ -220,9 +220,10 @@ function updateScrollbar() {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   createTooltip()
   drawChart()
+  await nextTick()
   updateScrollbar()
 })
 
