@@ -216,7 +216,6 @@ function drawChart() {
     .attr('fill', 'none')
     .attr('stroke', '#000')
     .attr('stroke-width', 2)
-    .attr('stroke-opacity', 0.4)
 
   // Draw cells
   const weekGroups = svg.value.selectAll('g.activity__commits__chart__week')
