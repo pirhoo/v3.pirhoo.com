@@ -15,27 +15,30 @@
         </p>
       </div>
       <div class="projects__cascading">
-        <masonry :gutter="25" :cols="{default: 4, 600: 3, 500: 2, 250: 1}">
-          <div
+        <MasonryGrid :columns="{ default: 4, 600: 3, 500: 2, 250: 1 }" gutter="25px">
+          <MasonryGridItem
             v-for="(project, index) in projects"
             :key="index"
-            class="projects__cascading__item"
-            :style="{ 'border-color': project.color }"
           >
-            <a class="projects__cascading__item__wrapper bg-light" :href="project.url">
-              <div class="projects__cascading__item__wrapper__ghost">
-                <div :style="{ 'padding-top': project.paddingTop }"></div>
-              </div>
-              <img
-                v-lazy="getThumbnailUrl(project.thumbnail)"
-                class="projects__cascading__item__wrapper__thumbnail"
-              />
-              <div class="projects__cascading__item__wrapper__title">
-                {{ project.title }}
-              </div>
-            </a>
-          </div>
-        </masonry>
+            <div
+              class="projects__cascading__item"
+              :style="{ 'border-color': project.color }"
+            >
+              <a class="projects__cascading__item__wrapper bg-light" :href="project.url">
+                <div class="projects__cascading__item__wrapper__ghost">
+                  <div :style="{ 'padding-top': project.paddingTop }"></div>
+                </div>
+                <img
+                  v-lazy="getThumbnailUrl(project.thumbnail)"
+                  class="projects__cascading__item__wrapper__thumbnail"
+                />
+                <div class="projects__cascading__item__wrapper__title">
+                  {{ project.title }}
+                </div>
+              </a>
+            </div>
+          </MasonryGridItem>
+        </MasonryGrid>
       </div>
     </div>
   </section>
@@ -44,6 +47,7 @@
 <script setup>
 import { ref } from 'vue'
 import { map, assign } from 'lodash'
+import { MasonryGrid, MasonryGridItem } from 'vue3-masonry-css'
 import { useSection } from '@/composables/useSection'
 import projectsData from '@/assets/json/projects.json'
 import GradientOnScroll from './GradientOnScroll.vue'
