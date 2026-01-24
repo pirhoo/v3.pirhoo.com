@@ -1,5 +1,5 @@
 <template>
-  <div ref="rootRef" class="activity__commits" @show="drawCommits">
+  <div ref="rootRef" class="activity__commits">
     <div ref="wrapperRef" class="activity__commits__wrapper">
       <svg class="activity__commits__chart" />
     </div>
@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { range, sortBy, reduce, keys, maxBy, minBy } from 'lodash'
+import { keys, range } from 'lodash'
 import * as d3 from 'd3'
 import commits from '@/assets/json/commits.json'
 
@@ -20,60 +20,78 @@ const rootRef = ref(null)
 const wrapperRef = ref(null)
 let tooltip = null
 
-const padding = 20
-const monthWidth = Math.max(25, (window.innerWidth - 20) / keys(commits.monthsCount).length)
-const months = ['January', 'February', 'March', 'April', 'May', 'June',
+// Configuration
+const cellWidth = 40
+const cellHeight = 15
+const cellGap = 2
+const labelWidth = 35
+const labelHeight = 20
+const padding = 10
+
+const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const monthsFull = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December']
 
 const svg = computed(() => d3.select(rootRef.value).select('svg'))
 
-const data = computed(() => {
-  return sortBy(reduce(keys(commits.monthsCount), (arr, month) => arr.concat([
-    {
-      month: new Date(month),
-      count: commits.monthsCount[month].count,
-      repositories: commits.monthsCount[month].repositories
+// Parse dates and find year range
+const parsedData = computed(() => {
+  const result = {}
+  for (const dateStr of keys(commits.monthsCount)) {
+    const [year, month] = dateStr.split('-').map(Number)
+    if (!result[year]) result[year] = {}
+    result[year][month - 1] = commits.monthsCount[dateStr]
+  }
+  return result
+})
+
+const years = computed(() => {
+  const allYears = keys(parsedData.value).map(Number)
+  const minYear = Math.min(...allYears)
+  const maxYear = Math.max(...allYears)
+  return range(minYear, maxYear + 1)
+})
+
+const grid = computed(() => {
+  return years.value.map(year => {
+    return range(12).map(month => {
+      const data = parsedData.value[year]?.[month]
+      return {
+        year,
+        month,
+        count: data?.count || 0,
+        repositories: data?.repositories || {}
+      }
+    })
+  })
+})
+
+// Get all non-zero counts for quantile scale
+const allCounts = computed(() => {
+  const counts = []
+  for (const yearData of Object.values(parsedData.value)) {
+    for (const monthData of Object.values(yearData)) {
+      if (monthData.count > 0) counts.push(monthData.count)
     }
-  ]), []), 'month')
+  }
+  return counts.sort((a, b) => a - b)
 })
 
-const width = computed(() => monthWidth * data.value.length)
-const height = computed(() => svg.value.node()?.getBoundingClientRect().height || 250)
-
-const older = computed(() => new Date(commits.olderCommit.timestamp * 1000))
-const newer = computed(() => new Date(commits.newerCommit.timestamp * 1000))
-
-const commitCountMax = computed(() => maxBy(data.value, 'count').count)
-const commitCountMin = computed(() => minBy(data.value, 'count').count)
-
-const years = computed(() => range(older.value.getFullYear(), newer.value.getFullYear() + 1))
-
-const xScaleFn = computed(() => {
-  return d3.scaleTime()
-    .domain([older.value, newer.value])
-    .range([padding, width.value - (padding * 2)])
+const colorScale = computed(() => {
+  return d3.scaleQuantile()
+    .domain(allCounts.value)
+    .range(['#9be9a8', '#40c463', '#30a14e', '#216e39'])
 })
 
-const yScaleFn = computed(() => {
-  return d3.scaleLinear()
-    .domain([commitCountMin.value, commitCountMax.value])
-    .range([height.value - (padding * 2), padding])
-})
-
-const yearWidthFn = computed(() => {
-  return y => xScaleFn.value(new Date(y + 1, 0, 1)) - xScaleFn.value(new Date(y, 0, 1))
-})
-
-const lineFn = computed(() => {
-  return d3.line()
-    .curve(d3.curveMonotoneX)
-    .x(d => xScaleFn.value(d.month))
-    .y(d => yScaleFn.value(d.count))
-})
+const width = computed(() => labelWidth + padding + (years.value.length * (cellWidth + cellGap)))
+const height = computed(() => labelHeight + padding + (12 * (cellHeight + cellGap)) + padding)
 
 function getTooltipContent(d) {
   const projectsCount = keys(d.repositories).length
-  return `${months[d.month.getMonth()]} ${d.month.getFullYear()}:
+  if (d.count === 0) {
+    return `No commits in ${monthsFull[d.month]} ${d.year}`
+  }
+  return `${monthsFull[d.month]} ${d.year}:
       <strong>${d.count} commits</strong><br />
       on ${projectsCount} project${projectsCount > 1 ? 's' : ''}`
 }
@@ -92,93 +110,93 @@ function showTooltip(event, d) {
     .html(getTooltipContent(d))
     .style('opacity', 1)
     .style('left', `${event.pageX}px`)
-    .style('top', `${event.pageY - 40}px`)
+    .style('top', `${event.pageY - 50}px`)
 }
 
 function hideTooltip() {
   tooltip.style('opacity', 0)
 }
 
-function drawSvg() {
-  svg.value.style('width', `${width.value}px`)
+function getCellColor(count) {
+  if (count === 0) return '#ebedf0'
+  return colorScale.value(count)
 }
 
-function drawYears() {
-  svg.value.selectAll('g.activity__commits__chart__year')
+function drawChart() {
+  svg.value
+    .style('width', `${width.value}px`)
+    .style('height', `${height.value}px`)
+
+  // Draw year labels
+  svg.value.selectAll('text.activity__commits__chart__year-label')
     .data(years.value)
+    .enter()
+    .append('text')
+    .attr('class', 'activity__commits__chart__year-label')
+    .text(y => y)
+    .attr('text-anchor', 'middle')
+    .attr('x', (_, i) => labelWidth + padding + (i * (cellWidth + cellGap)) + (cellWidth / 2))
+    .attr('y', labelHeight - 5)
+    .style('font-size', '10px')
+    .style('fill', 'var(--section-primary)')
+
+  // Draw month labels
+  svg.value.selectAll('text.activity__commits__chart__month-label')
+    .data(monthLabels)
+    .enter()
+    .append('text')
+    .attr('class', 'activity__commits__chart__month-label')
+    .text(m => m)
+    .attr('text-anchor', 'end')
+    .attr('x', labelWidth)
+    .attr('y', (_, i) => labelHeight + padding + (i * (cellHeight + cellGap)) + (cellHeight / 2) + 4)
+    .style('font-size', '10px')
+    .style('fill', 'var(--section-text)')
+
+  // Draw cells
+  const yearGroups = svg.value.selectAll('g.activity__commits__chart__year')
+    .data(grid.value)
     .enter()
     .append('g')
     .attr('class', 'activity__commits__chart__year')
-    .append('rect')
-    .attr('x', y => xScaleFn.value(new Date(y, 0, 1)))
-    .attr('y', 0)
-    .attr('width', yearWidthFn.value)
-    .attr('height', height.value)
+    .attr('transform', (_, i) => `translate(${labelWidth + padding + (i * (cellWidth + cellGap))}, ${labelHeight + padding})`)
 
-  svg.value.selectAll('g.activity__commits__chart__year')
-    .append('text')
-    .attr('class', 'activity__commits__chart__year__label')
-    .text(y => y)
-    .attr('text-anchor', 'middle')
-    .attr('x', y => {
-      const x = xScaleFn.value(new Date(y, 0, 1)) + (yearWidthFn.value(y) / 2)
-      return Math.min(width.value - 25, Math.max(25, x))
-    })
-    .attr('y', 20)
-}
-
-function drawCommitsLine() {
-  const path = svg.value.append('path')
-    .datum(data.value)
-    .attr('class', 'activity__commits__chart__line')
-    .attr('d', lineFn.value)
-
-  const totalLength = path.node().getTotalLength()
-  path
-    .attr('stroke-dasharray', `${totalLength} ${totalLength}`)
-    .attr('stroke-dashoffset', totalLength)
-    .transition()
-    .duration(2000)
-    .ease(d3.easeLinear)
-    .attr('stroke-dashoffset', 0)
-}
-
-function drawCommitsDots() {
-  svg.value.selectAll('circle.activity__commits__chart__dot')
-    .data(data.value)
+  yearGroups.selectAll('rect.activity__commits__chart__cell')
+    .data(d => d)
     .enter()
-    .append('circle')
-    .attr('opacity', 0)
-    .attr('class', 'activity__commits__chart__dot')
-    .attr('cx', d => xScaleFn.value(d.month))
-    .attr('cy', d => yScaleFn.value(d.count))
-    .attr('r', 4)
+    .append('rect')
+    .attr('class', 'activity__commits__chart__cell')
+    .attr('x', 0)
+    .attr('y', (_, i) => i * (cellHeight + cellGap))
+    .attr('width', cellWidth)
+    .attr('height', cellHeight)
+    .attr('rx', 2)
+    .attr('ry', 2)
+    .attr('fill', '#ebedf0')
     .on('mouseover', (event, d) => showTooltip(event, d))
     .on('mouseout', () => hideTooltip())
     .transition()
-    .duration(100)
-    .delay((_, i) => 2000 * (i / data.value.length))
-    .ease(d3.easeLinear)
-    .attr('opacity', 1)
-}
-
-function drawCommits() {
-  drawCommitsLine()
-  drawCommitsDots()
+    .duration(500)
+    .delay((d, i, nodes) => {
+      // Get parent group index for staggered animation by year
+      const parentData = d3.select(nodes[i].parentNode).datum()
+      const yearIndex = grid.value.indexOf(parentData)
+      return yearIndex * 50 + i * 20
+    })
+    .attr('fill', d => getCellColor(d.count))
 }
 
 function updateScrollbar() {
   if (wrapperRef.value) {
-    const x = wrapperRef.value.offsetWidth
-    wrapperRef.value.scrollTo(x, 0)
+    const scrollWidth = wrapperRef.value.scrollWidth
+    const clientWidth = wrapperRef.value.clientWidth
+    wrapperRef.value.scrollTo(scrollWidth - clientWidth, 0)
   }
 }
 
 onMounted(() => {
   createTooltip()
-  drawSvg()
-  drawYears()
-  drawCommits()
+  drawChart()
   updateScrollbar()
 })
 
@@ -206,47 +224,36 @@ onUnmounted(() => {
     }
 
     &__wrapper {
-      width:100%;
+      width: 100%;
       display: block;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       position: relative;
       padding-bottom: $spacer;
     }
 
     &__chart {
+      display: block;
       margin: 0 auto;
-      margin-top: 40px;
-      height: 250px;
+      margin-top: 20px;
       font-family: $font-family-base;
 
-      &__year {
-
-        rect {
-          fill: white;
-        }
-
-        &:nth-child(odd) rect {
-          fill: var(--section-text);
-          transition: fill $color-transition-duration;
-          opacity: .1;
-        }
-
-        &__label {
-          fill: var(--section-primary);
-          transition: fill $color-transition-duration;
-        }
-      }
-
-      &__line {
-        stroke:var(--section-primary);
-        stroke-width:3px;
-        fill:transparent;
-        transition: stroke $color-transition-duration;
-      }
-
-      &__dot {
-        fill:var(--section-primary);
+      &__year-label {
         transition: fill $color-transition-duration;
+      }
+
+      &__month-label {
+        transition: fill $color-transition-duration;
+      }
+
+      &__cell {
+        transition: fill 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+          stroke: var(--section-primary);
+          stroke-width: 1px;
+        }
       }
     }
   }
