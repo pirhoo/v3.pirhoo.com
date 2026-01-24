@@ -3,7 +3,6 @@ const {
   map, maxBy, minBy, reduce, some,
 } = require('lodash');
 const fs = require('fs');
-const gh = require('gh-pages');
 const gulp = require('gulp');
 const loadPlugins = require('gulp-load-plugins');
 const path = require('path');
@@ -207,7 +206,3 @@ gulp.task('csv', gulp.series(
   'csv:sizes',
   'csv:colors',
 ));
-
-gulp.task('deploy', (cb) => {
-  gh.publish(path.join(process.cwd(), 'dist'), cb);
-});
