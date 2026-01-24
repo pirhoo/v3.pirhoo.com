@@ -37,7 +37,7 @@ export function useSection(elementRef = null) {
     updateColors()
 
     // Watch for theme changes
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver(mutations => {
       for (const mutation of mutations) {
         if (mutation.attributeName === 'data-theme') {
           updateColors()
