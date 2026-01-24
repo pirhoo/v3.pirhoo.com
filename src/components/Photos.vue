@@ -11,8 +11,8 @@
         </p>
       </div>
       <div class="photos__container">
-        <MasonryGrid :columns="{ default: 4, 600: 3, 500: 2, 200: 1 }" :gutter="25">
-          <MasonryGridItem
+        <masonry-grid :columns="{ default: 4, 600: 3, 500: 2, 200: 1 }" :gutter="25">
+          <masonry-grid-item
             v-for="photo in photos"
             :key="photo.id"
           >
@@ -24,10 +24,10 @@
               <div :style="{ paddingTop: photo.heightPercentage }"></div>
               <img v-lazy="photo.images.low_resolution.url" class="w-100 photos__container__item__photo" />
             </a>
-          </MasonryGridItem>
-        </MasonryGrid>
+          </masonry-grid-item>
+        </masonry-grid>
         <a class="photos__container__more btn btn-link-section btn-block btn-lg mt-2 mb-5 text-uppercase font-weight-bold" href="https://instagram.com/pirhoo" target="_blank">
-          <IconInstagram class="me-2" style="font-size: 2em" />
+          <icon-instagram class="me-2" style="font-size: 2em" />
           More on instagram
         </a>
       </div>
