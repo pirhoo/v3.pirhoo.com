@@ -35,7 +35,7 @@ const { theme, cycleTheme } = useTheme()
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
+  transition: transform 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
   &:hover {
