@@ -4,8 +4,8 @@ import { $, fs, path } from 'zx'
 import { parse } from 'csv-parse/sync'
 import { stringify } from 'csv-stringify/sync'
 import simpleGit from 'simple-git'
-import Vibrant from 'node-vibrant'
-import sizeOf from 'image-size'
+import { Vibrant } from 'node-vibrant/node'
+import { imageSize as sizeOf } from 'image-size'
 import slug from 'slug'
 import {
   compact, countBy, filter, groupBy, keys,
@@ -199,7 +199,8 @@ async function processSizes() {
   const projectsWithSizes = map(projects, site => {
     const imagePath = path.join(rootDir, 'src', site.thumbnail)
     if (fs.existsSync(imagePath)) {
-      const dimensions = sizeOf(imagePath)
+      const buffer = fs.readFileSync(imagePath)
+      const dimensions = sizeOf(buffer)
       return { ...site, width: dimensions.width, height: dimensions.height }
     }
     return site
