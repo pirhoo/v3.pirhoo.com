@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="photos__container">
-        <masonry-grid :columns="{ default: 4, 600: 3, 500: 2, 200: 1 }" :gutter="25">
+        <masonry-grid :columns="{ default: 4, 768: 3, 576: 2, 400: 1 }" :gutter="25">
           <masonry-grid-item
             v-for="photo in photos"
             :key="photo.id"
@@ -75,13 +75,13 @@ onMounted(async () => {
     &__container {
       display: block;
       margin: 0 auto;
-      padding: 25px calc(25px + 12.5px) 0;
+      padding: 25px calc(30px + 12.5px) 0;
       text-align: center;
       max-width: 800px;
 
       @media (max-width: 800px) {
-        margin: 0;
-        padding: 25px calc(20px + 12.5px) 0;
+        margin: 0 20px;
+        padding: 25px 12.5px 0;
       }
 
       &__item {
