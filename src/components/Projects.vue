@@ -41,7 +41,7 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { map, assign } from 'lodash'
 import { useSection } from '@/composables/useSection'
@@ -51,30 +51,16 @@ import GradientOnScroll from './GradientOnScroll.vue'
 // Import all thumbnails using Vite's glob import
 const thumbnails = import.meta.glob('@/assets/images/thumbnails/*.png', { eager: true, query: '?url', import: 'default' })
 
-export default {
-  name: 'Projects',
-  components: {
-    GradientOnScroll
-  },
-  setup() {
-    const sectionRef = ref(null)
-    useSection(sectionRef)
+const sectionRef = ref(null)
+useSection(sectionRef)
 
-    const projects = map(projectsData, project => assign({}, project, {
-      paddingTop: `${(project.height / project.width) * 100}%`
-    }))
+const projects = map(projectsData, project => assign({}, project, {
+  paddingTop: `${(project.height / project.width) * 100}%`
+}))
 
-    function getThumbnailUrl(thumbnail) {
-      const key = `/src/${thumbnail}`
-      return thumbnails[key] || ''
-    }
-
-    return {
-      sectionRef,
-      projects,
-      getThumbnailUrl
-    }
-  }
+function getThumbnailUrl(thumbnail) {
+  const key = `/src/${thumbnail}`
+  return thumbnails[key] || ''
 }
 </script>
 
