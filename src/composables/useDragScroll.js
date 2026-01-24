@@ -29,7 +29,7 @@ export function useDragScroll() {
 
     // If we dragged, prevent the click event on links
     if (hasMoved) {
-      const preventClick = (e) => {
+      const preventClick = e => {
         e.preventDefault()
         e.stopPropagation()
       }

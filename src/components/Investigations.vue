@@ -14,7 +14,12 @@
         </p>
       </div>
       <div class="flex-grow-1 d-flex flex-column justify-content-center investigations__list">
-        <div ref="listWrapperRef" class="investigations__list__wrapper d-flex flex-nowrap" style="cursor: grab" @mousedown="onDragStart">
+        <div
+          ref="listWrapperRef"
+          class="investigations__list__wrapper d-flex flex-nowrap"
+          style="cursor: grab"
+          @mousedown="onDragStart"
+        >
           <a
             v-for="(investigation, index) in investigations"
             :key="index"

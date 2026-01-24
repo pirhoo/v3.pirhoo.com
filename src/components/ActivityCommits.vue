@@ -1,6 +1,11 @@
 <template>
   <div ref="rootRef" class="activity__commits">
-    <div ref="wrapperRef" class="activity__commits__wrapper" style="cursor: grab" @mousedown="onDragStart">
+    <div
+      ref="wrapperRef"
+      class="activity__commits__wrapper"
+      style="cursor: grab"
+      @mousedown="onDragStart"
+    >
       <svg class="activity__commits__chart" />
     </div>
     <h3 class="activity__commits__lead mt-2">
@@ -315,7 +320,7 @@ onMounted(async () => {
   updateScrollbar()
 
   // Watch for theme changes
-  const observer = new MutationObserver((mutations) => {
+  const observer = new MutationObserver(mutations => {
     for (const mutation of mutations) {
       if (mutation.attributeName === 'data-theme') {
         updateChartColors()
