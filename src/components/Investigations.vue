@@ -14,7 +14,7 @@
         </p>
       </div>
       <div class="flex-grow-1 d-flex flex-column justify-content-center investigations__list">
-        <div class="investigations__list__wrapper d-flex flex-nowrap" style="cursor: grab" @mousedown="onDragStart">
+        <div ref="listWrapperRef" class="investigations__list__wrapper d-flex flex-nowrap" style="cursor: grab" @mousedown="onDragStart">
           <a
             v-for="(investigation, index) in investigations"
             :key="index"
@@ -24,8 +24,10 @@
             :style="investigationStyle(investigation)"
             class="investigations__list__item d-block d-flex flex-column-reverse justify-content-between"
             target="_blank"
+            draggable="false"
+            @dragstart.prevent
           >
-            <div class="investigations__list__item__image" :style="{ backgroundImage: `url(${investigationImage(investigation)})` }"></div>
+            <div class="investigations__list__item__image" :style="{ backgroundImage: `url(${investigationImage(investigation)})` }" draggable="false"></div>
             <h4 class="investigations__list__item__heading">
               {{ investigation.title }}
             </h4>
@@ -38,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import investigationsData from '@/assets/json/investigations.json'
 import { useSection } from '@/composables/useSection'
 import { useDragScroll } from '@/composables/useDragScroll'
@@ -48,11 +50,20 @@ import GradientOnScroll from './GradientOnScroll.vue'
 const investigationImages = import.meta.glob('@/assets/images/investigations/*', { eager: true, query: '?url', import: 'default' })
 
 const sectionRef = ref(null)
+const listWrapperRef = ref(null)
 
 useSection(sectionRef)
 const { onMouseDown: onDragStart } = useDragScroll()
 
-const investigations = investigationsData
+// Reverse order so newest investigations appear last (scroll to end by default)
+const investigations = [...investigationsData].reverse()
+
+onMounted(async () => {
+  await nextTick()
+  if (listWrapperRef.value) {
+    listWrapperRef.value.scrollLeft = listWrapperRef.value.scrollWidth
+  }
+})
 const currentYear = computed(() => new Date().getFullYear())
 
 function investigationStyle({ color, backgroundColor }) {
