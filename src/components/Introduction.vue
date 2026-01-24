@@ -32,18 +32,12 @@
               class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://bsky.app/profile/pirhoo.com"
             >
-              <fa
-                :icon="['fab', 'bluesky']"
-                class="introduction__social__item__icon section__footer__item__icon"
-              />
+              <IconBluesky class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo.com<br class="d-none d-md-inline" />
               on Bluesky
             </a>
             <a rel="me" href="https://mastodon.social/@pirhoo" class="introduction__social__item section__footer__item col-sm-6 col-md">
-              <fa
-                :icon="['fab', 'mastodon']"
-                class="introduction__social__item__icon section__footer__item__icon"
-              />
+              <IconMastodon class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo<br class="d-none d-md-inline" />
               on Mastodon
             </a>
@@ -51,10 +45,7 @@
               class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://github.com/pirhoo"
             >
-              <fa
-                :icon="['fab', 'github']"
-                class="introduction__social__item__icon section__footer__item__icon"
-              />
+              <IconGithub class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo<br class="d-none d-md-inline" />
               on Github
             </a>
@@ -62,10 +53,7 @@
               class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="https://keybase.io/pirhoo"
             >
-              <fa
-                icon="key"
-                class="introduction__social__item__icon section__footer__item__icon"
-              />
+              <IconKey class="introduction__social__item__icon section__footer__item__icon" />
               @pirhoo<br class="d-none d-md-inline" />
               on Keybase
             </a>
@@ -73,10 +61,7 @@
               class="introduction__social__item section__footer__item col-sm-6 col-md"
               href="mailto:hello@pirhoo.com"
             >
-              <fa
-                :icon="['far', 'envelope']"
-                class="introduction__social__item__icon section__footer__item__icon"
-              />
+              <IconEnvelope class="introduction__social__item__icon section__footer__item__icon" />
               Send me<br class="d-none d-md-inline" />
               an email
             </a>
@@ -91,6 +76,11 @@
 import { ref } from 'vue'
 import { useSection } from '@/composables/useSection'
 import GradientOnScroll from './GradientOnScroll.vue'
+import IconBluesky from '~icons/fa6-brands/bluesky'
+import IconMastodon from '~icons/fa6-brands/mastodon'
+import IconGithub from '~icons/fa6-brands/github'
+import IconKey from '~icons/fa6-solid/key'
+import IconEnvelope from '~icons/fa6-regular/envelope'
 
 const sectionRef = ref(null)
 useSection(sectionRef)
