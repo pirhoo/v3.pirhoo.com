@@ -14,7 +14,7 @@
         </p>
       </div>
       <div class="flex-grow-1 d-flex flex-column justify-content-center investigations__list">
-        <div class="investigations__list__wrapper d-flex flex-nowrap">
+        <div class="investigations__list__wrapper d-flex flex-nowrap" style="cursor: grab" @mousedown="onDragStart">
           <a
             v-for="(investigation, index) in investigations"
             :key="index"
@@ -41,13 +41,16 @@
 import { ref, computed } from 'vue'
 import investigationsData from '@/assets/json/investigations.json'
 import { useSection } from '@/composables/useSection'
+import { useDragScroll } from '@/composables/useDragScroll'
 import GradientOnScroll from './GradientOnScroll.vue'
 
 // Import all investigation images using Vite's glob import
 const investigationImages = import.meta.glob('@/assets/images/investigations/*', { eager: true, query: '?url', import: 'default' })
 
 const sectionRef = ref(null)
+
 useSection(sectionRef)
+const { onMouseDown: onDragStart } = useDragScroll()
 
 const investigations = investigationsData
 const currentYear = computed(() => new Date().getFullYear())
