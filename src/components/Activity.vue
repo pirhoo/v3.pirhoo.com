@@ -17,7 +17,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="activity__figures__item section__footer__item col-md">
-              <IconCode class="activity__figures__item__icon section__footer__item__icon" />
+              <icon-code class="activity__figures__item__icon section__footer__item__icon" />
               I authored <strong>{{ formatNumber(commits.commitsCount) }}</strong>
               <abbr title="A submission of my latest changes of a source code">
                 commits
@@ -26,13 +26,13 @@
               over <strong>{{ formatNumber(commits.repositoriesCount) }}</strong> projects
             </div>
             <div class="activity__figures__item section__footer__item col-md">
-              <IconGraduationCap class="activity__figures__item__icon section__footer__item__icon" />
+              <icon-graduation-cap class="activity__figures__item__icon section__footer__item__icon" />
               I gave ±<strong>{{ formatNumber(trainings.hoursCount) }}</strong>&nbsp;hours
               <br class="d-none d-md-inline" />of training in
               <strong>{{ formatNumber(trainings.countriesCount) }}</strong>&nbsp;countries
             </div>
             <div class="activity__figures__item section__footer__item col-md">
-              <IconTrophy class="activity__figures__item__icon section__footer__item__icon" />
+              <icon-trophy class="activity__figures__item__icon section__footer__item__icon" />
               <strong>{{ formatNumber(awards.awardsCount) }}</strong>&nbsp;prizes awarded
               <br class="d-none d-md-inline" />
               for <strong>{{ formatNumber(awards.projectsCount) }}</strong>&nbsp;projects I worked on
