@@ -87,20 +87,11 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { useSection } from '@/composables/useSection'
 import GradientOnScroll from './GradientOnScroll.vue'
 
-export default {
-  name: 'Introduction',
-  components: {
-    GradientOnScroll
-  },
-  setup() {
-    const sectionRef = ref(null)
-    useSection(sectionRef)
-    return { sectionRef }
-  }
-}
+const sectionRef = ref(null)
+useSection(sectionRef)
 </script>

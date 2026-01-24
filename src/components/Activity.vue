@@ -54,7 +54,7 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { useSection } from '@/composables/useSection'
 import ActivityCommits from './ActivityCommits.vue'
@@ -64,31 +64,14 @@ import { hoursCount, countriesCount, customersCount } from '../assets/json/train
 import { awardsCount, projectsCount } from '../assets/json/awards.json'
 import { commitsCount, repositoriesCount } from '../assets/json/commits.json'
 
-export default {
-  name: 'Activity',
-  components: {
-    ActivityCommits,
-    GradientOnScroll
-  },
-  setup() {
-    const sectionRef = ref(null)
-    useSection(sectionRef)
+const sectionRef = ref(null)
+useSection(sectionRef)
 
-    const commits = { commitsCount, repositoriesCount }
-    const awards = { awardsCount, countriesCount, projectsCount }
-    const trainings = { hoursCount, countriesCount, customersCount }
+const commits = { commitsCount, repositoriesCount }
+const awards = { awardsCount, countriesCount, projectsCount }
+const trainings = { hoursCount, countriesCount, customersCount }
 
-    function formatNumber(value) {
-      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    }
-
-    return {
-      sectionRef,
-      commits,
-      awards,
-      trainings,
-      formatNumber
-    }
-  }
+function formatNumber(value) {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 </script>
