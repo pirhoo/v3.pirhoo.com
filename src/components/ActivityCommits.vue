@@ -1,6 +1,6 @@
 <template>
   <div ref="rootRef" class="activity__commits">
-    <div ref="wrapperRef" class="activity__commits__wrapper">
+    <div ref="wrapperRef" class="activity__commits__wrapper" style="cursor: grab" @mousedown="onDragStart">
       <svg class="activity__commits__chart" />
     </div>
     <h3 class="activity__commits__lead mt-2">
@@ -16,6 +16,7 @@ import * as d3 from 'd3'
 import * as chroma from 'chroma-js'
 import commits from '@/assets/json/commits.json'
 import { useColors, colorRatio } from '@/composables/useColors'
+import { useDragScroll } from '@/composables/useDragScroll'
 
 const { colorScalePrimary } = useColors()
 const primaryColor = colorScalePrimary.value(colorRatio)
@@ -23,6 +24,8 @@ const primaryColor = colorScalePrimary.value(colorRatio)
 const rootRef = ref(null)
 const wrapperRef = ref(null)
 let tooltip = null
+
+const { onMouseDown: onDragStart } = useDragScroll()
 
 // Configuration
 const cellSize = 16
