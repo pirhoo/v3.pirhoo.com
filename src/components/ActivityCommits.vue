@@ -20,10 +20,10 @@ const wrapperRef = ref(null)
 let tooltip = null
 
 // Configuration
-const cellSize = 11
-const cellGap = 2
+const cellSize = 14
+const cellGap = 3
 const labelWidth = 30
-const yearLabelHeight = 15
+const yearLabelHeight = 18
 const padding = 5
 
 const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
