@@ -214,7 +214,7 @@ function drawChart() {
     .attr('class', 'activity__commits__chart__year-separator')
     .attr('d', d => getYearSeparatorPath(d))
     .attr('fill', 'none')
-    .attr('stroke', 'var(--section-text)')
+    .attr('stroke', '#000')
     .attr('stroke-width', 2)
     .attr('stroke-opacity', 0.4)
 
