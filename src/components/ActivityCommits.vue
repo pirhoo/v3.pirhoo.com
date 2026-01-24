@@ -167,18 +167,39 @@ function getTooltipContent(d) {
 function createTooltip() {
   tooltip = d3.select('body')
     .append('div')
-    .attr('class', 'd3-tip n')
+    .attr('class', 'd3-tip')
     .style('opacity', 0)
-    .style('position', 'absolute')
+    .style('position', 'fixed')
     .style('pointer-events', 'none')
+    .style('z-index', '9999')
+    .style('white-space', 'nowrap')
 }
 
 function showTooltip(event, d) {
+  tooltip.html(getTooltipContent(d)).style('opacity', 1)
+
+  // Need to get dimensions after making visible and setting content
+  const tooltipNode = tooltip.node()
+  const tooltipWidth = tooltipNode.offsetWidth
+  const tooltipHeight = tooltipNode.offsetHeight
+
+  // Calculate centered position above the cell
+  let left = event.clientX - (tooltipWidth / 2)
+  let top = event.clientY - tooltipHeight - 10
+
+  // Clamp to viewport bounds
+  const padding = 8
+  left = Math.max(padding, Math.min(window.innerWidth - tooltipWidth - padding, left))
+  top = Math.max(padding, top)
+
+  // If not enough space above, show below
+  if (top < padding) {
+    top = event.clientY + 15
+  }
+
   tooltip
-    .html(getTooltipContent(d))
-    .style('opacity', 1)
-    .style('left', `${event.pageX}px`)
-    .style('top', `${event.pageY - 40}px`)
+    .style('left', `${left}px`)
+    .style('top', `${top}px`)
 }
 
 function hideTooltip() {
