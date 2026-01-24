@@ -2,7 +2,7 @@
   <section class="photos section">
     <div class="wrapper">
       <div class="section__panel">
-        <gradient-on-scroll></gradient-on-scroll>
+        <gradient-on-scroll />
         <h2 aria-section="Photos" class="section__panel__lead">
           I like taking <strong>photos</strong>
         </h2>
@@ -12,7 +12,13 @@
       </div>
       <div class="photos__container">
         <masonry :gutter="25" :cols="{default: 4, 600: 3, 500: 2, 200: 1}">
-          <a v-for="photo in photos" :key="photo.id" class="photos__container__item d-block bg-light" :href="photo.link" target="_blank">
+          <a
+            v-for="photo in photos"
+            :key="photo.id"
+            class="photos__container__item d-block bg-light"
+            :href="photo.link"
+            target="_blank"
+          >
             <div :style="{ paddingTop: photo.heightPercentage }"></div>
             <img v-lazy="photo.images.low_resolution.url" class="w-100 photos__container__item__photo" />
           </a>
@@ -27,43 +33,43 @@
 </template>
 
 <script>
-import get from 'lodash/get';
-import axios from 'axios';
+import get from 'lodash/get'
+import axios from 'axios'
 
-import section from '@/mixins/section';
-import GradientOnScroll from './GradientOnScroll.vue';
+import section from '@/mixins/section'
+import GradientOnScroll from './GradientOnScroll.vue'
 
 export default {
-  name: 'photos',
-  mixins: [section],
+  name: 'Photos',
   components: {
-    GradientOnScroll,
+    GradientOnScroll
   },
+  mixins: [section],
   props: {
     src: {
       type: String,
-      default: '//api-pirhoo.herokuapp.com/photos',
-    },
+      default: '//api-pirhoo.herokuapp.com/photos'
+    }
   },
   data() {
     return {
-      photos: [],
-    };
+      photos: []
+    }
   },
   async mounted() {
-    this.photos = get(await axios.get(this.src), 'data.photos', []);
+    this.photos = get(await axios.get(this.src), 'data.photos', [])
     // Add height percentage
     this.photos.forEach((photo, i) => {
-      const { width, height } = photo.images.low_resolution;
-      this.photos[i].heightPercentage = `${(height / width) * 100}%`;
-    });
-  },
-};
+      const { width, height } = photo.images.low_resolution
+      this.photos[i].heightPercentage = `${(height / width) * 100}%`
+    })
+  }
+}
 </script>
 
 <style lang="scss">
   @import '@/utils/_settings.scss';
-  @import 'node_modules/bootstrap/scss/bootstrap';
+  @import 'bootstrap/scss/bootstrap';
 
   .photos {
 

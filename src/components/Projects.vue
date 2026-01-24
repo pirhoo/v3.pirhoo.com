@@ -2,7 +2,7 @@
   <section class="projects section">
     <div class="wrapper">
       <div class="section__panel">
-        <gradient-on-scroll></gradient-on-scroll>
+        <gradient-on-scroll />
         <h2 aria-section="Projects" class="section__panel__lead">
           Here’s what I’ve <strong>done</strong>
         </h2>
@@ -11,51 +11,67 @@
           Almost all my projects are Open Source and available on
           <a href="https://github.com/pirhoo?tab=activity" target="_blank">
             Github
-          </a>.</p>
-        </div>
-        <div class="projects__cascading">
-          <masonry :gutter="25" :cols="{default: 4, 600: 3, 500: 2, 250: 1}">
-            <div class="projects__cascading__item" v-for="(project, index) in projects"
-              :key="index"
-              :style="{ 'border-color': project.color }">
-              <a class="projects__cascading__item__wrapper bg-light" :href="project.url">
-                <div class="projects__cascading__item__wrapper__ghost">
-                  <div :style="{ 'padding-top': project.paddingTop }"></div>
-                </div>
-                <img class="projects__cascading__item__wrapper__thumbnail"
-                  v-lazy="require(`@/${project.thumbnail}`)" />
-                <div class="projects__cascading__item__wrapper__title">
-                  {{ project.title }}
-                </div>
-              </a>
-            </div>
-          </masonry>
-        </div>
+          </a>.
+        </p>
+      </div>
+      <div class="projects__cascading">
+        <masonry :gutter="25" :cols="{default: 4, 600: 3, 500: 2, 250: 1}">
+          <div
+            v-for="(project, index) in projects"
+            :key="index"
+            class="projects__cascading__item"
+            :style="{ 'border-color': project.color }"
+          >
+            <a class="projects__cascading__item__wrapper bg-light" :href="project.url">
+              <div class="projects__cascading__item__wrapper__ghost">
+                <div :style="{ 'padding-top': project.paddingTop }"></div>
+              </div>
+              <img
+                v-lazy="getThumbnailUrl(project.thumbnail)"
+                class="projects__cascading__item__wrapper__thumbnail"
+              />
+              <div class="projects__cascading__item__wrapper__title">
+                {{ project.title }}
+              </div>
+            </a>
+          </div>
+        </masonry>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import { map, assign } from 'lodash';
+import { map, assign } from 'lodash'
 
-import section from '@/mixins/section';
-import projects from '@/assets/json/projects.json';
-import GradientOnScroll from './GradientOnScroll.vue';
+import section from '@/mixins/section'
+import projects from '@/assets/json/projects.json'
+import GradientOnScroll from './GradientOnScroll.vue'
+
+// Import all thumbnails using Vite's glob import
+const thumbnails = import.meta.glob('@/assets/images/thumbnails/*.png', { eager: true, query: '?url', import: 'default' })
 
 export default {
   name: 'Projects',
-  mixins: [section],
   components: {
-    GradientOnScroll,
+    GradientOnScroll
   },
+  mixins: [section],
   data() {
     return {
       projects: map(projects, project => assign(project, {
-        paddingTop: `${(project.height / project.width) * 100}%`,
-      })),
-    };
+        paddingTop: `${(project.height / project.width) * 100}%`
+      }))
+    }
   },
-};
+  methods: {
+    getThumbnailUrl(thumbnail) {
+      // Convert path like 'assets/images/thumbnails/name.png' to the glob key
+      const key = `/src/${thumbnail}`
+      return thumbnails[key] || ''
+    }
+  }
+}
 </script>
 
 <style lang="scss">
