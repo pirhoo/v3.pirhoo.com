@@ -25,8 +25,9 @@ const wrapperRef = ref(null)
 let tooltip = null
 
 // Configuration
-const cellSize = 14
+const cellSize = 16
 const cellGap = 3
+const cellRadius = 3
 const labelWidth = 30
 const yearLabelHeight = 18
 const padding = 5
@@ -104,7 +105,7 @@ const yearBoundaries = computed(() => {
   return boundaries
 })
 
-// Generate path for year separators
+// Generate path for year separators with rounded corners
 function getYearSeparatorPath(boundary) {
   const { weekIndex, startDayOfWeek } = boundary
   const x = labelWidth + padding + (weekIndex * (cellSize + cellGap)) - (cellGap / 2)
@@ -112,14 +113,20 @@ function getYearSeparatorPath(boundary) {
   const bottomY = yearLabelHeight + padding + (7 * (cellSize + cellGap)) - (cellGap / 2)
   const stepX = x - (cellSize + cellGap)
   const stepY = topY + (startDayOfWeek * (cellSize + cellGap))
+  const r = cellRadius // corner radius
 
   if (startDayOfWeek === 0) {
     // Year starts on Sunday - simple vertical line
     return `M ${x} ${topY} L ${x} ${bottomY}`
   }
 
-  // Stepped path: down to the start day, step left, then down to bottom
-  return `M ${x} ${topY} L ${x} ${stepY} L ${stepX} ${stepY} L ${stepX} ${bottomY}`
+  // Stepped path with rounded corners using quadratic Bezier curves
+  return `M ${x} ${topY}
+          L ${x} ${stepY - r}
+          Q ${x} ${stepY} ${x - r} ${stepY}
+          L ${stepX + r} ${stepY}
+          Q ${stepX} ${stepY} ${stepX} ${stepY + r}
+          L ${stepX} ${bottomY}`
 }
 
 // Get all non-zero counts for quantile scale
@@ -244,8 +251,8 @@ function drawChart() {
     .attr('y', d => d.dayOfWeek * (cellSize + cellGap))
     .attr('width', cellSize)
     .attr('height', cellSize)
-    .attr('rx', 4)
-    .attr('ry', 4)
+    .attr('rx', cellRadius)
+    .attr('ry', cellRadius)
     .attr('fill', '#ebedf0')
     .on('mouseover', (event, d) => showTooltip(event, d))
     .on('mouseout', () => hideTooltip())
