@@ -93,13 +93,15 @@ function getThumbnailUrl(thumbnail) {
       &__item {
         padding: 15px;
         transition: .4s;
-        border:5px solid black;
+        border: 5px solid black;
+        border-radius: $border-radius-lg;
 
         &__wrapper {
           display: block;
           position: relative;
           overflow: hidden;
           text-decoration: none;
+          border-radius: $border-radius;
 
           img {
             display: block;

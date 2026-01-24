@@ -86,6 +86,8 @@ onMounted(async () => {
 
       &__item {
         position: relative;
+        border-radius: $border-radius;
+        overflow: hidden;
 
         &__photo {
           position: absolute;

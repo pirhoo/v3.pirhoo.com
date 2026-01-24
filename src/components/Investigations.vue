@@ -82,6 +82,8 @@ function investigationImage({ image }) {
         max-width: 330px;
         margin: 0 0 0 20px;
         position: relative;
+        border-radius: $border-radius-lg;
+        overflow: hidden;
 
         &:before {
           font-size: 0.9rem;
