@@ -79,13 +79,15 @@ function getThumbnailUrl(thumbnail) {
     &__cascading {
       position: relative;
       display: block;
-      margin:0 auto;
+      margin: 0 auto;
+      padding: 0 25px;
       text-align: center;
       max-width: 800px;
       overflow: hidden;
 
       @media (max-width: 800px) {
-        margin:0 20px;
+        margin: 0;
+        padding: 0 20px;
       }
 
       &__item {

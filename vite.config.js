@@ -9,7 +9,8 @@ export default defineConfig({
     Icons({ compiler: 'vue3' })
   ],
   server: {
-    port: 9009
+    port: 9009,
+    host: '0.0.0.0'
   },
   resolve: {
     alias: {

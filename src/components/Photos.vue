@@ -74,13 +74,14 @@ onMounted(async () => {
 
     &__container {
       display: block;
-      margin:0 auto;
+      margin: 0 auto;
+      padding: 25px 25px 0;
       text-align: center;
       max-width: 800px;
-      padding-top: 25px;
 
       @media (max-width: 800px) {
-        margin:0 20px;
+        margin: 0;
+        padding: 25px 20px 0;
       }
 
       &__item {
