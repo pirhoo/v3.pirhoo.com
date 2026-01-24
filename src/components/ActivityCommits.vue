@@ -5,14 +5,13 @@
     </div>
     <h3 class="activity__commits__lead mt-2">
       <abbr title="A submission of my latest changes of a source code">Commits</abbr>
-      by month
+      by day
     </h3>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { keys, range } from 'lodash'
 import * as d3 from 'd3'
 import commits from '@/assets/json/commits.json'
 
@@ -21,60 +20,80 @@ const wrapperRef = ref(null)
 let tooltip = null
 
 // Configuration
-const cellWidth = 40
-const cellHeight = 15
+const cellSize = 11
 const cellGap = 2
-const labelWidth = 35
-const labelHeight = 20
-const padding = 10
+const labelWidth = 30
+const yearLabelHeight = 15
+const padding = 5
 
-const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-const monthsFull = ['January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December']
+const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 const svg = computed(() => d3.select(rootRef.value).select('svg'))
 
-// Parse dates and find year range
-const parsedData = computed(() => {
-  const result = {}
-  for (const dateStr of keys(commits.monthsCount)) {
-    const [year, month] = dateStr.split('-').map(Number)
-    if (!result[year]) result[year] = {}
-    result[year][month - 1] = commits.monthsCount[dateStr]
+// Get date range from commits
+const dateRange = computed(() => {
+  const older = new Date(commits.olderCommit.timestamp * 1000)
+  const newer = new Date(commits.newerCommit.timestamp * 1000)
+
+  // Start from the beginning of the week containing the older commit
+  const start = new Date(older)
+  start.setDate(start.getDate() - start.getDay())
+  start.setHours(0, 0, 0, 0)
+
+  // End at the end of the week containing the newer commit
+  const end = new Date(newer)
+  end.setDate(end.getDate() + (6 - end.getDay()))
+  end.setHours(23, 59, 59, 999)
+
+  return { start, end }
+})
+
+// Generate all weeks
+const weeks = computed(() => {
+  const result = []
+  const current = new Date(dateRange.value.start)
+
+  while (current <= dateRange.value.end) {
+    const week = []
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(current)
+      const dateStr = formatDate(date)
+      week.push({
+        date,
+        dateStr,
+        count: commits.daysCount[dateStr] || 0,
+        dayOfWeek: i
+      })
+      current.setDate(current.getDate() + 1)
+    }
+    result.push(week)
   }
+
   return result
 })
 
-const years = computed(() => {
-  const allYears = keys(parsedData.value).map(Number)
-  const minYear = Math.min(...allYears)
-  const maxYear = Math.max(...allYears)
-  return range(minYear, maxYear + 1)
-})
+// Get year boundaries for labels
+const yearBoundaries = computed(() => {
+  const boundaries = []
+  let currentYear = null
 
-const grid = computed(() => {
-  return years.value.map(year => {
-    return range(12).map(month => {
-      const data = parsedData.value[year]?.[month]
-      return {
-        year,
-        month,
-        count: data?.count || 0,
-        repositories: data?.repositories || {}
-      }
-    })
+  weeks.value.forEach((week, weekIndex) => {
+    const firstDayOfWeek = week[0].date
+    const year = firstDayOfWeek.getFullYear()
+
+    if (year !== currentYear) {
+      boundaries.push({ year, weekIndex })
+      currentYear = year
+    }
   })
+
+  return boundaries
 })
 
 // Get all non-zero counts for quantile scale
 const allCounts = computed(() => {
-  const counts = []
-  for (const yearData of Object.values(parsedData.value)) {
-    for (const monthData of Object.values(yearData)) {
-      if (monthData.count > 0) counts.push(monthData.count)
-    }
-  }
-  return counts.sort((a, b) => a - b)
+  return Object.values(commits.daysCount).filter(v => v > 0).sort((a, b) => a - b)
 })
 
 const colorScale = computed(() => {
@@ -83,17 +102,25 @@ const colorScale = computed(() => {
     .range(['#9be9a8', '#40c463', '#30a14e', '#216e39'])
 })
 
-const width = computed(() => labelWidth + padding + (years.value.length * (cellWidth + cellGap)))
-const height = computed(() => labelHeight + padding + (12 * (cellHeight + cellGap)) + padding)
+const width = computed(() => labelWidth + padding + (weeks.value.length * (cellSize + cellGap)))
+const height = computed(() => yearLabelHeight + padding + (7 * (cellSize + cellGap)) + padding)
+
+function formatDate(date) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
+function formatDisplayDate(date) {
+  return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+}
 
 function getTooltipContent(d) {
-  const projectsCount = keys(d.repositories).length
   if (d.count === 0) {
-    return `No commits in ${monthsFull[d.month]} ${d.year}`
+    return `No commits on ${formatDisplayDate(d.date)}`
   }
-  return `${monthsFull[d.month]} ${d.year}:
-      <strong>${d.count} commits</strong><br />
-      on ${projectsCount} project${projectsCount > 1 ? 's' : ''}`
+  return `<strong>${d.count} commit${d.count > 1 ? 's' : ''}</strong> on ${formatDisplayDate(d.date)}`
 }
 
 function createTooltip() {
@@ -110,7 +137,7 @@ function showTooltip(event, d) {
     .html(getTooltipContent(d))
     .style('opacity', 1)
     .style('left', `${event.pageX}px`)
-    .style('top', `${event.pageY - 50}px`)
+    .style('top', `${event.pageY - 40}px`)
 }
 
 function hideTooltip() {
@@ -129,47 +156,47 @@ function drawChart() {
 
   // Draw year labels
   svg.value.selectAll('text.activity__commits__chart__year-label')
-    .data(years.value)
+    .data(yearBoundaries.value)
     .enter()
     .append('text')
     .attr('class', 'activity__commits__chart__year-label')
-    .text(y => y)
-    .attr('text-anchor', 'middle')
-    .attr('x', (_, i) => labelWidth + padding + (i * (cellWidth + cellGap)) + (cellWidth / 2))
-    .attr('y', labelHeight - 5)
+    .text(d => d.year)
+    .attr('x', d => labelWidth + padding + (d.weekIndex * (cellSize + cellGap)))
+    .attr('y', yearLabelHeight - 3)
     .style('font-size', '10px')
     .style('fill', 'var(--section-primary)')
 
-  // Draw month labels
-  svg.value.selectAll('text.activity__commits__chart__month-label')
-    .data(monthLabels)
+  // Draw day labels (only Mon, Wed, Fri for space)
+  const visibleDays = [1, 3, 5] // Mon, Wed, Fri
+  svg.value.selectAll('text.activity__commits__chart__day-label')
+    .data(visibleDays)
     .enter()
     .append('text')
-    .attr('class', 'activity__commits__chart__month-label')
-    .text(m => m)
+    .attr('class', 'activity__commits__chart__day-label')
+    .text(i => dayLabels[i])
     .attr('text-anchor', 'end')
-    .attr('x', labelWidth)
-    .attr('y', (_, i) => labelHeight + padding + (i * (cellHeight + cellGap)) + (cellHeight / 2) + 4)
-    .style('font-size', '10px')
+    .attr('x', labelWidth - 2)
+    .attr('y', i => yearLabelHeight + padding + (i * (cellSize + cellGap)) + cellSize - 2)
+    .style('font-size', '9px')
     .style('fill', 'var(--section-text)')
 
   // Draw cells
-  const yearGroups = svg.value.selectAll('g.activity__commits__chart__year')
-    .data(grid.value)
+  const weekGroups = svg.value.selectAll('g.activity__commits__chart__week')
+    .data(weeks.value)
     .enter()
     .append('g')
-    .attr('class', 'activity__commits__chart__year')
-    .attr('transform', (_, i) => `translate(${labelWidth + padding + (i * (cellWidth + cellGap))}, ${labelHeight + padding})`)
+    .attr('class', 'activity__commits__chart__week')
+    .attr('transform', (_, i) => `translate(${labelWidth + padding + (i * (cellSize + cellGap))}, ${yearLabelHeight + padding})`)
 
-  yearGroups.selectAll('rect.activity__commits__chart__cell')
+  weekGroups.selectAll('rect.activity__commits__chart__cell')
     .data(d => d)
     .enter()
     .append('rect')
     .attr('class', 'activity__commits__chart__cell')
     .attr('x', 0)
-    .attr('y', (_, i) => i * (cellHeight + cellGap))
-    .attr('width', cellWidth)
-    .attr('height', cellHeight)
+    .attr('y', d => d.dayOfWeek * (cellSize + cellGap))
+    .attr('width', cellSize)
+    .attr('height', cellSize)
     .attr('rx', 2)
     .attr('ry', 2)
     .attr('fill', '#ebedf0')
@@ -177,11 +204,10 @@ function drawChart() {
     .on('mouseout', () => hideTooltip())
     .transition()
     .duration(500)
-    .delay((d, i, nodes) => {
-      // Get parent group index for staggered animation by year
+    .delay((_, i, nodes) => {
       const parentData = d3.select(nodes[i].parentNode).datum()
-      const yearIndex = grid.value.indexOf(parentData)
-      return yearIndex * 50 + i * 20
+      const weekIndex = weeks.value.indexOf(parentData)
+      return weekIndex * 2
     })
     .attr('fill', d => getCellColor(d.count))
 }
@@ -242,7 +268,7 @@ onUnmounted(() => {
         transition: fill $color-transition-duration;
       }
 
-      &__month-label {
+      &__day-label {
         transition: fill $color-transition-duration;
       }
 
