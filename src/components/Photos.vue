@@ -85,7 +85,6 @@ onMounted(async () => {
       }
 
       &__item {
-        margin-bottom: 25px;
         position: relative;
 
         &__photo {
