@@ -5,19 +5,36 @@
 </template>
 
 <script>
-import Granim from 'granim';
-import { reduce, assign } from 'lodash';
+import Granim from 'granim'
+import { reduce, assign } from 'lodash'
 
-import Mousetrack from '@/utils/mousetrack';
-import colors from '@/mixins/colors';
+import Mousetrack from '@/utils/mousetrack'
+import colors from '@/mixins/colors'
 
 export default {
   name: 'GradientOnScroll',
   mixins: [colors],
   data() {
     return {
-      granim: null,
-    };
+      granim: null
+    }
+  },
+  computed: {
+    mousetrack() {
+      return new Mousetrack()
+    },
+    granimStates() {
+      return reduce(this.domains, (states, ratio) => assign(states, {
+        [this.ratioState(ratio)]: {
+          loop: true,
+          transitionSpeed: parseInt(this.scss.colorTransitionSpeed, 10),
+          gradients: [
+            [this.colorScalePrimary(ratio), this.colorScaleSecondary(ratio)],
+            [this.colorScaleSecondary(ratio), this.colorScalePrimary(ratio)]
+          ]
+        }
+      }), {})
+    }
   },
   mounted() {
     this.granim = new Granim({
@@ -27,44 +44,27 @@ export default {
       opacity: [1, 1],
       stateTransitionSpeed: parseInt(this.scss.colorTransitionDuration, 10),
       states: this.granimStates,
-      isPausedWhenNotInView: false,
-    });
+      isPausedWhenNotInView: false
+    })
 
     if (Mousetrack.isMobile) {
-      this.granim.pause();
+      this.granim.pause()
     } else {
       this.mousetrack.on('update.ratio', ({ top, left }) => {
-        this.granim.changeState(this.ratioState(top * left));
-      });
+        this.granim.changeState(this.ratioState(top * left))
+      })
     }
   },
-  destroyed() {
-    this.mousetrack.unbind();
-    this.granim.destroy();
+  unmounted() {
+    this.mousetrack.unbind()
+    this.granim.destroy()
   },
   methods: {
     ratioState(ratio) {
-      return `state-${this.noramlizedRatio(ratio)}`;
-    },
-  },
-  computed: {
-    mousetrack() {
-      return new Mousetrack();
-    },
-    granimStates() {
-      return reduce(this.domains, (states, ratio) => assign(states, {
-        [this.ratioState(ratio)]: {
-          loop: true,
-          transitionSpeed: parseInt(this.scss.colorTransitionSpeed, 10),
-          gradients: [
-            [this.colorScalePrimary(ratio), this.colorScaleSecondary(ratio)],
-            [this.colorScaleSecondary(ratio), this.colorScalePrimary(ratio)],
-          ],
-        },
-      }), {});
-    },
-  },
-};
+      return `state-${this.noramlizedRatio(ratio)}`
+    }
+  }
+}
 </script>
 
 <style lang="scss">

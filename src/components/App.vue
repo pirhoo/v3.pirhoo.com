@@ -1,32 +1,32 @@
 <template>
   <div class="app">
-    <introduction></introduction>
-    <investigations></investigations>
-    <activity></activity>
-    <projects></projects>
+    <introduction />
+    <investigations />
+    <activity />
+    <projects />
   </div>
 </template>
 
 <script>
-import Introduction from './Introduction.vue';
-import Activity from './Activity.vue';
-import Investigations from './Investigations.vue';
-import Projects from './Projects.vue';
+import Introduction from './Introduction.vue'
+import Activity from './Activity.vue'
+import Investigations from './Investigations.vue'
+import Projects from './Projects.vue'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     Introduction,
     Activity,
     Investigations,
-    Projects,
-  },
-};
+    Projects
+  }
+}
 </script>
 
 <style lang="scss">
   @import '@/utils/_settings.scss';
-  @import 'node_modules/bootstrap/scss/bootstrap';
+  @import 'bootstrap/scss/bootstrap';
 
   .section {
     display:block;
@@ -89,7 +89,6 @@ export default {
         color: var(--section-primary);
         transition: color $color-transition-duration;
       }
-
 
       @include media-breakpoint-down('sm') {
         margin:20px;
