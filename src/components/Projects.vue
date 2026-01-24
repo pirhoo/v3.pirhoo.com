@@ -15,7 +15,7 @@
         </p>
       </div>
       <div class="projects__cascading">
-        <masonry-grid :columns="{ default: 4, 600: 3, 500: 2, 250: 1 }" :gutter="25">
+        <masonry-grid :columns="{ default: 4, 768: 3, 576: 2, 400: 1 }" :gutter="25">
           <masonry-grid-item
             v-for="(project, index) in projects"
             :key="index"
@@ -80,14 +80,14 @@ function getThumbnailUrl(thumbnail) {
       position: relative;
       display: block;
       margin: 0 auto;
-      padding: 0 calc(25px + 12.5px);
+      padding: 0;
       text-align: center;
       max-width: 800px;
       overflow: hidden;
 
       @media (max-width: 800px) {
-        margin: 0;
-        padding: 0 calc(20px + 12.5px);
+        margin: 0 20px;
+        padding: 0 12.5px;
       }
 
       &__item {
