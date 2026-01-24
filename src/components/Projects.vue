@@ -80,7 +80,7 @@ function getThumbnailUrl(thumbnail) {
       position: relative;
       display: block;
       margin: 0 auto;
-      padding: 0;
+      padding: 0 0 $spacer-xl;
       text-align: center;
       max-width: 800px;
       overflow: hidden;
