@@ -14,7 +14,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'vue3-masonry-css': fileURLToPath(new URL('./node_modules/vue3-masonry-css/dist/vue3-masonry.es.js', import.meta.url))
     }
   }
 })
