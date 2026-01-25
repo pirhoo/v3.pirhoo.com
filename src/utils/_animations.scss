@@ -2,10 +2,114 @@
 
 @include keyframes(fadein) {
   0% {
-    opacity:0;
+    opacity: 0;
   }
 
   100% {
-    opacity:1;
+    opacity: 1;
+  }
+}
+
+@include keyframes(slideUp) {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include keyframes(slideDown) {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include keyframes(slideInLeft) {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@include keyframes(slideInRight) {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@include keyframes(scaleIn) {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@include keyframes(pulse) {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// Animation utility classes
+.animate-fadein {
+  @include animation(fadein 0.6s ease forwards);
+}
+
+.animate-slideup {
+  @include animation(slideUp 0.6s ease forwards);
+}
+
+.animate-slidedown {
+  @include animation(slideDown 0.6s ease forwards);
+}
+
+.animate-slideinleft {
+  @include animation(slideInLeft 0.6s ease forwards);
+}
+
+.animate-slideinright {
+  @include animation(slideInRight 0.6s ease forwards);
+}
+
+.animate-scalein {
+  @include animation(scaleIn 0.5s ease forwards);
+}
+
+// Staggered animation helper
+.stagger-children {
+  > * {
+    opacity: 0;
+    @include animation(slideUp 0.5s ease forwards);
+    @include animation-delay-loop(1, 12, 50ms);
   }
 }
