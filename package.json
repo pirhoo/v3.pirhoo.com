@@ -12,6 +12,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.7.9",
     "bootstrap": "5.3.8",
     "chroma-js": "^3.1.2",
