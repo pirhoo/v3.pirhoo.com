@@ -1,0 +1,33 @@
+/* Magnat Display - for headings */
+@font-face {
+  font-family: 'Magnat Display';
+  src: url('MagnatDisplay-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Magnat Display';
+  src: url('MagnatDisplay-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Magnat Text - for body copy */
+@font-face {
+  font-family: 'Magnat Text';
+  src: url('MagnatText-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Magnat Text';
+  src: url('MagnatText-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
