@@ -1,0 +1,203 @@
+// Decorative elements for editorial visual rhythm
+
+// Grid overlay (visible at desktop, hamzatariq style)
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: block;
+  }
+
+  &__lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    gap: calc((100% - 1200px) / 12);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $grid-gutter;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border-dashed);
+      opacity: 0.3;
+    }
+
+    &::before { left: $grid-gutter; }
+    &::after { right: $grid-gutter; }
+  }
+}
+
+// Dashed horizontal divider
+.divider {
+  width: 100%;
+  height: 1px;
+  border: none;
+  border-top: 1px dashed var(--border-dashed);
+  margin: 0;
+
+  &--short {
+    width: 60px;
+  }
+
+  &--medium {
+    width: 120px;
+  }
+
+  &--centered {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &--accent {
+    border-color: var(--section-primary);
+    opacity: 0.5;
+  }
+}
+
+// Dashed vertical line
+.divider-v {
+  width: 1px;
+  height: 100%;
+  border: none;
+  border-left: 1px dashed var(--border-dashed);
+
+  &--short { height: 40px; }
+  &--medium { height: 80px; }
+  &--tall { height: 120px; }
+}
+
+// Section border (top border for sections)
+.section-border {
+  border-top: 1px dashed var(--border-dashed);
+}
+
+// Navigation dot
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-dashed);
+  transition: all 0.3s ease;
+
+  &--active {
+    background: var(--section-primary, currentColor);
+    box-shadow: 0 0 12px var(--section-primary, currentColor);
+  }
+
+  &--lg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+// Decorative brackets
+.bracket {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1px dashed var(--border-dashed);
+  }
+
+  &--tl::before {
+    top: -6px;
+    left: -6px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &--br::after {
+    bottom: -6px;
+    right: -6px;
+    border-left: none;
+    border-top: none;
+  }
+}
+
+// Index number (like hamzatariq project numbering)
+.index-number {
+  font-family: $font-family-mono;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+
+  &::before {
+    content: '(';
+  }
+
+  &::after {
+    content: ')';
+  }
+}
+
+// Glow effect
+.glow {
+  box-shadow: 0 0 30px var(--section-primary, rgba(255, 255, 255, 0.1));
+
+  &--subtle {
+    box-shadow: 0 0 60px var(--accent-glow);
+  }
+
+  &--text {
+    text-shadow: 0 0 30px var(--section-primary, currentColor);
+  }
+}
+
+// Fade edges
+.fade-edge {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    background: linear-gradient(to right, transparent, var(--body-bg));
+    pointer-events: none;
+  }
+
+  &--left::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    background: linear-gradient(to left, transparent, var(--body-bg));
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Card with colored border accent
+.card-accent {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--card-accent-color, var(--section-primary));
+  }
+}
