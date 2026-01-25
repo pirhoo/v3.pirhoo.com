@@ -2,10 +2,20 @@ import { computed } from 'vue'
 import { bisector } from 'd3'
 import * as chroma from 'chroma-js'
 import {
-  range, first, last, reduce, map, shuffle, identity, filter
+  range, first, reduce, map, shuffle, identity, filter
 } from 'lodash'
 import gradients from '@/assets/json/gradients.json'
 import scss from '@/utils/variables.js'
+
+/**
+ * Color scale management for gradient effects.
+ *
+ * Loads gradient color sets from JSON, filters out garish colors, and provides
+ * interpolation functions for smooth color transitions based on scroll position
+ * or other ratios.
+ *
+ * @module useColors
+ */
 
 // Filter out garish colors (yellow, orange - high saturation warm hues)
 function isGarishColor(hex) {
@@ -25,6 +35,21 @@ export const gradientsSlice = shuffle(soberGradients).slice(0, 16)
 // Random ratio set once on page load, shared across components
 export const colorRatio = Math.random()
 
+/**
+ * Access color scales and gradient utilities.
+ *
+ * @returns {Object} Color utilities and scales
+ * @returns {Object} returns.scss - SCSS variables exported to JS
+ * @returns {import('vue').ComputedRef<Array<Array<string>>>} returns.gradientColors - Nested array of gradient color sets
+ * @returns {import('vue').ComputedRef<Array<number>>} returns.domains - Domain values for color scale interpolation
+ * @returns {import('vue').ComputedRef<Function>} returns.colorScalePrimary - Function(ratio) returning hex color
+ * @returns {import('vue').ComputedRef<Function>} returns.colorScaleText - Function(ratio) returning text-appropriate color
+ * @returns {Function} returns.normalizedRatio - Snap ratio to nearest domain boundary
+ *
+ * @example
+ * const { colorScalePrimary, normalizedRatio } = useColors()
+ * const color = colorScalePrimary.value(0.5) // Get color at midpoint
+ */
 export function useColors() {
   const gradientColors = computed(() => {
     return reduce(gradientsSlice, (all, gradient) => all.concat([gradient.colors]), [])
@@ -37,11 +62,6 @@ export function useColors() {
 
   const colorScalePrimary = computed(() => {
     const scale = chroma.scale(map(gradientColors.value, first))
-    return ratio => scale(ratio).hex()
-  })
-
-  const colorScaleSecondary = computed(() => {
-    const scale = chroma.scale(map(gradientColors.value, last))
     return ratio => scale(ratio).hex()
   })
 
@@ -59,7 +79,6 @@ export function useColors() {
     gradientColors,
     domains,
     colorScalePrimary,
-    colorScaleSecondary,
     colorScaleText,
     normalizedRatio
   }

@@ -1,20 +1,66 @@
-import { ref, computed, onMounted, isRef, unref } from 'vue'
+import { computed, onMounted, isRef, unref } from 'vue'
 import * as chroma from 'chroma-js'
-import { useColors, colorRatio } from './useColors'
 
-function isDarkMode() {
-  return document.documentElement.getAttribute('data-theme') === 'dark'
+/**
+ * Section color management for page sections.
+ *
+ * Generates random pastel colors at page load and provides reactive color
+ * properties for each section. Colors are automatically applied as CSS
+ * custom properties on the target element.
+ *
+ * @module useSection
+ */
+
+// Generate 4 distinct pastel colors on page load
+function generatePastelColors() {
+  // Start with a random hue, then space the others evenly
+  const startHue = Math.random() * 360
+  const hueStep = 360 / 4  // 90 degrees apart
+  const colors = []
+
+  for (let i = 0; i < 4; i++) {
+    const hue = (startHue + i * hueStep + (Math.random() - 0.5) * 30) % 360  // Add some variation
+    const saturation = 0.45 + Math.random() * 0.2   // 45-65% for pastel
+    const lightness = 0.65 + Math.random() * 0.1    // 65-75% for pastel
+
+    colors.push(chroma.hsl(hue, saturation, lightness).hex())
+  }
+
+  return colors
 }
 
-export function useSection(elementRef = null) {
-  const { colorScalePrimary, colorScaleSecondary, colorScaleText, normalizedRatio, scss, domains, gradientColors } = useColors()
+// Generate section colors once on module load
+const colors = generatePastelColors()
+export const sectionColors = {
+  introduction: colors[0],
+  investigations: colors[1],
+  activity: colors[2],
+  projects: colors[3]
+}
 
-  // Use shared color ratio set once on page load
-  const ratio = ref(normalizedRatio(colorRatio))
+/**
+ * Set up section-specific colors on an element.
+ *
+ * Applies --section-primary and --section-primary-contrast CSS variables
+ * to the target element based on the section's assigned color. Automatically
+ * updates when theme changes.
+ *
+ * @param {import('vue').Ref<HTMLElement>|HTMLElement|null} [elementRef=null] - Target element ref
+ * @param {string|null} [sectionId=null] - Section ID ('introduction', 'investigations', etc.)
+ * @returns {Object} Color properties and update function
+ * @returns {import('vue').ComputedRef<string>} returns.primaryColor - Section's primary color
+ * @returns {import('vue').ComputedRef<string>} returns.primaryContrastColor - Contrasting text color
+ * @returns {Function} returns.updateColors - Manually update CSS variables
+ *
+ * @example
+ * const sectionRef = ref(null)
+ * const { primaryColor, primaryContrastColor } = useSection(sectionRef, 'introduction')
+ */
+export function useSection(elementRef = null, sectionId = null) {
+  const primaryColor = computed(() => {
+    return sectionId ? sectionColors[sectionId] : '#666'
+  })
 
-  const textColor = computed(() => colorScaleText.value(ratio.value))
-  const primaryColor = computed(() => colorScalePrimary.value(ratio.value))
-  const secondaryColor = computed(() => colorScaleSecondary.value(ratio.value))
   const primaryContrastColor = computed(() => {
     return chroma.contrast(primaryColor.value, '#fff') < 4.5 ? '#000' : '#fff'
   })
@@ -22,14 +68,8 @@ export function useSection(elementRef = null) {
   function updateColors() {
     const el = isRef(elementRef) ? unref(elementRef) : elementRef
     if (el) {
-      // In dark mode, use white text; in light mode, use computed text color
-      const effectiveTextColor = isDarkMode() ? '#fff' : textColor.value
-      // In dark mode, use lighter color for links; in light mode, use primary
-      const effectiveLinkColor = isDarkMode() ? secondaryColor.value : primaryColor.value
-      el.style.setProperty('--section-text', effectiveTextColor)
       el.style.setProperty('--section-primary', primaryColor.value)
-      el.style.setProperty('--section-secondary', secondaryColor.value)
-      el.style.setProperty('--section-link-color', effectiveLinkColor)
+      el.style.setProperty('--section-primary-contrast', primaryContrastColor.value)
     }
   }
 
@@ -39,7 +79,7 @@ export function useSection(elementRef = null) {
     // Watch for theme changes
     const observer = new MutationObserver(mutations => {
       for (const mutation of mutations) {
-        if (mutation.attributeName === 'data-theme') {
+        if (mutation.attributeName === 'data-bs-theme') {
           updateColors()
         }
       }
@@ -48,18 +88,8 @@ export function useSection(elementRef = null) {
   })
 
   return {
-    ratio,
-    textColor,
     primaryColor,
-    secondaryColor,
     primaryContrastColor,
-    updateColors,
-    scss,
-    domains,
-    gradientColors,
-    colorScalePrimary,
-    colorScaleSecondary,
-    colorScaleText,
-    normalizedRatio
+    updateColors
   }
 }

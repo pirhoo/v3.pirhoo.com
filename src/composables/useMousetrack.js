@@ -3,6 +3,15 @@ import * as d3 from 'd3'
 import { uniqueId } from 'lodash'
 import mitt from 'mitt'
 
+/**
+ * Mouse position tracking with event bus.
+ *
+ * Tracks mouse movement within a container and emits position updates
+ * via an event bus. Automatically disabled on mobile devices.
+ *
+ * @module useMousetrack
+ */
+
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
 function getClientDimensions() {
@@ -28,6 +37,28 @@ function getValuesRatio(event) {
   }
 }
 
+/**
+ * Set up mouse tracking on a container element.
+ *
+ * @param {Window|HTMLElement} [container=window] - Container to track mouse within
+ * @returns {Object} Mouse tracking utilities
+ * @returns {boolean} returns.isMobile - Whether device is mobile (tracking disabled)
+ * @returns {import('vue').Ref<boolean>} returns.isActive - Whether tracking is currently active
+ * @returns {Function} returns.bind - Start tracking mouse movement
+ * @returns {Function} returns.unbind - Stop tracking mouse movement
+ * @returns {Function} returns.on - Subscribe to events ('update', 'update.ratio')
+ * @returns {Function} returns.getClientDimensions - Get viewport dimensions
+ * @returns {Function} returns.getValues - Get absolute mouse position from event
+ * @returns {Function} returns.getValuesRatio - Get mouse position as 0-1 ratio from event
+ *
+ * @example
+ * const { on, isActive } = useMousetrack()
+ *
+ * on('update.ratio', ({ top, left }) => {
+ *   // top and left are 0-1 ratios
+ *   console.log(`Mouse at ${left * 100}% horizontal`)
+ * })
+ */
 export function useMousetrack(container = window) {
   const bus = mitt()
   const eventId = `mousemove.mousetrack-${uniqueId()}`
