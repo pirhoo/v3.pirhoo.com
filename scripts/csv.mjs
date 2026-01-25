@@ -175,7 +175,8 @@ async function processProjects() {
 
   const projects = map(data, site => ({
     ...site,
-    thumbnail: site.thumbnail || toThumbnailPath(site.url)
+    thumbnail: site.thumbnail || toThumbnailPath(site.url),
+    featured: site.featured?.toUpperCase() === 'TRUE'
   }))
 
   fs.writeFileSync(
