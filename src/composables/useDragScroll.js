@@ -1,5 +1,21 @@
 import { ref } from 'vue'
 
+/**
+ * Drag-to-scroll functionality for horizontal scroll containers.
+ *
+ * Enables click-and-drag scrolling on a container element, with automatic
+ * cursor changes and click prevention after drag gestures.
+ *
+ * @returns {Object} Drag scroll state and handlers
+ * @returns {import('vue').Ref<boolean>} returns.isDragging - Whether drag is in progress
+ * @returns {Function} returns.onMouseDown - Attach to container's @mousedown event
+ *
+ * @example
+ * const { isDragging, onMouseDown } = useDragScroll()
+ *
+ * // In template:
+ * // <div class="scroll-container" @mousedown="onMouseDown" :class="{ dragging: isDragging }">
+ */
 export function useDragScroll() {
   const isDragging = ref(false)
   let startX = 0
