@@ -2,28 +2,43 @@
   <a
     :href="project.url"
     class="archive-item"
-    :style="{ '--item-color': project.color, '--animation-delay': `${index * 20}ms` }"
+    :style="{ '--item-color': project.adjustedColor || project.color, '--animation-delay': `${index * 20}ms` }"
+    target="_blank"
   >
-    <div class="archive-item__image">
-      <img
-        v-if="project.thumbnail"
-        v-lazy="thumbnailUrl"
-        :alt="project.title"
-      />
+    <div class="archive-item__header">
+      <div class="archive-item__image">
+        <img
+          v-if="project.thumbnail"
+          v-lazy="thumbnailUrl"
+          :alt="project.title"
+        />
+      </div>
+      <div class="archive-item__content">
+        <span class="archive-item__year text-tiny-display">{{ project.year }}</span>
+        <span class="archive-item__title">{{ project.title }}</span>
+      </div>
     </div>
-    <div class="archive-item__content">
-      <span class="archive-item__year text-tiny-display">{{ project.year }}</span>
-      <span class="archive-item__title">{{ project.title }}</span>
-    </div>
+    <span class="archive-item__button">
+      {{ buttonLabel }}
+      <component :is="buttonIcon" />
+    </span>
   </a>
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+import IconArrowOut from '~icons/ph/arrow-square-out'
+import IconArchive from '~icons/ph/archive'
+
+const props = defineProps({
   project: { type: Object, required: true },
   thumbnailUrl: { type: String, required: true },
   index: { type: Number, required: true }
 })
+
+const isArchive = computed(() => props.project.url?.includes('web.archive.org'))
+const buttonLabel = computed(() => isArchive.value ? 'Archive' : 'Visit')
+const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
 </script>
 
 <style lang="scss">
@@ -31,6 +46,7 @@ defineProps({
 
 .archive-item {
   display: flex;
+  flex-direction: column;
   gap: $space-3;
   padding: $space-3;
   background: var(--card-bg);
@@ -50,6 +66,11 @@ defineProps({
     .archive-item__title {
       color: var(--body-color);
     }
+  }
+
+  &__header {
+    display: flex;
+    gap: $space-3;
   }
 
   &__image {
@@ -97,6 +118,29 @@ defineProps({
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    margin-left: 48px + $space-3;
+    padding: $space-1 + 2 $space-3;
+    font-family: $font-family-mono;
+    font-size: 0.75rem;
+    color: var(--item-color, var(--text-muted));
+    border: 1px solid var(--item-color, var(--border-color));
+    border-radius: $space-1;
+    transition: all 0.2s ease;
+
+    svg {
+      font-size: 0.875rem;
+    }
+  }
+
+  &:hover &__button {
+    background: var(--item-color);
+    color: var(--body-bg);
   }
 }
 

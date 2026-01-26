@@ -30,8 +30,12 @@
 import { ref, computed } from 'vue'
 import { filter } from 'lodash'
 import projectsData from '@/assets/json/projects.json'
+import { useTheme } from '@/composables/useTheme'
+import { getContrastColor } from '@/composables/useContrastColor'
 import LayoutSectionGrid from '@/components/Layout/SectionGrid.vue'
 import SectionProjectsArchiveItem from './Archive/Item.vue'
+
+const { theme } = useTheme()
 
 const thumbnails = import.meta.glob('@/assets/images/thumbnails/*.png', {
   eager: true,
@@ -40,7 +44,12 @@ const thumbnails = import.meta.glob('@/assets/images/thumbnails/*.png', {
 })
 
 const isExpanded = ref(false)
-const archivedProjects = computed(() => filter(projectsData, p => !p.featured))
+const archivedProjects = computed(() => {
+  return filter(projectsData, p => !p.featured).map(project => ({
+    ...project,
+    adjustedColor: getContrastColor(project.color, theme.value)
+  }))
+})
 
 function getThumbnailUrl(thumbnail) {
   const key = `/src/${thumbnail}`
