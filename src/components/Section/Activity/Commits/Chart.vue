@@ -26,7 +26,11 @@ import { CELL_SIZE, CELL_GAP, LABEL_WIDTH, PADDING } from './config.js'
 
 const rootRef = ref(null)
 const scrollLeft = ref(0)
+const navOffset = ref(0)
 let scrollContainer = null
+
+const NAV_WIDTH = 48
+const NAV_BREAKPOINT = 1100
 
 const { showTooltip, hideTooltip } = useD3Tooltip()
 const {
@@ -63,9 +67,12 @@ function getYearLabelStyle(boundary, index) {
   // Calculate where this label should be positioned
   let x = originalX
 
-  // If scrolled past the original position, stick to the left (scroll position)
-  if (scrollLeft.value > originalX) {
-    x = scrollLeft.value
+  // Account for nav offset when sticking
+  const stickyPosition = scrollLeft.value + navOffset.value
+
+  // If scrolled past the original position, stick to the left (scroll position + nav offset)
+  if (stickyPosition > originalX) {
+    x = stickyPosition
   }
 
   // But don't overlap with the next year label - stop before it
@@ -81,6 +88,10 @@ function updateScrollPosition() {
   if (scrollContainer) {
     scrollLeft.value = scrollContainer.scrollLeft
   }
+}
+
+function updateNavOffset() {
+  navOffset.value = window.innerWidth > NAV_BREAKPOINT ? NAV_WIDTH : 0
 }
 
 function getTooltipContent(d) {
@@ -121,6 +132,9 @@ onMounted(() => {
     scrollContainer.addEventListener('scroll', updateScrollPosition, { passive: true })
   }
 
+  window.addEventListener('resize', updateNavOffset, { passive: true })
+  updateNavOffset()
+
   // Use multiple rAF calls to ensure layout is complete
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
@@ -143,6 +157,7 @@ onUnmounted(() => {
   if (scrollContainer) {
     scrollContainer.removeEventListener('scroll', updateScrollPosition)
   }
+  window.removeEventListener('resize', updateNavOffset)
 })
 </script>
 
