@@ -1,12 +1,15 @@
 <template>
   <div ref="rootRef" class="activity-commits">
-    <span
-      ref="yearLabelRef"
-      class="activity-commits__sticky-year"
-      :style="{ transform: `translateX(${scrollOffset}px)` }"
-    >
-      {{ visibleYear }}
-    </span>
+    <div class="activity-commits__years">
+      <span
+        v-for="(boundary, index) in yearBoundaries"
+        :key="boundary.year"
+        class="activity-commits__year-label"
+        :style="getYearLabelStyle(boundary, index)"
+      >
+        {{ boundary.year }}
+      </span>
+    </div>
     <div class="activity-commits__wrapper">
       <svg class="activity-commits__svg" />
     </div>
@@ -22,9 +25,7 @@ import { useChartDrawing } from '@/composables/useChartDrawing'
 import { CELL_SIZE, CELL_GAP, LABEL_WIDTH, PADDING } from './config.js'
 
 const rootRef = ref(null)
-const yearLabelRef = ref(null)
-const visibleYear = ref('')
-const scrollOffset = ref(0)
+const scrollLeft = ref(0)
 let scrollContainer = null
 
 const { showTooltip, hideTooltip } = useD3Tooltip()
@@ -50,23 +51,35 @@ const {
   updateColors
 } = useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, getCellIntensity, getYearSeparatorPath })
 
-function getYearAtScrollPosition(scrollLeft) {
-  // Find which year is visible at the current scroll position
-  for (let i = yearBoundaries.value.length - 1; i >= 0; i--) {
-    const boundary = yearBoundaries.value[i]
-    const yearX = LABEL_WIDTH + PADDING + (boundary.weekIndex * (CELL_SIZE + CELL_GAP))
-    if (scrollLeft >= yearX - LABEL_WIDTH) {
-      return boundary.year
-    }
-  }
-  return yearBoundaries.value[0]?.year || ''
+function getYearLabelX(weekIndex) {
+  return LABEL_WIDTH + PADDING + (weekIndex * (CELL_SIZE + CELL_GAP))
 }
 
-function updateVisibleYear() {
+function getYearLabelStyle(boundary, index) {
+  const originalX = getYearLabelX(boundary.weekIndex)
+  const nextBoundary = yearBoundaries.value[index + 1]
+  const nextX = nextBoundary ? getYearLabelX(nextBoundary.weekIndex) : Infinity
+
+  // Calculate where this label should be positioned
+  let x = originalX
+
+  // If scrolled past the original position, stick to the left (scroll position)
+  if (scrollLeft.value > originalX) {
+    x = scrollLeft.value
+  }
+
+  // But don't overlap with the next year label - stop before it
+  const labelWidth = 40 // approximate width of year label
+  if (x + labelWidth > nextX) {
+    x = nextX - labelWidth
+  }
+
+  return { transform: `translateX(${x}px)` }
+}
+
+function updateScrollPosition() {
   if (scrollContainer) {
-    const scrollLeft = scrollContainer.scrollLeft
-    scrollOffset.value = scrollLeft
-    visibleYear.value = getYearAtScrollPosition(scrollLeft)
+    scrollLeft.value = scrollContainer.scrollLeft
   }
 }
 
@@ -105,14 +118,14 @@ onMounted(() => {
 
   scrollContainer = rootRef.value?.closest('.activity__commits__chart')
   if (scrollContainer) {
-    scrollContainer.addEventListener('scroll', updateVisibleYear, { passive: true })
+    scrollContainer.addEventListener('scroll', updateScrollPosition, { passive: true })
   }
 
   // Use multiple rAF calls to ensure layout is complete
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       scrollToEnd()
-      updateVisibleYear()
+      updateScrollPosition()
     })
   })
 
@@ -128,7 +141,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (scrollContainer) {
-    scrollContainer.removeEventListener('scroll', updateVisibleYear)
+    scrollContainer.removeEventListener('scroll', updateScrollPosition)
   }
 })
 </script>
@@ -143,21 +156,25 @@ onUnmounted(() => {
   width: 100%;
   max-width: 100%;
 
-  &__sticky-year {
+  &__years {
     position: absolute;
     left: 0;
     top: 0;
-    display: block;
     height: 18px;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &__year-label {
+    position: absolute;
+    left: 0;
+    top: 0;
     font-size: 10px;
     font-family: $font-family-mono;
     color: var(--section-primary);
     transition: color $color-transition-duration;
     white-space: nowrap;
-    z-index: 1;
-    background: linear-gradient(to right, var(--body-bg) 80%, transparent);
-    padding-right: 20px;
-    width: fit-content;
   }
 
   &__wrapper {
