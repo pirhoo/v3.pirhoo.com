@@ -7,6 +7,7 @@
       <section-introduction />
       <section-investigations />
       <section-activity />
+      <section-oss />
       <section-projects />
     </main>
     <layout-footer />
@@ -17,6 +18,7 @@
 import SectionIntroduction from '@/components/Section/Introduction.vue'
 import SectionInvestigations from '@/components/Section/Investigations.vue'
 import SectionActivity from '@/components/Section/Activity.vue'
+import SectionOss from '@/components/Section/Oss.vue'
 import SectionProjects from '@/components/Section/Projects.vue'
 import LayoutSectionNav from '@/components/Layout/SectionNav.vue'
 import LayoutMobileNav from '@/components/Layout/MobileNav.vue'
