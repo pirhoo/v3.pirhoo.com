@@ -124,7 +124,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
     display: inline-flex;
     align-items: center;
     gap: $space-1;
-    margin-left: 48px + $space-3;
+    margin-left: calc(48px + #{$space-3});
     padding: $space-1 + 2 $space-3;
     font-family: $font-family-mono;
     font-size: 0.75rem;
