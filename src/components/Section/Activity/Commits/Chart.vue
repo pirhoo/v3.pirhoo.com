@@ -29,9 +29,6 @@ const scrollLeft = ref(0)
 const navOffset = ref(0)
 let scrollContainer = null
 
-const NAV_WIDTH = 48
-const NAV_BREAKPOINT = 1100
-
 const { showTooltip, hideTooltip } = useD3Tooltip()
 const {
   weeks,
@@ -91,7 +88,17 @@ function updateScrollPosition() {
 }
 
 function updateNavOffset() {
-  navOffset.value = window.innerWidth > NAV_BREAKPOINT ? NAV_WIDTH : 0
+  if (!scrollContainer) return
+  // Calculate how much of the scroll container is hidden behind the nav
+  const containerRect = scrollContainer.getBoundingClientRect()
+  const nav = document.querySelector('.section-nav__band')
+  if (nav) {
+    const navRect = nav.getBoundingClientRect()
+    // If nav overlaps the container, calculate the overlap
+    navOffset.value = Math.max(0, navRect.right - containerRect.left)
+  } else {
+    navOffset.value = 0
+  }
 }
 
 function getTooltipContent(d) {
