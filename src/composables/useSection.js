@@ -11,14 +11,14 @@ import * as chroma from 'chroma-js'
  * @module useSection
  */
 
-// Generate 4 distinct pastel colors on page load
+// Generate 5 distinct pastel colors on page load
 function generatePastelColors() {
   // Start with a random hue, then space the others evenly
   const startHue = Math.random() * 360
-  const hueStep = 360 / 4  // 90 degrees apart
+  const hueStep = 360 / 5  // 72 degrees apart
   const colors = []
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     const hue = (startHue + i * hueStep + (Math.random() - 0.5) * 30) % 360  // Add some variation
     const saturation = 0.45 + Math.random() * 0.2   // 45-65% for pastel
     const lightness = 0.65 + Math.random() * 0.1    // 65-75% for pastel
@@ -35,7 +35,8 @@ export const sectionColors = {
   introduction: colors[0],
   investigations: colors[1],
   activity: colors[2],
-  projects: colors[3]
+  oss: colors[3],
+  projects: colors[4]
 }
 
 /**
