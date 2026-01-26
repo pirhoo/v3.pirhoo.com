@@ -141,7 +141,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
   }
 
   &:hover &__button {
-    background: var(--body-color);
+    background: var(--item-color);
     color: var(--body-bg);
 
     svg {
