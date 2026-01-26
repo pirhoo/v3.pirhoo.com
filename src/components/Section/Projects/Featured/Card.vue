@@ -31,7 +31,7 @@
         target="_blank"
         @click.stop
       >
-        <span>Visit project</span>
+        <span>Visit</span>
         <icon-arrow-out />
       </a>
     </div>
