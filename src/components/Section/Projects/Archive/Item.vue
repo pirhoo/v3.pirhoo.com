@@ -130,7 +130,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
     font-family: $font-family-mono;
     font-size: 0.6875rem;
     color: var(--body-color);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--item-color);
     border-radius: $space-1;
     transition: all 0.2s ease;
 
