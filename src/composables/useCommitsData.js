@@ -6,7 +6,6 @@ import {
   CELL_GAP,
   CELL_RADIUS,
   LABEL_WIDTH,
-  YEAR_LABEL_HEIGHT,
   MONTH_LABEL_HEIGHT,
   PADDING,
   MONTH_NAMES
@@ -137,7 +136,7 @@ export function useCommitsData() {
   })
 
   const chartHeight = computed(() => {
-    return YEAR_LABEL_HEIGHT + MONTH_LABEL_HEIGHT + PADDING + (7 * (CELL_SIZE + CELL_GAP))
+    return MONTH_LABEL_HEIGHT + PADDING + (7 * (CELL_SIZE + CELL_GAP))
   })
 
   function formatDate(date) {
@@ -159,8 +158,8 @@ export function useCommitsData() {
   function getYearSeparatorPath(boundary) {
     const { weekIndex, startDayOfWeek } = boundary
     const x = LABEL_WIDTH + PADDING + (weekIndex * (CELL_SIZE + CELL_GAP)) - (CELL_GAP / 2)
-    const topY = YEAR_LABEL_HEIGHT + MONTH_LABEL_HEIGHT + PADDING - (CELL_GAP / 2)
-    const bottomY = YEAR_LABEL_HEIGHT + MONTH_LABEL_HEIGHT + PADDING + (7 * (CELL_SIZE + CELL_GAP)) - (CELL_GAP / 2)
+    const topY = MONTH_LABEL_HEIGHT + PADDING - (CELL_GAP / 2)
+    const bottomY = MONTH_LABEL_HEIGHT + PADDING + (7 * (CELL_SIZE + CELL_GAP)) - (CELL_GAP / 2)
     const stepX = x - (CELL_SIZE + CELL_GAP)
     const stepY = topY + (startDayOfWeek * (CELL_SIZE + CELL_GAP))
     const r = CELL_RADIUS
