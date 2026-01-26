@@ -1,6 +1,12 @@
 <template>
   <div ref="rootRef" class="activity-commits">
-    <span class="activity-commits__sticky-year">{{ visibleYear }}</span>
+    <span
+      ref="yearLabelRef"
+      class="activity-commits__sticky-year"
+      :style="{ transform: `translateX(${scrollOffset}px)` }"
+    >
+      {{ visibleYear }}
+    </span>
     <div class="activity-commits__wrapper">
       <svg class="activity-commits__svg" />
     </div>
@@ -16,7 +22,9 @@ import { useChartDrawing } from '@/composables/useChartDrawing'
 import { CELL_SIZE, CELL_GAP, LABEL_WIDTH, PADDING } from './config.js'
 
 const rootRef = ref(null)
+const yearLabelRef = ref(null)
 const visibleYear = ref('')
+const scrollOffset = ref(0)
 let scrollContainer = null
 
 const { showTooltip, hideTooltip } = useD3Tooltip()
@@ -56,7 +64,9 @@ function getYearAtScrollPosition(scrollLeft) {
 
 function updateVisibleYear() {
   if (scrollContainer) {
-    visibleYear.value = getYearAtScrollPosition(scrollContainer.scrollLeft)
+    const scrollLeft = scrollContainer.scrollLeft
+    scrollOffset.value = scrollLeft
+    visibleYear.value = getYearAtScrollPosition(scrollLeft)
   }
 }
 
@@ -134,7 +144,7 @@ onUnmounted(() => {
   max-width: 100%;
 
   &__sticky-year {
-    position: sticky;
+    position: absolute;
     left: 0;
     top: 0;
     display: block;
