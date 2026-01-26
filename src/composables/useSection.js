@@ -1,5 +1,7 @@
-import { computed, onMounted, isRef, unref } from 'vue'
+import { computed, onMounted, watch, isRef, unref } from 'vue'
 import * as chroma from 'chroma-js'
+import { useTheme } from '@/composables/useTheme'
+import { getContrastColor } from '@/composables/useContrastColor'
 
 /**
  * Section color management for page sections.
@@ -58,8 +60,14 @@ export const sectionColors = {
  * const { primaryColor, primaryContrastColor } = useSection(sectionRef, 'introduction')
  */
 export function useSection(elementRef = null, sectionId = null) {
-  const primaryColor = computed(() => {
+  const { theme } = useTheme()
+
+  const rawColor = computed(() => {
     return sectionId ? sectionColors[sectionId] : '#666'
+  })
+
+  const primaryColor = computed(() => {
+    return getContrastColor(rawColor.value, theme.value)
   })
 
   const primaryContrastColor = computed(() => {
@@ -76,16 +84,11 @@ export function useSection(elementRef = null, sectionId = null) {
 
   onMounted(() => {
     updateColors()
+  })
 
-    // Watch for theme changes
-    const observer = new MutationObserver(mutations => {
-      for (const mutation of mutations) {
-        if (mutation.attributeName === 'data-bs-theme') {
-          updateColors()
-        }
-      }
-    })
-    observer.observe(document.documentElement, { attributes: true })
+  // Watch for theme changes and update colors reactively
+  watch(theme, () => {
+    updateColors()
   })
 
   return {
