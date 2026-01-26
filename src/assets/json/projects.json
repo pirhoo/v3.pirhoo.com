@@ -121,12 +121,12 @@
   },
   {
     "title": "Murmur Design System",
-    "thumbnail": "assets/images/thumbnails/icijgithubiomurmur-next.png",
+    "thumbnail": "assets/images/thumbnails/icijgithubiomurmur.png",
     "url": "https://icij.github.io/murmur-next/",
-    "color": "",
+    "color": "#a20404",
     "year": "2019",
-    "width": "",
-    "height": "",
+    "width": 3200,
+    "height": 1800,
     "featured": false
   },
   {
@@ -211,12 +211,12 @@
   },
   {
     "title": "Geneva Watchers",
-    "thumbnail": "assets/images/thumbnails/twittercomgvawatcher.png",
+    "thumbnail": "assets/images/thumbnails/twittercomgva_watcher.png",
     "url": "https://twitter.com/gva_watcher",
-    "color": "",
+    "color": "#dd3d3c",
     "year": "2017",
-    "width": "",
-    "height": "",
+    "width": 200,
+    "height": 105,
     "featured": false
   },
   {
