@@ -31,6 +31,7 @@ export function useDragScroll() {
     scrollLeft = element.scrollLeft
     element.style.cursor = 'grabbing'
     element.style.userSelect = 'none'
+    element.style.scrollSnapType = 'none'
 
     document.addEventListener('mousemove', onMouseMove)
     document.addEventListener('mouseup', onMouseUp)
@@ -41,6 +42,15 @@ export function useDragScroll() {
     if (element) {
       element.style.cursor = 'grab'
       element.style.userSelect = ''
+      // Enable smooth scroll for snap transition, then restore
+      element.style.scrollBehavior = 'smooth'
+      element.style.scrollSnapType = ''
+      // Remove smooth behavior after snap completes
+      setTimeout(() => {
+        if (element) {
+          element.style.scrollBehavior = ''
+        }
+      }, 300)
     }
 
     // If we dragged, prevent the click event on links
