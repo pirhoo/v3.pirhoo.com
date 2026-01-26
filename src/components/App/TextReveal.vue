@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, inject, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   text: {
@@ -41,7 +41,13 @@ const props = defineProps({
 })
 
 const elementRef = ref(null)
-const isVisible = ref(false)
+const localIsVisible = ref(false)
+
+// Check if we're inside a TextRevealGroup
+const group = inject('textRevealGroup', null)
+
+// Use group visibility if available, otherwise use local
+const isVisible = computed(() => group ? group.isVisible.value : localIsVisible.value)
 
 let observer = null
 
@@ -50,20 +56,23 @@ const words = computed(() => props.text.split(' '))
 function handleIntersect(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      isVisible.value = true
+      localIsVisible.value = true
       observer.disconnect()
     }
   })
 }
 
 onMounted(() => {
-  observer = new IntersectionObserver(handleIntersect, {
-    threshold: 0.2,
-    rootMargin: '0px 0px -50px 0px'
-  })
+  // Only create observer if not inside a group
+  if (!group) {
+    observer = new IntersectionObserver(handleIntersect, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    })
 
-  if (elementRef.value) {
-    observer.observe(elementRef.value)
+    if (elementRef.value) {
+      observer.observe(elementRef.value)
+    }
   }
 })
 
