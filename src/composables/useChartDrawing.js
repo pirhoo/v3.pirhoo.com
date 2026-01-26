@@ -122,36 +122,99 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('class', 'activity-commits__week')
       .attr('transform', (_, i) => `translate(${LABEL_WIDTH + PADDING + (i * (CELL_SIZE + CELL_GAP))}, ${MONTH_LABEL_HEIGHT + PADDING})`)
 
+    // Store week index on each cell, start hidden for reveal animation
     weekGroups.selectAll('rect.activity-commits__cell')
-      .data(d => d)
+      .data((d, weekIndex) => d.map(day => ({ ...day, weekIndex })))
       .enter()
       .append('rect')
       .attr('class', 'activity-commits__cell')
-      .attr('x', 0)
-      .attr('y', d => d.dayOfWeek * (CELL_SIZE + CELL_GAP))
-      .attr('width', CELL_SIZE)
-      .attr('height', CELL_SIZE)
+      .attr('x', CELL_SIZE / 2)
+      .attr('y', d => d.dayOfWeek * (CELL_SIZE + CELL_GAP) + CELL_SIZE / 2)
+      .attr('width', 0)
+      .attr('height', 0)
       .attr('rx', CELL_RADIUS)
       .attr('ry', CELL_RADIUS)
       .attr('fill', 'transparent')
       .attr('stroke', 'var(--border-dashed)')
       .attr('stroke-width', 1)
       .attr('stroke-dasharray', d => d.count === 0 ? '2,2' : 'none')
+      .style('opacity', 0)
       .on('mouseover', (event, d) => showTooltip(event, getTooltipContent(d)))
       .on('mouseout', () => hideTooltip())
-      .transition()
-      .duration(500)
-      .delay((_, i, nodes) => {
-        const parentData = d3.select(nodes[i].parentNode).datum()
-        const weekIndex = weeks.value.indexOf(parentData)
-        return weekIndex * 2
-      })
-      .attr('fill', d => {
-        const intensity = getCellIntensity(d.count)
-        if (intensity === 0) return 'transparent'
-        return `url(#hatch-${intensity})`
-      })
-      .attr('stroke', d => d.count > 0 ? 'var(--section-primary)' : 'var(--border-dashed)')
+  }
+
+  function revealCells(scrollContainer) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const cells = svg.value.selectAll('rect.activity-commits__cell')
+
+    // Calculate visible range if scroll container provided
+    let visibleStart = 0
+    let visibleEnd = weeks.value.length - 1
+
+    if (scrollContainer) {
+      const scrollLeft = scrollContainer.scrollLeft
+      const clientWidth = scrollContainer.clientWidth
+      const cellStep = CELL_SIZE + CELL_GAP
+      visibleStart = Math.max(0, Math.floor((scrollLeft - LABEL_WIDTH - PADDING) / cellStep) - 2)
+      visibleEnd = Math.min(weeks.value.length - 1, Math.ceil((scrollLeft + clientWidth - LABEL_WIDTH - PADDING) / cellStep) + 2)
+    }
+
+    // Helper to get final cell attributes
+    const getFinalAttrs = d => ({
+      x: 0,
+      y: d.dayOfWeek * (CELL_SIZE + CELL_GAP),
+      width: CELL_SIZE,
+      height: CELL_SIZE,
+      opacity: 1,
+      fill: getCellIntensity(d.count) === 0 ? 'transparent' : `url(#hatch-${getCellIntensity(d.count)})`,
+      stroke: d.count > 0 ? 'var(--section-primary)' : 'var(--border-dashed)'
+    })
+
+    if (prefersReducedMotion) {
+      // No animation - just set final state
+      cells
+        .attr('x', d => getFinalAttrs(d).x)
+        .attr('y', d => getFinalAttrs(d).y)
+        .attr('width', d => getFinalAttrs(d).width)
+        .attr('height', d => getFinalAttrs(d).height)
+        .style('opacity', 1)
+        .attr('fill', d => getFinalAttrs(d).fill)
+        .attr('stroke', d => getFinalAttrs(d).stroke)
+      return
+    }
+
+    // Animate visible cells, instant reveal for off-screen
+    cells.each(function (d) {
+      const cell = d3.select(this)
+      const attrs = getFinalAttrs(d)
+      const isVisible = d.weekIndex >= visibleStart && d.weekIndex <= visibleEnd
+
+      if (isVisible) {
+        // Animate with wave from right to left
+        const delay = (visibleEnd - d.weekIndex) * 8 + d.dayOfWeek * 15
+        cell.transition()
+          .duration(400)
+          .delay(delay)
+          .ease(d3.easeBackOut.overshoot(1.2))
+          .attr('x', attrs.x)
+          .attr('y', attrs.y)
+          .attr('width', attrs.width)
+          .attr('height', attrs.height)
+          .style('opacity', attrs.opacity)
+          .attr('fill', attrs.fill)
+          .attr('stroke', attrs.stroke)
+      } else {
+        // Instant reveal for off-screen cells
+        cell
+          .attr('x', attrs.x)
+          .attr('y', attrs.y)
+          .attr('width', attrs.width)
+          .attr('height', attrs.height)
+          .style('opacity', attrs.opacity)
+          .attr('fill', attrs.fill)
+          .attr('stroke', attrs.stroke)
+      }
+    })
   }
 
   function updateColors() {
@@ -177,6 +240,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
     drawDayLabels,
     drawYearSeparators,
     drawCells,
+    revealCells,
     updateColors
   }
 }
