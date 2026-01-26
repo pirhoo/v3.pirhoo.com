@@ -202,6 +202,27 @@ async function processAwards() {
   )
 }
 
+async function processOss() {
+  console.log('Processing open source contributions...')
+  const csvPath = path.join(rootDir, 'data/oss.csv')
+  const data = parse(fs.readFileSync(csvPath, 'utf-8'), { columns: true })
+
+  // Extract owner and repo from GitHub URL
+  const projects = map(data, project => {
+    const match = project.github.match(/github\.com\/([^/]+)\/([^/]+)/)
+    return {
+      ...project,
+      owner: match ? match[1] : null,
+      repo: match ? match[2] : null
+    }
+  })
+
+  fs.writeFileSync(
+    path.join(rootDir, 'src/assets/json/oss.json'),
+    JSON.stringify(projects, null, 2)
+  )
+}
+
 async function processSizes() {
   console.log('Processing image sizes...')
   const jsonPath = path.join(rootDir, 'src/assets/json/projects.json')
@@ -264,6 +285,7 @@ async function main() {
   await processInvestigations()
   await processProjects()
   await processAwards()
+  await processOss()
   await processSizes()
   await processColors()
 
