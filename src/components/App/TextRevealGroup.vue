@@ -1,6 +1,6 @@
 <template>
   <component :is="tag" class="text-reveal-group">
-    <slot />
+    <slot></slot>
   </component>
 </template>
 
@@ -26,7 +26,10 @@ function register(callback) {
 }
 
 function reveal() {
-  if (hasRevealed) return
+  // Can only reveal once
+  if (hasRevealed) {
+    return
+  }
   hasRevealed = true
   // Defer to ensure all children have registered
   nextTick(() => {
