@@ -85,6 +85,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top center;
       opacity: 0;
       transition: opacity 0.3s ease;
 

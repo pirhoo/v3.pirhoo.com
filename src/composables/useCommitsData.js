@@ -7,6 +7,7 @@ import {
   CELL_RADIUS,
   LABEL_WIDTH,
   YEAR_LABEL_HEIGHT,
+  MONTH_LABEL_HEIGHT,
   PADDING,
   MONTH_NAMES
 } from '@/components/Section/Activity/Commits/config.js'
@@ -92,6 +93,31 @@ export function useCommitsData() {
     return boundaries
   })
 
+  const monthBoundaries = computed(() => {
+    const boundaries = []
+    let currentMonth = null
+
+    weeks.value.forEach((week, weekIndex) => {
+      // Check first day of the week
+      const firstDayOfWeek = week[0].date
+      const month = firstDayOfWeek.getMonth()
+      const year = firstDayOfWeek.getFullYear()
+      const monthKey = `${year}-${month}`
+
+      if (monthKey !== currentMonth) {
+        boundaries.push({
+          month,
+          year,
+          weekIndex,
+          label: MONTH_NAMES[month]
+        })
+        currentMonth = monthKey
+      }
+    })
+
+    return boundaries
+  })
+
   const allCounts = computed(() => {
     return Object.values(commits.daysCount).filter(v => v > 0).sort((a, b) => a - b)
   })
@@ -111,7 +137,7 @@ export function useCommitsData() {
   })
 
   const chartHeight = computed(() => {
-    return YEAR_LABEL_HEIGHT + PADDING + (7 * (CELL_SIZE + CELL_GAP))
+    return YEAR_LABEL_HEIGHT + MONTH_LABEL_HEIGHT + PADDING + (7 * (CELL_SIZE + CELL_GAP))
   })
 
   function formatDate(date) {
@@ -133,8 +159,8 @@ export function useCommitsData() {
   function getYearSeparatorPath(boundary) {
     const { weekIndex, startDayOfWeek } = boundary
     const x = LABEL_WIDTH + PADDING + (weekIndex * (CELL_SIZE + CELL_GAP)) - (CELL_GAP / 2)
-    const topY = YEAR_LABEL_HEIGHT + PADDING - (CELL_GAP / 2)
-    const bottomY = YEAR_LABEL_HEIGHT + PADDING + (7 * (CELL_SIZE + CELL_GAP)) - (CELL_GAP / 2)
+    const topY = YEAR_LABEL_HEIGHT + MONTH_LABEL_HEIGHT + PADDING - (CELL_GAP / 2)
+    const bottomY = YEAR_LABEL_HEIGHT + MONTH_LABEL_HEIGHT + PADDING + (7 * (CELL_SIZE + CELL_GAP)) - (CELL_GAP / 2)
     const stepX = x - (CELL_SIZE + CELL_GAP)
     const stepY = topY + (startDayOfWeek * (CELL_SIZE + CELL_GAP))
     const r = CELL_RADIUS
@@ -154,6 +180,7 @@ export function useCommitsData() {
   return {
     weeks,
     yearBoundaries,
+    monthBoundaries,
     chartWidth,
     chartHeight,
     formatDisplayDate,

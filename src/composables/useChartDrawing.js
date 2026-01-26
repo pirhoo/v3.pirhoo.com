@@ -5,6 +5,7 @@ import {
   CELL_RADIUS,
   LABEL_WIDTH,
   YEAR_LABEL_HEIGHT,
+  MONTH_LABEL_HEIGHT,
   PADDING,
   DAY_LABELS,
   VISIBLE_DAYS,
@@ -36,7 +37,7 @@ import {
  *   weeks, yearBoundaries, getCellIntensity, getYearSeparatorPath
  * })
  */
-export function useChartDrawing(svg, { weeks, yearBoundaries, getCellIntensity, getYearSeparatorPath }) {
+export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, getCellIntensity, getYearSeparatorPath }) {
   function createPatterns(defs) {
     HATCH_PATTERNS.forEach(({ id, spacing }) => {
       const pattern = defs.append('pattern')
@@ -70,6 +71,20 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, getCellIntensity, 
       .style('fill', 'var(--section-primary)')
   }
 
+  function drawMonthLabels() {
+    svg.value.selectAll('text.activity-commits__month-label')
+      .data(monthBoundaries.value)
+      .enter()
+      .append('text')
+      .attr('class', 'activity-commits__month-label')
+      .text(d => d.label)
+      .attr('x', d => LABEL_WIDTH + PADDING + (d.weekIndex * (CELL_SIZE + CELL_GAP)))
+      .attr('y', YEAR_LABEL_HEIGHT + MONTH_LABEL_HEIGHT - 3)
+      .style('font-size', '9px')
+      .style('font-family', 'var(--font-family-mono)')
+      .style('fill', 'var(--text-muted)')
+  }
+
   function drawDayLabels() {
     svg.value.selectAll('text.activity-commits__day-label')
       .data(VISIBLE_DAYS)
@@ -79,7 +94,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, getCellIntensity, 
       .text(i => DAY_LABELS[i])
       .attr('text-anchor', 'end')
       .attr('x', LABEL_WIDTH - 2)
-      .attr('y', i => YEAR_LABEL_HEIGHT + PADDING + (i * (CELL_SIZE + CELL_GAP)) + CELL_SIZE - 2)
+      .attr('y', i => YEAR_LABEL_HEIGHT + MONTH_LABEL_HEIGHT + PADDING + (i * (CELL_SIZE + CELL_GAP)) + CELL_SIZE - 2)
       .style('font-size', '9px')
       .style('font-family', 'var(--font-family-mono)')
       .style('fill', 'var(--text-muted)')
@@ -106,7 +121,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, getCellIntensity, 
       .enter()
       .append('g')
       .attr('class', 'activity-commits__week')
-      .attr('transform', (_, i) => `translate(${LABEL_WIDTH + PADDING + (i * (CELL_SIZE + CELL_GAP))}, ${YEAR_LABEL_HEIGHT + PADDING})`)
+      .attr('transform', (_, i) => `translate(${LABEL_WIDTH + PADDING + (i * (CELL_SIZE + CELL_GAP))}, ${YEAR_LABEL_HEIGHT + MONTH_LABEL_HEIGHT + PADDING})`)
 
     weekGroups.selectAll('rect.activity-commits__cell')
       .data(d => d)
@@ -159,6 +174,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, getCellIntensity, 
   return {
     createPatterns,
     drawYearLabels,
+    drawMonthLabels,
     drawDayLabels,
     drawYearSeparators,
     drawCells,

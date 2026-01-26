@@ -1,5 +1,15 @@
 <template>
   <div ref="rootRef" class="activity-commits">
+    <div class="activity-commits__years">
+      <span
+        v-for="boundary in yearBoundaries"
+        :key="boundary.year"
+        class="activity-commits__year-label"
+        :style="{ left: `${getYearLabelLeft(boundary.weekIndex)}px` }"
+      >
+        {{ boundary.year }}
+      </span>
+    </div>
     <div class="activity-commits__wrapper">
       <svg class="activity-commits__svg" />
     </div>
@@ -12,6 +22,7 @@ import * as d3 from 'd3'
 import { useD3Tooltip } from '@/composables/useD3Tooltip'
 import { useCommitsData } from '@/composables/useCommitsData'
 import { useChartDrawing } from '@/composables/useChartDrawing'
+import { CELL_SIZE, CELL_GAP, LABEL_WIDTH, PADDING } from './config.js'
 
 const rootRef = ref(null)
 
@@ -19,6 +30,7 @@ const { showTooltip, hideTooltip } = useD3Tooltip()
 const {
   weeks,
   yearBoundaries,
+  monthBoundaries,
   chartWidth,
   chartHeight,
   formatDisplayDate,
@@ -30,12 +42,16 @@ const svg = computed(() => d3.select(rootRef.value).select('.activity-commits__s
 
 const {
   createPatterns,
-  drawYearLabels,
+  drawMonthLabels,
   drawDayLabels,
   drawYearSeparators,
   drawCells,
   updateColors
-} = useChartDrawing(svg, { weeks, yearBoundaries, getCellIntensity, getYearSeparatorPath })
+} = useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, getCellIntensity, getYearSeparatorPath })
+
+function getYearLabelLeft(weekIndex) {
+  return LABEL_WIDTH + PADDING + (weekIndex * (CELL_SIZE + CELL_GAP))
+}
 
 function getTooltipContent(d) {
   if (d.count === 0) {
@@ -52,7 +68,7 @@ function drawChart() {
 
   const defs = svg.value.append('defs')
   createPatterns(defs)
-  drawYearLabels()
+  drawMonthLabels()
   drawDayLabels()
   drawYearSeparators()
   drawCells(showTooltip, hideTooltip, getTooltipContent)
@@ -95,6 +111,26 @@ onMounted(() => {
   width: 100%;
   max-width: 100%;
 
+  &__years {
+    position: sticky;
+    left: 0;
+    top: 0;
+    height: 18px;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &__year-label {
+    position: absolute;
+    top: 0;
+    font-size: 10px;
+    font-family: $font-family-mono;
+    color: var(--section-primary);
+    transition: color $color-transition-duration;
+    white-space: nowrap;
+  }
+
   &__wrapper {
     width: max-content;
     display: block;
@@ -103,18 +139,17 @@ onMounted(() => {
 
   &__svg {
     display: block;
-    margin-top: 20px;
     font-family: $font-family-mono;
     max-width: none !important;
     flex-shrink: 0;
     overflow: visible !important;
   }
 
-  &__year-label {
+  &__day-label {
     transition: fill $color-transition-duration;
   }
 
-  &__day-label {
+  &__month-label {
     transition: fill $color-transition-duration;
   }
 

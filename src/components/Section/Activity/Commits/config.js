@@ -4,6 +4,7 @@ export const CELL_GAP = 4
 export const CELL_RADIUS = 4
 export const LABEL_WIDTH = 30
 export const YEAR_LABEL_HEIGHT = 18
+export const MONTH_LABEL_HEIGHT = 14
 export const PADDING = 5
 
 export const DAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
