@@ -15,7 +15,7 @@
     @touchend="isActive && $emit('dragEnd')"
   >
     <div class="featured-card__image">
-      <img v-lazy="thumbnailUrl" :alt="project.title" />
+      <img :src="thumbnailUrl" :alt="project.title" />
     </div>
     <div class="featured-card__content">
       <div class="featured-card__meta">
@@ -69,7 +69,7 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
   box-shadow: 0 0 0 1px var(--card-color, var(--border-color));
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   user-select: none;
-  touch-action: none;
+  touch-action: pan-y;
 
   @media (max-width: 576px) {
     height: 360px;
@@ -100,12 +100,6 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
       height: 100%;
       object-fit: cover;
       object-position: center top;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-
-      &[lazy=loaded] {
-        opacity: 1;
-      }
     }
   }
 
