@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useDragScroll } from '@/composables/useDragScroll'
 import SectionInvestigationsCard from './Card.vue'
 
@@ -31,11 +31,18 @@ defineProps({
 const listWrapperRef = ref(null)
 const { onMouseDown: onDragStart } = useDragScroll()
 
-onMounted(async () => {
-  await nextTick()
+function scrollToEnd() {
   if (listWrapperRef.value) {
-    listWrapperRef.value.scrollLeft = listWrapperRef.value.scrollWidth
+    const { scrollWidth, clientWidth } = listWrapperRef.value
+    listWrapperRef.value.scrollLeft = scrollWidth - clientWidth
   }
+}
+
+onMounted(() => {
+  // Use multiple rAF calls to ensure layout is complete
+  requestAnimationFrame(() => {
+    requestAnimationFrame(scrollToEnd)
+  })
 })
 </script>
 
