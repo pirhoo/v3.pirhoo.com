@@ -33,21 +33,14 @@ const props = defineProps({
   stagger: {
     type: Number,
     default: 80
-  },
-  duration: {
-    type: Number,
-    default: 500
   }
 })
 
 const elementRef = ref(null)
-const localIsVisible = ref(false)
+const isVisible = ref(false)
 
 // Check if we're inside a TextRevealGroup
 const group = inject('textRevealGroup', null)
-
-// Use group visibility if available, otherwise use local
-const isVisible = computed(() => group ? group.isVisible.value : localIsVisible.value)
 
 let observer = null
 
@@ -60,7 +53,7 @@ function handleIntersect(entries) {
         // Trigger reveal for all siblings in the group
         group.reveal()
       } else {
-        localIsVisible.value = true
+        isVisible.value = true
       }
       observer.disconnect()
     }
@@ -68,6 +61,13 @@ function handleIntersect(entries) {
 }
 
 onMounted(() => {
+  // Register with group so reveal() can trigger this component
+  if (group) {
+    group.register(() => {
+      isVisible.value = true
+    })
+  }
+
   observer = new IntersectionObserver(handleIntersect, {
     threshold: 0.2,
     rootMargin: '0px 0px -50px 0px'
