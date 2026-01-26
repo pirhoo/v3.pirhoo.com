@@ -48,7 +48,7 @@ const { sections, activeSection, scrollToSection } = useSectionNavigation({
   }
 
   &__band {
-    width: 48px;
+    width: $nav-width;
     height: 100%;
     display: flex;
     flex-direction: column;

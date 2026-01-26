@@ -37,6 +37,10 @@ import EffectsParallaxBackground from '@/components/Effects/ParallaxBackground.v
   flex-direction: column;
   overflow-x: hidden;
 
+  @media (min-width: 1101px) {
+    margin-left: $nav-width;
+  }
+
   &__main {
     flex: 1;
   }
