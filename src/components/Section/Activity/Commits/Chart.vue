@@ -135,12 +135,17 @@ onMounted(() => {
 
   &__year-label {
     position: sticky;
-    left: 0;
+    left: 1rem;
+    padding-right: 1rem;
     font-size: 10px;
     font-family: $font-family-mono;
     color: var(--section-primary);
     transition: color $color-transition-duration;
     white-space: nowrap;
+
+    @media (max-width: 1100px) {
+      left: 0;
+    }
   }
 
   &__wrapper {
