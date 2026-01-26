@@ -129,8 +129,8 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
     padding: $space-1 $space-2;
     font-family: $font-family-mono;
     font-size: 0.6875rem;
-    color: var(--item-color, var(--text-muted));
-    border: 1px solid var(--item-color, var(--border-color));
+    color: var(--body-color);
+    border: 1px solid var(--border-color);
     border-radius: $space-1;
     transition: all 0.2s ease;
 
@@ -140,7 +140,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
   }
 
   &:hover &__button {
-    background: var(--item-color);
+    background: var(--body-color);
     color: var(--body-bg);
   }
 }
