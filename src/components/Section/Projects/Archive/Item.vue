@@ -137,6 +137,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
     svg {
       font-size: 0.75rem;
       color: var(--item-color);
+      transition: color 0.2s ease;
     }
   }
 
