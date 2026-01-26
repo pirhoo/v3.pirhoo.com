@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import * as d3 from 'd3'
 import { useD3Tooltip } from '@/composables/useD3Tooltip'
 import { useCommitsData } from '@/composables/useCommitsData'
@@ -67,10 +67,12 @@ function scrollToEnd() {
   }
 }
 
-onMounted(async () => {
+onMounted(() => {
   drawChart()
-  await nextTick()
-  scrollToEnd()
+  // Use multiple rAF calls to ensure layout is complete
+  requestAnimationFrame(() => {
+    requestAnimationFrame(scrollToEnd)
+  })
 
   const observer = new MutationObserver(mutations => {
     for (const mutation of mutations) {
