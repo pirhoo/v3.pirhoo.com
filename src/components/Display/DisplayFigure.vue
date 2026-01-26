@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, toRef } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useCountAnimation } from '@/composables/useCountAnimation'
 
 const props = defineProps({

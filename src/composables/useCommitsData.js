@@ -119,10 +119,6 @@ export function useCommitsData() {
     return boundaries
   })
 
-  const allCounts = computed(() => {
-    return Object.values(commits.daysCount).filter(v => v > 0).sort((a, b) => a - b)
-  })
-
   // Exponential scale for mid-range commits (10-100)
   const midRangeScale = computed(() => {
     return d3.scalePow()
