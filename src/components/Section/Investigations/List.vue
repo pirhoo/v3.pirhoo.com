@@ -55,11 +55,12 @@ onMounted(() => {
   &__wrapper {
     display: flex;
     gap: $space-5;
-    padding: $space-2 $grid-gutter * 2 $space-10;
-    margin-top: -$space-2;
+    padding: $space-3 $grid-gutter * 2 $space-10;
     overflow-x: auto;
     overflow-y: visible;
     cursor: grab;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: $grid-gutter * 2;
 
     &::-webkit-scrollbar {
       height: 4px;
@@ -75,8 +76,10 @@ onMounted(() => {
     }
 
     @media (max-width: 768px) {
-      padding: 0 $grid-gutter $space-8;
+      padding: $space-3 $grid-gutter $space-8;
+      scroll-padding-left: $grid-gutter;
     }
+
   }
 }
 </style>
