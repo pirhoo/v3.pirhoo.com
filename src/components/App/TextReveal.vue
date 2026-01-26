@@ -56,33 +56,29 @@ const words = computed(() => props.text.split(' '))
 function handleIntersect(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      localIsVisible.value = true
+      if (group) {
+        // Trigger reveal for all siblings in the group
+        group.reveal()
+      } else {
+        localIsVisible.value = true
+      }
       observer.disconnect()
     }
   })
 }
 
 onMounted(() => {
-  if (group) {
-    // Register with the group so it can observe this element
-    group.register(elementRef.value)
-  } else {
-    // Create own observer if not inside a group
-    observer = new IntersectionObserver(handleIntersect, {
-      threshold: 0.2,
-      rootMargin: '0px 0px -50px 0px'
-    })
+  observer = new IntersectionObserver(handleIntersect, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+  })
 
-    if (elementRef.value) {
-      observer.observe(elementRef.value)
-    }
+  if (elementRef.value) {
+    observer.observe(elementRef.value)
   }
 })
 
 onUnmounted(() => {
-  if (group) {
-    group.unregister(elementRef.value)
-  }
   if (observer) {
     observer.disconnect()
   }
