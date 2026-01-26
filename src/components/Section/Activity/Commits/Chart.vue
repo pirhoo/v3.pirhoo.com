@@ -1,14 +1,14 @@
 <template>
   <div ref="rootRef" class="activity-commits">
-    <div class="activity-commits__years">
-      <span
+    <div class="activity-commits__years" :style="{ width: `${chartWidth}px` }">
+      <div
         v-for="(boundary, index) in yearBoundaries"
         :key="boundary.year"
-        class="activity-commits__year-label"
-        :style="getYearLabelStyle(boundary, index)"
+        class="activity-commits__year-region"
+        :style="getYearRegionStyle(boundary, index)"
       >
-        {{ boundary.year }}
-      </span>
+        <span class="activity-commits__year-label">{{ boundary.year }}</span>
+      </div>
     </div>
     <div class="activity-commits__wrapper">
       <svg class="activity-commits__svg" />
@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import * as d3 from 'd3'
 import { useD3Tooltip } from '@/composables/useD3Tooltip'
 import { useCommitsData } from '@/composables/useCommitsData'
@@ -25,9 +25,6 @@ import { useChartDrawing } from '@/composables/useChartDrawing'
 import { CELL_SIZE, CELL_GAP, LABEL_WIDTH, PADDING } from './config.js'
 
 const rootRef = ref(null)
-const scrollLeft = ref(0)
-const navOffset = ref(0)
-let scrollContainer = null
 
 const { showTooltip, hideTooltip } = useD3Tooltip()
 const {
@@ -56,48 +53,15 @@ function getYearLabelX(weekIndex) {
   return LABEL_WIDTH + PADDING + (weekIndex * (CELL_SIZE + CELL_GAP))
 }
 
-function getYearLabelStyle(boundary, index) {
-  const originalX = getYearLabelX(boundary.weekIndex)
+function getYearRegionStyle(boundary, index) {
+  const x = getYearLabelX(boundary.weekIndex)
   const nextBoundary = yearBoundaries.value[index + 1]
-  const nextX = nextBoundary ? getYearLabelX(nextBoundary.weekIndex) : Infinity
+  const nextX = nextBoundary ? getYearLabelX(nextBoundary.weekIndex) : chartWidth.value
+  const width = nextX - x
 
-  // Calculate where this label should be positioned
-  let x = originalX
-
-  // Account for nav offset when sticking
-  const stickyPosition = scrollLeft.value + navOffset.value
-
-  // If scrolled past the original position, stick to the left (scroll position + nav offset)
-  if (stickyPosition > originalX) {
-    x = stickyPosition
-  }
-
-  // But don't overlap with the next year label - stop before it
-  const labelWidth = 40 // approximate width of year label
-  if (x + labelWidth > nextX) {
-    x = nextX - labelWidth
-  }
-
-  return { transform: `translateX(${x}px)` }
-}
-
-function updateScrollPosition() {
-  if (scrollContainer) {
-    scrollLeft.value = scrollContainer.scrollLeft
-  }
-}
-
-function updateNavOffset() {
-  if (!scrollContainer) return
-  // Calculate how much of the scroll container is hidden behind the nav
-  const containerRect = scrollContainer.getBoundingClientRect()
-  const nav = document.querySelector('.section-nav__band')
-  if (nav) {
-    const navRect = nav.getBoundingClientRect()
-    // If nav overlaps the container, calculate the overlap
-    navOffset.value = Math.max(0, navRect.right - containerRect.left)
-  } else {
-    navOffset.value = 0
+  return {
+    left: `${x}px`,
+    width: `${width}px`
   }
 }
 
@@ -134,20 +98,9 @@ function scrollToEnd() {
 onMounted(() => {
   drawChart()
 
-  scrollContainer = rootRef.value?.closest('.activity__commits__chart')
-  if (scrollContainer) {
-    scrollContainer.addEventListener('scroll', updateScrollPosition, { passive: true })
-  }
-
-  window.addEventListener('resize', updateNavOffset, { passive: true })
-  updateNavOffset()
-
   // Use multiple rAF calls to ensure layout is complete
   requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      scrollToEnd()
-      updateScrollPosition()
-    })
+    requestAnimationFrame(scrollToEnd)
   })
 
   const observer = new MutationObserver(mutations => {
@@ -158,13 +111,6 @@ onMounted(() => {
     }
   })
   observer.observe(document.documentElement, { attributes: true })
-})
-
-onUnmounted(() => {
-  if (scrollContainer) {
-    scrollContainer.removeEventListener('scroll', updateScrollPosition)
-  }
-  window.removeEventListener('resize', updateNavOffset)
 })
 </script>
 
@@ -179,24 +125,29 @@ onUnmounted(() => {
   max-width: 100%;
 
   &__years {
-    position: absolute;
-    left: 0;
-    top: 0;
+    display: flex;
+    position: relative;
     height: 18px;
-    width: 100%;
-    z-index: 1;
     pointer-events: none;
   }
 
-  &__year-label {
+  &__year-region {
     position: absolute;
-    left: 0;
     top: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__year-label {
+    position: sticky;
+    left: 0;
     font-size: 10px;
     font-family: $font-family-mono;
     color: var(--section-primary);
     transition: color $color-transition-duration;
     white-space: nowrap;
+    background: linear-gradient(to right, var(--body-bg) 70%, transparent);
+    padding-right: 10px;
   }
 
   &__wrapper {
