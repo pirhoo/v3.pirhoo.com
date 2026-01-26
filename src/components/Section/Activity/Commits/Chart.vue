@@ -1,11 +1,11 @@
 <template>
   <div ref="rootRef" class="activity-commits">
-    <div class="activity-commits__years" :style="{ width: `${chartWidth}px` }">
+    <div class="activity-commits__years">
       <div
         v-for="(boundary, index) in yearBoundaries"
         :key="boundary.year"
         class="activity-commits__year-region"
-        :style="getYearRegionStyle(boundary, index)"
+        :style="{ width: `${getYearRegionWidth(boundary, index)}px` }"
       >
         <span class="activity-commits__year-label">{{ boundary.year }}</span>
       </div>
@@ -53,16 +53,15 @@ function getYearLabelX(weekIndex) {
   return LABEL_WIDTH + PADDING + (weekIndex * (CELL_SIZE + CELL_GAP))
 }
 
-function getYearRegionStyle(boundary, index) {
+function getYearRegionWidth(boundary, index) {
   const x = getYearLabelX(boundary.weekIndex)
   const nextBoundary = yearBoundaries.value[index + 1]
   const nextX = nextBoundary ? getYearLabelX(nextBoundary.weekIndex) : chartWidth.value
-  const width = nextX - x
-
-  return {
-    left: `${x}px`,
-    width: `${width}px`
+  // First region includes the left padding/label area
+  if (index === 0) {
+    return nextX
   }
+  return nextX - x
 }
 
 function getTooltipContent(d) {
@@ -126,16 +125,12 @@ onMounted(() => {
 
   &__years {
     display: flex;
-    position: relative;
     height: 18px;
     pointer-events: none;
   }
 
   &__year-region {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    overflow: hidden;
+    flex-shrink: 0;
   }
 
   &__year-label {
@@ -146,8 +141,6 @@ onMounted(() => {
     color: var(--section-primary);
     transition: color $color-transition-duration;
     white-space: nowrap;
-    background: linear-gradient(to right, var(--body-bg) 70%, transparent);
-    padding-right: 10px;
   }
 
   &__wrapper {
