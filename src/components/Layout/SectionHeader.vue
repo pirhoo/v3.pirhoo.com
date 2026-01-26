@@ -9,11 +9,11 @@
       />
     </template>
     <template #content>
-      <h2 class="text-heading">
+      <app-text-reveal-group tag="h2" class="text-heading">
         <app-text-reveal
           :text="title"
           tag="span"
-          :delay="200"
+          :delay="0"
           :stagger="50"
         /><br />
         <app-text-reveal
@@ -21,10 +21,10 @@
           :text="subtitle"
           tag="span"
           class="text-dimmed"
-          :delay="400"
+          :delay="200"
           :stagger="60"
         />
-      </h2>
+      </app-text-reveal-group>
       <slot></slot>
     </template>
   </layout-section-grid>
@@ -33,6 +33,7 @@
 <script setup>
 import LayoutSectionGrid from './SectionGrid.vue'
 import AppTextReveal from '@/components/App/TextReveal.vue'
+import AppTextRevealGroup from '@/components/App/TextRevealGroup.vue'
 
 defineProps({
   label: {
