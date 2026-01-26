@@ -23,7 +23,8 @@ export const HATCH_PATTERNS = [
   { id: 'hatch-3', spacing: 5 },
   { id: 'hatch-4', spacing: 3.5 },
   { id: 'hatch-5', spacing: 2.5 },
-  { id: 'hatch-6', spacing: 1.5 }
+  { id: 'hatch-6', spacing: 1.5 },
+  { id: 'hatch-7', spacing: 1 }
 ]
 
 // Thresholds for special buckets
