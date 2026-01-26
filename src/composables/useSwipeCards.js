@@ -32,6 +32,8 @@ export function useSwipeCards(items) {
   const isDragging = ref(false)
   const dragOffset = ref(0)
   const dragStartX = ref(0)
+  const dragStartY = ref(0)
+  const isHorizontalDrag = ref(null)
   const didSwipe = ref(false)
 
   const totalItems = computed(() => items.value?.length || 0)
@@ -78,20 +80,36 @@ export function useSwipeCards(items) {
 
   function handleDragStart(event) {
     isDragging.value = true
-    dragStartX.value = event.type.includes('touch')
-      ? event.touches[0].clientX
-      : event.clientX
+    isHorizontalDrag.value = null
+    const touch = event.type.includes('touch') ? event.touches[0] : event
+    dragStartX.value = touch.clientX
+    dragStartY.value = touch.clientY
     dragOffset.value = 0
   }
 
   function handleDragMove(event) {
     if (!isDragging.value) return
-    // Prevent page scrolling while dragging
-    event.preventDefault()
-    const clientX = event.type.includes('touch')
-      ? event.touches[0].clientX
-      : event.clientX
-    dragOffset.value = clientX - dragStartX.value
+
+    const touch = event.type.includes('touch') ? event.touches[0] : event
+    const deltaX = touch.clientX - dragStartX.value
+    const deltaY = touch.clientY - dragStartY.value
+
+    // Determine drag direction on first significant movement
+    if (isHorizontalDrag.value === null && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
+      isHorizontalDrag.value = Math.abs(deltaX) > Math.abs(deltaY)
+    }
+
+    // Only handle horizontal drags, let vertical scroll through
+    if (isHorizontalDrag.value === false) {
+      return
+    }
+
+    // Prevent page scrolling only for horizontal drags
+    if (isHorizontalDrag.value) {
+      event.preventDefault()
+    }
+
+    dragOffset.value = deltaX
   }
 
   function handleDragEnd() {
@@ -99,16 +117,17 @@ export function useSwipeCards(items) {
     isDragging.value = false
 
     const threshold = 30
-    if (dragOffset.value > threshold) {
+    if (isHorizontalDrag.value && dragOffset.value > threshold) {
       didSwipe.value = true
       next()
-    } else if (dragOffset.value < -threshold) {
+    } else if (isHorizontalDrag.value && dragOffset.value < -threshold) {
       didSwipe.value = true
       prev()
     } else {
       didSwipe.value = false
     }
     dragOffset.value = 0
+    isHorizontalDrag.value = null
   }
 
   function handleClick() {
