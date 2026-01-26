@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Datashare",
+    "github": "https://github.com/ICIJ/datashare",
+    "description": "A self‑hosted search engine for documents.",
+    "owner": "ICIJ",
+    "repo": "datashare"
+  },
+  {
+    "name": "Prophecies",
+    "github": "https://github.com/ICIJ/prophecies",
+    "description": "A self-hosted data validation platform, for labor intensive fact checking.",
+    "owner": "ICIJ",
+    "repo": "prophecies"
+  },
+  {
+    "name": "Trotsky",
+    "github": "https://github.com/pirhoo/trotsky",
+    "description": "A type-safe Javascript library to build automation at the top of ATProto/Bluesky API.",
+    "owner": "pirhoo",
+    "repo": "trotsky"
+  },
+  {
+    "name": "Papertizer",
+    "github": "https://github.com/pirhoo/pappetizer",
+    "description": "A tool to rename receipt files by extracting vendor, date, amount from PDFs and images.",
+    "owner": "pirhoo",
+    "repo": "pappetizer"
+  },
+  {
+    "name": "Lupin",
+    "github": "https://github.com/pirhoo/lupin-cli",
+    "description": "A comprehensive document authenticity verification tool with advanced image forensics and LLM-based text analysis.",
+    "owner": "pirhoo",
+    "repo": "lupin-cli"
+  },
+  {
+    "name": "Iframe Scaffolder",
+    "github": "https://github.com/pirhoo/iframe-scaffolder",
+    "description": "A tool to help you quickly arrange several iframes together for online publication.",
+    "owner": "pirhoo",
+    "repo": "iframe-scaffolder"
+  }
+]
