@@ -1,0 +1,7 @@
+name,github,description
+Datashare,https://github.com/ICIJ/datashare,"A self‑hosted search engine for documents."
+Prophecies,https://github.com/ICIJ/prophecies,"A self-hosted data validation platform, for labor intensive fact checking."
+Trotsky,https://github.com/pirhoo/trotsky,A type-safe Javascript library to build automation at the top of ATProto/Bluesky API.
+Papertizer,https://github.com/pirhoo/pappetizer,"A tool to rename receipt files by extracting vendor, date, amount from PDFs and images."
+Lupin,https://github.com/pirhoo/lupin-cli,"A comprehensive document authenticity verification tool with advanced image forensics and LLM-based text analysis."
+Iframe Scaffolder,https://github.com/pirhoo/iframe-scaffolder,"A tool to help you quickly arrange several iframes together for online publication."
