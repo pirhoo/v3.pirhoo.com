@@ -82,9 +82,10 @@ const textColorSubtle = computed(() => getTextColorWithOpacity(contentBgColor.va
   color: inherit;
   transition: all 0.3s ease;
   position: relative;
+  scroll-snap-align: start;
 
   @media (max-width: 576px) {
-    width: 280px;
+    width: calc(100vw - $grid-gutter * 2);
   }
 
   &:hover {
