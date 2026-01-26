@@ -1,5 +1,6 @@
 <template>
-  <component :is="tag" ref="groupRef" class="text-reveal-group">
+  <component :is="tag" class="text-reveal-group">
+    <span ref="sentinelRef" class="text-reveal-group__sentinel" />
     <slot />
   </component>
 </template>
@@ -22,7 +23,7 @@ const props = defineProps({
   }
 })
 
-const groupRef = ref(null)
+const sentinelRef = ref(null)
 const isVisible = ref(false)
 
 // Provide visibility state to child TextReveal components
@@ -47,8 +48,9 @@ onMounted(() => {
     rootMargin: props.rootMargin
   })
 
-  if (groupRef.value) {
-    observer.observe(groupRef.value)
+  // Observe the sentinel at the top of the group
+  if (sentinelRef.value) {
+    observer.observe(sentinelRef.value)
   }
 })
 
@@ -62,5 +64,15 @@ onUnmounted(() => {
 <style lang="scss">
 .text-reveal-group {
   display: block;
+  position: relative;
+
+  &__sentinel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+  }
 }
 </style>
