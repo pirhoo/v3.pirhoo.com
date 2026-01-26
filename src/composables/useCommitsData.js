@@ -23,7 +23,7 @@ import {
  * @returns {import('vue').ComputedRef<number>} returns.chartWidth - Total chart width in pixels
  * @returns {import('vue').ComputedRef<number>} returns.chartHeight - Total chart height in pixels
  * @returns {Function} returns.formatDisplayDate - Format date for tooltip display
- * @returns {Function} returns.getCellIntensity - Get intensity level (0-4) for commit count
+ * @returns {Function} returns.getCellIntensity - Get intensity level (0-5) for commit count
  * @returns {Function} returns.getYearSeparatorPath - Generate SVG path string for year boundary
  *
  * @example
@@ -97,9 +97,13 @@ export function useCommitsData() {
   })
 
   const intensityScale = computed(() => {
-    return d3.scaleQuantile()
-      .domain(allCounts.value)
-      .range([1, 2, 3, 4])
+    if (allCounts.value.length === 0) return () => 1
+    const maxCount = Math.max(...allCounts.value)
+    // Exponential scale with 5 buckets for better distribution of high-activity days
+    return d3.scalePow()
+      .exponent(0.4)
+      .domain([1, maxCount])
+      .range([1, 5])
   })
 
   const chartWidth = computed(() => {
@@ -123,7 +127,7 @@ export function useCommitsData() {
 
   function getCellIntensity(count) {
     if (count === 0) return 0
-    return intensityScale.value(count)
+    return Math.round(intensityScale.value(count))
   }
 
   function getYearSeparatorPath(boundary) {
