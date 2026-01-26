@@ -37,7 +37,7 @@ import SectionProjectsArchiveItem from './Archive/Item.vue'
 
 const { theme } = useTheme()
 
-const thumbnails = import.meta.glob('@/assets/images/thumbnails/*.png', {
+const thumbnails = import.meta.glob('@/assets/images/thumbnails/*.{png,jpg}', {
   eager: true,
   query: '?url',
   import: 'default'
