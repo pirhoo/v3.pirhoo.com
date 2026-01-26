@@ -53,7 +53,6 @@ onMounted(async () => {
     overflow-x: auto;
     overflow-y: visible;
     cursor: grab;
-    scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
       height: 4px;
