@@ -63,8 +63,11 @@ function handleIntersect(entries) {
 }
 
 onMounted(() => {
-  // Only create observer if not inside a group
-  if (!group) {
+  if (group) {
+    // Register with the group so it can observe this element
+    group.register(elementRef.value)
+  } else {
+    // Create own observer if not inside a group
     observer = new IntersectionObserver(handleIntersect, {
       threshold: 0.2,
       rootMargin: '0px 0px -50px 0px'
@@ -77,6 +80,9 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  if (group) {
+    group.unregister(elementRef.value)
+  }
   if (observer) {
     observer.disconnect()
   }

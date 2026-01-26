@@ -1,6 +1,5 @@
 <template>
   <component :is="tag" class="text-reveal-group">
-    <span ref="sentinelRef" class="text-reveal-group__sentinel" />
     <slot />
   </component>
 </template>
@@ -23,15 +22,36 @@ const props = defineProps({
   }
 })
 
-const sentinelRef = ref(null)
 const isVisible = ref(false)
-
-// Provide visibility state to child TextReveal components
-provide('textRevealGroup', {
-  isVisible
-})
+const registeredElements = []
 
 let observer = null
+
+function register(element) {
+  if (element && !registeredElements.includes(element)) {
+    registeredElements.push(element)
+    if (observer) {
+      observer.observe(element)
+    }
+  }
+}
+
+function unregister(element) {
+  const index = registeredElements.indexOf(element)
+  if (index > -1) {
+    registeredElements.splice(index, 1)
+    if (observer) {
+      observer.unobserve(element)
+    }
+  }
+}
+
+// Provide visibility state and registration to child TextReveal components
+provide('textRevealGroup', {
+  isVisible,
+  register,
+  unregister
+})
 
 function handleIntersect(entries) {
   entries.forEach(entry => {
@@ -48,10 +68,8 @@ onMounted(() => {
     rootMargin: props.rootMargin
   })
 
-  // Observe the sentinel at the top of the group
-  if (sentinelRef.value) {
-    observer.observe(sentinelRef.value)
-  }
+  // Observe all registered elements
+  registeredElements.forEach(el => observer.observe(el))
 })
 
 onUnmounted(() => {
@@ -64,15 +82,5 @@ onUnmounted(() => {
 <style lang="scss">
 .text-reveal-group {
   display: block;
-  position: relative;
-
-  &__sentinel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 1px;
-    pointer-events: none;
-  }
 }
 </style>
