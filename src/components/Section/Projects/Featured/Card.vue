@@ -60,19 +60,19 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
   top: 0;
   left: 0;
   right: 0;
-  height: 420px;
+  min-height: 420px;
   display: flex;
   flex-direction: column;
   background: var(--card-bg);
   border-radius: $space-2;
   overflow: hidden;
   box-shadow: 0 0 0 1px var(--card-color, var(--border-color));
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), min-height 0.4s ease;
   user-select: none;
   touch-action: pan-y;
 
   @media (max-width: 576px) {
-    height: 360px;
+    min-height: 360px;
   }
 
   &--dragging {
