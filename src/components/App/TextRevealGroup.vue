@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref, provide } from 'vue'
+import { provide, nextTick } from 'vue'
 
 defineProps({
   tag: {
@@ -14,15 +14,29 @@ defineProps({
   }
 })
 
-const isVisible = ref(false)
+const revealCallbacks = []
+let hasRevealed = false
 
-function reveal() {
-  isVisible.value = true
+function register(callback) {
+  revealCallbacks.push(callback)
+  // If already revealed, trigger immediately
+  if (hasRevealed) {
+    callback()
+  }
 }
 
-// Provide visibility state and reveal function to child TextReveal components
+function reveal() {
+  if (hasRevealed) return
+  hasRevealed = true
+  // Defer to ensure all children have registered
+  nextTick(() => {
+    revealCallbacks.forEach(cb => cb())
+  })
+}
+
+// Provide registration and reveal function to child TextReveal components
 provide('textRevealGroup', {
-  isVisible,
+  register,
   reveal
 })
 </script>
