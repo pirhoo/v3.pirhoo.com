@@ -12,7 +12,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
  * @returns {import('vue').ComputedRef<number>} returns.scrollFactor - Overall scroll progress (0-1)
  *
  * @example
- * const { sectionProgress, scrollFactor } = useScrollProgress(4)
+ * const { sectionProgress, scrollFactor } = useScrollProgress(5)
  *
  * // sectionProgress.value = { index: 1, progress: 0.5 }
  * // means we're halfway through section 1 (0-indexed)

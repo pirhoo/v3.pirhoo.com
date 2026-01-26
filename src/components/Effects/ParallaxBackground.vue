@@ -14,7 +14,7 @@ import EffectsParallaxBackgroundOrb from './ParallaxBackground/Orb.vue'
 import { useScrollProgress } from '@/composables/useScrollProgress'
 import { useOrbColors } from '@/composables/useOrbColors'
 
-const { sectionProgress, scrollFactor } = useScrollProgress(4)
+const { sectionProgress, scrollFactor } = useScrollProgress(5)
 const { currentColors } = useOrbColors(sectionProgress)
 
 const baseOpacity = 0.2

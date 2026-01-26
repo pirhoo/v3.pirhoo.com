@@ -24,6 +24,7 @@ const colorPalettes = [
   generateOrbColors(sectionColors.introduction),
   generateOrbColors(sectionColors.investigations),
   generateOrbColors(sectionColors.activity),
+  generateOrbColors(sectionColors.oss),
   generateOrbColors(sectionColors.projects)
 ]
 
@@ -40,7 +41,7 @@ function lerpColor(color1, color2, t) {
  * @returns {number} returns.paletteCount - Number of color palettes (sections)
  *
  * @example
- * const { sectionProgress } = useScrollProgress(4)
+ * const { sectionProgress } = useScrollProgress(5)
  * const { currentColors } = useOrbColors(sectionProgress)
  * // currentColors.value = ['rgba(255,100,100,0.8)', 'rgba(200,50,50,0.6)', ...]
  */
