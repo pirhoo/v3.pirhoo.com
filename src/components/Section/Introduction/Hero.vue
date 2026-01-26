@@ -1,11 +1,11 @@
 <template>
   <div class="introduction-hero">
     <div class="introduction-hero__content">
-      <h1 class="introduction-hero__name text-display">
-        <app-text-reveal text="Pierre" tag="span" :delay="300" /><br />
-        <app-text-reveal text="Romera" tag="span" :delay="450" /><br />
-        <app-text-reveal text="Zhang" tag="span" :delay="600" />
-      </h1>
+      <app-text-reveal-group tag="h1" class="introduction-hero__name text-display">
+        <app-text-reveal text="Pierre" tag="span" :delay="0" /><br />
+        <app-text-reveal text="Romera" tag="span" :delay="150" /><br />
+        <app-text-reveal text="Zhang" tag="span" :delay="300" />
+      </app-text-reveal-group>
       <div class="introduction-hero__roles">
         <app-text-reveal
           v-for="(role, index) in roles"
@@ -22,6 +22,7 @@
 
 <script setup>
 import AppTextReveal from '@/components/App/TextReveal.vue'
+import AppTextRevealGroup from '@/components/App/TextRevealGroup.vue'
 
 const roles = ['CTO', 'Developer', 'Datajournalist']
 </script>
