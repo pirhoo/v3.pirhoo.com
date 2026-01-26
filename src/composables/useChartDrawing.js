@@ -149,6 +149,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('fill', d => {
         const intensity = getCellIntensity(d.count)
         if (intensity === 0) return 'transparent'
+        if (intensity === 7) return 'var(--section-primary)'
         return `url(#hatch-${intensity})`
       })
       .attr('stroke', d => d.count > 0 ? 'var(--section-primary)' : 'var(--border-dashed)')
@@ -159,6 +160,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('fill', d => {
         const intensity = getCellIntensity(d.count)
         if (intensity === 0) return 'transparent'
+        if (intensity === 7) return 'var(--section-primary)'
         return `url(#hatch-${intensity})`
       })
       .attr('stroke', d => d.count > 0 ? 'var(--section-primary)' : 'var(--border-dashed)')

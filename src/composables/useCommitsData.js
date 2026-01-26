@@ -8,7 +8,9 @@ import {
   LABEL_WIDTH,
   MONTH_LABEL_HEIGHT,
   PADDING,
-  MONTH_NAMES
+  MONTH_NAMES,
+  COMMIT_THRESHOLD_LOW,
+  COMMIT_THRESHOLD_HIGH
 } from '@/components/Section/Activity/Commits/config.js'
 
 /**
@@ -121,14 +123,12 @@ export function useCommitsData() {
     return Object.values(commits.daysCount).filter(v => v > 0).sort((a, b) => a - b)
   })
 
-  const intensityScale = computed(() => {
-    if (allCounts.value.length === 0) return () => 1
-    const maxCount = Math.max(...allCounts.value)
-    // Exponential scale with 5 buckets for better distribution of high-activity days
+  // Exponential scale for mid-range commits (10-100)
+  const midRangeScale = computed(() => {
     return d3.scalePow()
       .exponent(0.4)
-      .domain([1, maxCount])
-      .range([1, 5])
+      .domain([COMMIT_THRESHOLD_LOW, COMMIT_THRESHOLD_HIGH])
+      .range([2, 6])
   })
 
   const chartWidth = computed(() => {
@@ -152,7 +152,9 @@ export function useCommitsData() {
 
   function getCellIntensity(count) {
     if (count === 0) return 0
-    return Math.round(intensityScale.value(count))
+    if (count < COMMIT_THRESHOLD_LOW) return 1
+    if (count > COMMIT_THRESHOLD_HIGH) return 7
+    return Math.round(midRangeScale.value(count))
   }
 
   function getYearSeparatorPath(boundary) {
