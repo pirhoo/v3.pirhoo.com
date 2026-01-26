@@ -124,17 +124,18 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
     display: inline-flex;
     align-items: center;
     gap: $space-1;
+    width: fit-content;
     margin-left: calc(48px + #{$space-3});
-    padding: $space-1 + 2 $space-3;
+    padding: $space-1 $space-2;
     font-family: $font-family-mono;
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     color: var(--item-color, var(--text-muted));
     border: 1px solid var(--item-color, var(--border-color));
     border-radius: $space-1;
     transition: all 0.2s ease;
 
     svg {
-      font-size: 0.875rem;
+      font-size: 0.75rem;
     }
   }
 
