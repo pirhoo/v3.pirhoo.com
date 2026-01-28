@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import * as d3 from 'd3'
 import { useD3Tooltip } from '@/composables/useD3Tooltip'
 import { useCommitsData } from '@/composables/useCommitsData'
@@ -46,7 +46,6 @@ const {
   drawDayLabels,
   drawYearSeparators,
   drawCells,
-  revealCells,
   updateColors
 } = useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, getCellIntensity, getYearSeparatorPath })
 
@@ -95,51 +94,22 @@ function scrollToEnd() {
   }
 }
 
-let intersectionObserver = null
-let mutationObserver = null
-
 onMounted(() => {
   drawChart()
 
-  const scrollContainer = rootRef.value?.closest('.activity__commits__chart')
-
   // Use multiple rAF calls to ensure layout is complete
   requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      scrollToEnd()
-
-      // Wait for scroll to complete before setting up observer
-      requestAnimationFrame(() => {
-        // Observe the scroll container, not the inner chart
-        const observeTarget = scrollContainer || rootRef.value
-        intersectionObserver = new IntersectionObserver(
-          entries => {
-            if (entries[0].isIntersecting) {
-              revealCells(scrollContainer)
-              intersectionObserver.disconnect()
-            }
-          },
-          { threshold: 1 }
-        )
-        intersectionObserver.observe(observeTarget)
-      })
-    })
+    requestAnimationFrame(scrollToEnd)
   })
 
-  // Update colors on theme change
-  mutationObserver = new MutationObserver(mutations => {
+  const observer = new MutationObserver(mutations => {
     for (const mutation of mutations) {
       if (mutation.attributeName === 'data-bs-theme') {
         updateColors()
       }
     }
   })
-  mutationObserver.observe(document.documentElement, { attributes: true })
-})
-
-onUnmounted(() => {
-  intersectionObserver?.disconnect()
-  mutationObserver?.disconnect()
+  observer.observe(document.documentElement, { attributes: true })
 })
 </script>
 
