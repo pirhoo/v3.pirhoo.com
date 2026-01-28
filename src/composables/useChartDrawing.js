@@ -133,25 +133,16 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('height', CELL_SIZE)
       .attr('rx', CELL_RADIUS)
       .attr('ry', CELL_RADIUS)
-      .attr('fill', 'transparent')
-      .attr('stroke', 'var(--border-dashed)')
-      .attr('stroke-width', 1)
-      .attr('stroke-dasharray', d => d.count === 0 ? '2,2' : 'none')
-      .on('mouseover', (event, d) => showTooltip(event, getTooltipContent(d)))
-      .on('mouseout', () => hideTooltip())
-      .transition()
-      .duration(500)
-      .delay((_, i, nodes) => {
-        const parentData = d3.select(nodes[i].parentNode).datum()
-        const weekIndex = weeks.value.indexOf(parentData)
-        return weekIndex * 2
-      })
       .attr('fill', d => {
         const intensity = getCellIntensity(d.count)
         if (intensity === 0) return 'transparent'
         return `url(#hatch-${intensity})`
       })
       .attr('stroke', d => d.count > 0 ? 'var(--section-primary)' : 'var(--border-dashed)')
+      .attr('stroke-width', 1)
+      .attr('stroke-dasharray', d => d.count === 0 ? '2,2' : 'none')
+      .on('mouseover', (event, d) => showTooltip(event, getTooltipContent(d)))
+      .on('mouseout', () => hideTooltip())
   }
 
   function updateColors() {
