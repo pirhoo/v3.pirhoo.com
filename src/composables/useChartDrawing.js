@@ -1,4 +1,3 @@
-import * as d3 from 'd3'
 import {
   CELL_SIZE,
   CELL_GAP,
