@@ -21,7 +21,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: '@import "@/utils/_settings.scss";',
-        silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin']
+        silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'if-function', 'color-functions', 'slash-div']
       }
     }
   }
