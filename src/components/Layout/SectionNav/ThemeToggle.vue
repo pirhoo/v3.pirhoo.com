@@ -32,7 +32,7 @@ defineEmits(['toggle'])
   border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  color: var(--text-muted);
+  color: var(--bs-secondary-color);
   transition: all 0.25s ease;
   position: absolute;
   bottom: 16px;
@@ -43,8 +43,8 @@ defineEmits(['toggle'])
   }
 
   &:hover {
-    color: var(--body-color);
-    border-color: var(--body-color);
+    color: var(--bs-body-color);
+    border-color: var(--bs-body-color);
     border-style: solid;
     transform: scale(1.15);
   }

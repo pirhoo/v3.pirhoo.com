@@ -7,7 +7,7 @@
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.5;
-  color: var(--text-muted);
+  color: var(--bs-secondary-color);
 }
 
 // Small uppercase label text
@@ -17,7 +17,7 @@
   font-weight: 500;
   letter-spacing: $letter-spacing-label;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--bs-secondary-color);
 
   // Section subtitle variant with colored line
   &--section::before {

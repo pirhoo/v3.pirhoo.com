@@ -50,7 +50,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
   gap: $space-3;
   padding: $space-3;
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--bs-border-color);
   border-radius: 6px;
   text-decoration: none;
   color: inherit;
@@ -61,10 +61,10 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
   transition: border-color 0.2s ease;
 
   &:hover {
-    border-color: var(--item-color, var(--body-color));
+    border-color: var(--item-color, var(--bs-body-color));
 
     .archive-item__title {
-      color: var(--body-color);
+      color: var(--bs-body-color);
     }
   }
 
@@ -79,7 +79,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
     flex-shrink: 0;
     border-radius: $space-1;
     overflow: hidden;
-    background: var(--border-color);
+    background: var(--bs-border-color);
 
     img {
       width: 100%;
@@ -104,14 +104,14 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
 
   &__year {
     font-size: 0.6875rem;
-    color: var(--text-muted);
+    color: var(--bs-secondary-color);
   }
 
   &__title {
     font-family: $font-family-display;
     font-size: 0.8125rem;
     font-weight: 500;
-    color: var(--text-muted);
+    color: var(--bs-secondary-color);
     line-height: 1.3;
     transition: color 0.2s ease;
     overflow: hidden;
@@ -130,24 +130,24 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
     padding: $space-1 $space-2;
     font-family: $font-family-mono;
     font-size: 0.6875rem;
-    color: var(--body-color);
-    border: 1px solid var(--item-color, var(--border-color));
+    color: var(--bs-body-color);
+    border: 1px solid var(--item-color, var(--bs-border-color));
     border-radius: $space-1;
     transition: all 0.2s ease;
 
     svg {
       font-size: 0.75rem;
-      color: var(--item-color, var(--text-muted));
+      color: var(--item-color, var(--bs-secondary-color));
       transition: color 0.2s ease;
     }
   }
 
   &:hover &__button {
-    background: var(--item-color, var(--body-color));
-    color: var(--body-bg);
+    background: var(--item-color, var(--bs-body-color));
+    color: var(--bs-body-bg);
 
     svg {
-      color: var(--body-bg);
+      color: var(--bs-body-bg);
     }
   }
 }

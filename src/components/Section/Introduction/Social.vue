@@ -71,7 +71,7 @@ const socialLinks = [
     gap: $space-3;
     padding: $space-3 $space-5;
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--bs-border-color);
     border-radius: $space-1;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -92,7 +92,7 @@ const socialLinks = [
       gap: $space-1 / 2;
 
       .text-meta {
-        color: var(--body-color);
+        color: var(--bs-body-color);
       }
     }
   }

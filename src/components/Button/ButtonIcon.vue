@@ -106,19 +106,19 @@ defineProps({
   // Variants
   &--outline {
     background: transparent;
-    color: var(--button-color, var(--body-color));
-    border: 1px solid var(--button-color, var(--border-color));
+    color: var(--button-color, var(--bs-body-color));
+    border: 1px solid var(--button-color, var(--bs-border-color));
 
     &:hover {
-      background: var(--button-color, var(--body-color));
-      color: var(--body-bg);
+      background: var(--button-color, var(--bs-body-color));
+      color: var(--bs-body-bg);
     }
   }
 
   &--solid {
-    background: var(--button-color, var(--body-color));
-    color: var(--body-bg);
-    border: 1px solid var(--button-color, var(--body-color));
+    background: var(--button-color, var(--bs-body-color));
+    color: var(--bs-body-bg);
+    border: 1px solid var(--button-color, var(--bs-body-color));
 
     &:hover {
       opacity: 0.9;
@@ -127,11 +127,11 @@ defineProps({
 
   &--ghost {
     background: transparent;
-    color: var(--button-color, var(--body-color));
+    color: var(--button-color, var(--bs-body-color));
     border: 1px solid transparent;
 
     &:hover {
-      background: var(--border-color);
+      background: var(--bs-border-color);
     }
   }
 

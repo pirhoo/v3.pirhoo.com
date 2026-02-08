@@ -133,7 +133,7 @@
 .index-number {
   font-family: $font-family-mono;
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: var(--bs-secondary-color);
 
   &::before {
     content: '(';
@@ -168,7 +168,7 @@
     top: 0;
     bottom: 0;
     width: 100px;
-    background: linear-gradient(to right, transparent, var(--body-bg));
+    background: linear-gradient(to right, transparent, var(--bs-body-bg));
     pointer-events: none;
   }
 
@@ -179,7 +179,7 @@
     top: 0;
     bottom: 0;
     width: 100px;
-    background: linear-gradient(to left, transparent, var(--body-bg));
+    background: linear-gradient(to left, transparent, var(--bs-body-bg));
     pointer-events: none;
     z-index: 1;
   }
@@ -189,7 +189,7 @@
 .card-accent {
   position: relative;
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--bs-border-color);
 
   &::before {
     content: '';

@@ -54,7 +54,7 @@ import EffectsParallaxBackground from '@/components/Effects/ParallaxBackground.v
 
   --section-primary: #666;
   --section-primary-contrast: white;
-  --section-text: var(--body-color);
+  --section-text: var(--bs-body-color);
 }
 
 // Remove old panel styles - components now handle their own layouts

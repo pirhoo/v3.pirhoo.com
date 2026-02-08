@@ -54,7 +54,7 @@ const { sections, activeSection, scrollToSection } = useSectionNavigation({
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--body-bg);
+    background: var(--bs-body-bg);
     border-right: 1px dashed var(--border-dashed);
     position: relative;
   }

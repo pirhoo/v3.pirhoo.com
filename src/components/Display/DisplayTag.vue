@@ -58,11 +58,11 @@ const tagStyle = computed(() => {
   }
 
   &--default {
-    color: var(--tag-color, var(--body-color));
+    color: var(--tag-color, var(--bs-body-color));
   }
 
   &--muted {
-    color: var(--tag-color, var(--text-muted));
+    color: var(--tag-color, var(--bs-secondary-color));
   }
 
   &--primary {

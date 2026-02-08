@@ -52,7 +52,7 @@ const roles = ['CTO', 'Developer', 'Datajournalist']
 
   &__name {
     margin: 0 0 $space-8;
-    color: var(--body-color);
+    color: var(--bs-body-color);
     text-transform: none;
   }
 

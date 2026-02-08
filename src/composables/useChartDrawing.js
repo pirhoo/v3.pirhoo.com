@@ -80,7 +80,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('y', MONTH_LABEL_HEIGHT - 3)
       .style('font-size', '9px')
       .style('font-family', 'var(--font-family-mono)')
-      .style('fill', 'var(--text-muted)')
+      .style('fill', 'var(--bs-secondary-color)')
   }
 
   function drawDayLabels() {
@@ -95,7 +95,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('y', i => MONTH_LABEL_HEIGHT + PADDING + (i * (CELL_SIZE + CELL_GAP)) + CELL_SIZE - 2)
       .style('font-size', '9px')
       .style('font-family', 'var(--font-family-mono)')
-      .style('fill', 'var(--text-muted)')
+      .style('fill', 'var(--bs-secondary-color)')
   }
 
   function drawYearSeparators() {
@@ -106,7 +106,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('class', 'activity-commits__year-separator')
       .attr('d', d => getYearSeparatorPath(d))
       .attr('fill', 'none')
-      .attr('stroke', 'var(--body-color)')
+      .attr('stroke', 'var(--bs-body-color)')
       .attr('stroke-width', 1)
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round')
@@ -154,7 +154,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('stroke', d => d.count > 0 ? 'var(--section-primary)' : 'var(--border-dashed)')
 
     svg.value.selectAll('path.activity-commits__year-separator')
-      .attr('stroke', 'var(--body-color)')
+      .attr('stroke', 'var(--bs-body-color)')
 
     svg.value.selectAll('defs pattern line')
       .attr('stroke', 'var(--section-primary)')

@@ -90,17 +90,17 @@ onUnmounted(() => {
   gap: $space-4;
   padding: $space-6;
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--bs-border-color);
   border-radius: $space-2;
   transition: border-color 0.2s ease;
 
   &:hover {
-    border-color: var(--body-color);
+    border-color: var(--bs-body-color);
   }
 
   &__icon {
     font-size: 1.5rem;
-    color: var(--section-primary, var(--text-muted));
+    color: var(--section-primary, var(--bs-secondary-color));
     flex-shrink: 0;
   }
 
@@ -115,7 +115,7 @@ onUnmounted(() => {
     font-size: 2rem;
     font-weight: 500;
     line-height: 1;
-    color: var(--body-color);
+    color: var(--bs-body-color);
     font-variant-numeric: tabular-nums;
   }
 
@@ -123,12 +123,12 @@ onUnmounted(() => {
     font-family: $font-family-display;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--body-color);
+    color: var(--bs-body-color);
   }
 
   &__sub {
     font-size: 0.8125rem;
-    color: var(--text-muted);
+    color: var(--bs-secondary-color);
   }
 }
 </style>

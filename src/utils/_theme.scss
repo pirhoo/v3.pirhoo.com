@@ -65,16 +65,6 @@
   }
 }
 
-// Aliases for backward compatibility with existing components
-// Maps old custom variables to Bootstrap's CSS variables
-:root {
-  --body-bg: var(--bs-body-bg);
-  --body-color: var(--bs-body-color);
-  --text-muted: var(--bs-secondary-color);
-  --border-color: var(--bs-border-color);
-  --link-color: var(--bs-link-color);
-}
-
 // Apply theme to body
 body {
   font-family: $font-family-serif;

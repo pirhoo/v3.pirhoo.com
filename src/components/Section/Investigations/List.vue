@@ -117,7 +117,7 @@ onMounted(() => {
     }
 
     &::-webkit-scrollbar-track {
-      background: var(--border-color);
+      background: var(--bs-border-color);
     }
 
     &::-webkit-scrollbar-thumb {

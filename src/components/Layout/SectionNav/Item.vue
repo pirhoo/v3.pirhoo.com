@@ -105,10 +105,10 @@ defineEmits(['click'])
     font-size: 0.6875rem;
     letter-spacing: $letter-spacing-label;
     text-transform: uppercase;
-    color: var(--text-muted);
-    background: var(--body-bg);
+    color: var(--bs-secondary-color);
+    background: var(--bs-body-bg);
     padding: $space-1 $space-2;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--bs-border-color);
     border-radius: 2px;
     white-space: nowrap;
     opacity: 0;

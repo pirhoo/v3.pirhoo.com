@@ -69,14 +69,14 @@ function getThumbnailUrl(thumbnail) {
     background: transparent;
     border: none;
     border-bottom: 1px dashed var(--border-dashed);
-    color: var(--text-muted);
+    color: var(--bs-secondary-color);
     cursor: pointer;
     transition: all 0.2s ease;
     width: 100%;
     text-align: left;
 
     &:hover {
-      color: var(--body-color);
+      color: var(--bs-body-color);
     }
 
     &__icon {

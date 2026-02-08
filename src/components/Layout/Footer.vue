@@ -33,7 +33,7 @@ const currentYear = computed(() => new Date().getFullYear())
     flex-wrap: wrap;
 
     a {
-      color: var(--text-muted);
+      color: var(--bs-secondary-color);
       text-decoration: none;
 
       &:hover {

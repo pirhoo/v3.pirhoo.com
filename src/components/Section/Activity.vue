@@ -77,7 +77,7 @@ const { onMouseDown: onDragStart } = useDragScroll()
       }
 
       &::-webkit-scrollbar-track {
-        background: var(--border-color);
+        background: var(--bs-border-color);
       }
 
       &::-webkit-scrollbar-thumb {
@@ -92,7 +92,7 @@ const { onMouseDown: onDragStart } = useDragScroll()
       text-transform: uppercase;
       text-align: center;
       letter-spacing: 0.1em;
-      color: var(--text-muted);
+      color: var(--bs-secondary-color);
       margin: $space-2 0 0;
     }
   }

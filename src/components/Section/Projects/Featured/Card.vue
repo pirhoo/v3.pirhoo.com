@@ -66,7 +66,7 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
   background: var(--card-bg);
   border-radius: $space-2;
   overflow: hidden;
-  box-shadow: 0 0 0 1px var(--card-color, var(--border-color));
+  box-shadow: 0 0 0 1px var(--card-color, var(--bs-border-color));
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), min-height 0.4s ease;
   user-select: none;
   touch-action: pan-y;
@@ -87,7 +87,7 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
   &__image {
     position: relative;
     overflow: hidden;
-    background: var(--body-bg);
+    background: var(--bs-body-bg);
     height: 260px;
     flex-shrink: 0;
 
@@ -119,7 +119,7 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
     font-size: 1.125rem;
     font-weight: 600;
     margin: 0;
-    color: var(--body-color);
+    color: var(--bs-body-color);
     line-height: 1.3;
   }
 
@@ -130,9 +130,9 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
     margin-top: $space-4;
     padding: $space-2 + $space-1 $space-4;
     background: transparent;
-    border: 1px solid var(--button-color, var(--border-color));
+    border: 1px solid var(--button-color, var(--bs-border-color));
     border-radius: $space-1;
-    color: var(--body-color);
+    color: var(--bs-body-color);
     font-family: $font-family-mono;
     font-size: 0.8125rem;
     text-decoration: none;
@@ -140,17 +140,17 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
 
     svg {
       font-size: 1rem;
-      color: var(--button-color, var(--text-muted));
+      color: var(--button-color, var(--bs-secondary-color));
       transition: color 0.2s ease;
     }
 
     &:hover {
       background: var(--button-color);
       border-color: var(--button-color);
-      color: var(--body-bg);
+      color: var(--bs-body-bg);
 
       svg {
-        color: var(--body-bg);
+        color: var(--bs-body-bg);
       }
     }
   }

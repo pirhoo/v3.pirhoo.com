@@ -75,7 +75,7 @@ const textColorSubtle = computed(() => getTextColorWithOpacity(contentBgColor.va
   display: flex;
   flex-direction: column;
   background: var(--card-bg);
-  border: 1px solid var(--body-color);
+  border: 1px solid var(--bs-body-color);
   border-radius: $space-2;
   overflow: hidden;
   text-decoration: none;

@@ -121,7 +121,7 @@ onMounted(() => {
   }
 
   &__icon {
-    color: var(--text-muted);
+    color: var(--bs-secondary-color);
     font-size: 1rem;
     flex-shrink: 0;
   }
@@ -139,7 +139,7 @@ onMounted(() => {
   &__description {
     font-size: 0.8125rem;
     line-height: 1.5;
-    color: var(--text-muted);
+    color: var(--bs-secondary-color);
     margin: 0 0 $space-3;
     flex: 1;
     overflow: hidden;
@@ -154,7 +154,7 @@ onMounted(() => {
     gap: $space-4;
     font-family: $font-family-mono;
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: var(--bs-secondary-color);
   }
 
   &__language {

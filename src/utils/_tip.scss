@@ -8,11 +8,11 @@
   text-transform: uppercase;
   max-width: $tooltip-max-width;
   padding: 4px 8px;
-  color: var(--text-muted);
+  color: var(--bs-secondary-color);
   text-align: center;
   text-decoration: none;
-  background: var(--body-bg);
-  border: 1px solid var(--border-color);
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
   white-space: nowrap;
   z-index: $zindex-tooltip;
   transform: translate(0, -10px);
@@ -32,7 +32,7 @@
 
 /* Northward tooltips */
 .d3-tip.n:after {
-  border-top-color: var(--border-color);
+  border-top-color: var(--bs-border-color);
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -40,7 +40,7 @@
 
 /* Eastward tooltips */
 .d3-tip.e:after {
-  border-right-color: var(--border-color);
+  border-right-color: var(--bs-border-color);
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
@@ -48,7 +48,7 @@
 
 /* Southward tooltips */
 .d3-tip.s:after {
-  border-bottom-color: var(--border-color);
+  border-bottom-color: var(--bs-border-color);
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -56,7 +56,7 @@
 
 /* Westward tooltips */
 .d3-tip.w:after {
-  border-left-color: var(--border-color);
+  border-left-color: var(--bs-border-color);
   left: 100%;
   top: 50%;
   transform: translateY(-50%);

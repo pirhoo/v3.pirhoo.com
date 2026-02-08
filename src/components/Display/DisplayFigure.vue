@@ -114,7 +114,7 @@ onUnmounted(() => {
   display: inline-block;
   font-weight: 500;
   line-height: 1;
-  color: var(--body-color);
+  color: var(--bs-body-color);
   font-variant-numeric: tabular-nums;
 
   &--mono {
