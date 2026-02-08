@@ -11,9 +11,9 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--body-color);
-  background: var(--body-color);
-  color: var(--body-bg);
+  border: 1px solid var(--bs-body-bg);
+  background: var(--bs-emphasis-color);
+  color: var(--bs-body-bg);
   display: flex;
   align-items: center;
   justify-content: center;
