@@ -21,7 +21,7 @@
           <p class="text-body">
             I used to be CTO at <a href="http://jplusplus.org">Journalism++</a>,
             an agency that I co-founded after having been lead developer
-            at <a href="http://owni.fr">OWNI</a>. Between 2012 and 2019, I was an Associate Professor
+            at <a href="http://owni.pirhoo.com">OWNI</a>. Between 2012 and 2019, I was an Associate Professor
             at Sciences Po and many other journalism schools, where I
             taught programming and interactive storytelling.
           </p>
