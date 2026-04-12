@@ -1,11 +1,11 @@
 <template>
-  <component :is="tag" class="text-reveal-group">
+  <component :is="tag" ref="groupRef" class="text-reveal-group">
     <slot></slot>
   </component>
 </template>
 
 <script setup>
-import { provide, nextTick } from 'vue'
+import { ref, provide } from 'vue'
 
 defineProps({
   tag: {
@@ -14,34 +14,24 @@ defineProps({
   }
 })
 
-const revealCallbacks = []
-let hasRevealed = false
+const groupRef = ref(null)
+const revealed = ref(false)
 
-function register(callback) {
-  revealCallbacks.push(callback)
-  // If already revealed, trigger immediately
-  if (hasRevealed) {
-    callback()
+let pendingCount = 0
+let completedCount = 0
+
+function registerAnimation() {
+  pendingCount++
+  return () => {
+    completedCount++
+    if (completedCount >= pendingCount) {
+      revealed.value = true
+    }
   }
 }
 
-function reveal() {
-  // Can only reveal once
-  if (hasRevealed) {
-    return
-  }
-  hasRevealed = true
-  // Defer to ensure all children have registered
-  nextTick(() => {
-    revealCallbacks.forEach(cb => cb())
-  })
-}
-
-// Provide registration and reveal function to child TextReveal components
-provide('textRevealGroup', {
-  register,
-  reveal
-})
+provide('textRevealGroup', { element: groupRef, registerAnimation })
+defineExpose({ revealed })
 </script>
 
 <style lang="scss">
