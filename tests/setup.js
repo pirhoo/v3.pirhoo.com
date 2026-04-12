@@ -21,3 +21,17 @@ class ResizeObserverMock {
 }
 
 global.ResizeObserver = ResizeObserverMock
+
+// Mock matchMedia for GSAP ScrollTrigger
+global.matchMedia = global.matchMedia || function (query) {
+  return {
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener() {},
+    removeListener() {},
+    addEventListener() {},
+    removeEventListener() {},
+    dispatchEvent() { return false }
+  }
+}
