@@ -3,19 +3,22 @@
     :is="tag"
     ref="elementRef"
     class="text-reveal"
-    :class="{ 'text-reveal--visible': isVisible }"
   >
     <span
-      v-for="(word, index) in words"
+      v-for="(char, index) in characters"
       :key="index"
-      class="text-reveal__word"
-      :style="{ transitionDelay: `${delay + index * stagger}ms` }"
-    >{{ word }}<span v-if="index < words.length - 1">&nbsp;</span></span>
+      class="text-reveal__char"
+      :class="{ 'text-reveal__char--space': char === ' ' }"
+    >{{ char === ' ' ? '\u00A0' : char }}</span>
   </component>
 </template>
 
 <script setup>
 import { ref, computed, inject, onMounted, onUnmounted } from 'vue'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const props = defineProps({
   text: {
@@ -29,59 +32,60 @@ const props = defineProps({
   delay: {
     type: Number,
     default: 0
-  },
-  stagger: {
-    type: Number,
-    default: 80
   }
 })
 
 const elementRef = ref(null)
-const isVisible = ref(false)
-
-// Check if we're inside a TextRevealGroup
 const group = inject('textRevealGroup', null)
+const characters = computed(() => props.text.split(''))
 
-let observer = null
-
-const words = computed(() => props.text.split(' '))
-
-function handleIntersect(entries) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      if (group) {
-        // Trigger reveal for all siblings in the group
-        group.reveal()
-      } else {
-        isVisible.value = true
-      }
-      observer.disconnect()
-    }
-  })
-}
+let ctx = null
 
 onMounted(() => {
-  // Register with group so reveal() can trigger this component
-  if (group) {
-    group.register(() => {
-      isVisible.value = true
+  const trigger = group?.element?.value || elementRef.value
+  if (!trigger) return
+
+  const charEls = elementRef.value.querySelectorAll('.text-reveal__char')
+  if (!charEls.length) return
+
+  // Convert delay prop to scroll offset for cascading between TextReveal instances
+  const delayOffset = props.delay * 0.02
+  const startPct = Math.max(80 - delayOffset, 50)
+
+  const onComplete = group?.registerAnimation?.()
+
+  ctx = gsap.context(() => {
+    const tl = gsap.timeline({
+      paused: true,
+      onComplete: () => { if (onComplete) onComplete() }
     })
-  }
 
-  observer = new IntersectionObserver(handleIntersect, {
-    threshold: 0.2,
-    rootMargin: '0px 0px -50px 0px'
-  })
+    tl.fromTo(charEls,
+      { filter: 'blur(8px)', opacity: 0 },
+      {
+        filter: 'blur(0px)',
+        opacity: 1,
+        duration: 0.4,
+        stagger: 0.03,
+        ease: 'power2.out'
+      },
+      0
+    )
 
-  if (elementRef.value) {
-    observer.observe(elementRef.value)
-  }
+    const reveal = self => { tl.play(); self.kill() }
+
+    ScrollTrigger.create({
+      trigger,
+      start: `top ${startPct}%`,
+      end: 'bottom 20%',
+      onEnter: reveal,
+      onEnterBack: reveal
+    })
+  }, elementRef.value)
 })
 
 onUnmounted(() => {
-  if (observer) {
-    observer.disconnect()
-  }
+  if (ctx) ctx.revert()
 })
 </script>
 
@@ -89,20 +93,9 @@ onUnmounted(() => {
 .text-reveal {
   display: inline;
 
-  &__word {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: bottom;
-    padding-bottom: 0.15em;
-    margin-bottom: -0.15em;
-    transform: translateY(100%);
-    opacity: 0;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
-  }
-
-  &--visible &__word {
-    transform: translateY(0);
-    opacity: 1;
+  &__char {
+    display: inline;
+    will-change: filter, opacity;
   }
 }
 </style>
