@@ -2,12 +2,7 @@
   <div class="introduction-social section-border" :style="{ transform: `translateY(${parallaxOffset}px)` }">
     <layout-section-grid>
       <template #label>
-        <app-text-reveal
-          text="Contact"
-          tag="span"
-          class="text-label text-label--section"
-          :delay="100"
-        />
+        <span class="text-label text-label--section">Contact</span>
       </template>
       <template #content>
         <div class="introduction-social__links">
@@ -34,7 +29,6 @@
 import { ref, markRaw } from 'vue'
 import { useParallax } from '@/composables/useParallax'
 import LayoutSectionGrid from '@/components/Layout/SectionGrid.vue'
-import AppTextReveal from '@/components/App/TextReveal.vue'
 import IconBluesky from '~icons/fa6-brands/bluesky'
 import IconMastodon from '~icons/ph/mastodon-logo-fill'
 import IconGithub from '~icons/ph/github-logo-fill'
