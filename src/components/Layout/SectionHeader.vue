@@ -1,15 +1,10 @@
 <template>
-  <layout-section-grid :parallax-offset="parallaxOffset">
+  <layout-section-grid ref="gridRef" :parallax-offset="parallaxOffset">
     <template #label>
-      <app-text-reveal
-        :text="label"
-        tag="span"
-        class="text-label text-label--section"
-        :delay="100"
-      />
+      <span class="text-label text-label--section">{{ label }}</span>
     </template>
     <template #content>
-      <app-text-reveal-group tag="h2" class="text-heading">
+      <app-text-reveal-group ref="titleGroupRef" tag="h2" class="text-heading">
         <app-text-reveal
           :text="title"
           tag="span"
@@ -31,9 +26,17 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
 import LayoutSectionGrid from './SectionGrid.vue'
 import AppTextReveal from '@/components/App/TextReveal.vue'
 import AppTextRevealGroup from '@/components/App/TextRevealGroup.vue'
+import { useContentReveal } from '@/composables/useContentReveal'
+
+const gridRef = ref(null)
+const titleGroupRef = ref(null)
+const contentRef = computed(() => gridRef.value?.$el?.querySelector('.section-grid__content'))
+const titleRevealed = computed(() => titleGroupRef.value?.revealed ?? false)
+useContentReveal(contentRef, { waitFor: titleRevealed })
 
 defineProps({
   label: {
