@@ -56,16 +56,24 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
   color: inherit;
   opacity: 0;
   transform: translateY($space-2);
-  animation: archiveItemIn 0.3s ease forwards;
+  animation: archiveItemIn 320ms var(--ease-out) forwards;
   animation-delay: var(--animation-delay);
-  transition: border-color 0.2s ease;
+  transition:
+    border-color var(--motion-hover) ease,
+    transform var(--motion-press) var(--ease-out);
 
-  &:hover {
-    border-color: var(--item-color, var(--bs-body-color));
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: var(--item-color, var(--bs-body-color));
 
-    .archive-item__title {
-      color: var(--bs-body-color);
+      .archive-item__title {
+        color: var(--bs-body-color);
+      }
     }
+  }
+
+  &:active {
+    transform: scale(0.99);
   }
 
   &__header {
@@ -87,7 +95,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
       object-fit: cover;
       object-position: top center;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 320ms var(--ease-out);
 
       &[lazy=loaded] {
         opacity: 1;
@@ -113,7 +121,7 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
     font-weight: 500;
     color: var(--bs-secondary-color);
     line-height: 1.3;
-    transition: color 0.2s ease;
+    transition: color var(--motion-hover) ease;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -133,12 +141,15 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
     color: var(--bs-body-color);
     border: 1px solid var(--item-color, var(--bs-border-color));
     border-radius: $space-1;
-    transition: all 0.2s ease;
+    transition:
+      background-color var(--motion-hover) ease,
+      border-color var(--motion-hover) ease,
+      color var(--motion-hover) ease;
 
     svg {
       font-size: 0.75rem;
       color: var(--item-color, var(--bs-secondary-color));
-      transition: color 0.2s ease;
+      transition: color var(--motion-hover) ease;
     }
   }
 

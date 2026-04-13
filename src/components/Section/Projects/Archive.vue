@@ -71,18 +71,20 @@ function getThumbnailUrl(thumbnail) {
     border-bottom: 1px dashed var(--border-dashed);
     color: var(--bs-secondary-color);
     cursor: pointer;
-    transition: all 0.2s ease;
     width: 100%;
     text-align: left;
+    transition: color var(--motion-hover) ease;
 
-    &:hover {
-      color: var(--bs-body-color);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--bs-body-color);
+      }
     }
 
     &__icon {
       font-family: $font-family-mono;
       font-size: 1rem;
-      transition: transform 0.3s ease;
+      transition: transform 260ms var(--ease-out);
 
       &--open {
         transform: rotate(45deg);
@@ -100,7 +102,9 @@ function getThumbnailUrl(thumbnail) {
 
 .archive-expand-enter-active,
 .archive-expand-leave-active {
-  transition: all 0.3s ease;
+  transition:
+    opacity 260ms var(--ease-out),
+    transform 260ms var(--ease-out);
 }
 
 .archive-expand-enter-from,
