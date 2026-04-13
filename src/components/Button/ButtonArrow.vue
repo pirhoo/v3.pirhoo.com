@@ -18,7 +18,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition:
+    opacity var(--motion-hover) ease,
+    transform var(--motion-press) var(--ease-out);
+
+  &:active:not(:disabled) {
+    transform: scale(0.94);
+  }
 
   &:disabled {
     opacity: 0;

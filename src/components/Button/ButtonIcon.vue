@@ -68,8 +68,17 @@ defineProps({
   text-decoration: none;
   border-radius: $space-1;
   cursor: pointer;
-  transition: all 0.2s ease;
   white-space: nowrap;
+  transition:
+    background-color var(--motion-hover) ease,
+    color var(--motion-hover) ease,
+    border-color var(--motion-hover) ease,
+    opacity var(--motion-hover) ease,
+    transform var(--motion-press) var(--ease-out);
+
+  &:active {
+    transform: scale(0.97);
+  }
 
   &--icon-left {
     flex-direction: row;
@@ -109,9 +118,11 @@ defineProps({
     color: var(--button-color, var(--bs-body-color));
     border: 1px solid var(--button-color, var(--bs-border-color));
 
-    &:hover {
-      background: var(--button-color, var(--bs-body-color));
-      color: var(--bs-body-bg);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--button-color, var(--bs-body-color));
+        color: var(--bs-body-bg);
+      }
     }
   }
 
@@ -120,8 +131,10 @@ defineProps({
     color: var(--bs-body-bg);
     border: 1px solid var(--button-color, var(--bs-body-color));
 
-    &:hover {
-      opacity: 0.9;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        opacity: 0.9;
+      }
     }
   }
 
@@ -130,15 +143,17 @@ defineProps({
     color: var(--button-color, var(--bs-body-color));
     border: 1px solid transparent;
 
-    &:hover {
-      background: var(--bs-border-color);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--bs-border-color);
+      }
     }
   }
 
   &__icon {
     display: flex;
     align-items: center;
-    transition: color 0.2s ease;
+    transition: color var(--motion-hover) ease;
   }
 
   &__label {
