@@ -22,7 +22,7 @@ defineProps({
 <style lang="scss">
 .lazy-image {
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 320ms var(--ease-out);
 
   &[lazy=loaded] {
     opacity: 1;
