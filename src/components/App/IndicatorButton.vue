@@ -83,7 +83,7 @@ const patternId = computed(() => `indicator-hatch-${props.id}`)
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform var(--motion-press) var(--ease-out);
 
   svg {
     width: 100%;
@@ -94,7 +94,9 @@ const patternId = computed(() => `indicator-hatch-${props.id}`)
     stroke: var(--border-dashed);
     stroke-width: 1;
     stroke-dasharray: 2 2;
-    transition: stroke 0.2s ease, stroke-dasharray 0.2s ease;
+    transition:
+      stroke var(--motion-hover) ease,
+      stroke-dasharray var(--motion-hover) ease;
   }
 
   &--active &__border {
@@ -102,13 +104,19 @@ const patternId = computed(() => `indicator-hatch-${props.id}`)
     stroke-dasharray: none;
   }
 
-  &:hover {
-    transform: scale(1.15);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.15);
 
-    .indicator-button__border {
-      stroke: var(--indicator-color, var(--section-primary));
-      stroke-dasharray: none;
+      .indicator-button__border {
+        stroke: var(--indicator-color, var(--section-primary));
+        stroke-dasharray: none;
+      }
     }
+  }
+
+  &:active {
+    transform: scale(0.92);
   }
 }
 </style>
