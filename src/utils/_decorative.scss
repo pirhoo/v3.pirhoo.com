@@ -88,7 +88,9 @@
   height: 6px;
   border-radius: 50%;
   background: var(--border-dashed);
-  transition: all 0.3s ease;
+  transition:
+    background-color var(--motion-hover) ease,
+    box-shadow var(--motion-hover) ease;
 
   &--active {
     background: var(--section-primary, currentColor);
