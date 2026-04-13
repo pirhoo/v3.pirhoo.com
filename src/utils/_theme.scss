@@ -1,6 +1,19 @@
 // Theme CSS variables - Using Bootstrap's color mode system
 // Extends Bootstrap's CSS variables with custom properties
 
+// Motion tokens — shared by every interactive element.
+// Custom curves: built-in CSS easings feel weak.
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --motion-press: 140ms;
+  --motion-hover: 180ms;
+  --motion-popover: 200ms;
+  --motion-enter: 260ms;
+}
+
 // Light theme (default) - extend Bootstrap's :root
 :root,
 [data-bs-theme="light"] {
@@ -76,7 +89,7 @@ body {
 a {
   text-decoration-color: var(--border-dashed);
   text-underline-offset: 3px;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  transition: color var(--motion-hover) ease, text-decoration-color var(--motion-hover) ease;
 
   &:hover {
     color: var(--link-hover);
@@ -88,4 +101,17 @@ a {
 ::selection {
   background: var(--section-primary, #333);
   color: var(--section-primary-contrast, #fff);
+}
+
+// Respect the user's motion preferences. Keep opacity/color transitions
+// that aid comprehension; cut movement-based animations to near-zero.
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
