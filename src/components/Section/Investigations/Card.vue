@@ -80,20 +80,28 @@ const textColorSubtle = computed(() => getTextColorWithOpacity(contentBgColor.va
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s ease;
   position: relative;
   scroll-snap-align: start;
+  transition:
+    transform 240ms var(--ease-out),
+    border-color var(--motion-hover) ease;
 
   @media (max-width: 576px) {
     width: calc(100vw - $grid-gutter * 2);
   }
 
-  &:hover {
-    transform: translateY(-4px);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-4px);
 
-    .investigation-card__image {
-      opacity: 0.8;
+      .investigation-card__image {
+        opacity: 0.8;
+      }
     }
+  }
+
+  &:active {
+    transform: translateY(-2px) scale(0.99);
   }
 
   &__index {
@@ -118,7 +126,7 @@ const textColorSubtle = computed(() => getTextColorWithOpacity(contentBgColor.va
     background-position: center;
     background-color: var(--card-bg, #1a1a1a);
     opacity: 0.6;
-    transition: opacity 0.3s ease;
+    transition: opacity 240ms var(--ease-out);
     position: relative;
 
     &::after {

@@ -92,10 +92,12 @@ onUnmounted(() => {
   background: var(--card-bg);
   border: 1px solid var(--bs-border-color);
   border-radius: $space-2;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--motion-hover) ease;
 
-  &:hover {
-    border-color: var(--bs-body-color);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: var(--bs-body-color);
+    }
   }
 
   &__icon {

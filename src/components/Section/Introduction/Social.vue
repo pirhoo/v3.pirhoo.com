@@ -68,16 +68,24 @@ const socialLinks = [
     border: 1px solid var(--bs-border-color);
     border-radius: $space-1;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition:
+      border-color var(--motion-hover) ease,
+      transform var(--motion-press) var(--ease-out);
 
-    &:hover {
-      border-color: var(--section-primary);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: var(--section-primary);
+      }
+    }
+
+    &:active {
+      transform: scale(0.98);
     }
 
     &__icon {
       font-size: 1.25rem;
       color: var(--section-primary);
-      transition: color 0.2s ease;
+      transition: color var(--motion-hover) ease;
     }
 
     &__text {

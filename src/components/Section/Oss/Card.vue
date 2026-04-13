@@ -104,13 +104,22 @@ onMounted(() => {
   border-radius: $space-2;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.2s ease, border-style 0.2s ease;
   min-width: 280px;
   flex: 1;
+  transition:
+    border-color var(--motion-hover) ease,
+    border-style var(--motion-hover) ease,
+    transform var(--motion-press) var(--ease-out);
 
-  &:hover {
-    border-style: solid;
-    border-color: var(--section-primary);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-style: solid;
+      border-color: var(--section-primary);
+    }
+  }
+
+  &:active {
+    transform: scale(0.99);
   }
 
   &__header {

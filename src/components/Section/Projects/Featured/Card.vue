@@ -67,7 +67,9 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
   border-radius: $space-2;
   overflow: hidden;
   box-shadow: 0 0 0 1px var(--card-color, var(--bs-border-color));
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), min-height 0.4s ease;
+  transition:
+    transform 400ms var(--ease-out),
+    min-height 400ms var(--ease-out);
   user-select: none;
   touch-action: pan-y;
 
@@ -136,22 +138,32 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
     font-family: $font-family-mono;
     font-size: 0.8125rem;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition:
+      background-color var(--motion-hover) ease,
+      border-color var(--motion-hover) ease,
+      color var(--motion-hover) ease,
+      transform var(--motion-press) var(--ease-out);
 
     svg {
       font-size: 1rem;
       color: var(--button-color, var(--bs-secondary-color));
-      transition: color 0.2s ease;
+      transition: color var(--motion-hover) ease;
     }
 
-    &:hover {
-      background: var(--button-color);
-      border-color: var(--button-color);
-      color: var(--bs-body-bg);
-
-      svg {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--button-color);
+        border-color: var(--button-color);
         color: var(--bs-body-bg);
+
+        svg {
+          color: var(--bs-body-bg);
+        }
       }
+    }
+
+    &:active {
+      transform: scale(0.97);
     }
   }
 }
