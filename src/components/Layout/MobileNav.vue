@@ -145,12 +145,20 @@ onUnmounted(() => {
     border: 1px dashed var(--border-dashed);
     border-radius: $space-2;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition:
+      border-color var(--motion-hover) ease,
+      transform var(--motion-press) var(--ease-out);
 
-    &:hover {
-      border-style: solid;
-      border-color: var(--bs-body-color);
-      transform: scale(1.05);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-style: solid;
+        border-color: var(--bs-body-color);
+        transform: scale(1.05);
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
     }
   }
 
@@ -189,16 +197,24 @@ onUnmounted(() => {
     border-radius: $space-1;
     cursor: pointer;
     color: var(--bs-body-color);
-    transition: all 0.2s ease;
+    transition:
+      border-color var(--motion-hover) ease,
+      transform var(--motion-press) var(--ease-out);
 
     svg {
       width: 16px;
       height: 16px;
     }
 
-    &:hover {
-      border-style: solid;
-      border-color: var(--bs-body-color);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-style: solid;
+        border-color: var(--bs-body-color);
+      }
+    }
+
+    &:active {
+      transform: scale(0.92);
     }
   }
 
@@ -218,12 +234,20 @@ onUnmounted(() => {
     border: 1px dashed var(--border-dashed);
     border-radius: $space-2;
     cursor: pointer;
-    transition: all 0.2s ease;
     text-align: left;
+    transition:
+      border-color var(--motion-hover) ease,
+      transform var(--motion-press) var(--ease-out);
 
-    &:hover {
-      border-style: solid;
-      border-color: var(--nav-color);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-style: solid;
+        border-color: var(--nav-color);
+      }
+    }
+
+    &:active {
+      transform: scale(0.99);
     }
 
     &--active {
@@ -262,18 +286,26 @@ onUnmounted(() => {
     border: 1px dashed var(--border-dashed);
     border-radius: $space-2;
     cursor: pointer;
-    transition: all 0.2s ease;
     color: var(--bs-body-color);
     font-family: $font-family-mono;
     font-size: 0.8125rem;
+    transition:
+      border-color var(--motion-hover) ease,
+      transform var(--motion-press) var(--ease-out);
 
     svg {
       font-size: 1rem;
     }
 
-    &:hover {
-      border-style: solid;
-      border-color: var(--bs-body-color);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-style: solid;
+        border-color: var(--bs-body-color);
+      }
+    }
+
+    &:active {
+      transform: scale(0.99);
     }
   }
 }

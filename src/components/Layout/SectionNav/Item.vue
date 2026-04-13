@@ -57,20 +57,26 @@ defineEmits(['click'])
   cursor: pointer;
   position: relative;
 
-  &:hover {
-    .nav-item__cell {
-      transform: scale(1.15);
-    }
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      .nav-item__cell {
+        transform: scale(1.15);
+      }
 
-    .nav-item__cell__border {
-      stroke: var(--nav-color);
-      stroke-dasharray: none;
-    }
+      .nav-item__cell__border {
+        stroke: var(--nav-color);
+        stroke-dasharray: none;
+      }
 
-    .nav-item__label {
-      opacity: 1;
-      transform: translateX(0);
+      .nav-item__label {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
+  }
+
+  &:active .nav-item__cell {
+    transform: scale(0.94);
   }
 
   &--active {
@@ -83,17 +89,19 @@ defineEmits(['click'])
   &__cell {
     width: 20px;
     height: 20px;
-    transition: transform 0.2s ease;
+    transition: transform var(--motion-press) var(--ease-out);
 
     &__bg {
-      transition: fill 0.2s ease;
+      transition: fill var(--motion-hover) ease;
     }
 
     &__border {
       stroke: var(--border-dashed);
       stroke-width: 1;
       stroke-dasharray: 2 2;
-      transition: stroke 0.2s ease, stroke-dasharray 0.2s ease;
+      transition:
+        stroke var(--motion-hover) ease,
+        stroke-dasharray var(--motion-hover) ease;
     }
   }
 
@@ -113,7 +121,9 @@ defineEmits(['click'])
     white-space: nowrap;
     opacity: 0;
     transform: translateX(-$space-2);
-    transition: all 0.25s ease;
+    transition:
+      opacity var(--motion-popover) var(--ease-out),
+      transform var(--motion-popover) var(--ease-out);
     pointer-events: none;
   }
 }

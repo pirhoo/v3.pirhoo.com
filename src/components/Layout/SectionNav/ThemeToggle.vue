@@ -33,20 +33,30 @@ defineEmits(['toggle'])
   background: transparent;
   cursor: pointer;
   color: var(--bs-secondary-color);
-  transition: all 0.25s ease;
   position: absolute;
   bottom: 16px;
   z-index: 1;
+  transition:
+    color var(--motion-hover) ease,
+    border-color var(--motion-hover) ease,
+    transform var(--motion-press) var(--ease-out);
 
   svg {
     font-size: 0.75rem;
+    transition: transform var(--motion-popover) var(--ease-out);
   }
 
-  &:hover {
-    color: var(--bs-body-color);
-    border-color: var(--bs-body-color);
-    border-style: solid;
-    transform: scale(1.15);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--bs-body-color);
+      border-color: var(--bs-body-color);
+      border-style: solid;
+      transform: scale(1.15);
+    }
+  }
+
+  &:active {
+    transform: scale(0.92);
   }
 }
 </style>
