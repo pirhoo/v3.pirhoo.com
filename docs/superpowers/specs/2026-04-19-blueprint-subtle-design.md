@@ -70,7 +70,7 @@ All primitives are theme-aware through existing tokens (`--bs-border-color`, `--
 
 Ordered by blast radius (smallest → largest). One commit per surface, conventional style per `AGENTS.md`.
 
-1. **`Section/Activity/Stats`** — year divider swaps from `dashed` to `dotted`. Single `border-top` change; validates the new `--border-dotted` token in context without touching the heatmap.
+1. **`Section/Activity` — year separator in the commits heatmap.** The separator is rendered by D3 in `src/composables/useChartDrawing.js::drawYearSeparators` as an SVG `<path>` with a solid 1px stroke. Change it to a dotted stroke via `stroke-dasharray: '1 4'` + `stroke-linecap: 'round'` so it reads as a true dotted line. No CSS border change (there is no dashed CSS border here); the blueprint cue is applied in the SVG where the separator actually lives. `--border-dotted` CSS token is validated in Phase A step 6 (Archive toggle border swap).
 2. **`Section/Introduction/Hero`** — `.corner-ticks` on `.introduction-hero__content`. Static, decorative; reads as a drafted frame without affecting the H1 or roles.
 3. **`Section/Introduction/Social`** — social icon buttons gain `.hachure-on-hover`. First consumer of the hachure mixin.
 4. **`Section/Investigations/Card`** — hover hachure (`angle: 45deg`, `alpha: 0.08`). Leading number element swaps `.index-number` (current `(01)` format) for `.index-ratio` (`01/12` format), using existing `index` + `total` props. Card is a plain `<a>` with no active/selected state, so no dotted accent.
