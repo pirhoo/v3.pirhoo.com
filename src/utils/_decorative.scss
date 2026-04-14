@@ -240,6 +240,9 @@
 .corner-ticks {
   position: relative;
 
+  // Shared geometry for all four ticks. Any consumer who overrides
+  // `position` on `.corner-ticks__marker` must also restore `position: absolute`
+  // on its pseudo-elements, or the bottom two ticks will fall out of the corners.
   &::before,
   &::after,
   > .corner-ticks__marker::before,
@@ -287,10 +290,9 @@
 }
 
 // Applies hachure on hover or keyboard focus. Opacity 0.08 is intentionally
-// low to keep a "drafted paper" feel.
+// low to keep a "drafted paper" feel. background-image cannot be transitioned
+// (not interpolatable), so the fill appears instantly.
 .hachure-on-hover {
-  transition: background-image var(--motion-hover) ease;
-
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       @include hachure($opacity: 0.08);
