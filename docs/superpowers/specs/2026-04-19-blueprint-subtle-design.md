@@ -60,7 +60,7 @@ Alpha stays 0.08–0.15 across the site — drafted paper, not wallpaper.
 - `.border-dotted` — `border: 1px dotted var(--border-dotted)`.
 - `.border-dotted-b` — `border-bottom: 1px dotted var(--border-dotted)`.
 - `.border-dotted-t` — `border-top: 1px dotted var(--border-dotted)`.
-- `.index-ratio` — mono, tabular-nums, small caps; formats `03/12` with a thin slash.
+- `.index-ratio` — mono, tabular-nums, uppercase; formats `03/12` with a thin slash.
 - `.corner-ticks` — 6px L-shaped ticks at the four corners of the container via `::before`/`::after` on the element and on a child helper span. Inherits `currentColor`.
 - `.hachure-on-hover` — applies `@include hachure(...)` on `:hover` and `:focus-visible`.
 
