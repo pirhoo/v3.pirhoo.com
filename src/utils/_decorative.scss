@@ -203,3 +203,101 @@
     background: var(--card-accent-color, var(--section-primary));
   }
 }
+
+// Dotted-border utilities (paired with existing `.border-dashed` lineage).
+.border-dotted {
+  border: 1px dotted var(--border-dotted);
+}
+
+.border-dotted-b {
+  border-bottom: 1px dotted var(--border-dotted);
+}
+
+.border-dotted-t {
+  border-top: 1px dotted var(--border-dotted);
+}
+
+// Index ratio: `03/12` style. Mono, tabular, compact. Consumer writes
+// markup: `<span class="index-ratio">03<span>/</span>12</span>`.
+.index-ratio {
+  font-family: $font-family-mono;
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: $letter-spacing-wide;
+  color: var(--bs-secondary-color);
+  text-transform: uppercase;
+
+  > span {
+    margin: 0 2px;
+    opacity: 0.5;
+  }
+}
+
+// Corner ticks: 6px L-shaped marks at all four corners.
+// Consumer must include `<span class="corner-ticks__marker"></span>` as a
+// direct child to supply the two bottom corners (::before/::after on the
+// parent cover the two top corners).
+.corner-ticks {
+  position: relative;
+
+  &::before,
+  &::after,
+  > .corner-ticks__marker::before,
+  > .corner-ticks__marker::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+  }
+
+  &::after {
+    top: 0;
+    right: 0;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+  }
+
+  > .corner-ticks__marker {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    &::before {
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid currentColor;
+      border-left: 1px solid currentColor;
+    }
+
+    &::after {
+      bottom: 0;
+      right: 0;
+      border-bottom: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+    }
+  }
+}
+
+// Applies hachure on hover or keyboard focus. Opacity 0.08 is intentionally
+// low to keep a "drafted paper" feel.
+.hachure-on-hover {
+  transition: background-image var(--motion-hover) ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @include hachure($opacity: 0.08);
+    }
+  }
+
+  &:focus-visible {
+    @include hachure($opacity: 0.08);
+  }
+}
