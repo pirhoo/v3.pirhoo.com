@@ -54,3 +54,14 @@
   -o-#{$name}: #{$argument};
   #{$name}: #{$argument};
 }
+
+// Blueprint hachure fill. Theme-aware via currentColor; alpha carried by arg.
+// Uses color-mix() so that `currentColor` can be alpha-blended without
+// requiring a concrete RGB value from the consumer.
+@mixin hachure($angle: 45deg, $spacing: 4px, $opacity: 0.12) {
+  background-image: repeating-linear-gradient(
+    $angle,
+    color-mix(in srgb, currentColor #{$opacity * 100%}, transparent) 0 1px,
+    transparent 1px $spacing
+  );
+}
