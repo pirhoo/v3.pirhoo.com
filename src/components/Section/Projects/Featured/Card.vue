@@ -14,6 +14,7 @@
     @touchmove="isActive && $emit('dragMove', $event)"
     @touchend="isActive && $emit('dragEnd')"
   >
+    <span v-if="isActive" class="corner-ticks__marker" aria-hidden="true"></span>
     <div class="featured-card__image">
       <img :src="thumbnailUrl" :alt="project.title" />
     </div>
@@ -84,6 +85,65 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
 
   &--active {
     cursor: default;
+
+    // Inlined corner-ticks geometry. We do not add `.corner-ticks` to the root
+    // class list because the featured card uses `overflow: hidden` and needs
+    // z-index control on the ticks to sit above the image.
+    &::before,
+    &::after,
+    > .corner-ticks__marker::before,
+    > .corner-ticks__marker::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      pointer-events: none;
+      z-index: 2;
+      color: var(--bs-body-color);
+    }
+
+    &::before {
+      top: 0;
+      left: 0;
+      border-top: 1px solid currentColor;
+      border-left: 1px solid currentColor;
+    }
+
+    &::after {
+      top: 0;
+      right: 0;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+    }
+
+    > .corner-ticks__marker {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 6px;
+        height: 6px;
+        border-bottom: 1px solid currentColor;
+        border-left: 1px solid currentColor;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 6px;
+        height: 6px;
+        border-bottom: 1px solid currentColor;
+        border-right: 1px solid currentColor;
+      }
+    }
   }
 
   &__image {
