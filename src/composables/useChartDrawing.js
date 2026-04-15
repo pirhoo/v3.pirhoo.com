@@ -110,6 +110,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('stroke-width', 1)
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round')
+      .attr('stroke-dasharray', '1 4')
       .style('opacity', 0.8)
   }
 
