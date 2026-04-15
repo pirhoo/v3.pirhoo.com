@@ -1,7 +1,7 @@
 <template>
   <a
     :href="project.github"
-    class="oss-card"
+    class="oss-card hachure-on-hover"
     target="_blank"
     rel="noopener"
   >
