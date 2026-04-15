@@ -86,9 +86,10 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
   &--active {
     cursor: default;
 
-    // Inlined corner-ticks geometry. We do not add `.corner-ticks` to the root
-    // class list because the featured card uses `overflow: hidden` and needs
-    // z-index control on the ticks to sit above the image.
+    // Inlined corner-ticks geometry. We do not use the `.corner-ticks` utility
+    // because it applies `position: relative`, which would conflict with this
+    // card's existing `position: absolute` (required by the swipe stack layout).
+    // We also want explicit z-index and color control for the active card.
     &::before,
     &::after,
     > .corner-ticks__marker::before,
