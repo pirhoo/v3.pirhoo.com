@@ -13,7 +13,7 @@
     @dragstart.prevent
   >
     <div class="investigation-card__index">
-      <span class="index-number">{{ formattedIndex }}</span>
+      <span class="index-ratio">{{ formattedIndex }}<span>/</span>{{ formattedTotal }}</span>
     </div>
     <div
       class="investigation-card__image"
@@ -56,6 +56,10 @@ const formattedIndex = computed(() => {
   return String(props.total - props.index).padStart(2, '0')
 })
 
+const formattedTotal = computed(() => {
+  return String(props.total).padStart(2, '0')
+})
+
 const imageUrl = computed(() => {
   return getImageUrl(props.investigation.image)
 })
@@ -93,6 +97,7 @@ const textColorSubtle = computed(() => getTextColorWithOpacity(contentBgColor.va
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-4px);
+      @include hachure($opacity: 0.08);
 
       .investigation-card__image {
         opacity: 0.8;
@@ -110,9 +115,7 @@ const textColorSubtle = computed(() => getTextColorWithOpacity(contentBgColor.va
     right: $space-4;
     z-index: 10;
 
-    .index-number {
-      font-family: $font-family-mono;
-      font-size: 0.8125rem;
+    .index-ratio {
       color: var(--card-text-muted);
       background: var(--card-bg);
       padding: $space-1 $space-2;
