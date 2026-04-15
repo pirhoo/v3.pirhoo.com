@@ -1,7 +1,7 @@
 <template>
   <a
     :href="project.url"
-    class="archive-item"
+    class="archive-item hachure-on-hover"
     :style="{ '--item-color': project.adjustedColor || project.color, '--animation-delay': `${index * 20}ms` }"
     target="_blank"
   >
@@ -14,6 +14,7 @@
         />
       </div>
       <div class="archive-item__content">
+        <span class="archive-item__ratio index-ratio">{{ formattedIndex }}<span>/</span>{{ formattedTotal }}</span>
         <span class="archive-item__year text-tiny-display">{{ project.year }}</span>
         <span class="archive-item__title">{{ project.title }}</span>
       </div>
@@ -33,12 +34,15 @@ import IconArchive from '~icons/ph/archive'
 const props = defineProps({
   project: { type: Object, required: true },
   thumbnailUrl: { type: String, required: true },
-  index: { type: Number, required: true }
+  index: { type: Number, required: true },
+  total: { type: Number, required: true }
 })
 
 const isArchive = computed(() => props.project.url?.includes('web.archive.org'))
 const buttonLabel = computed(() => isArchive.value ? 'Archive' : 'Visit')
 const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
+const formattedIndex = computed(() => String(props.index + 1).padStart(2, '0'))
+const formattedTotal = computed(() => String(props.total).padStart(2, '0'))
 </script>
 
 <style lang="scss">
@@ -113,6 +117,10 @@ const buttonIcon = computed(() => isArchive.value ? IconArchive : IconArrowOut)
   &__year {
     font-size: 0.6875rem;
     color: var(--bs-secondary-color);
+  }
+
+  &__ratio {
+    margin-bottom: 2px;
   }
 
   &__title {

@@ -18,6 +18,7 @@
               :project="project"
               :thumbnail-url="getThumbnailUrl(project.thumbnail)"
               :index="index"
+              :total="archivedProjects.length"
             />
           </div>
         </transition>
@@ -68,7 +69,7 @@ function getThumbnailUrl(thumbnail) {
     padding: $space-3 0;
     background: transparent;
     border: none;
-    border-bottom: 1px dashed var(--border-dashed);
+    border-bottom: 1px dotted var(--border-dotted);
     color: var(--bs-secondary-color);
     cursor: pointer;
     width: 100%;
