@@ -84,6 +84,25 @@ defineEmits(['click'])
       stroke: var(--nav-color);
       stroke-dasharray: none;
     }
+
+    // Blueprint cue on the active nav item: subtle hachure fill behind the
+    // cell + a 2px dotted vertical accent to the left of the cell.
+    @include hachure($opacity: 0.10);
+    background-size: 18px 18px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 2px;
+      width: 0;
+      height: 16px;
+      transform: translateY(-50%);
+      border-left: 2px dotted var(--border-dotted);
+      pointer-events: none;
+    }
   }
 
   &__cell {
