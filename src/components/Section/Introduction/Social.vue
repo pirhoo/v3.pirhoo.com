@@ -10,7 +10,7 @@
             v-for="link in socialLinks"
             :key="link.platform"
             :href="link.url"
-            class="introduction-social__link"
+            class="introduction-social__link hachure-on-hover"
             :rel="link.rel"
           >
             <component :is="link.icon" class="introduction-social__link__icon" />
