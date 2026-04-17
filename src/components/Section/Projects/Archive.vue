@@ -69,7 +69,7 @@ function getThumbnailUrl(thumbnail) {
     padding: $space-3 0;
     background: transparent;
     border: none;
-    border-bottom: 1px dotted var(--border-dotted);
+    border-bottom: 1px dashed var(--border-dashed);
     color: var(--bs-secondary-color);
     cursor: pointer;
     width: 100%;
