@@ -97,16 +97,11 @@ const textColorSubtle = computed(() => getTextColorWithOpacity(contentBgColor.va
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-4px);
-      @include hachure($opacity: 0.08);
 
       .investigation-card__image {
         opacity: 0.8;
       }
     }
-  }
-
-  &:focus-visible {
-    @include hachure($opacity: 0.08);
   }
 
   &:active {

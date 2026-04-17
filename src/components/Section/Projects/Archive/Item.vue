@@ -1,7 +1,7 @@
 <template>
   <a
     :href="project.url"
-    class="archive-item hachure-on-hover"
+    class="archive-item"
     :style="{ '--item-color': project.adjustedColor || project.color, '--animation-delay': `${index * 20}ms` }"
     target="_blank"
   >
