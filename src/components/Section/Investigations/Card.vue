@@ -105,6 +105,10 @@ const textColorSubtle = computed(() => getTextColorWithOpacity(contentBgColor.va
     }
   }
 
+  &:focus-visible {
+    @include hachure($opacity: 0.08);
+  }
+
   &:active {
     transform: translateY(-2px) scale(0.99);
   }

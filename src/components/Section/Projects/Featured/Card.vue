@@ -100,7 +100,6 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
       height: 6px;
       pointer-events: none;
       z-index: 2;
-      color: var(--bs-body-color);
     }
 
     &::before {
