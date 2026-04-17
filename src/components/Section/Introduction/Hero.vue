@@ -1,7 +1,6 @@
 <template>
   <div class="introduction-hero">
-    <div class="introduction-hero__content corner-ticks">
-      <span class="corner-ticks__marker" aria-hidden="true"></span>
+    <div class="introduction-hero__content">
       <app-text-reveal-group tag="h1" class="introduction-hero__name text-display">
         <app-text-reveal text="Pierre" tag="span" :delay="0" /><br />
         <app-text-reveal text="Romera" tag="span" :delay="150" /><br />
@@ -49,7 +48,6 @@ const roles = ['CTO', 'Developer', 'Datajournalist']
 
   &__content {
     max-width: 900px;
-    padding: $space-3 $space-4;
   }
 
   &__name {
