@@ -7,7 +7,8 @@ import {
   PADDING,
   DAY_LABELS,
   VISIBLE_DAYS,
-  HATCH_PATTERNS
+  HATCH_PATTERNS,
+  YEAR_SEPARATOR_DASHARRAY
 } from '@/components/Section/Activity/Commits/config.js'
 
 /**
@@ -110,7 +111,7 @@ export function useChartDrawing(svg, { weeks, yearBoundaries, monthBoundaries, g
       .attr('stroke-width', 1)
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round')
-      .attr('stroke-dasharray', '1 4')
+      .attr('stroke-dasharray', YEAR_SEPARATOR_DASHARRAY)
       .style('opacity', 0.8)
   }
 

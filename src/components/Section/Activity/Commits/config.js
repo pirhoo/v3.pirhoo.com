@@ -30,3 +30,6 @@ export const HATCH_PATTERNS = [
 // Thresholds for special buckets
 export const COMMIT_THRESHOLD_LOW = 10
 export const COMMIT_THRESHOLD_HIGH = 100
+
+// SVG stroke-dasharray for the dotted year separator (1px dot, 4px gap).
+export const YEAR_SEPARATOR_DASHARRAY = '1 4'
