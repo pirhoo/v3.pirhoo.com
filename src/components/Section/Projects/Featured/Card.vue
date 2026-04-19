@@ -85,65 +85,9 @@ defineEmits(['dragStart', 'dragMove', 'dragEnd'])
 
   &--active {
     cursor: default;
-
-    // Inlined corner-ticks geometry. We do not use the `.corner-ticks` utility
-    // because it applies `position: relative`, which would conflict with this
-    // card's existing `position: absolute` (required by the swipe stack layout).
-    // We also want explicit z-index and color control for the active card.
-    &::before,
-    &::after,
-    > .corner-ticks__marker::before,
-    > .corner-ticks__marker::after {
-      content: '';
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    &::before {
-      top: 0;
-      left: 0;
-      border-top: 1px solid currentColor;
-      border-left: 1px solid currentColor;
-    }
-
-    &::after {
-      top: 0;
-      right: 0;
-      border-top: 1px solid currentColor;
-      border-right: 1px solid currentColor;
-    }
-
-    > .corner-ticks__marker {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-
-      &::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 6px;
-        height: 6px;
-        border-bottom: 1px solid currentColor;
-        border-left: 1px solid currentColor;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 6px;
-        height: 6px;
-        border-bottom: 1px solid currentColor;
-        border-right: 1px solid currentColor;
-      }
-    }
+    // Card is already position: absolute (required by the swipe stack), so
+    // the corner-ticks mixin can be applied without adding position: relative.
+    @include corner-ticks($z-index: 2);
   }
 
   &__image {

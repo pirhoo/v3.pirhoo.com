@@ -233,60 +233,9 @@
   }
 }
 
-// Corner ticks: 6px L-shaped marks at all four corners.
-// Consumer must include `<span class="corner-ticks__marker"></span>` as a
-// direct child to supply the two bottom corners (::before/::after on the
-// parent cover the two top corners).
 .corner-ticks {
   position: relative;
-
-  // Shared geometry for all four ticks. Any consumer who overrides
-  // `position` on `.corner-ticks__marker` must also restore `position: absolute`
-  // on its pseudo-elements, or the bottom two ticks will fall out of the corners.
-  &::before,
-  &::after,
-  > .corner-ticks__marker::before,
-  > .corner-ticks__marker::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    pointer-events: none;
-  }
-
-  &::before {
-    top: 0;
-    left: 0;
-    border-top: 1px solid currentColor;
-    border-left: 1px solid currentColor;
-  }
-
-  &::after {
-    top: 0;
-    right: 0;
-    border-top: 1px solid currentColor;
-    border-right: 1px solid currentColor;
-  }
-
-  > .corner-ticks__marker {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
-    &::before {
-      bottom: 0;
-      left: 0;
-      border-bottom: 1px solid currentColor;
-      border-left: 1px solid currentColor;
-    }
-
-    &::after {
-      bottom: 0;
-      right: 0;
-      border-bottom: 1px solid currentColor;
-      border-right: 1px solid currentColor;
-    }
-  }
+  @include corner-ticks;
 }
 
 // Applies hachure on hover or keyboard focus. Opacity 0.08 is intentionally

@@ -55,13 +55,67 @@
   #{$name}: #{$argument};
 }
 
-// Blueprint hachure fill. Theme-aware via currentColor; alpha carried by arg.
-// Uses color-mix() so that `currentColor` can be alpha-blended without
-// requiring a concrete RGB value from the consumer.
+// Blueprint hachure fill. color-mix() lets us alpha-blend currentColor.
 @mixin hachure($angle: 45deg, $spacing: 4px, $opacity: 0.12) {
   background-image: repeating-linear-gradient(
     $angle,
     color-mix(in srgb, currentColor #{$opacity * 100%}, transparent) 0 1px,
     transparent 1px $spacing
   );
+}
+
+// 6px L-shaped corner ticks at all four corners. The consumer must already be
+// positioned (relative/absolute) and include `<span class="corner-ticks__marker"></span>`
+// as a direct child. Pass $z-index to float ticks above siblings (e.g. an image).
+@mixin corner-ticks($z-index: null) {
+  &::before,
+  &::after,
+  > .corner-ticks__marker::before,
+  > .corner-ticks__marker::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
+    @if $z-index != null {
+      z-index: $z-index;
+    }
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+  }
+
+  &::after {
+    top: 0;
+    right: 0;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+  }
+
+  > .corner-ticks__marker {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    @if $z-index != null {
+      z-index: $z-index;
+    }
+
+    &::before {
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid currentColor;
+      border-left: 1px solid currentColor;
+    }
+
+    &::after {
+      bottom: 0;
+      right: 0;
+      border-bottom: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+    }
+  }
 }
