@@ -131,21 +131,6 @@
   }
 }
 
-// Index number (like hamzatariq project numbering)
-.index-number {
-  font-family: $font-family-mono;
-  font-size: 0.75rem;
-  color: var(--bs-secondary-color);
-
-  &::before {
-    content: '(';
-  }
-
-  &::after {
-    content: ')';
-  }
-}
-
 // Glow effect
 .glow {
   box-shadow: 0 0 30px var(--section-primary, rgba(255, 255, 255, 0.1));
@@ -204,19 +189,6 @@
   }
 }
 
-// Dotted-border utilities (paired with existing `.border-dashed` lineage).
-.border-dotted {
-  border: 1px dotted var(--border-dotted);
-}
-
-.border-dotted-b {
-  border-bottom: 1px dotted var(--border-dotted);
-}
-
-.border-dotted-t {
-  border-top: 1px dotted var(--border-dotted);
-}
-
 // Index ratio: `03/12` style. Mono, tabular, compact. Consumer writes
 // markup: `<span class="index-ratio">03<span>/</span>12</span>`.
 .index-ratio {
@@ -236,19 +208,4 @@
 .corner-ticks {
   position: relative;
   @include corner-ticks;
-}
-
-// Applies hachure on hover or keyboard focus. Opacity 0.08 is intentionally
-// low to keep a "drafted paper" feel. background-image cannot be transitioned
-// (not interpolatable), so the fill appears instantly.
-.hachure-on-hover {
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      @include hachure($opacity: 0.08);
-    }
-  }
-
-  &:focus-visible {
-    @include hachure($opacity: 0.08);
-  }
 }
