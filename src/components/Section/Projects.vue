@@ -7,7 +7,7 @@
       :parallax-offset="parallaxOffset"
     >
       <p class="text-body projects__intro pb-5">
-        I mostly code in Javascript and Ruby. Both are my favorite languages.
+        I mostly code in Javascript and Python. Both are my favorite languages.
         Almost all my projects are Open Source and available on
         <a href="https://github.com/pirhoo?tab=activity" target="_blank">Github</a>.
       </p>
